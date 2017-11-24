@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="org.uniworks.groupware.mapper.CompanyMapper"> 
+	<resultMap id="BaseResultMap" type="org.uniworks.groupware.domain.Company">
+		<result column="CO_ID" jdbcType="VARCHAR" property="coId" />
+		<result column="CO_NAME" jdbcType="VARCHAR" property="coName" />
+		<result column="ST_DATE" jdbcType="VARCHAR" property="stDate" />
+		<result column="FIN_DATE" jdbcType="VARCHAR" property="finDate" />
+		<result column="PRNT_CO_CLSF" jdbcType="VARCHAR" property="prntCoClsf" />
+		<result column="PRNT_CO_CODE" jdbcType="VARCHAR" property="prntCoCode" />
+		<result column="USE_INDC" jdbcType="VARCHAR" property="useIndc" />
+		<result column="BIZ_RGSR_NO" jdbcType="VARCHAR" property="bizRgsrNo" />
+		<result column="RPRSNT_NAME" jdbcType="VARCHAR" property="rprsntName" />
+		<result column="ZIP_CODE" jdbcType="VARCHAR" property="zipCode" />
+		<result column="CO_ADDR" jdbcType="VARCHAR" property="coAddr" />
+		<result column="CO_PHON_NO" jdbcType="VARCHAR" property="coPhonNo" />
+		<result column="CO_FAX_NO" jdbcType="VARCHAR" property="coFaxNo" />
+		<result column="HOME_PAGE_URL" jdbcType="VARCHAR" property="homePageUrl" />
+		<result column="BASE_OGAN_LEV" jdbcType="VARCHAR" property="baseOganLev" />
+		<result column="SPRT_LANG" jdbcType="VARCHAR" property="sprtLang" />
+	</resultMap>
+	
+	<!-- 회사정보를 가져온다. 해당 회사의 기본 조직은 BASE_OGAN_LEV의 레벨을 참조. -->
+	<select id="selectByCompanyMaster" parameterType="java.util.Map" resultMap="BaseResultMap">
+		select CO_ID, CO_NAME, ST_DATE, FIN_DATE, PRNT_CO_CLSF, PRNT_CO_CODE, USE_INDC, BIZ_RGSR_NO, RPRSNT_NAME, ZIP_CODE, CO_ADDR,
+		       CO_PHON_NO, CO_FAX_NO, HOME_PAGE_URL, BASE_OGAN_LEV, SPRT_LANG
+		from   hr001m
+		where  CO_ID = #{coId,jdbcType=VARCHAR}
+	</select>
+</mapper>

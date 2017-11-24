@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=edge"/>
+<title>Test results - Class org.uniworks.groupware.mapper.ApprovalMapperTest</title>
+<link href="../css/base-style.css" rel="stylesheet" type="text/css"/>
+<link href="../css/style.css" rel="stylesheet" type="text/css"/>
+<script src="../js/report.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="content">
+<h1>Class org.uniworks.groupware.mapper.ApprovalMapperTest</h1>
+<div class="breadcrumbs">
+<a href="../index.html">all</a> &gt; 
+<a href="../packages/org.uniworks.groupware.mapper.html">org.uniworks.groupware.mapper</a> &gt; ApprovalMapperTest</div>
+<div id="summary">
+<table>
+<tr>
+<td>
+<div class="summaryGroup">
+<table>
+<tr>
+<td>
+<div class="infoBox" id="tests">
+<div class="counter">1</div>
+<p>tests</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="failures">
+<div class="counter">0</div>
+<p>failures</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="ignored">
+<div class="counter">0</div>
+<p>ignored</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="duration">
+<div class="counter">0.227s</div>
+<p>duration</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</td>
+<td>
+<div class="infoBox success" id="successRate">
+<div class="percent">100%</div>
+<p>successful</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div id="tabs">
+<ul class="tabLinks">
+<li>
+<a href="#tab0">Tests</a>
+</li>
+<li>
+<a href="#tab1">Standard output</a>
+</li>
+<li>
+<a href="#tab2">Standard error</a>
+</li>
+</ul>
+<div id="tab0" class="tab">
+<h2>Tests</h2>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Duration</th>
+<th>Result</th>
+</tr>
+</thead>
+<tr>
+<td class="success">selectCprtnApprovalPersonInfoTest</td>
+<td>0.227s</td>
+<td class="success">passed</td>
+</tr>
+</table>
+</div>
+<div id="tab1" class="tab">
+<h2>Standard output</h2>
+<span class="code">
+<pre>10:46:55.794 [Test worker] DEBUG o.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+10:46:55.863 [Test worker] DEBUG o.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1803816] was not registered for synchronization because synchronization is not active
+10:46:55.875 [Test worker] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [ConnectionHandle{url=jdbc:mysql://localhost/gw?useUnicode=true&amp;characterEncoding=utf-8, user=gw, debugHandle=null, lastResetAgoInSec=0, lastUsedAgoInSec=0, creationTimeAgoInSec=0}] will not be managed by Spring
+10:46:55.880 [Test worker] DEBUG o.u.g.m.A.selectCprtnApprovalPersonInfo - ==&gt;  Preparing: select a.CO_ID CO_ID, a.CNTN_ID CNTN_ID, a.DCMT_RGSR_NO DCMT_RGSR_NO, a.APPR_DGR APPR_DGR, a.SEQ_NO SEQ_NO, a.CPRT_EMP_NO CPRT_EMP_NO, a.APPR_DATE_TIME APPR_DATE_TIME, a.APPR_STUS APPR_STUS, a.DEPT_CODE DEPT_CODE, a.DEPT_DESC DEPT_DESC, a.DUTY_DESC DUTY_DESC, a.PSTN_DESC PSTN_DESC, a.STEAD_APPR_EMP_NO STEAD_APPR_EMP_NO, a.STEAD_APPR_INDC STEAD_APPR_INDC, a.COMMENT COMMENT from nw112m a where a.co_id = ? and a.cntn_id = ? and a.dcmt_rgsr_no = ? and a.appr_dgr &lt;= (select min(appr_dgr) from gw.nw111m where co_id = a.co_id and dcmt_rgsr_no = a.dcmt_rgsr_no and appr_stus = '1' and appr_dgr = ? ) 
+10:46:55.953 [Test worker] DEBUG o.u.g.m.A.selectCprtnApprovalPersonInfo - ==&gt; Parameters: A001(String), CNTN000005(String), 201705051493953995815A7(String), 3(Integer)
+10:46:56.007 [Test worker] DEBUG o.u.g.m.A.selectCprtnApprovalPersonInfo - &lt;==      Total: 0
+10:46:56.009 [Test worker] DEBUG o.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1803816]
+10:46:56.010 [Test worker] DEBUG o.u.g.mapper.ApprovalMapperTest - list size: 0
+10:46:56.011 [Test worker] DEBUG o.u.g.mapper.ApprovalMapperTest - []
+</pre>
+</span>
+</div>
+<div id="tab2" class="tab">
+<h2>Standard error</h2>
+<span class="code">
+<pre>11월 24, 2017 10:46:55 오전 org.springframework.test.context.support.DefaultTestContextBootstrapper getDefaultTestExecutionListenerClassNames
+정보: Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]
+11월 24, 2017 10:46:55 오전 org.springframework.test.context.support.DefaultTestContextBootstrapper getTestExecutionListeners
+정보: Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@7cc0b1b, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@38dfdab0, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@5a7ceaa4, org.springframework.test.context.support.DirtiesContextTestExecutionListener@56d84d63, org.springframework.test.context.transaction.TransactionalTestExecutionListener@31ab1070, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@77e746af]
+Fri Nov 24 10:46:55 KST 2017 WARN: Establishing SSL connection without server's identity verification is not recommended. According to MySQL 5.5.45+, 5.6.26+ and 5.7.6+ requirements SSL connection must be established by default if explicit option isn't set. For compliance with existing applications not using SSL the verifyServerCertificate property is set to 'false'. You need either to explicitly disable SSL by setting useSSL=false, or set useSSL=true and provide truststore for server certificate verification.
+Fri Nov 24 10:46:55 KST 2017 WARN: Establishing SSL connection without server's identity verification is not recommended. According to MySQL 5.5.45+, 5.6.26+ and 5.7.6+ requirements SSL connection must be established by default if explicit option isn't set. For compliance with existing applications not using SSL the verifyServerCertificate property is set to 'false'. You need either to explicitly disable SSL by setting useSSL=false, or set useSSL=true and provide truststore for server certificate verification.
+</pre>
+</span>
+</div>
+</div>
+<div id="footer">
+<p>
+<div>
+<label class="hidden" id="label-for-line-wrapping-toggle" for="line-wrapping-toggle">Wrap lines
+<input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
+</label>
+</div>Generated by 
+<a href="http://www.gradle.org">Gradle 3.5</a> at 2017. 11. 24 오전 10:46:58</p>
+</div>
+</div>
+</body>
+</html>

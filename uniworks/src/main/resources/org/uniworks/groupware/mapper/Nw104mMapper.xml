@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="org.uniworks.groupware.mapper.Nw104mMapper"> 
+	<resultMap id="BaseResultMap" type="org.uniworks.groupware.domain.Nw104m"> 
+		<result column="CO_ID" jdbcType="VARCHAR" property="coId" /> 
+		<result column="GRP_CODE" jdbcType="VARCHAR" property="grpCode" /> 
+		<result column="USER_ID" jdbcType="VARCHAR" property="userId" /> 
+		<result column="ST_DATE" jdbcType="DATE" property="stDate" /> 
+		<result column="CLS_DATE" jdbcType="DATE" property="clsDate" /> 
+	</resultMap> 
+
+	<!-- 목록 조회 --> 
+	<select id="select" parameterType="java.util.Map" resultMap="BaseResultMap"> 
+		select  CO_ID, GRP_CODE, USER_ID, ST_DATE, CLS_DATE
+		from   nw104m
+	</select> 
+ 
+	<!-- 상세 조회 --> 
+	<select id="selectByPrimaryKey" parameterType="java.util.Map" resultMap="BaseResultMap"> 
+		select  CO_ID, GRP_CODE, USER_ID, ST_DATE, CLS_DATE
+		from   nw104m
+		where  CO_ID	=	#{coId,jdbcType=VARCHAR} 
+		  and  GRP_CODE	=	#{grpCode,jdbcType=VARCHAR} 
+		  and  ST_DATE	=	#{stDate,jdbcType=DATE} 
+		  and  USER_ID	=	#{userId,jdbcType=VARCHAR} 
+	</select> 
+ 
+	<!-- 등록 --> 
+	<insert id="insert" parameterType="org.uniworks.groupware.domain.Nw104m"> 
+		insert	into nw104m(CO_ID, GRP_CODE, USER_ID, ST_DATE, CLS_DATE) 
+		values (#{coId,jdbcType=VARCHAR},#{grpCode,jdbcType=VARCHAR},#{userId,jdbcType=VARCHAR},#{stDate,jdbcType=DATE},#{clsDate,jdbcType=DATE}) 
+	</insert> 
+ 
+	<!-- 수정 --> 
+	<update id="updateByPrimaryKey" parameterType="org.uniworks.groupware.domain.Nw104m"> 
+		update	nw104m 
+		<trim prefix="SET" suffixOverrides=","> 
+			<if test="clsDate != null">CLS_DATE= #{clsDate,jdbcType=DATE},</if> 
+		</trim> 
+		where	CO_ID	=	#{coId,jdbcType=VARCHAR} 
+		  and	GRP_CODE	=	#{grpCode,jdbcType=VARCHAR} 
+		  and	USER_ID	=	#{userId,jdbcType=VARCHAR} 
+		  and	ST_DATE	=	#{stDate,jdbcType=DATE} 
+	</update> 
+ 
+	<!-- 삭제 --> 
+	<delete id="deleteByPrimaryKey" parameterType="java.util.Map"> 
+		delete	from nw104m 
+		where	CO_ID	=	#{coId,jdbcType=VARCHAR} 
+		  and	GRP_CODE	=	#{grpCode,jdbcType=VARCHAR} 
+		  and	ST_DATE	=	#{stDate,jdbcType=DATE} 
+		  and	USER_ID	=	#{userId,jdbcType=VARCHAR} 
+	</delete> 
+</mapper>

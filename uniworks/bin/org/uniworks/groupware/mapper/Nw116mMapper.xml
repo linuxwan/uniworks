@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="org.uniworks.groupware.mapper.Nw116mMapper"> 
+	<resultMap id="BaseResultMap" type="org.uniworks.groupware.domain.Nw116m"> 
+		<result column="CO_ID" jdbcType="VARCHAR" property="coId" /> 
+		<result column="CNTN_ID" jdbcType="VARCHAR" property="cntnId" /> 
+		<result column="DCMT_RGSR_NO" jdbcType="VARCHAR" property="dcmtRgsrNo" /> 
+		<result column="SEQ_NO" jdbcType="INTEGER" property="seqNo" /> 
+		<result column="ATND_TYPE" jdbcType="VARCHAR" property="atndType" /> 
+		<result column="ATND_EMP_NO" jdbcType="VARCHAR" property="atndEmpNo" /> 
+		<result column="ATND_EMP_NAME" jdbcType="VARCHAR" property="atndEmpName" /> 
+		<result column="ATND_DUTY_DESC" jdbcType="VARCHAR" property="atndDutyDesc" /> 
+		<result column="ATND_CO_NAME" jdbcType="VARCHAR" property="atndCoName" /> 
+	</resultMap> 
+
+	<!-- 목록 조회 --> 
+	<select id="select" parameterType="java.util.Map" resultMap="BaseResultMap"> 
+		select  CO_ID, CNTN_ID, DCMT_RGSR_NO, SEQ_NO, ATND_TYPE, ATND_EMP_NO, ATND_EMP_NAME, ATND_DUTY_DESC, ATND_CO_NAME
+		from   nw116m
+		where  CO_ID	=	#{coId,jdbcType=VARCHAR}
+		  and  CNTN_ID	=	#{cntnId,jdbcType=VARCHAR}
+		  and  DCMT_RGSR_NO	=	#{dcmtRgsrNo,jdbcType=VARCHAR} 
+	</select> 
+ 
+	<!-- 상세 조회 --> 
+	<select id="selectByPrimaryKey" parameterType="java.util.Map" resultMap="BaseResultMap"> 
+		select  CO_ID, CNTN_ID, DCMT_RGSR_NO, SEQ_NO, ATND_TYPE, ATND_EMP_NO, ATND_EMP_NAME, ATND_DUTY_DESC, ATND_CO_NAME
+		from   nw116m
+		where  CNTN_ID	=	#{cntnId,jdbcType=VARCHAR} 
+		  and  CO_ID	=	#{coId,jdbcType=VARCHAR} 
+		  and  DCMT_RGSR_NO	=	#{dcmtRgsrNo,jdbcType=VARCHAR} 
+		  and  SEQ_NO	=	#{seqNo,jdbcType=INTEGER} 
+	</select> 
+ 
+	<!-- 등록 --> 
+	<insert id="insert" parameterType="org.uniworks.groupware.domain.Nw116m"> 
+		insert	into nw116m(CO_ID, CNTN_ID, DCMT_RGSR_NO, SEQ_NO, ATND_TYPE, ATND_EMP_NO, ATND_EMP_NAME, ATND_DUTY_DESC, ATND_CO_NAME) 
+		values (#{coId,jdbcType=VARCHAR},#{cntnId,jdbcType=VARCHAR},#{dcmtRgsrNo,jdbcType=VARCHAR},#{seqNo,jdbcType=INTEGER},#{atndType,jdbcType=VARCHAR},#{atndEmpNo,jdbcType=VARCHAR},#{atndEmpName,jdbcType=VARCHAR} 
+			,#{atndDutyDesc,jdbcType=VARCHAR},#{atndCoName,jdbcType=VARCHAR}) 
+	</insert> 
+ 
+	<!-- 수정 --> 
+	<update id="updateByPrimaryKey" parameterType="org.uniworks.groupware.domain.Nw116m"> 
+		update	nw116m 
+		<trim prefix="SET" suffixOverrides=","> 
+			<if test="atndType != null">ATND_TYPE= #{atndType,jdbcType=VARCHAR},</if> 
+			<if test="atndEmpNo != null">ATND_EMP_NO= #{atndEmpNo,jdbcType=VARCHAR},</if> 
+			<if test="atndEmpName != null">ATND_EMP_NAME= #{atndEmpName,jdbcType=VARCHAR},</if> 
+			<if test="atndDutyDesc != null">ATND_DUTY_DESC= #{atndDutyDesc,jdbcType=VARCHAR},</if> 
+			<if test="atndCoName != null">ATND_CO_NAME= #{atndCoName,jdbcType=VARCHAR},</if> 
+		</trim> 
+		where	CO_ID	=	#{coId,jdbcType=VARCHAR} 
+		  and	CNTN_ID	=	#{cntnId,jdbcType=VARCHAR} 
+		  and	DCMT_RGSR_NO	=	#{dcmtRgsrNo,jdbcType=VARCHAR} 
+		  and	SEQ_NO	=	#{seqNo,jdbcType=INTEGER} 
+	</update> 
+ 
+	<!-- 삭제 --> 
+	<delete id="deleteByPrimaryKey" parameterType="java.util.Map"> 
+		delete	from nw116m 
+		where	CNTN_ID	=	#{cntnId,jdbcType=VARCHAR} 
+		  and	CO_ID	=	#{coId,jdbcType=VARCHAR} 
+		  and	DCMT_RGSR_NO	=	#{dcmtRgsrNo,jdbcType=VARCHAR} 
+		  and	SEQ_NO	=	#{seqNo,jdbcType=INTEGER} 
+	</delete> 
+</mapper>

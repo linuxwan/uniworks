@@ -1,0 +1,648 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.uniworks.groupware.mapper.ApprovalMapper">
+	<!-- Count -->
+	<resultMap type="java.lang.Integer" id="count_Result">
+		<result column="CNT" jdbcType="DECIMAL" property="cnt" />
+	</resultMap>
+	
+	<!-- 결재 양식함 -->
+	<resultMap type="org.uniworks.groupware.domain.approval.ApprovalCategory" id="apprCategory_ResultMap">
+		<result column="CO_ID" jdbcType="VARCHAR" property="coId" />
+		<result column="APPR_ITEM_ID" jdbcType="VARCHAR" property="apprItemId" />
+		<result column="APPR_ITEM_NAME" jdbcType="VARCHAR" property="apprItemName" />
+		<result column="SEQ_NO" jdbcType="INTEGER" property="seqNo" />
+		<result column="CREATE_DATE" jdbcType="VARCHAR" property="createDate" />
+		<result column="IMG_URL" jdbcType="VARCHAR" property="imgUrl" />
+	</resultMap>
+	
+	<!-- 결재 양식함 내의 결재 항목 -->
+	<resultMap type="org.uniworks.groupware.domain.approval.ApprovalItem" id="approvalItemList_ResultMap">
+		<result column="CO_ID" jdbcType="VARCHAR" property="coId" />
+		<result column="APPR_ITEM_ID" jdbcType="VARCHAR" property="apprItemId" />
+		<result column="APPR_ITEM_NAME" jdbcType="VARCHAR" property="apprItemName" />
+		<result column="SEQ_NO" jdbcType="INTEGER" property="seqNo" />
+		<result column="APPR_MST_ID" jdbcType="VARCHAR" property="apprMstId" />
+		<result column="APPR_DESC" jdbcType="VARCHAR" property="apprDesc" />
+		<result column="CNTN_ID" jdbcType="VARCHAR" property="cntnId" />
+	</resultMap>
+	
+	<!-- 결재 차수 -->
+	<resultMap type="org.uniworks.groupware.domain.approval.ApprovalLevel" id="approvalLevel_ResultMap">
+		<result column="CO_ID" property="coId" jdbcType="VARCHAR" />
+		<result column="APPR_MST_ID" property="apprMstId" jdbcType="VARCHAR" />
+		<result column="CRT_DATE" property="crtDate" jdbcType="VARCHAR" />
+		<result column="APPR_LEVEL" property="apprLevel" jdbcType="INTEGER" />
+		<result column="CLS_DATE" property="clsDate" jdbcType="VARCHAR" />
+	</resultMap>
+	
+	<!-- 결재 마스터 정보 -->
+	<resultMap id="approvalMaster_ResultMap" type="org.uniworks.groupware.domain.approval.ApprovalMaster" >
+		<result column="CO_ID" property="coId" jdbcType="VARCHAR" />
+		<result column="APPR_MST_ID" property="apprMstId" jdbcType="VARCHAR" />
+		<result column="APPR_TMPL_TYPE" jdbcType="VARCHAR" property="apprTmplType" />
+	    <result column="APPR_DESC" property="apprDesc" jdbcType="VARCHAR" />
+	    <result column="RCPT_INDC" property="rcptIndc" jdbcType="VARCHAR" />
+	    <result column="RFNC_INDC" property="rfncIndc" jdbcType="VARCHAR" />
+	    <result column="CPRTN_INDC" property="cprtnIndc" jdbcType="VARCHAR" />
+	    <result column="CPRTN_TYPE" property="cprtnType" jdbcType="VARCHAR" />
+	    <result column="CRCLTN_INDC" property="crcltnIndc" jdbcType="VARCHAR" />
+	    <result column="DCSN_RULE_INDC" property="dcsnRuleIndc" jdbcType="VARCHAR" />
+	    <result column="ATND_INDC" property="atndIndc" jdbcType="VARCHAR" />
+   		<result column="CRT_ID" jdbcType="VARCHAR" property="crtId" />
+    	<result column="CREATE_DATE" jdbcType="TIMESTAMP" property="createDate" />
+		<result column="CHNG_ID" jdbcType="VARCHAR" property="chngId" />
+		<result column="CHNG_DATE" jdbcType="TIMESTAMP" property="chngDate" />
+		<result column="BASE_PRSV_TERM" jdbcType="VARCHAR" property="basePrsvTerm" />
+	</resultMap>
+	
+	<!-- 결재문서 (NW110M) -->
+	<resultMap id="BaseResultMap" type="org.uniworks.groupware.domain.approval.ApprovalDoc"> 
+		<result column="CO_ID" jdbcType="VARCHAR" property="coId" /> 
+		<result column="CNTN_ID" jdbcType="VARCHAR" property="cntnId" /> 
+		<result column="CNTN_NAME" property="cntnName" jdbcType="VARCHAR" />
+		<result column="DCMT_RGSR_NO" jdbcType="VARCHAR" property="dcmtRgsrNo" /> 
+		<result column="DCMT_RGSR_DATETIME" jdbcType="TIMESTAMP" property="dcmtRgsrDatetime" /> 
+		<result column="AUTH_EMP_NO" jdbcType="VARCHAR" property="authEmpNo" /> 
+		<result column="EMP_NAME" property="empName" jdbcType="VARCHAR" />
+		<result column="AUTH_DUTY_DESC" jdbcType="VARCHAR" property="authDutyDesc" />
+		<result column="AUTH_DEPT_CODE" jdbcType="VARCHAR" property="authDeptCode" /> 
+		<result column="AUTH_DEPT_DESC" jdbcType="VARCHAR" property="authDeptDesc" /> 
+		<result column="AUTH_TEL_NO" jdbcType="VARCHAR" property="authTelNo" /> 
+		<result column="DOC_NO" jdbcType="VARCHAR" property="docNo" /> 
+		<result column="DOC_TITLE" jdbcType="VARCHAR" property="docTitle" /> 
+		<result column="MAX_APPR_DGR" jdbcType="INTEGER" property="maxApprDgr" /> 
+		<result column="APPR_STUS" jdbcType="VARCHAR" property="apprStus" /> 
+		<result column="CRNT_APPR_DGR" jdbcType="INTEGER" property="crntApprDgr" /> 
+		<result column="CONTENT" jdbcType="VARCHAR" property="content" /> 
+		<result column="PRSV_TERM_TYPE" jdbcType="VARCHAR" property="prsvTermType" /> 
+		<result column="PRSV_TERM_TYPE_DESC" jdbcType="VARCHAR" property="prsvTermTypeDesc" />
+		<result column="PRSV_TERM" jdbcType="TIMESTAMP" property="prsvTerm" /> 
+		<result column="ATCH_INDC" jdbcType="VARCHAR" property="atchIndc" /> 
+		<result column="OPEN_INDC" jdbcType="VARCHAR" property="openIndc" /> 
+		<result column="CONF_DATE" jdbcType="TIMESTAMP" property="confDate" /> 
+		<result column="CONF_PLACE" jdbcType="VARCHAR" property="confPlace" /> 
+		<result column="CONF_START_TIME" jdbcType="VARCHAR" property="confStartTime" /> 
+		<result column="CONF_END_TIME" jdbcType="VARCHAR" property="confEndTime" /> 
+		<result column="APPR_MST_ID" jdbcType="VARCHAR" property="apprMstId" /> 
+		<result column="DCMT_MOD_DATETIME" jdbcType="TIMESTAMP" property="dcmtModDatetime" />
+	</resultMap>
+	
+	<!-- 라인 결재자 정보(NW111M) -->
+	<resultMap type="org.uniworks.groupware.domain.approval.LineApprover" id="lineApprover_ResultMap">
+		<result column="CO_ID" property="coId" jdbcType="VARCHAR" />
+		<result column="CNTN_ID" property="cntnId" jdbcType="VARCHAR" />
+		<result column="DCMT_RGSR_NO" property="dcmtRgsrNo" jdbcType="VARCHAR" />
+		<result column="APPR_DGR" property="apprDgr" jdbcType="INTEGER" />
+		<result column="APPR_EMP_NO" property="apprEmpNo" jdbcType="VARCHAR" />
+		<result column="APPR_EMP_NAME" property="apprEmpName" jdbcType="VARCHAR" />
+		<result column="APPR_DATE_TIME" property="apprDateTime" jdbcType="TIMESTAMP" />
+		<result column="APPR_STUS" property="apprStus" jdbcType="VARCHAR" />
+		<result column="APPR_DEPT_DESC" property="apprDeptDesc" jdbcType="VARCHAR" />
+		<result column="DUTY_DESC" property="dutyDesc" jdbcType="VARCHAR" />
+		<result column="PSTN_DESC" property="pstnDesc" jdbcType="VARCHAR" />
+		<result column="APPR_DEPT_CODE" property="apprDeptCode" jdbcType="VARCHAR" />
+		<result column="STEAD_APPR_EMP_NO" property="steadApprEmpNo" jdbcType="VARCHAR" />
+		<result column="STEAD_APPR_EMP_NAME" property="steadApprEmpName" jdbcType="VARCHAR" />
+		<result column="STEAD_APPR_INDC" property="steadApprIndc" jdbcType="VARCHAR" />
+		<result column="COMMENT" property="comment" jdbcType="VARCHAR" />
+	</resultMap>
+	
+	<!-- 협조 결재자 정보(NW112M) -->
+	<resultMap id="Nw112mResultMap" type="org.uniworks.groupware.domain.Nw112m"> 
+		<result column="CO_ID" jdbcType="VARCHAR" property="coId" /> 
+		<result column="CNTN_ID" jdbcType="VARCHAR" property="cntnId" /> 
+		<result column="DCMT_RGSR_NO" jdbcType="VARCHAR" property="dcmtRgsrNo" /> 
+		<result column="APPR_DGR" jdbcType="INTEGER" property="apprDgr" /> 
+		<result column="SEQ_NO" jdbcType="INTEGER" property="seqNo" /> 
+		<result column="CPRT_EMP_NO" jdbcType="VARCHAR" property="cprtEmpNo" /> 
+		<result column="APPR_DATE_TIME" jdbcType="TIMESTAMP" property="apprDateTime" /> 
+		<result column="APPR_STUS" jdbcType="VARCHAR" property="apprStus" /> 
+		<result column="DEPT_CODE" jdbcType="VARCHAR" property="deptCode" /> 
+		<result column="DEPT_DESC" jdbcType="VARCHAR" property="deptDesc" /> 
+		<result column="DUTY_DESC" jdbcType="VARCHAR" property="dutyDesc" /> 
+		<result column="PSTN_DESC" jdbcType="VARCHAR" property="pstnDesc" /> 
+		<result column="STEAD_APPR_EMP_NO" jdbcType="VARCHAR" property="steadApprEmpNo" /> 
+		<result column="STEAD_APPR_INDC" jdbcType="VARCHAR" property="steadApprIndc" />
+		<result column="COMMENT" jdbcType="VARCHAR" property="comment" /> 
+	</resultMap> 
+	
+	<select id="selectByApprvalCategory" parameterType="java.util.Map" resultMap="apprCategory_ResultMap">
+		select A.CO_ID as CO_ID, A.APPR_ITEM_ID as APPR_ITEM_ID, B.APPR_ITEM_NAME as APPR_ITEM_NAME,
+	       A.SEQ_NO as SEQ_NO, A.CREATE_DATE as CREATE_DATE, A.IMG_URL as IMG_URL
+		from   nw013m A, nw014m B
+		where  A.CO_ID = #{coId,jdbcType=VARCHAR}
+		  and  A.CO_ID = B.CO_ID
+		  and  A.APPR_ITEM_ID = B.APPR_ITEM_ID
+		  and  B.LOCALE = #{lang,jdbcType=VARCHAR}
+		order by A.CO_ID, A.SEQ_NO
+	</select>
+	
+	<select id="selectByApprovalItemList" parameterType="java.util.Map" resultMap="approvalItemList_ResultMap">
+		select a.CO_ID as CO_ID, a.APPR_ITEM_ID as APPR_ITEM_ID, a.APPR_MST_ID as APPR_MST_ID, 
+			   c.APPR_ITEM_NAME as APPR_ITEM_NAME, b.APPR_DESC as APPR_DESC, a.SEQ_NO as SEQ_NO,
+			   d.CNTN_ID as CNTN_ID
+		from   nw015m a, nw011m b, nw014m c, nw030m d
+		where  a.CO_ID = #{coId,jdbcType=VARCHAR}
+		  and  a.APPR_ITEM_ID = #{apprItemId,jdbcType=VARCHAR}
+		  and  a.APPR_MST_ID = b.APPR_MST_ID
+		  and  b.LOCALE = #{lang,jdbcType=VARCHAR}
+		  and  a.CO_ID = c.CO_ID
+		  and  a.APPR_ITEM_ID = c.APPR_ITEM_ID
+		  and  c.LOCALE = #{lang,jdbcType=VARCHAR}
+		  and  a.APPR_MST_ID = d.MASTER_ID
+		order by a.CO_ID, a.SEQ_NO
+	</select>
+	
+	<!-- 결재 차수를 가져온다. -->
+	<select id="selectByApprovalLevelNw012m" parameterType="java.util.Map" resultMap="approvalLevel_ResultMap">
+	select CO_ID, APPR_MST_ID, CRT_DATE, APPR_LEVEL, CLS_DATE
+	from   nw012m
+	where  CO_ID = #{coId,jdbcType=VARCHAR}
+	  and  APPR_MST_ID = #{apprMstId,jdbcType=VARCHAR}
+	  and  #{crntDate,jdbcType=VARCHAR} between CRT_DATE and CLS_DATE
+	</select>
+	
+	<!-- 결재 마스터 정보를 가져온다. -->
+	<select id="selectByApprovalMasterInfo" parameterType="java.util.Map" resultMap="approvalMaster_ResultMap">
+		select a.CO_ID as CO_ID, a.APPR_MST_ID as APPR_MST_ID, b.APPR_DESC as APPR_DESC, a.RCPT_INDC as RCPT_INDC, 
+			   a.RFNC_INDC as RFNC_INDC, a.CPRTN_INDC as CPRTN_INDC, a.CPRTN_TYPE as CPRTN_TYPE, a.CRCLTN_INDC as CRCLTN_INDC, 
+			   a.DCSN_RULE_INDC as DCSN_RULE_INDC, a.CRT_ID as CRT_ID, a.CREATE_DATE as CREATE_DATE, a.CHNG_ID as CHNG_ID, 
+			   a.CHNG_DATE as CHNG_DATE, a.ATND_INDC as ATND_INDC, a.APPR_TMPL_TYPE as APPR_TMPL_TYPE, a.BASE_PRSV_TERM as BASE_PRSV_TERM
+		from   nw010m a, nw011m b
+		where  a.CO_ID = #{coId,jdbcType=VARCHAR}
+		  and  a.APPR_MST_ID = #{apprMstId,jdbcType=VARCHAR}
+		  and  a.CO_ID = b.CO_ID
+		  and  a.APPR_MST_ID = b.APPR_MST_ID
+		  and  b.LOCALE = #{lang,jdbcType=VARCHAR}
+	</select>
+	
+	<!-- 작성 중인 문서 목록 가져오기 -->
+	<select id="selectWritingApprovalDocList" parameterType="java.util.Map" resultMap="BaseResultMap">
+		select  A.CO_ID as CO_ID, A.CNTN_ID as CNTN_ID, C.APPR_DESC as CNTN_NAME,   
+			A.DCMT_RGSR_NO as DCMT_RGSR_NO, A.DCMT_RGSR_DATETIME as DCMT_RGSR_DATETIME, A.AUTH_EMP_NO as AUTH_EMP_NO, 
+			FN_GetUserName(A.CO_ID, A.AUTH_EMP_NO, #{lang,jdbcType=VARCHAR}) as EMP_NAME, A.AUTH_DUTY_DESC as AUTH_DUTY_DESC, 
+			A.AUTH_DEPT_CODE as AUTH_DEPT_CODE,	A.AUTH_DEPT_DESC as AUTH_DEPT_DESC, A.AUTH_TEL_NO as AUTH_TEL_NO, 
+			A.DOC_NO as DOC_NO, A.DOC_TITLE as DOC_TITLE, A.MAX_APPR_DGR as MAX_APPR_DGR, A.APPR_STUS as APPR_STUS, A.CRNT_APPR_DGR as CRNT_APPR_DGR, 
+			A.CONTENT as CONTENT, A.PRSV_TERM_TYPE as PRSV_TERM_TYPE, A.PRSV_TERM as PRSV_TERM, A.ATCH_INDC as ATCH_INDC, A.OPEN_INDC as OPEN_INDC, 
+			A.CONF_DATE as CONF_DATE, A.CONF_PLACE as CONF_PLACE, A.CONF_START_TIME as CONF_START_TIME, A.CONF_END_TIME as CONF_END_TIME,
+			A.APPR_MST_ID as APPR_MST_ID, A.DCMT_MOD_DATETIME as DCMT_MOD_DATETIME
+		from	nw110m A LEFT JOIN nw011m C
+      	  ON	A.CO_ID = C.CO_ID
+   		 and	A.APPR_MST_ID = C.APPR_MST_ID 
+		where	A.CO_ID = #{coId,jdbcType=VARCHAR}
+		  and   A.APPR_STUS = '0'
+		  and	A.CRNT_APPR_DGR = 0
+		  and	A.AUTH_EMP_NO = #{authEmpNo,jdbcType=VARCHAR}	  
+		  and	C.LOCALE = #{lang,jdbcType=VARCHAR}
+		  <if test="startDate != null and endDate != null">
+		  and	A.DCMT_RGSR_DATETIME between ${startDate,jdbcType=TIMESTAMP} 
+		  and   ${endDate,jdbcType=TIMESTAMP}
+		  </if>
+		order by DCMT_RGSR_NO desc
+	</select>
+	
+	<!-- 결재대기 중인 문서 목록 가져오기 (먼저 라인결재만 반영함, 추후에 협조결재도 포함시켜야 함) -->
+	<select id="selectWaitingApprovalDocList" parameterType="java.util.Map" resultMap="BaseResultMap">
+		select  A.CO_ID as CO_ID, A.CNTN_ID as CNTN_ID, C.APPR_DESC as CNTN_NAME,   
+			A.DCMT_RGSR_NO as DCMT_RGSR_NO, A.DCMT_RGSR_DATETIME as DCMT_RGSR_DATETIME, A.AUTH_EMP_NO as AUTH_EMP_NO, 
+			FN_GetUserName(A.CO_ID, A.AUTH_EMP_NO, #{lang,jdbcType=VARCHAR}) as EMP_NAME, A.AUTH_DUTY_DESC as AUTH_DUTY_DESC, 
+			A.AUTH_DEPT_CODE as AUTH_DEPT_CODE, A.AUTH_DEPT_DESC as AUTH_DEPT_DESC, A.AUTH_TEL_NO as AUTH_TEL_NO, 
+			A.DOC_NO as DOC_NO, A.DOC_TITLE as DOC_TITLE, A.MAX_APPR_DGR as MAX_APPR_DGR, A.APPR_STUS as APPR_STUS, A.CRNT_APPR_DGR as CRNT_APPR_DGR, 
+			A.CONTENT as CONTENT, A.PRSV_TERM_TYPE as PRSV_TERM_TYPE, A.PRSV_TERM as PRSV_TERM, A.ATCH_INDC as ATCH_INDC, A.OPEN_INDC as OPEN_INDC, 
+			A.CONF_DATE as CONF_DATE, A.CONF_PLACE as CONF_PLACE, A.CONF_START_TIME as CONF_START_TIME, A.CONF_END_TIME as CONF_END_TIME,
+			A.APPR_MST_ID as APPR_MST_ID, A.DCMT_MOD_DATETIME as DCMT_MOD_DATETIME
+		from	nw110m A 
+			LEFT JOIN nw011m C
+		  		ON	A.CO_ID = C.CO_ID
+   		 		and	A.APPR_MST_ID = C.APPR_MST_ID
+   		 	LEFT JOIN nw111m D
+   		 		ON	A.CO_ID = D.CO_ID
+   		 		and	A.CNTN_ID = D.CNTN_ID
+   		 		and	A.DCMT_RGSR_NO = D.DCMT_RGSR_NO
+   		where	A.CO_ID = #{coId,jdbcType=VARCHAR}
+   		  and	A.APPR_STUS = '3'
+   		  and	A.CRNT_APPR_DGR = D.APPR_DGR
+   		  and	D.APPR_EMP_NO = #{apprEmpNo,jdbcType=VARCHAR}
+   		  and	D.APPR_STUS = '1'	  
+		  and	C.LOCALE = #{lang,jdbcType=VARCHAR}
+		  <if test="startDate != null and endDate != null">
+		  and	A.DCMT_RGSR_DATETIME between ${startDate,jdbcType=TIMESTAMP} 
+		  and   ${endDate,jdbcType=TIMESTAMP}
+		  </if>
+		union
+		select  A.CO_ID as CO_ID, A.CNTN_ID as CNTN_ID, C.APPR_DESC as CNTN_NAME,   
+			A.DCMT_RGSR_NO as DCMT_RGSR_NO, A.DCMT_RGSR_DATETIME as DCMT_RGSR_DATETIME, A.AUTH_EMP_NO as AUTH_EMP_NO, 
+			FN_GetUserName(A.CO_ID, A.AUTH_EMP_NO, #{lang,jdbcType=VARCHAR}) as EMP_NAME, A.AUTH_DUTY_DESC as AUTH_DUTY_DESC, 
+			A.AUTH_DEPT_CODE as AUTH_DEPT_CODE, A.AUTH_DEPT_DESC as AUTH_DEPT_DESC, A.AUTH_TEL_NO as AUTH_TEL_NO, 
+			A.DOC_NO as DOC_NO, A.DOC_TITLE as DOC_TITLE, A.MAX_APPR_DGR as MAX_APPR_DGR, A.APPR_STUS as APPR_STUS, A.CRNT_APPR_DGR as CRNT_APPR_DGR, 
+			A.CONTENT as CONTENT, A.PRSV_TERM_TYPE as PRSV_TERM_TYPE, A.PRSV_TERM as PRSV_TERM, A.ATCH_INDC as ATCH_INDC, A.OPEN_INDC as OPEN_INDC, 
+			A.CONF_DATE as CONF_DATE, A.CONF_PLACE as CONF_PLACE, A.CONF_START_TIME as CONF_START_TIME, A.CONF_END_TIME as CONF_END_TIME,
+			A.APPR_MST_ID as APPR_MST_ID, A.DCMT_MOD_DATETIME as DCMT_MOD_DATETIME
+		from	nw110m A 
+			LEFT JOIN nw011m C
+		  		ON	A.CO_ID = C.CO_ID
+   		 		and	A.APPR_MST_ID = C.APPR_MST_ID
+   		 	LEFT JOIN nw112m D
+   		 		ON	A.CO_ID = D.CO_ID
+   		 		and	A.CNTN_ID = D.CNTN_ID
+   		 		and	A.DCMT_RGSR_NO = D.DCMT_RGSR_NO
+   		where	A.CO_ID = #{coId,jdbcType=VARCHAR}
+   		  and	A.APPR_STUS = '3'
+   		  and	A.CRNT_APPR_DGR <![CDATA[>=]]> D.APPR_DGR
+   		  and   D.APPR_STUS = '1'
+   		  and	C.LOCALE = #{lang,jdbcType=VARCHAR}
+		  and   D.DEPT_CODE = (SELECT CASE left(PSTN_CODE,1) 
+                                    WHEN '1' THEN ASGN_OGAN_CODE_1
+	                                WHEN '2' THEN ASGN_OGAN_CODE_2
+	                                WHEN '3' THEN ASGN_OGAN_CODE_3
+	                                WHEN '4' THEN ASGN_OGAN_CODE_4
+	                                WHEN '5' THEN ASGN_OGAN_CODE_5
+	                                WHEN '6' THEN ASGN_OGAN_CODE_6
+	                                WHEN '7' THEN ASGN_OGAN_CODE_7
+	                                WHEN '8' THEN ASGN_OGAN_CODE_8
+	                                WHEN '9' THEN ASGN_OGAN_CODE_9
+	                                END DEPT_CODE
+								FROM gw.hr010m
+                                where emp_no = #{apprEmpNo,jdbcType=VARCHAR})
+          <if test="startDate != null and endDate != null">
+		  and	A.DCMT_RGSR_DATETIME between ${startDate,jdbcType=TIMESTAMP} 
+		  and   ${endDate,jdbcType=TIMESTAMP}
+		  </if>
+		order by DCMT_RGSR_NO desc
+	</select>
+	
+	<!-- 결재진행 중인 문서 목록 가져오기 (먼저 라인결재만 반영함, 추후에 협조결재도 포함시켜야 함) -->
+	<select id="selectProgressApprovalDocList" parameterType="java.util.Map" resultMap="BaseResultMap">
+		select  A.CO_ID as CO_ID, A.CNTN_ID as CNTN_ID, C.APPR_DESC as CNTN_NAME,   
+			A.DCMT_RGSR_NO as DCMT_RGSR_NO, A.DCMT_RGSR_DATETIME as DCMT_RGSR_DATETIME, A.AUTH_EMP_NO as AUTH_EMP_NO, 
+			FN_GetUserName(A.CO_ID, A.AUTH_EMP_NO, #{lang,jdbcType=VARCHAR}) as EMP_NAME, A.AUTH_DUTY_DESC as AUTH_DUTY_DESC, 
+			A.AUTH_DEPT_CODE as AUTH_DEPT_CODE, A.AUTH_DEPT_DESC as AUTH_DEPT_DESC, A.AUTH_TEL_NO as AUTH_TEL_NO, 
+			A.DOC_NO as DOC_NO, A.DOC_TITLE as DOC_TITLE, A.MAX_APPR_DGR as MAX_APPR_DGR, A.APPR_STUS as APPR_STUS, A.CRNT_APPR_DGR as CRNT_APPR_DGR, 
+			A.CONTENT as CONTENT, A.PRSV_TERM_TYPE as PRSV_TERM_TYPE, A.PRSV_TERM as PRSV_TERM, A.ATCH_INDC as ATCH_INDC, A.OPEN_INDC as OPEN_INDC, 
+			A.CONF_DATE as CONF_DATE, A.CONF_PLACE as CONF_PLACE, A.CONF_START_TIME as CONF_START_TIME, A.CONF_END_TIME as CONF_END_TIME,
+			A.APPR_MST_ID as APPR_MST_ID, A.DCMT_MOD_DATETIME as DCMT_MOD_DATETIME
+		from	nw110m A 
+			LEFT JOIN nw011m C
+		  		ON	A.CO_ID = C.CO_ID
+   		 		and	A.APPR_MST_ID = C.APPR_MST_ID   		 		
+   		 	LEFT JOIN nw111m D
+   		 		ON	A.CO_ID = D.CO_ID
+   		 		and	A.CNTN_ID = D.CNTN_ID
+   		 		and	A.DCMT_RGSR_NO = D.DCMT_RGSR_NO   		 		
+   		  		and	D.APPR_STUS = '7'
+   		where	A.CO_ID = #{coId,jdbcType=VARCHAR}
+   		  and	A.APPR_STUS = '3'   		     		    
+		  and	C.LOCALE = #{lang,jdbcType=VARCHAR}
+		  and	(A.AUTH_EMP_NO = #{apprEmpNo,jdbcType=VARCHAR}
+		   or	D.APPR_EMP_NO = #{apprEmpNo,jdbcType=VARCHAR})
+		  <if test="startDate != null and endDate != null">
+		  and	A.DCMT_RGSR_DATETIME between ${startDate,jdbcType=TIMESTAMP} 
+		  and   ${endDate,jdbcType=TIMESTAMP}
+		  </if>
+		order by DCMT_RGSR_NO desc
+	</select>
+	
+	<!-- 결재 완료된 문서 목록 가져오기 (먼저 라인결재만 반영함, 결재 완료된 문건은 수신처/참조처에서도 목록이 나타나야 함. 추후에 협조결재도 포함시켜야 함) -->
+	<select id="selectCompleteApprovalDocList" parameterType="java.util.Map" resultMap="BaseResultMap">
+		select distinct A.CO_ID as CO_ID, A.CNTN_ID as CNTN_ID, C.APPR_DESC as CNTN_NAME,   
+			A.DCMT_RGSR_NO as DCMT_RGSR_NO, A.DCMT_RGSR_DATETIME as DCMT_RGSR_DATETIME, A.AUTH_EMP_NO as AUTH_EMP_NO, 
+			FN_GetUserName(A.CO_ID, A.AUTH_EMP_NO, #{lang,jdbcType=VARCHAR}) as EMP_NAME, A.AUTH_DUTY_DESC as AUTH_DUTY_DESC, 
+			A.AUTH_DEPT_CODE as AUTH_DEPT_CODE, A.AUTH_DEPT_DESC as AUTH_DEPT_DESC, A.AUTH_TEL_NO as AUTH_TEL_NO, 
+			A.DOC_NO as DOC_NO, A.DOC_TITLE as DOC_TITLE, A.MAX_APPR_DGR as MAX_APPR_DGR, A.APPR_STUS as APPR_STUS, A.CRNT_APPR_DGR as CRNT_APPR_DGR, 
+			A.CONTENT as CONTENT, A.PRSV_TERM_TYPE as PRSV_TERM_TYPE, A.PRSV_TERM as PRSV_TERM, A.ATCH_INDC as ATCH_INDC, A.OPEN_INDC as OPEN_INDC, 
+			A.CONF_DATE as CONF_DATE, A.CONF_PLACE as CONF_PLACE, A.CONF_START_TIME as CONF_START_TIME, A.CONF_END_TIME as CONF_END_TIME,
+			A.APPR_MST_ID as APPR_MST_ID, A.DCMT_MOD_DATETIME as DCMT_MOD_DATETIME
+		from	nw110m A 
+			LEFT JOIN nw011m C
+		  		ON	A.CO_ID = C.CO_ID
+   		 		and	A.APPR_MST_ID = C.APPR_MST_ID   		 		
+   		 	LEFT JOIN nw111m D
+   		 		ON	A.CO_ID = D.CO_ID
+   		 		and	A.CNTN_ID = D.CNTN_ID
+   		 		and	A.DCMT_RGSR_NO = D.DCMT_RGSR_NO   		 		
+   		  		and	D.APPR_STUS != '0'
+   		where	A.CO_ID = #{coId,jdbcType=VARCHAR}
+   		  and	A.APPR_STUS > '5'   		     		    
+		  and	C.LOCALE = #{lang,jdbcType=VARCHAR}
+		  and	(A.AUTH_EMP_NO = #{apprEmpNo,jdbcType=VARCHAR}
+		   or	D.APPR_EMP_NO = #{apprEmpNo,jdbcType=VARCHAR})
+		  <if test="startDate != null and endDate != null">
+		  and	A.DCMT_RGSR_DATETIME between ${startDate,jdbcType=TIMESTAMP} 
+		  and   ${endDate,jdbcType=TIMESTAMP}
+		  </if>
+		order by DCMT_RGSR_NO desc
+	</select>
+	
+	<!-- 수신 문서함 목록 가져오기 -->
+	<select id="selectCompleteReceiveApprovalDocList" parameterType="java.util.Map" resultMap="BaseResultMap">
+		select distinct A.CO_ID as CO_ID, A.CNTN_ID as CNTN_ID, C.APPR_DESC as CNTN_NAME,   
+			A.DCMT_RGSR_NO as DCMT_RGSR_NO, A.DCMT_RGSR_DATETIME as DCMT_RGSR_DATETIME, A.AUTH_EMP_NO as AUTH_EMP_NO, 
+			FN_GetUserName(A.CO_ID, A.AUTH_EMP_NO, #{lang,jdbcType=VARCHAR}) as EMP_NAME, A.AUTH_DUTY_DESC as AUTH_DUTY_DESC, 
+			A.AUTH_DEPT_CODE as AUTH_DEPT_CODE, A.AUTH_DEPT_DESC as AUTH_DEPT_DESC, A.AUTH_TEL_NO as AUTH_TEL_NO, 
+			A.DOC_NO as DOC_NO, A.DOC_TITLE as DOC_TITLE, A.MAX_APPR_DGR as MAX_APPR_DGR, A.APPR_STUS as APPR_STUS, A.CRNT_APPR_DGR as CRNT_APPR_DGR, 
+			A.CONTENT as CONTENT, A.PRSV_TERM_TYPE as PRSV_TERM_TYPE, A.PRSV_TERM as PRSV_TERM, A.ATCH_INDC as ATCH_INDC, A.OPEN_INDC as OPEN_INDC, 
+			A.CONF_DATE as CONF_DATE, A.CONF_PLACE as CONF_PLACE, A.CONF_START_TIME as CONF_START_TIME, A.CONF_END_TIME as CONF_END_TIME,
+			A.APPR_MST_ID as APPR_MST_ID, A.DCMT_MOD_DATETIME as DCMT_MOD_DATETIME
+		from	nw110m A 
+			LEFT JOIN nw011m C
+		  		ON	A.CO_ID = C.CO_ID
+   		 		and	A.APPR_MST_ID = C.APPR_MST_ID   		 		
+   		 	LEFT JOIN nw111m D
+   		 		ON	A.CO_ID = D.CO_ID
+   		 		and	A.CNTN_ID = D.CNTN_ID
+   		 		and	A.DCMT_RGSR_NO = D.DCMT_RGSR_NO   		 		
+   		  		and	D.APPR_STUS != '0'
+   		  	LEFT JOIN gw.hr010m B
+   		  		ON  A.AUTH_EMP_NO = B.EMP_NO 
+            LEFT JOIN nw113m E
+                ON  A.DCMT_RGSR_NO = E.DCMT_RGSR_NO
+            LEFT JOIN nw114m F
+                ON  A.DCMT_RGSR_NO = F.DCMT_RGSR_NO
+   		where	A.CO_ID = #{lang,jdbcType=VARCHAR}
+   		  and	A.APPR_STUS > '5'   		     		    
+		  and	C.LOCALE = #{lang,jdbcType=VARCHAR}
+		  and	(A.AUTH_EMP_NO = #{apprEmpNo,jdbcType=VARCHAR}
+		   or	D.APPR_EMP_NO = #{apprEmpNo,jdbcType=VARCHAR}
+           or   E.RCPT_OGAN_GRP_CODE = (SELECT CASE left(PSTN_CODE,1) 
+                                    WHEN '1' THEN ASGN_OGAN_CODE_1
+	                                WHEN '2' THEN ASGN_OGAN_CODE_2
+	                                WHEN '3' THEN ASGN_OGAN_CODE_3
+	                                WHEN '4' THEN ASGN_OGAN_CODE_4
+	                                WHEN '5' THEN ASGN_OGAN_CODE_5
+	                                WHEN '6' THEN ASGN_OGAN_CODE_6
+	                                WHEN '7' THEN ASGN_OGAN_CODE_7
+	                                WHEN '8' THEN ASGN_OGAN_CODE_8
+	                                WHEN '9' THEN ASGN_OGAN_CODE_9
+	                                END DEPT_CODE
+								FROM gw.hr010m
+                                where emp_no = #{apprEmpNo,jdbcType=VARCHAR})
+           or   F.RFNC_CODE = #{apprEmpNo,jdbcType=VARCHAR}
+           or   F.RFNC_CODE = (SELECT CASE left(PSTN_CODE,1) 
+                                    WHEN '1' THEN ASGN_OGAN_CODE_1
+	                                WHEN '2' THEN ASGN_OGAN_CODE_2
+	                                WHEN '3' THEN ASGN_OGAN_CODE_3
+	                                WHEN '4' THEN ASGN_OGAN_CODE_4
+	                                WHEN '5' THEN ASGN_OGAN_CODE_5
+	                                WHEN '6' THEN ASGN_OGAN_CODE_6
+	                                WHEN '7' THEN ASGN_OGAN_CODE_7
+	                                WHEN '8' THEN ASGN_OGAN_CODE_8
+	                                WHEN '9' THEN ASGN_OGAN_CODE_9
+	                                END DEPT_CODE
+								FROM gw.hr010m
+                                where emp_no = #{apprEmpNo,jdbcType=VARCHAR}))
+           <if test="startDate != null and endDate != null">
+		  and	A.DCMT_RGSR_DATETIME between ${startDate,jdbcType=TIMESTAMP} 
+		  and   ${endDate,jdbcType=TIMESTAMP}
+		  </if>  
+		  order by DCMT_RGSR_NO desc
+	</select>
+	
+	<!-- 결재 반려된 문서 목록 가져오기 (먼저 라인결재만 반영함, 추후에 협조결재도 포함시켜야 함) -->
+	<select id="selectRejectApprovalDocList" parameterType="java.util.Map" resultMap="BaseResultMap">
+		select distinct A.CO_ID as CO_ID, A.CNTN_ID as CNTN_ID, C.APPR_DESC as CNTN_NAME,   
+			A.DCMT_RGSR_NO as DCMT_RGSR_NO, A.DCMT_RGSR_DATETIME as DCMT_RGSR_DATETIME, A.AUTH_EMP_NO as AUTH_EMP_NO, 
+			FN_GetUserName(A.CO_ID, A.AUTH_EMP_NO, #{lang,jdbcType=VARCHAR}) as EMP_NAME, A.AUTH_DUTY_DESC as AUTH_DUTY_DESC, 
+			A.AUTH_DEPT_CODE as AUTH_DEPT_CODE, A.AUTH_DEPT_DESC as AUTH_DEPT_DESC, A.AUTH_TEL_NO as AUTH_TEL_NO, 
+			A.DOC_NO as DOC_NO, A.DOC_TITLE as DOC_TITLE, A.MAX_APPR_DGR as MAX_APPR_DGR, A.APPR_STUS as APPR_STUS, A.CRNT_APPR_DGR as CRNT_APPR_DGR, 
+			A.CONTENT as CONTENT, A.PRSV_TERM_TYPE as PRSV_TERM_TYPE, A.PRSV_TERM as PRSV_TERM, A.ATCH_INDC as ATCH_INDC, A.OPEN_INDC as OPEN_INDC, 
+			A.CONF_DATE as CONF_DATE, A.CONF_PLACE as CONF_PLACE, A.CONF_START_TIME as CONF_START_TIME, A.CONF_END_TIME as CONF_END_TIME,
+			A.APPR_MST_ID as APPR_MST_ID, A.DCMT_MOD_DATETIME as DCMT_MOD_DATETIME
+		from	nw110m A 
+			LEFT JOIN nw011m C
+		  		ON	A.CO_ID = C.CO_ID
+   		 		and	A.APPR_MST_ID = C.APPR_MST_ID   		 		
+   		 	LEFT JOIN nw111m D
+   		 		ON	A.CO_ID = D.CO_ID
+   		 		and	A.CNTN_ID = D.CNTN_ID
+   		 		and	A.DCMT_RGSR_NO = D.DCMT_RGSR_NO   		 		
+   		  		and	D.APPR_STUS != '0'
+   		where	A.CO_ID = #{coId,jdbcType=VARCHAR}
+   		  and	A.APPR_STUS = '5'   		     		    
+		  and	C.LOCALE = #{lang,jdbcType=VARCHAR}
+		  and	(A.AUTH_EMP_NO = #{apprEmpNo,jdbcType=VARCHAR}
+		   or	D.APPR_EMP_NO = #{apprEmpNo,jdbcType=VARCHAR})
+		  <if test="startDate != null and endDate != null">
+		  and	A.DCMT_RGSR_DATETIME between ${startDate,jdbcType=TIMESTAMP} 
+		  and   ${endDate,jdbcType=TIMESTAMP}
+		  </if>
+		order by DCMT_RGSR_NO desc
+	</select>
+	
+	<!-- 결재문서 조회 -->
+	<select id="selectByApprovalDocNw110m" parameterType="java.util.Map" resultMap="BaseResultMap">
+		select  A.CO_ID as CO_ID, A.CNTN_ID as CNTN_ID, C.APPR_DESC as CNTN_NAME, 
+			A.DCMT_RGSR_NO as DCMT_RGSR_NO, A.DCMT_RGSR_DATETIME as DCMT_RGSR_DATETIME, A.AUTH_EMP_NO as AUTH_EMP_NO, 
+			B.EMP_NAME as EMP_NAME, A.AUTH_DUTY_DESC as AUTH_DUTY_DESC, A.AUTH_DEPT_CODE as AUTH_DEPT_CODE, A.AUTH_DEPT_DESC as AUTH_DEPT_DESC, A.AUTH_TEL_NO as AUTH_TEL_NO, 
+			A.DOC_NO as DOC_NO, A.DOC_TITLE as DOC_TITLE, A.MAX_APPR_DGR as MAX_APPR_DGR, A.APPR_STUS as APPR_STUS, A.CRNT_APPR_DGR as CRNT_APPR_DGR, 
+			A.CONTENT as CONTENT, A.PRSV_TERM_TYPE as PRSV_TERM_TYPE, E.RESC_KEY_VALUE as PRSV_TERM_TYPE_DESC, A.PRSV_TERM as PRSV_TERM, 
+			A.ATCH_INDC as ATCH_INDC, A.OPEN_INDC as OPEN_INDC, A.CONF_DATE as CONF_DATE, A.CONF_PLACE as CONF_PLACE, A.CONF_START_TIME as CONF_START_TIME, 
+			A.CONF_END_TIME as CONF_END_TIME, A.APPR_MST_ID as APPR_MST_ID, A.DCMT_MOD_DATETIME as DCMT_MOD_DATETIME
+		 from	nw110m A, hr011m B, nw011m C, cm002c D, cm003m E 
+		where	A.CO_ID = #{coId,jdbcType=VARCHAR}
+		  and	A.CNTN_ID = #{cntnId,jdbcType=VARCHAR}
+		  and	A.DCMT_RGSR_NO = #{dcmtRgsrNo,jdbcType=VARCHAR}
+		  and	A.CO_ID = B.CO_ID
+		  and	A.AUTH_EMP_NO = B.EMP_NO
+		  and	B.LOCALE = #{lang,jdbcType=VARCHAR}
+		  and	A.CO_ID = C.CO_ID
+		  and	A.APPR_MST_ID = C.APPR_MST_ID
+		  and	C.LOCALE = #{lang,jdbcType=VARCHAR}
+		  and	D.MAJ_CODE = 'CD008'
+		  and	D.SUB_CODE = A.PRSV_TERM_TYPE
+		  and	E.RESC_KEY = D.RESC_KEY
+		  and	E.LOCALE = #{lang,jdbcType=VARCHAR}
+	</select>
+	
+	<!-- 결재문서 등록 -->
+	<insert id="insertApprovalDocNw110m" parameterType="org.uniworks.groupware.domain.approval.ApprovalDoc">
+		insert	into nw110m(CO_ID, CNTN_ID, DCMT_RGSR_NO, DCMT_RGSR_DATETIME, AUTH_EMP_NO, AUTH_DUTY_DESC, AUTH_DEPT_CODE, AUTH_DEPT_DESC, AUTH_TEL_NO, DOC_NO, 
+				DOC_TITLE, MAX_APPR_DGR, APPR_STUS, CRNT_APPR_DGR, CONTENT, PRSV_TERM_TYPE, PRSV_TERM, ATCH_INDC, 
+				OPEN_INDC, CONF_DATE, CONF_PLACE, CONF_START_TIME, CONF_END_TIME, APPR_MST_ID, DCMT_MOD_DATETIME) 
+		values (#{coId,jdbcType=VARCHAR},#{cntnId,jdbcType=VARCHAR},#{dcmtRgsrNo,jdbcType=VARCHAR},#{dcmtRgsrDatetime,jdbcType=TIMESTAMP},#{authEmpNo,jdbcType=VARCHAR},#{authDutyDesc,jdbcType=VARCHAR}
+			,#{authDeptCode,jdbcType=VARCHAR},#{authDeptDesc,jdbcType=VARCHAR} 
+			,#{authTelNo,jdbcType=VARCHAR},#{docNo,jdbcType=VARCHAR},#{docTitle,jdbcType=VARCHAR},#{maxApprDgr,jdbcType=INTEGER},#{apprStus,jdbcType=VARCHAR},#{crntApprDgr,jdbcType=INTEGER} 
+			,#{content,jdbcType=VARCHAR},#{prsvTermType,jdbcType=VARCHAR},#{prsvTerm,jdbcType=TIMESTAMP},#{atchIndc,jdbcType=VARCHAR},#{openIndc,jdbcType=VARCHAR},#{confDate,jdbcType=TIMESTAMP} 
+			,#{confPlace,jdbcType=VARCHAR},#{confStartTime,jdbcType=VARCHAR},#{confEndTime,jdbcType=VARCHAR},#{apprMstId,jdbcType=VARCHAR},#{dcmtModDatetime,jdbcType=TIMESTAMP}) 
+	</insert>
+	
+	<update id="updateApprovalDocNw110m" parameterType="org.uniworks.groupware.domain.approval.ApprovalDoc">
+		update	nw110m 
+		<trim prefix="SET" suffixOverrides=","> 
+			<if test="dcmtRgsrDatetime != null">DCMT_RGSR_DATETIME= #{dcmtRgsrDatetime,jdbcType=TIMESTAMP},</if> 
+			<if test="authEmpNo != null">AUTH_EMP_NO= #{authEmpNo,jdbcType=VARCHAR},</if> 
+			<if test="authDutyDesc != null">AUTH_DUTY_DESC= #{authDutyDesc,jdbcType=VARCHAR},</if>
+			<if test="authDeptCode != null">AUTH_DEPT_CODE= #{authDeptCode,jdbcType=VARCHAR},</if> 
+			<if test="authDeptDesc != null">AUTH_DEPT_DESC= #{authDeptDesc,jdbcType=VARCHAR},</if> 
+			<if test="authTelNo != null">AUTH_TEL_NO= #{authTelNo,jdbcType=VARCHAR},</if> 
+			<if test="docNo != null">DOC_NO= #{docNo,jdbcType=VARCHAR},</if> 
+			<if test="docTitle != null">DOC_TITLE= #{docTitle,jdbcType=VARCHAR},</if> 
+			<if test="maxApprDgr != null and maxApprDgr != 0">MAX_APPR_DGR= #{maxApprDgr,jdbcType=INTEGER},</if> 
+			<if test="apprStus != null and apprStus != '0'">APPR_STUS= #{apprStus,jdbcType=VARCHAR},</if> 
+			<if test="crntApprDgr != null and crntApprDgr != 0">CRNT_APPR_DGR= #{crntApprDgr,jdbcType=INTEGER},</if> 
+			<if test="content != null">CONTENT= #{content,jdbcType=VARCHAR},</if> 
+			<if test="prsvTermType != null">PRSV_TERM_TYPE= #{prsvTermType,jdbcType=VARCHAR},</if> 
+			<if test="prsvTerm != null">PRSV_TERM= #{prsvTerm,jdbcType=TIMESTAMP},</if> 
+			<if test="atchIndc != null">ATCH_INDC= #{atchIndc,jdbcType=VARCHAR},</if> 
+			<if test="openIndc != null">OPEN_INDC= #{openIndc,jdbcType=VARCHAR},</if> 
+			<if test="confDate != null">CONF_DATE= #{confDate,jdbcType=TIMESTAMP},</if> 
+			<if test="confPlace != null">CONF_PLACE= #{confPlace,jdbcType=VARCHAR},</if> 
+			<if test="confStartTime != null">CONF_START_TIME= #{confStartTime,jdbcType=VARCHAR},</if> 
+			<if test="confEndTime != null">CONF_END_TIME= #{confEndTime,jdbcType=VARCHAR},</if> 
+			<if test="apprMstId != null">APPR_MST_ID= #{apprMstId,jdbcType=VARCHAR},</if> 
+			<if test="dcmtModDatetime != null">DCMT_MOD_DATETIME= #{dcmtModDatetime,jdbcType=TIMESTAMP},</if> 
+		</trim> 
+		where	CO_ID	=	#{coId,jdbcType=VARCHAR} 
+		  and	CNTN_ID	=	#{cntnId,jdbcType=VARCHAR} 
+		  and	DCMT_RGSR_NO	=	#{dcmtRgsrNo,jdbcType=VARCHAR}
+	</update>
+	
+	<!-- 라인결재자 정보 등록 -->
+	<insert id="insertLineApproverNw111m" parameterType="org.uniworks.groupware.domain.approval.LineApprover"> 
+		insert	into nw111m(CO_ID, CNTN_ID, DCMT_RGSR_NO, APPR_DGR, APPR_EMP_NO, APPR_DATE_TIME, APPR_STUS, APPR_DEPT_CODE, APPR_DEPT_DESC, 
+				DUTY_DESC, PSTN_DESC, STEAD_APPR_EMP_NO, STEAD_APPR_INDC, COMMENT) 
+		values (#{coId,jdbcType=VARCHAR},#{cntnId,jdbcType=VARCHAR},#{dcmtRgsrNo,jdbcType=VARCHAR},#{apprDgr,jdbcType=INTEGER},#{apprEmpNo,jdbcType=VARCHAR},#{apprDateTime,jdbcType=TIMESTAMP},
+				#{apprStus,jdbcType=VARCHAR},#{apprDeptCode,jdbcType=VARCHAR},#{apprDeptDesc,jdbcType=VARCHAR},#{dutyDesc,jdbcType=VARCHAR},#{pstnDesc,jdbcType=VARCHAR},#{steadApprEmpNo,jdbcType=VARCHAR},
+				#{steadApprIndc,jdbcType=VARCHAR},#{comment,jdbcType=VARCHAR}) 
+	</insert> 
+	
+	<!-- 라인 결재자 정보 -->
+	<select id="selectLineApproverNw111m" parameterType="java.util.Map" resultMap="lineApprover_ResultMap">
+		select  a.CO_ID as CO_ID, a.CNTN_ID as CNTN_ID, a.DCMT_RGSR_NO as DCMT_RGSR_NO, a.APPR_DGR as APPR_DGR, a.APPR_EMP_NO as APPR_EMP_NO, b.EMP_NAME as APPR_EMP_NAME,
+			a.APPR_DATE_TIME as APPR_DATE_TIME, a.APPR_STUS as APPR_STUS, a.APPR_DEPT_DESC as APPR_DEPT_DESC, a.DUTY_DESC as DUTY_DESC, a.PSTN_DESC as PSTN_DESC, 
+			a.APPR_DEPT_CODE as APPR_DEPT_CODE, a.STEAD_APPR_EMP_NO as STEAD_APPR_EMP_NO, a.STEAD_APPR_INDC as STEAD_APPR_INDC, a.COMMENT as COMMENT,
+			CASE 
+				WHEN STEAD_APPR_INDC = 'Y' AND STEAD_APPR_EMP_NO is not null THEN FN_GetUserName(#{coId,jdbcType=VARCHAR}, STEAD_APPR_EMP_NO, #{lang,jdbcType=VARCHAR})
+			END AS STEAD_APPR_EMP_NAME
+		from	nw111m a, hr011m b
+		where	a.CO_ID = #{coId,jdbcType=VARCHAR}
+		  and	a.CNTN_ID = #{cntnId,jdbcType=VARCHAR}
+	      and	a.DCMT_RGSR_NO = #{dcmtRgsrNo,jdbcType=VARCHAR}
+	      <if test="apprDgr != null">
+	      and	a.APPR_DGR = #{apprDgr,jdbcType=VARCHAR}
+	      </if>
+	      <if test="apprStus != null">
+	      and	a.APPR_STUS = #{apprStus,jdbcType=VARCHAR}
+	      </if>
+	      <if test="apprEmpNo != null">
+	      and	a.APPR_EMP_NO = #{apprEmpNo,jdbcType=VARCHAR}
+	      </if>
+	      <if test="steadApprEmpNo != null">
+	      and	a.STEAD_APPR_EMP_NO = #{steadApprEmpNo,jdbcType=VARCHAR}
+	      </if>
+	      and	a.APPR_EMP_NO = b.EMP_NO
+	  	  and   b.LOCALE = #{lang,jdbcType=VARCHAR}
+	  	order by a.CO_ID, a.CNTN_ID, a.DCMT_RGSR_NO, a.APPR_DGR
+	</select>	
+	
+	<!-- 차기 라인 결재자 의 결재차수를 가져온다. -->
+	<select id="selectNextApproverDgrNw111m" parameterType="java.util.Map" resultMap="count_Result">
+		select	ifnull(MIN(APPR_DGR), 0) as CNT
+		  from	nw111m 
+		 where	CO_ID = #{coId,jdbcType=VARCHAR}
+		   and	CNTN_ID = #{cntnId,jdbcType=VARCHAR}
+		   and	DCMT_RGSR_NO = #{dcmtRgsrNo,jdbcType=VARCHAR} 
+		   and	APPR_STUS = '0'
+	</select>
+	
+	<!-- 라인 결재자 정보 삭제 -->
+	<delete id="deleteLineApproverNw111m" parameterType="java.util.Map"> 
+		delete	from nw111m 
+		where	CO_ID	=	#{coId,jdbcType=VARCHAR} 
+		  and	CNTN_ID	=	#{cntnId,jdbcType=VARCHAR} 
+		  and	DCMT_RGSR_NO	=	#{dcmtRgsrNo,jdbcType=VARCHAR} 
+	</delete>
+	
+	<!-- 협조 결재자 정보 -->
+	<select id="selectCprtnApproverNw112m" parameterType="java.util.Map" resultMap="Nw112mResultMap">
+		select  a.CO_ID as CO_ID, a.CNTN_ID as CNTN_ID, a.DCMT_RGSR_NO as DCMT_RGSR_NO, a.APPR_DGR as APPR_DGR, 
+			a.SEQ_NO as SEQ_NO, a.CPRT_EMP_NO as CPRT_EMP_NO, a.APPR_DATE_TIME as APPR_DATE_TIME, a.APPR_STUS as APPR_STUS, 
+			a.DEPT_CODE as DEPT_CODE, a.APPR_DEPT_DESC as APPR_DEPT_DESC, a.DUTY_DESC as DUTY_DESC, a.PSTN_DESC as PSTN_DESC, 
+			a.STEAD_APPR_EMP_NO as STEAD_APPR_EMP_NO, a.STEAD_APPR_INDC as STEAD_APPR_INDC, a.COMMENT as COMMENT			
+		from	nw111m a
+		where	a.CO_ID = #{coId,jdbcType=VARCHAR}
+		  and	a.CNTN_ID = #{cntnId,jdbcType=VARCHAR}
+	      and	a.DCMT_RGSR_NO = #{dcmtRgsrNo,jdbcType=VARCHAR}
+	      <if test="apprDgr != null">
+	      and	a.APPR_DGR = #{apprDgr,jdbcType=VARCHAR}
+	      </if>
+	      <if test="apprStus != null">
+	      and	a.APPR_STUS = #{apprStus,jdbcType=VARCHAR}
+	      </if>
+	      <if test="apprEmpNo != null">
+	      and	a.CPRT_EMP_NO = #{apprEmpNo,jdbcType=VARCHAR}
+	      </if>
+	      <if test="steadApprEmpNo != null">
+	      and	a.STEAD_APPR_EMP_NO = #{steadApprEmpNo,jdbcType=VARCHAR}
+	      </if>
+	  	order by a.CO_ID, a.CNTN_ID, a.DCMT_RGSR_NO, a.APPR_DGR
+	</select>
+	
+	<!-- 차기 협조 결재자 의 결재차수를 가져온다. -->
+	<select id="selectNextApproverDgrNw112m" parameterType="java.util.Map" resultMap="count_Result">
+		select	ifnull(MIN(APPR_DGR), 0) as CNT
+		  from	nw112m 
+		 where	CO_ID = #{coId,jdbcType=VARCHAR}
+		   and	CNTN_ID = #{cntnId,jdbcType=VARCHAR}
+		   and	DCMT_RGSR_NO = #{dcmtRgsrNo,jdbcType=VARCHAR} 
+		   and	APPR_STUS = '0'
+	</select>
+	
+	<!-- 협조처 결재 정보 삭제 -->
+	<delete id="deleteCprtApproverNw112m" parameterType="java.util.Map"> 
+		delete	from nw112m 
+		where	CO_ID	=	#{coId,jdbcType=VARCHAR}
+		  and	CNTN_ID	=	#{cntnId,jdbcType=VARCHAR} 	 
+		  and	DCMT_RGSR_NO	=	#{dcmtRgsrNo,jdbcType=VARCHAR} 
+	</delete>
+	
+	<!-- 수신처 정보 삭제 -->
+	<delete id="deleteRcptDestinationNw113m" parameterType="java.util.Map"> 
+		delete	from nw113m 
+		where	CO_ID	=	#{coId,jdbcType=VARCHAR} 
+		  and	CNTN_ID	=	#{cntnId,jdbcType=VARCHAR} 
+		  and	DCMT_RGSR_NO	=	#{dcmtRgsrNo,jdbcType=VARCHAR}  
+	</delete>
+	
+	<!-- 참조처 정보 삭제 -->
+	<delete id="deleteRfncDestinationNw114m" parameterType="java.util.Map"> 
+		delete	from nw114m 
+		where	CO_ID	=	#{coId,jdbcType=VARCHAR} 
+		  and	CNTN_ID	=	#{cntnId,jdbcType=VARCHAR} 
+		  and	DCMT_RGSR_NO	=	#{dcmtRgsrNo,jdbcType=VARCHAR}  
+	</delete>
+	
+	<!-- 첨부파일 삭제 -->
+	<delete id="deleteAttachFileListNw115m" parameterType="java.util.Map"> 
+		delete	from nw115m 
+		where	CO_ID	=	#{coId,jdbcType=VARCHAR} 
+		  and	CNTN_ID	=	#{cntnId,jdbcType=VARCHAR} 
+		  and	DCMT_RGSR_NO	=	#{dcmtRgsrNo,jdbcType=VARCHAR}  
+	</delete>
+	
+	<!-- 참석자 정보 삭제 -->
+	<delete id="deleteAttendantNw116m" parameterType="java.util.Map"> 
+		delete	from nw116m 
+		where	CO_ID	=	#{coId,jdbcType=VARCHAR} 
+		  and	CNTN_ID	=	#{cntnId,jdbcType=VARCHAR} 
+		  and	DCMT_RGSR_NO	=	#{dcmtRgsrNo,jdbcType=VARCHAR}  
+	</delete>
+	
+	<!-- 라인결재 차수에 현재 결재 대기 중인 협조결재자 정보를 가져온다. -->	
+	<select id="selectCprtnApprovalPersonInfo" parameterType="java.util.Map" resultMap="Nw112mResultMap">
+		select  a.CO_ID CO_ID, a.CNTN_ID CNTN_ID, a.DCMT_RGSR_NO DCMT_RGSR_NO, a.APPR_DGR APPR_DGR, a.SEQ_NO SEQ_NO, 
+				a.CPRT_EMP_NO CPRT_EMP_NO, a.APPR_DATE_TIME APPR_DATE_TIME, a.APPR_STUS APPR_STUS, a.DEPT_CODE DEPT_CODE, 
+				a.DEPT_DESC DEPT_DESC, a.DUTY_DESC DUTY_DESC, a.PSTN_DESC PSTN_DESC, a.STEAD_APPR_EMP_NO STEAD_APPR_EMP_NO, 
+				a.STEAD_APPR_INDC STEAD_APPR_INDC, a.COMMENT COMMENT
+		from	nw112m a
+		where   a.co_id = #{coId,jdbcType=VARCHAR} 
+		  and   a.cntn_id = #{cntnId,jdbcType=VARCHAR}
+          and   a.dcmt_rgsr_no = #{dcmtRgsrNo,jdbcType=VARCHAR}
+          and   a.appr_dgr <![CDATA[<=]]>  (select min(appr_dgr) 
+                				from gw.nw111m
+                   				where co_id = a.co_id
+                     			  and dcmt_rgsr_no = a.dcmt_rgsr_no
+                     			  and appr_stus = '1'
+                     			  and appr_dgr = #{apprDgr,jdbcType=INTEGER} )
+	</select>	
+</mapper>

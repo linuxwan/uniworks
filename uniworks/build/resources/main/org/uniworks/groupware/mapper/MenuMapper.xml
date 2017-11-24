@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="org.uniworks.groupware.mapper.MenuMapper"> 
+	<resultMap id="BaseResultMap" type="org.uniworks.groupware.domain.Menu" >
+		<result column="CO_ID" property="coId" jdbcType="VARCHAR" />
+	    <result column="MENU_ID" property="menuId" jdbcType="VARCHAR" />
+	    <result column="HIGH_MENU_ID" property="highMenuId" jdbcType="VARCHAR" />
+	    <result column="MENU_DSPL_NAME" property="menuDsplName" jdbcType="VARCHAR" />
+	    <result column="MENU_LEVEL" property="menuLevel" jdbcType="INTEGER" />
+	    <result column="MENU_ORD" property="menuOrd" jdbcType="INTEGER" />
+	    <result column="TOP_URL" property="topUrl" jdbcType="VARCHAR" />
+	    <result column="LEFT_URL" property="leftUrl" jdbcType="VARCHAR" />
+	    <result column="BODY_URL" property="bodyUrl" jdbcType="VARCHAR" />
+	    <result column="CNTN_ID" property="cntnId" jdbcType="VARCHAR" />
+	    <result column="CNTN_NAME" property="cntnName" jdbcType="VARCHAR" />
+	    <result column="MENU_DSPL_INDC" property="menuDsplIndc" jdbcType="VARCHAR" />
+	    <result column="CNTN_LINK_INDC" property="cntnLinkIndc" jdbcType="VARCHAR" />
+	    <result column="LINK_TYPE" property="linkType" jdbcType="VARCHAR" />
+	    <result column="MENU_DESC" property="menuDesc" jdbcType="VARCHAR" />
+	    <result column="DFLT_MENU_INDC" property="dfltMenuIndc" jdbcType="VARCHAR" />
+	    <result column="DLGT_MENU_INDC" property="dlgtMenuIndc" jdbcType="VARCHAR" />
+	    <result column="MY_MENU_SET_INDC" property="myMenuSetIndc" jdbcType="VARCHAR" />
+	    <result column="ICON_FILE_URL" property="iconFileUrl" jdbcType="VARCHAR" />
+	    <result column="CRT_DATE" property="crtDate" jdbcType="TIMESTAMP" />
+	    <result column="CRT_ID" property="crtId" jdbcType="VARCHAR" />
+	    <result column="CHNG_DATE" property="chngDate" jdbcType="TIMESTAMP" />
+	    <result column="CHNG_ID" property="chngId" jdbcType="VARCHAR" />
+	</resultMap>
+	
+	<!-- Top 메뉴 가져오기 (1레벨 메뉴) -->
+	<select id="selectByTopMenu" parameterType="java.util.Map" resultMap="BaseResultMap">
+		select A.CO_ID as CO_ID, A.MENU_ID as MENU_ID, A.HIGH_MENU_ID as HIGH_MENU_ID, C.MENU_DSPL_NAME as MENU_DSPL_NAME, A.MENU_LEVEL as MENU_LEVEL,
+    	   A.MENU_ORD as MENU_ORD, A.TOP_URL as TOP_URL, A.LEFT_URL as LEFT_URL, A.BODY_URL as BODY_URL, A.CNTN_ID as CNTN_ID, B.CNTN_NAME as CNTN_NAME,
+    	   A.MENU_DSPL_INDC as MENU_DSPL_INDC, A.CNTN_LINK_INDC as CNTN_LINK_INDC, A.LINK_TYPE as LINK_TYPE, A.MENU_DESC as MENU_DESC,
+    	   A.DFLT_MENU_INDC as DFLT_MENU_INDC, A.DLGT_MENU_INDC as DLGT_MENU_INDC, A.MY_MENU_SET_INDC as MY_MENU_SET_INDC,
+    	   A.ICON_FILE_URL as ICON_FILE_URL, A.CRT_DATE as CRT_DATE, A.CRT_ID as CRT_ID, A.CHNG_DATE as CHNG_DATE, A.CHNG_ID as CHNG_ID
+		from nw020m as A LEFT OUTER JOIN nw031m as B ON B.CNTN_ID = A.CNTN_ID and B.LOCALE = #{lang,jdbcType=VARCHAR} ,
+    		 nw021m as C 
+		where A.CO_ID = #{coId,jdbcType=VARCHAR}  
+		  and A.MENU_LEVEL = '1'
+		  and A.MENU_DSPL_INDC = 'Y' 
+		  and A.MENU_ID = C.MENU_ID
+		  and A.CO_ID = C.CO_ID
+		  and C.LOCALE = #{lang,jdbcType=VARCHAR}
+		order by A.menu_ord
+	</select>
+	
+	<!-- 1레벨의 메뉴 ID의 6자리까지만 입력. 1레벨 아래의 모든 하위 메뉴를 모두 가져온다. -->
+	<select id="selectBySubMenu" parameterType="java.util.Map" resultMap="BaseResultMap">
+		select A.CO_ID as CO_ID, A.MENU_ID as MENU_ID, A.HIGH_MENU_ID as HIGH_MENU_ID, C.MENU_DSPL_NAME as MENU_DSPL_NAME, A.MENU_LEVEL as MENU_LEVEL,
+    	   A.MENU_ORD as MENU_ORD, A.TOP_URL as TOP_URL, A.LEFT_URL as LEFT_URL, A.BODY_URL as BODY_URL, A.CNTN_ID as CNTN_ID, B.CNTN_NAME as CNTN_NAME,
+    	   A.MENU_DSPL_INDC as MENU_DSPL_INDC, A.CNTN_LINK_INDC as CNTN_LINK_INDC, A.LINK_TYPE as LINK_TYPE, A.MENU_DESC as MENU_DESC,
+    	   A.DFLT_MENU_INDC as DFLT_MENU_INDC, A.DLGT_MENU_INDC as DLGT_MENU_INDC, A.MY_MENU_SET_INDC as MY_MENU_SET_INDC,
+    	   A.ICON_FILE_URL as ICON_FILE_URL, A.CRT_DATE as CRT_DATE, A.CRT_ID as CRT_ID, A.CHNG_DATE as CHNG_DATE, A.CHNG_ID as CHNG_ID
+		from nw020m as A LEFT OUTER JOIN nw031m as B ON B.CNTN_ID = A.CNTN_ID and B.LOCALE = #{lang,jdbcType=VARCHAR} ,
+    		 nw021m as C 
+		where A.co_id = #{coId,jdbcType=VARCHAR} 
+		  and A.high_menu_id like #{highMenuId,jdbcType=VARCHAR} 
+		  and A.menu_dspl_indc = 'Y' 
+		  and A.MENU_ID = C.MENU_ID
+		  and A.CO_ID = C.CO_ID
+		  and C.LOCALE = #{lang,jdbcType=VARCHAR}
+		order by A.MENU_LEVEL, A.menu_ord
+	</select>
+</mapper>

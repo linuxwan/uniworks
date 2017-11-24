@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.uniworks.groupware.mapper.CompanyMapperTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2017-11-24T01:46:56" hostname="Chungwan-PC" time="0.018">
+  <properties/>
+  <testcase name="testSelectByCompanyMaster" classname="org.uniworks.groupware.mapper.CompanyMapperTest" time="0.018"/>
+  <system-out><![CDATA[10:46:56.089 [Test worker] DEBUG o.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+10:46:56.089 [Test worker] DEBUG o.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1fd36322] was not registered for synchronization because synchronization is not active
+10:46:56.089 [Test worker] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [ConnectionHandle{url=jdbc:mysql://localhost/gw?useUnicode=true&characterEncoding=utf-8, user=gw, debugHandle=null, lastResetAgoInSec=0, lastUsedAgoInSec=0, creationTimeAgoInSec=0}] will not be managed by Spring
+10:46:56.089 [Test worker] DEBUG o.u.g.m.C.selectByCompanyMaster - ==>  Preparing: select CO_ID, CO_NAME, ST_DATE, FIN_DATE, PRNT_CO_CLSF, PRNT_CO_CODE, USE_INDC, BIZ_RGSR_NO, RPRSNT_NAME, ZIP_CODE, CO_ADDR, CO_PHON_NO, CO_FAX_NO, HOME_PAGE_URL, BASE_OGAN_LEV, SPRT_LANG from hr001m where CO_ID = ? 
+10:46:56.090 [Test worker] DEBUG o.u.g.m.C.selectByCompanyMaster - ==> Parameters: A001(String)
+10:46:56.103 [Test worker] DEBUG o.u.g.m.C.selectByCompanyMaster - <==      Total: 1
+10:46:56.104 [Test worker] DEBUG o.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1fd36322]
+]]></system-out>
+  <system-err><![CDATA[11월 24, 2017 10:46:56 오전 org.springframework.test.context.support.DefaultTestContextBootstrapper getDefaultTestExecutionListenerClassNames
+정보: Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]
+11월 24, 2017 10:46:56 오전 org.springframework.test.context.support.DefaultTestContextBootstrapper getTestExecutionListeners
+정보: Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@48798c93, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@6346ac3c, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@3d30383c, org.springframework.test.context.support.DirtiesContextTestExecutionListener@1eae3323, org.springframework.test.context.transaction.TransactionalTestExecutionListener@1a373971, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@4cc64147]
+]]></system-err>
+</testsuite>

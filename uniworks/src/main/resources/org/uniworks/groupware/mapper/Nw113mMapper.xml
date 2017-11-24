@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="org.uniworks.groupware.mapper.Nw113mMapper"> 
+	<resultMap id="BaseResultMap" type="org.uniworks.groupware.domain.Nw113m"> 
+		<result column="CO_ID" jdbcType="VARCHAR" property="coId" /> 
+		<result column="CNTN_ID" jdbcType="VARCHAR" property="cntnId" /> 
+		<result column="DCMT_RGSR_NO" jdbcType="VARCHAR" property="dcmtRgsrNo" /> 
+		<result column="SEQ_NO" jdbcType="INTEGER" property="seqNo" /> 
+		<result column="RCPT_OGAN_GRP_CODE" jdbcType="VARCHAR" property="rcptOganGrpCode" /> 
+		<result column="RCPT_OGAN_GRP_NAME" jdbcType="VARCHAR" property="rcptOganGrpName" /> 
+	</resultMap> 
+
+	<!-- 목록 조회 --> 
+	<select id="select" parameterType="java.util.Map" resultMap="BaseResultMap"> 
+		select  CO_ID, CNTN_ID, DCMT_RGSR_NO, SEQ_NO, RCPT_OGAN_GRP_CODE, RCPT_OGAN_GRP_NAME
+		from   nw113m
+		where  CO_ID	=	#{coId,jdbcType=VARCHAR}
+		  and  CNTN_ID	=	#{cntnId,jdbcType=VARCHAR}
+		  and  DCMT_RGSR_NO	=	#{dcmtRgsrNo,jdbcType=VARCHAR} 
+	</select> 
+ 
+	<!-- 상세 조회 --> 
+	<select id="selectByPrimaryKey" parameterType="java.util.Map" resultMap="BaseResultMap"> 
+		select  CO_ID, CNTN_ID, DCMT_RGSR_NO, SEQ_NO, RCPT_OGAN_GRP_CODE, RCPT_OGAN_GRP_NAME
+		from   nw113m
+		where  CNTN_ID	=	#{cntnId,jdbcType=VARCHAR} 
+		  and  CO_ID	=	#{coId,jdbcType=VARCHAR} 
+		  and  DCMT_RGSR_NO	=	#{dcmtRgsrNo,jdbcType=VARCHAR} 
+		  and  SEQ_NO	=	#{seqNo,jdbcType=INTEGER} 
+	</select> 
+ 
+	<!-- 등록 --> 
+	<insert id="insert" parameterType="org.uniworks.groupware.domain.Nw113m"> 
+		insert	into nw113m(CO_ID, CNTN_ID, DCMT_RGSR_NO, SEQ_NO, RCPT_OGAN_GRP_CODE, RCPT_OGAN_GRP_NAME) 
+		values (#{coId,jdbcType=VARCHAR},#{cntnId,jdbcType=VARCHAR},#{dcmtRgsrNo,jdbcType=VARCHAR},#{seqNo,jdbcType=INTEGER},#{rcptOganGrpCode,jdbcType=VARCHAR},#{rcptOganGrpName,jdbcType=VARCHAR}) 
+	</insert> 
+ 
+	<!-- 수정 --> 
+	<update id="updateByPrimaryKey" parameterType="org.uniworks.groupware.domain.Nw113m"> 
+		update	nw113m 
+		<trim prefix="SET" suffixOverrides=","> 
+			<if test="rcptOganGrpCode != null">RCPT_OGAN_GRP_CODE= #{rcptOganGrpCode,jdbcType=VARCHAR},</if> 
+			<if test="rcptOganGrpName != null">RCPT_OGAN_GRP_NAME= #{rcptOganGrpName,jdbcType=VARCHAR},</if> 
+		</trim> 
+		where	CO_ID	=	#{coId,jdbcType=VARCHAR} 
+		  and	CNTN_ID	=	#{cntnId,jdbcType=VARCHAR} 
+		  and	DCMT_RGSR_NO	=	#{dcmtRgsrNo,jdbcType=VARCHAR} 
+		  and	SEQ_NO	=	#{seqNo,jdbcType=INTEGER} 
+	</update> 
+ 
+	<!-- 삭제 --> 
+	<delete id="deleteByPrimaryKey" parameterType="java.util.Map"> 
+		delete	from nw113m 
+		where	CO_ID	=	#{coId,jdbcType=VARCHAR} 
+		  and	CNTN_ID	=	#{cntnId,jdbcType=VARCHAR} 
+		  and	DCMT_RGSR_NO	=	#{dcmtRgsrNo,jdbcType=VARCHAR}
+		  <if test="seqNo != null and seqNo > 0"> 
+		  and	SEQ_NO	=	#{seqNo,jdbcType=INTEGER}
+		  </if> 
+	</delete> 
+</mapper>

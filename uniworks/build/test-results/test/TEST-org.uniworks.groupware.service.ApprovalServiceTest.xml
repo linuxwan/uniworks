@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.uniworks.groupware.service.ApprovalServiceTest" tests="2" skipped="0" failures="2" errors="0" timestamp="2017-11-24T01:46:57" hostname="Chungwan-PC" time="0.075">
+  <properties/>
+  <testcase name="checkApprovalDocModifyAuthrityTest" classname="org.uniworks.groupware.service.ApprovalServiceTest" time="0.045">
+    <failure message="java.lang.NullPointerException" type="java.lang.NullPointerException">java.lang.NullPointerException
+	at org.uniworks.groupware.service.internal.ApprovalServiceImpl.checkApprovalDocModifyAuthrity(ApprovalServiceImpl.java:558)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:338)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:197)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:294)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:98)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:185)
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:212)
+	at com.sun.proxy.$Proxy53.checkApprovalDocModifyAuthrity(Unknown Source)
+	at org.uniworks.groupware.service.ApprovalServiceTest.checkApprovalDocModifyAuthrityTest(ApprovalServiceTest.java:86)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestExecutionCallbacks.evaluate(RunBeforeTestExecutionCallbacks.java:73)
+	at org.springframework.test.context.junit4.statements.RunAfterTestExecutionCallbacks.evaluate(RunAfterTestExecutionCallbacks.java:83)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestMethodCallbacks.evaluate(RunBeforeTestMethodCallbacks.java:75)
+	at org.springframework.test.context.junit4.statements.RunAfterTestMethodCallbacks.evaluate(RunAfterTestMethodCallbacks.java:86)
+	at org.springframework.test.context.junit4.statements.SpringRepeat.evaluate(SpringRepeat.java:84)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:251)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:97)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61)
+	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:70)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:190)
+	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassExecuter.runTestClass(JUnitTestClassExecuter.java:114)
+	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassExecuter.execute(JUnitTestClassExecuter.java:57)
+	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassProcessor.processTestClass(JUnitTestClassProcessor.java:66)
+	at org.gradle.api.internal.tasks.testing.SuiteTestClassProcessor.processTestClass(SuiteTestClassProcessor.java:51)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:35)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
+	at org.gradle.internal.dispatch.ContextClassLoaderDispatch.dispatch(ContextClassLoaderDispatch.java:32)
+	at org.gradle.internal.dispatch.ProxyDispatchAdapter$DispatchingInvocationHandler.invoke(ProxyDispatchAdapter.java:93)
+	at com.sun.proxy.$Proxy2.processTestClass(Unknown Source)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.processTestClass(TestWorker.java:109)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:35)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
+	at org.gradle.internal.remote.internal.hub.MessageHubBackedObjectConnection$DispatchWrapper.dispatch(MessageHubBackedObjectConnection.java:147)
+	at org.gradle.internal.remote.internal.hub.MessageHubBackedObjectConnection$DispatchWrapper.dispatch(MessageHubBackedObjectConnection.java:129)
+	at org.gradle.internal.remote.internal.hub.MessageHub$Handler.run(MessageHub.java:404)
+	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:63)
+	at org.gradle.internal.concurrent.StoppableExecutorImpl$1.run(StoppableExecutorImpl.java:46)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+</failure>
+  </testcase>
+  <testcase name="changeLineApproverStatusTest" classname="org.uniworks.groupware.service.ApprovalServiceTest" time="0.029">
+    <failure message="java.lang.NullPointerException" type="java.lang.NullPointerException">java.lang.NullPointerException
+	at org.uniworks.groupware.service.internal.ApprovalServiceImpl.checkAndChangeApprovalDocOfLineApprover(ApprovalServiceImpl.java:415)
+	at org.uniworks.groupware.service.internal.ApprovalServiceImpl.changeLineApproverStatus(ApprovalServiceImpl.java:365)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:338)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:197)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:294)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:98)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:185)
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:212)
+	at com.sun.proxy.$Proxy53.changeLineApproverStatus(Unknown Source)
+	at org.uniworks.groupware.service.ApprovalServiceTest.changeLineApproverStatusTest(ApprovalServiceTest.java:65)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestExecutionCallbacks.evaluate(RunBeforeTestExecutionCallbacks.java:73)
+	at org.springframework.test.context.junit4.statements.RunAfterTestExecutionCallbacks.evaluate(RunAfterTestExecutionCallbacks.java:83)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestMethodCallbacks.evaluate(RunBeforeTestMethodCallbacks.java:75)
+	at org.springframework.test.context.junit4.statements.RunAfterTestMethodCallbacks.evaluate(RunAfterTestMethodCallbacks.java:86)
+	at org.springframework.test.context.junit4.statements.SpringRepeat.evaluate(SpringRepeat.java:84)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:251)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:97)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61)
+	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:70)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:190)
+	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassExecuter.runTestClass(JUnitTestClassExecuter.java:114)
+	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassExecuter.execute(JUnitTestClassExecuter.java:57)
+	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassProcessor.processTestClass(JUnitTestClassProcessor.java:66)
+	at org.gradle.api.internal.tasks.testing.SuiteTestClassProcessor.processTestClass(SuiteTestClassProcessor.java:51)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:35)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
+	at org.gradle.internal.dispatch.ContextClassLoaderDispatch.dispatch(ContextClassLoaderDispatch.java:32)
+	at org.gradle.internal.dispatch.ProxyDispatchAdapter$DispatchingInvocationHandler.invoke(ProxyDispatchAdapter.java:93)
+	at com.sun.proxy.$Proxy2.processTestClass(Unknown Source)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.processTestClass(TestWorker.java:109)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:35)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
+	at org.gradle.internal.remote.internal.hub.MessageHubBackedObjectConnection$DispatchWrapper.dispatch(MessageHubBackedObjectConnection.java:147)
+	at org.gradle.internal.remote.internal.hub.MessageHubBackedObjectConnection$DispatchWrapper.dispatch(MessageHubBackedObjectConnection.java:129)
+	at org.gradle.internal.remote.internal.hub.MessageHub$Handler.run(MessageHub.java:404)
+	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:63)
+	at org.gradle.internal.concurrent.StoppableExecutorImpl$1.run(StoppableExecutorImpl.java:46)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+</failure>
+  </testcase>
+  <system-out><![CDATA[10:46:57.348 [Test worker] DEBUG o.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+10:46:57.348 [Test worker] DEBUG o.mybatis.spring.SqlSessionUtils - Registering transaction synchronization for SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2b7d2612]
+10:46:57.350 [Test worker] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [ConnectionHandle{url=jdbc:mysql://localhost/gw?useUnicode=true&characterEncoding=utf-8, user=gw, debugHandle=null, lastResetAgoInSec=1, lastUsedAgoInSec=1, creationTimeAgoInSec=1}] will be managed by Spring
+10:46:57.351 [Test worker] DEBUG o.u.g.m.A.selectByApprovalDocNw110m - ==>  Preparing: select A.CO_ID as CO_ID, A.CNTN_ID as CNTN_ID, C.APPR_DESC as CNTN_NAME, A.DCMT_RGSR_NO as DCMT_RGSR_NO, A.DCMT_RGSR_DATETIME as DCMT_RGSR_DATETIME, A.AUTH_EMP_NO as AUTH_EMP_NO, B.EMP_NAME as EMP_NAME, A.AUTH_DUTY_DESC as AUTH_DUTY_DESC, A.AUTH_DEPT_CODE as AUTH_DEPT_CODE, A.AUTH_DEPT_DESC as AUTH_DEPT_DESC, A.AUTH_TEL_NO as AUTH_TEL_NO, A.DOC_NO as DOC_NO, A.DOC_TITLE as DOC_TITLE, A.MAX_APPR_DGR as MAX_APPR_DGR, A.APPR_STUS as APPR_STUS, A.CRNT_APPR_DGR as CRNT_APPR_DGR, A.CONTENT as CONTENT, A.PRSV_TERM_TYPE as PRSV_TERM_TYPE, E.RESC_KEY_VALUE as PRSV_TERM_TYPE_DESC, A.PRSV_TERM as PRSV_TERM, A.ATCH_INDC as ATCH_INDC, A.OPEN_INDC as OPEN_INDC, A.CONF_DATE as CONF_DATE, A.CONF_PLACE as CONF_PLACE, A.CONF_START_TIME as CONF_START_TIME, A.CONF_END_TIME as CONF_END_TIME, A.APPR_MST_ID as APPR_MST_ID, A.DCMT_MOD_DATETIME as DCMT_MOD_DATETIME from nw110m A, hr011m B, nw011m C, cm002c D, cm003m E where A.CO_ID = ? and A.CNTN_ID = ? and A.DCMT_RGSR_NO = ? and A.CO_ID = B.CO_ID and A.AUTH_EMP_NO = B.EMP_NO and B.LOCALE = ? and A.CO_ID = C.CO_ID and A.APPR_MST_ID = C.APPR_MST_ID and C.LOCALE = ? and D.MAJ_CODE = 'CD008' and D.SUB_CODE = A.PRSV_TERM_TYPE and E.RESC_KEY = D.RESC_KEY and E.LOCALE = ? 
+10:46:57.351 [Test worker] DEBUG o.u.g.m.A.selectByApprovalDocNw110m - ==> Parameters: A001(String), CNTN000006(String), 201606181466213886343A4(String), ko(String), ko(String), ko(String)
+10:46:57.380 [Test worker] DEBUG o.u.g.m.A.selectByApprovalDocNw110m - <==      Total: 0
+10:46:57.381 [Test worker] DEBUG o.mybatis.spring.SqlSessionUtils - Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2b7d2612]
+10:46:57.382 [Test worker] DEBUG o.mybatis.spring.SqlSessionUtils - Transaction synchronization deregistering SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2b7d2612]
+10:46:57.382 [Test worker] DEBUG o.mybatis.spring.SqlSessionUtils - Transaction synchronization closing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2b7d2612]
+10:46:57.389 [Test worker] DEBUG o.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+10:46:57.389 [Test worker] DEBUG o.mybatis.spring.SqlSessionUtils - Registering transaction synchronization for SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@3f82c1f5]
+10:46:57.389 [Test worker] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [ConnectionHandle{url=jdbc:mysql://localhost/gw?useUnicode=true&characterEncoding=utf-8, user=gw, debugHandle=null, lastResetAgoInSec=1, lastUsedAgoInSec=1, creationTimeAgoInSec=1}] will be managed by Spring
+10:46:57.390 [Test worker] DEBUG o.u.g.m.A.selectByApprovalDocNw110m - ==>  Preparing: select A.CO_ID as CO_ID, A.CNTN_ID as CNTN_ID, C.APPR_DESC as CNTN_NAME, A.DCMT_RGSR_NO as DCMT_RGSR_NO, A.DCMT_RGSR_DATETIME as DCMT_RGSR_DATETIME, A.AUTH_EMP_NO as AUTH_EMP_NO, B.EMP_NAME as EMP_NAME, A.AUTH_DUTY_DESC as AUTH_DUTY_DESC, A.AUTH_DEPT_CODE as AUTH_DEPT_CODE, A.AUTH_DEPT_DESC as AUTH_DEPT_DESC, A.AUTH_TEL_NO as AUTH_TEL_NO, A.DOC_NO as DOC_NO, A.DOC_TITLE as DOC_TITLE, A.MAX_APPR_DGR as MAX_APPR_DGR, A.APPR_STUS as APPR_STUS, A.CRNT_APPR_DGR as CRNT_APPR_DGR, A.CONTENT as CONTENT, A.PRSV_TERM_TYPE as PRSV_TERM_TYPE, E.RESC_KEY_VALUE as PRSV_TERM_TYPE_DESC, A.PRSV_TERM as PRSV_TERM, A.ATCH_INDC as ATCH_INDC, A.OPEN_INDC as OPEN_INDC, A.CONF_DATE as CONF_DATE, A.CONF_PLACE as CONF_PLACE, A.CONF_START_TIME as CONF_START_TIME, A.CONF_END_TIME as CONF_END_TIME, A.APPR_MST_ID as APPR_MST_ID, A.DCMT_MOD_DATETIME as DCMT_MOD_DATETIME from nw110m A, hr011m B, nw011m C, cm002c D, cm003m E where A.CO_ID = ? and A.CNTN_ID = ? and A.DCMT_RGSR_NO = ? and A.CO_ID = B.CO_ID and A.AUTH_EMP_NO = B.EMP_NO and B.LOCALE = ? and A.CO_ID = C.CO_ID and A.APPR_MST_ID = C.APPR_MST_ID and C.LOCALE = ? and D.MAJ_CODE = 'CD008' and D.SUB_CODE = A.PRSV_TERM_TYPE and E.RESC_KEY = D.RESC_KEY and E.LOCALE = ? 
+10:46:57.390 [Test worker] DEBUG o.u.g.m.A.selectByApprovalDocNw110m - ==> Parameters: A001(String), CNTN000006(String), 201606181466213886343A4(String), ko(String), ko(String), ko(String)
+10:46:57.403 [Test worker] DEBUG o.u.g.m.A.selectByApprovalDocNw110m - <==      Total: 0
+10:46:57.403 [Test worker] DEBUG o.mybatis.spring.SqlSessionUtils - Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@3f82c1f5]
+10:46:57.403 [Test worker] DEBUG o.mybatis.spring.SqlSessionUtils - Fetched SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@3f82c1f5] from current transaction
+10:46:57.404 [Test worker] DEBUG o.u.g.m.A.selectNextApproverDgrNw111m - ==>  Preparing: select ifnull(MIN(APPR_DGR), 0) as CNT from nw111m where CO_ID = ? and CNTN_ID = ? and DCMT_RGSR_NO = ? and APPR_STUS = '0' 
+10:46:57.405 [Test worker] DEBUG o.u.g.m.A.selectNextApproverDgrNw111m - ==> Parameters: A001(String), CNTN000006(String), 201606181466213886343A4(String)
+10:46:57.411 [Test worker] DEBUG o.u.g.m.A.selectNextApproverDgrNw111m - <==      Total: 1
+10:46:57.412 [Test worker] DEBUG o.mybatis.spring.SqlSessionUtils - Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@3f82c1f5]
+10:46:57.413 [Test worker] DEBUG o.mybatis.spring.SqlSessionUtils - Transaction synchronization deregistering SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@3f82c1f5]
+10:46:57.413 [Test worker] DEBUG o.mybatis.spring.SqlSessionUtils - Transaction synchronization closing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@3f82c1f5]
+]]></system-out>
+  <system-err><![CDATA[11월 24, 2017 10:46:57 오전 org.springframework.test.context.support.DefaultTestContextBootstrapper getDefaultTestExecutionListenerClassNames
+정보: Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]
+11월 24, 2017 10:46:57 오전 org.springframework.test.context.support.DefaultTestContextBootstrapper getTestExecutionListeners
+정보: Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@1fc7aea6, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@2440f63f, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@7d9ecd06, org.springframework.test.context.support.DirtiesContextTestExecutionListener@3ad2e41d, org.springframework.test.context.transaction.TransactionalTestExecutionListener@18c2df7f, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@3b102356]
+11월 24, 2017 10:46:57 오전 org.springframework.test.context.transaction.TransactionContext startTransaction
+정보: Began transaction (1) for test context [DefaultTestContext@29b55198 testClass = ApprovalServiceTest, testInstance = org.uniworks.groupware.service.ApprovalServiceTest@707f8036, testMethod = checkApprovalDocModifyAuthrityTest@ApprovalServiceTest, testException = [null], mergedContextConfiguration = [MergedContextConfiguration@7b78dd35 testClass = ApprovalServiceTest, locations = '{}', classes = '{class org.uniworks.groupware.common.config.AppConfig, class org.uniworks.groupware.common.config.BoneCPConfig}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{}', contextCustomizers = set[[empty]], contextLoader = 'org.springframework.test.context.support.DelegatingSmartContextLoader', parent = [null]], attributes = map[[empty]]]; transaction manager [org.springframework.jdbc.datasource.DataSourceTransactionManager@47cbf9ef]; rollback [true]
+11월 24, 2017 10:46:57 오전 org.springframework.test.context.transaction.TransactionContext endTransaction
+정보: Rolled back transaction for test context [DefaultTestContext@29b55198 testClass = ApprovalServiceTest, testInstance = org.uniworks.groupware.service.ApprovalServiceTest@707f8036, testMethod = checkApprovalDocModifyAuthrityTest@ApprovalServiceTest, testException = java.lang.NullPointerException, mergedContextConfiguration = [MergedContextConfiguration@7b78dd35 testClass = ApprovalServiceTest, locations = '{}', classes = '{class org.uniworks.groupware.common.config.AppConfig, class org.uniworks.groupware.common.config.BoneCPConfig}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{}', contextCustomizers = set[[empty]], contextLoader = 'org.springframework.test.context.support.DelegatingSmartContextLoader', parent = [null]], attributes = map[[empty]]].
+11월 24, 2017 10:46:57 오전 org.springframework.test.context.transaction.TransactionContext startTransaction
+정보: Began transaction (1) for test context [DefaultTestContext@29b55198 testClass = ApprovalServiceTest, testInstance = org.uniworks.groupware.service.ApprovalServiceTest@6fe3ce4b, testMethod = changeLineApproverStatusTest@ApprovalServiceTest, testException = [null], mergedContextConfiguration = [MergedContextConfiguration@7b78dd35 testClass = ApprovalServiceTest, locations = '{}', classes = '{class org.uniworks.groupware.common.config.AppConfig, class org.uniworks.groupware.common.config.BoneCPConfig}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{}', contextCustomizers = set[[empty]], contextLoader = 'org.springframework.test.context.support.DelegatingSmartContextLoader', parent = [null]], attributes = map[[empty]]]; transaction manager [org.springframework.jdbc.datasource.DataSourceTransactionManager@47cbf9ef]; rollback [true]
+11월 24, 2017 10:46:57 오전 org.springframework.test.context.transaction.TransactionContext endTransaction
+정보: Rolled back transaction for test context [DefaultTestContext@29b55198 testClass = ApprovalServiceTest, testInstance = org.uniworks.groupware.service.ApprovalServiceTest@6fe3ce4b, testMethod = changeLineApproverStatusTest@ApprovalServiceTest, testException = java.lang.NullPointerException, mergedContextConfiguration = [MergedContextConfiguration@7b78dd35 testClass = ApprovalServiceTest, locations = '{}', classes = '{class org.uniworks.groupware.common.config.AppConfig, class org.uniworks.groupware.common.config.BoneCPConfig}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{}', contextCustomizers = set[[empty]], contextLoader = 'org.springframework.test.context.support.DelegatingSmartContextLoader', parent = [null]], attributes = map[[empty]]].
+]]></system-err>
+</testsuite>

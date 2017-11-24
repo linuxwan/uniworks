@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="org.uniworks.groupware.mapper.Nw115mMapper"> 
+	<resultMap id="BaseResultMap" type="org.uniworks.groupware.domain.Nw115m"> 
+		<result column="CO_ID" jdbcType="VARCHAR" property="coId" /> 
+		<result column="CNTN_ID" jdbcType="VARCHAR" property="cntnId" /> 
+		<result column="DCMT_RGSR_NO" jdbcType="VARCHAR" property="dcmtRgsrNo" /> 
+		<result column="FILE_ID" jdbcType="VARCHAR" property="fileId" /> 
+		<result column="SEQ_NO" jdbcType="INTEGER" property="seqNo" /> 
+		<result column="ATTCH_FILE_NAME" jdbcType="VARCHAR" property="attchFileName" /> 
+		<result column="ATTCH_FILE_SYS_NAME" jdbcType="VARCHAR" property="attchFileSysName" /> 
+		<result column="FILE_EXT" jdbcType="VARCHAR" property="fileExt" /> 
+		<result column="FILE_PATH" jdbcType="VARCHAR" property="filePath" /> 
+		<result column="FILE_SIZE" jdbcType="INTEGER" property="fileSize" /> 
+	</resultMap> 
+
+	<!-- 목록 조회 --> 
+	<select id="select" parameterType="java.util.Map" resultMap="BaseResultMap"> 
+		select  CO_ID, CNTN_ID, DCMT_RGSR_NO, FILE_ID, SEQ_NO, ATTCH_FILE_NAME, ATTCH_FILE_SYS_NAME, FILE_EXT, FILE_PATH, 
+				FILE_SIZE
+		from   nw115m
+		where  CO_ID	=	#{coId,jdbcType=VARCHAR}
+		  and  CNTN_ID	=	#{cntnId,jdbcType=VARCHAR}
+		  and  DCMT_RGSR_NO	=	#{dcmtRgsrNo,jdbcType=VARCHAR} 
+	</select> 
+ 
+	<!-- 상세 조회 --> 
+	<select id="selectByPrimaryKey" parameterType="java.util.Map" resultMap="BaseResultMap"> 
+		select  CO_ID, CNTN_ID, DCMT_RGSR_NO, FILE_ID, SEQ_NO, ATTCH_FILE_NAME, ATTCH_FILE_SYS_NAME, FILE_EXT, FILE_PATH, 
+				FILE_SIZE
+		from   nw115m
+		where  CO_ID	=	#{coId,jdbcType=VARCHAR} 
+		  and  CNTN_ID	=	#{cntnId,jdbcType=VARCHAR} 
+		  and  DCMT_RGSR_NO	=	#{dcmtRgsrNo,jdbcType=VARCHAR} 
+		  and  FILE_ID	=	#{fileId,jdbcType=VARCHAR} 
+	</select> 
+ 
+	<!-- 등록 --> 
+	<insert id="insert" parameterType="org.uniworks.groupware.domain.Nw115m"> 
+		insert	into nw115m(CO_ID, CNTN_ID, DCMT_RGSR_NO, FILE_ID, SEQ_NO, ATTCH_FILE_NAME, ATTCH_FILE_SYS_NAME, FILE_EXT, FILE_PATH, 
+				FILE_SIZE) 
+		values (#{coId,jdbcType=VARCHAR},#{cntnId,jdbcType=VARCHAR},#{dcmtRgsrNo,jdbcType=VARCHAR},#{fileId,jdbcType=VARCHAR},#{seqNo,jdbcType=INTEGER},#{attchFileName,jdbcType=VARCHAR},#{attchFileSysName,jdbcType=VARCHAR} 
+			,#{fileExt,jdbcType=VARCHAR},#{filePath,jdbcType=VARCHAR},#{fileSize,jdbcType=INTEGER}) 
+	</insert> 
+ 
+	<!-- 수정 --> 
+	<update id="updateByPrimaryKey" parameterType="org.uniworks.groupware.domain.Nw115m"> 
+		update	nw115m 
+		<trim prefix="SET" suffixOverrides=","> 
+			<if test="seqNo != null">SEQ_NO= #{seqNo,jdbcType=INTEGER},</if> 
+			<if test="attchFileName != null">ATTCH_FILE_NAME= #{attchFileName,jdbcType=VARCHAR},</if> 
+			<if test="attchFileSysName != null">ATTCH_FILE_SYS_NAME= #{attchFileSysName,jdbcType=VARCHAR},</if> 
+			<if test="fileExt != null">FILE_EXT= #{fileExt,jdbcType=VARCHAR},</if> 
+			<if test="filePath != null">FILE_PATH= #{filePath,jdbcType=VARCHAR},</if> 
+			<if test="fileSize != null">FILE_SIZE= #{fileSize,jdbcType=INTEGER},</if> 
+		</trim> 
+		where	CO_ID	=	#{coId,jdbcType=VARCHAR} 
+		  and	CNTN_ID	=	#{cntnId,jdbcType=VARCHAR} 
+		  and	DCMT_RGSR_NO	=	#{dcmtRgsrNo,jdbcType=VARCHAR} 
+		  and	FILE_ID	=	#{fileId,jdbcType=VARCHAR} 
+	</update> 
+ 
+	<!-- 삭제 --> 
+	<delete id="deleteByPrimaryKey" parameterType="java.util.Map"> 
+		delete	from nw115m 
+		where	CO_ID	=	#{coId,jdbcType=VARCHAR} 
+		  and	CNTN_ID	=	#{cntnId,jdbcType=VARCHAR} 
+		  and	DCMT_RGSR_NO	=	#{dcmtRgsrNo,jdbcType=VARCHAR}
+		  <if test="fileId != null"> 
+		  and	FILE_ID	=	#{fileId,jdbcType=VARCHAR}
+		  </if> 
+	</delete> 
+</mapper>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=edge"/>
+<title>Test results - Class org.uniworks.groupware.service.MenuServiceTest</title>
+<link href="../css/base-style.css" rel="stylesheet" type="text/css"/>
+<link href="../css/style.css" rel="stylesheet" type="text/css"/>
+<script src="../js/report.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="content">
+<h1>Class org.uniworks.groupware.service.MenuServiceTest</h1>
+<div class="breadcrumbs">
+<a href="../index.html">all</a> &gt; 
+<a href="../packages/org.uniworks.groupware.service.html">org.uniworks.groupware.service</a> &gt; MenuServiceTest</div>
+<div id="summary">
+<table>
+<tr>
+<td>
+<div class="summaryGroup">
+<table>
+<tr>
+<td>
+<div class="infoBox" id="tests">
+<div class="counter">2</div>
+<p>tests</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="failures">
+<div class="counter">0</div>
+<p>failures</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="ignored">
+<div class="counter">0</div>
+<p>ignored</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="duration">
+<div class="counter">0.042s</div>
+<p>duration</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</td>
+<td>
+<div class="infoBox success" id="successRate">
+<div class="percent">100%</div>
+<p>successful</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div id="tabs">
+<ul class="tabLinks">
+<li>
+<a href="#tab0">Tests</a>
+</li>
+<li>
+<a href="#tab1">Standard output</a>
+</li>
+<li>
+<a href="#tab2">Standard error</a>
+</li>
+</ul>
+<div id="tab0" class="tab">
+<h2>Tests</h2>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Duration</th>
+<th>Result</th>
+</tr>
+</thead>
+<tr>
+<td class="success">testGetSubMenuAll</td>
+<td>0.022s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">testGetTopMenu</td>
+<td>0.020s</td>
+<td class="success">passed</td>
+</tr>
+</table>
+</div>
+<div id="tab1" class="tab">
+<h2>Standard output</h2>
+<span class="code">
+<pre>10:46:57.597 [Test worker] DEBUG o.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+10:46:57.597 [Test worker] DEBUG o.mybatis.spring.SqlSessionUtils - Registering transaction synchronization for SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5d650710]
+10:46:57.597 [Test worker] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [ConnectionHandle{url=jdbc:mysql://localhost/gw?useUnicode=true&amp;characterEncoding=utf-8, user=gw, debugHandle=null, lastResetAgoInSec=1, lastUsedAgoInSec=1, creationTimeAgoInSec=1}] will be managed by Spring
+10:46:57.597 [Test worker] DEBUG o.u.g.m.M.selectByTopMenu - ==&gt;  Preparing: select A.CO_ID as CO_ID, A.MENU_ID as MENU_ID, A.HIGH_MENU_ID as HIGH_MENU_ID, C.MENU_DSPL_NAME as MENU_DSPL_NAME, A.MENU_LEVEL as MENU_LEVEL, A.MENU_ORD as MENU_ORD, A.TOP_URL as TOP_URL, A.LEFT_URL as LEFT_URL, A.BODY_URL as BODY_URL, A.CNTN_ID as CNTN_ID, B.CNTN_NAME as CNTN_NAME, A.MENU_DSPL_INDC as MENU_DSPL_INDC, A.CNTN_LINK_INDC as CNTN_LINK_INDC, A.LINK_TYPE as LINK_TYPE, A.MENU_DESC as MENU_DESC, A.DFLT_MENU_INDC as DFLT_MENU_INDC, A.DLGT_MENU_INDC as DLGT_MENU_INDC, A.MY_MENU_SET_INDC as MY_MENU_SET_INDC, A.ICON_FILE_URL as ICON_FILE_URL, A.CRT_DATE as CRT_DATE, A.CRT_ID as CRT_ID, A.CHNG_DATE as CHNG_DATE, A.CHNG_ID as CHNG_ID from nw020m as A LEFT OUTER JOIN nw031m as B ON B.CNTN_ID = A.CNTN_ID and B.LOCALE = ? , nw021m as C where A.CO_ID = ? and A.MENU_LEVEL = '1' and A.MENU_DSPL_INDC = 'Y' and A.MENU_ID = C.MENU_ID and A.CO_ID = C.CO_ID and C.LOCALE = ? order by A.menu_ord 
+10:46:57.598 [Test worker] DEBUG o.u.g.m.M.selectByTopMenu - ==&gt; Parameters: ko(String), A001(String), ko(String)
+10:46:57.604 [Test worker] DEBUG o.u.g.m.M.selectByTopMenu - &lt;==      Total: 6
+10:46:57.606 [Test worker] DEBUG o.mybatis.spring.SqlSessionUtils - Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5d650710]
+10:46:57.606 [Test worker] DEBUG o.mybatis.spring.SqlSessionUtils - Transaction synchronization deregistering SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5d650710]
+10:46:57.606 [Test worker] DEBUG o.mybatis.spring.SqlSessionUtils - Transaction synchronization closing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5d650710]
+10:46:57.617 [Test worker] DEBUG o.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+10:46:57.617 [Test worker] DEBUG o.mybatis.spring.SqlSessionUtils - Registering transaction synchronization for SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@861147d]
+10:46:57.617 [Test worker] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [ConnectionHandle{url=jdbc:mysql://localhost/gw?useUnicode=true&amp;characterEncoding=utf-8, user=gw, debugHandle=null, lastResetAgoInSec=2, lastUsedAgoInSec=1, creationTimeAgoInSec=2}] will be managed by Spring
+10:46:57.617 [Test worker] DEBUG o.u.g.m.M.selectBySubMenu - ==&gt;  Preparing: select A.CO_ID as CO_ID, A.MENU_ID as MENU_ID, A.HIGH_MENU_ID as HIGH_MENU_ID, C.MENU_DSPL_NAME as MENU_DSPL_NAME, A.MENU_LEVEL as MENU_LEVEL, A.MENU_ORD as MENU_ORD, A.TOP_URL as TOP_URL, A.LEFT_URL as LEFT_URL, A.BODY_URL as BODY_URL, A.CNTN_ID as CNTN_ID, B.CNTN_NAME as CNTN_NAME, A.MENU_DSPL_INDC as MENU_DSPL_INDC, A.CNTN_LINK_INDC as CNTN_LINK_INDC, A.LINK_TYPE as LINK_TYPE, A.MENU_DESC as MENU_DESC, A.DFLT_MENU_INDC as DFLT_MENU_INDC, A.DLGT_MENU_INDC as DLGT_MENU_INDC, A.MY_MENU_SET_INDC as MY_MENU_SET_INDC, A.ICON_FILE_URL as ICON_FILE_URL, A.CRT_DATE as CRT_DATE, A.CRT_ID as CRT_ID, A.CHNG_DATE as CHNG_DATE, A.CHNG_ID as CHNG_ID from nw020m as A LEFT OUTER JOIN nw031m as B ON B.CNTN_ID = A.CNTN_ID and B.LOCALE = ? , nw021m as C where A.co_id = ? and A.high_menu_id like ? and A.menu_dspl_indc = 'Y' and A.MENU_ID = C.MENU_ID and A.CO_ID = C.CO_ID and C.LOCALE = ? order by A.MENU_LEVEL, A.menu_ord 
+10:46:57.618 [Test worker] DEBUG o.u.g.m.M.selectBySubMenu - ==&gt; Parameters: ko(String), A001(String), MENU01%(String), ko(String)
+10:46:57.631 [Test worker] DEBUG o.u.g.m.M.selectBySubMenu - &lt;==      Total: 14
+10:46:57.632 [Test worker] DEBUG o.mybatis.spring.SqlSessionUtils - Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@861147d]
+10:46:57.633 [Test worker] DEBUG o.mybatis.spring.SqlSessionUtils - Transaction synchronization deregistering SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@861147d]
+10:46:57.633 [Test worker] DEBUG o.mybatis.spring.SqlSessionUtils - Transaction synchronization closing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@861147d]
+</pre>
+</span>
+</div>
+<div id="tab2" class="tab">
+<h2>Standard error</h2>
+<span class="code">
+<pre>11월 24, 2017 10:46:57 오전 org.springframework.test.context.support.DefaultTestContextBootstrapper getDefaultTestExecutionListenerClassNames
+정보: Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]
+11월 24, 2017 10:46:57 오전 org.springframework.test.context.support.DefaultTestContextBootstrapper getTestExecutionListeners
+정보: Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@31d6ecd7, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@6705521f, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@1b782aee, org.springframework.test.context.support.DirtiesContextTestExecutionListener@70d35f34, org.springframework.test.context.transaction.TransactionalTestExecutionListener@76e5b5ad, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@3b3d94c4]
+11월 24, 2017 10:46:57 오전 org.springframework.test.context.transaction.TransactionContext startTransaction
+정보: Began transaction (1) for test context [DefaultTestContext@2109b824 testClass = MenuServiceTest, testInstance = org.uniworks.groupware.service.MenuServiceTest@6bb4cce7, testMethod = testGetTopMenu@MenuServiceTest, testException = [null], mergedContextConfiguration = [MergedContextConfiguration@66fd1e6e testClass = MenuServiceTest, locations = '{}', classes = '{class org.uniworks.groupware.common.config.AppConfig, class org.uniworks.groupware.common.config.BoneCPConfig}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{}', contextCustomizers = set[[empty]], contextLoader = 'org.springframework.test.context.support.DelegatingSmartContextLoader', parent = [null]], attributes = map[[empty]]]; transaction manager [org.springframework.jdbc.datasource.DataSourceTransactionManager@47cbf9ef]; rollback [true]
+11월 24, 2017 10:46:57 오전 org.springframework.test.context.transaction.TransactionContext endTransaction
+정보: Rolled back transaction for test context [DefaultTestContext@2109b824 testClass = MenuServiceTest, testInstance = org.uniworks.groupware.service.MenuServiceTest@6bb4cce7, testMethod = testGetTopMenu@MenuServiceTest, testException = [null], mergedContextConfiguration = [MergedContextConfiguration@66fd1e6e testClass = MenuServiceTest, locations = '{}', classes = '{class org.uniworks.groupware.common.config.AppConfig, class org.uniworks.groupware.common.config.BoneCPConfig}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{}', contextCustomizers = set[[empty]], contextLoader = 'org.springframework.test.context.support.DelegatingSmartContextLoader', parent = [null]], attributes = map[[empty]]].
+11월 24, 2017 10:46:57 오전 org.springframework.test.context.transaction.TransactionContext startTransaction
+정보: Began transaction (1) for test context [DefaultTestContext@2109b824 testClass = MenuServiceTest, testInstance = org.uniworks.groupware.service.MenuServiceTest@319c7094, testMethod = testGetSubMenuAll@MenuServiceTest, testException = [null], mergedContextConfiguration = [MergedContextConfiguration@66fd1e6e testClass = MenuServiceTest, locations = '{}', classes = '{class org.uniworks.groupware.common.config.AppConfig, class org.uniworks.groupware.common.config.BoneCPConfig}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{}', contextCustomizers = set[[empty]], contextLoader = 'org.springframework.test.context.support.DelegatingSmartContextLoader', parent = [null]], attributes = map[[empty]]]; transaction manager [org.springframework.jdbc.datasource.DataSourceTransactionManager@47cbf9ef]; rollback [true]
+11월 24, 2017 10:46:57 오전 org.springframework.test.context.transaction.TransactionContext endTransaction
+정보: Rolled back transaction for test context [DefaultTestContext@2109b824 testClass = MenuServiceTest, testInstance = org.uniworks.groupware.service.MenuServiceTest@319c7094, testMethod = testGetSubMenuAll@MenuServiceTest, testException = [null], mergedContextConfiguration = [MergedContextConfiguration@66fd1e6e testClass = MenuServiceTest, locations = '{}', classes = '{class org.uniworks.groupware.common.config.AppConfig, class org.uniworks.groupware.common.config.BoneCPConfig}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{}', contextCustomizers = set[[empty]], contextLoader = 'org.springframework.test.context.support.DelegatingSmartContextLoader', parent = [null]], attributes = map[[empty]]].
+</pre>
+</span>
+</div>
+</div>
+<div id="footer">
+<p>
+<div>
+<label class="hidden" id="label-for-line-wrapping-toggle" for="line-wrapping-toggle">Wrap lines
+<input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
+</label>
+</div>Generated by 
+<a href="http://www.gradle.org">Gradle 3.5</a> at 2017. 11. 24 오전 10:46:58</p>
+</div>
+</div>
+</body>
+</html>

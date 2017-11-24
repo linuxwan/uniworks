@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=edge"/>
+<title>Test results - Class org.uniworks.groupware.common.util.approval.ApprovalCommonUtilTest</title>
+<link href="../css/base-style.css" rel="stylesheet" type="text/css"/>
+<link href="../css/style.css" rel="stylesheet" type="text/css"/>
+<script src="../js/report.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="content">
+<h1>Class org.uniworks.groupware.common.util.approval.ApprovalCommonUtilTest</h1>
+<div class="breadcrumbs">
+<a href="../index.html">all</a> &gt; 
+<a href="../packages/org.uniworks.groupware.common.util.approval.html">org.uniworks.groupware.common.util.approval</a> &gt; ApprovalCommonUtilTest</div>
+<div id="summary">
+<table>
+<tr>
+<td>
+<div class="summaryGroup">
+<table>
+<tr>
+<td>
+<div class="infoBox" id="tests">
+<div class="counter">2</div>
+<p>tests</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="failures">
+<div class="counter">0</div>
+<p>failures</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="ignored">
+<div class="counter">0</div>
+<p>ignored</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="duration">
+<div class="counter">0.731s</div>
+<p>duration</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</td>
+<td>
+<div class="infoBox success" id="successRate">
+<div class="percent">100%</div>
+<p>successful</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div id="tabs">
+<ul class="tabLinks">
+<li>
+<a href="#tab0">Tests</a>
+</li>
+<li>
+<a href="#tab1">Standard output</a>
+</li>
+<li>
+<a href="#tab2">Standard error</a>
+</li>
+</ul>
+<div id="tab0" class="tab">
+<h2>Tests</h2>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Duration</th>
+<th>Result</th>
+</tr>
+</thead>
+<tr>
+<td class="success">setRcptDestListTest</td>
+<td>0.023s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">setRfncDestListTest</td>
+<td>0.708s</td>
+<td class="success">passed</td>
+</tr>
+</table>
+</div>
+<div id="tab1" class="tab">
+<h2>Standard output</h2>
+<span class="code">
+<pre>10:46:49,138 |-INFO in ch.qos.logback.classic.LoggerContext[default] - Found resource [logback-test.xml] at [file:/D:/devdk/projects/web/project_03/uniworks/build/resources/test/logback-test.xml]
+10:46:49,219 |-INFO in ch.qos.logback.classic.joran.action.ConfigurationAction - debug attribute not set
+10:46:49,220 |-INFO in ch.qos.logback.core.joran.action.AppenderAction - About to instantiate appender of type [ch.qos.logback.core.ConsoleAppender]
+10:46:49,230 |-INFO in ch.qos.logback.core.joran.action.AppenderAction - Naming appender as [console]
+10:46:49,238 |-INFO in ch.qos.logback.core.joran.action.NestedComplexPropertyIA - Assuming default type [ch.qos.logback.classic.PatternLayout] for [layout] property
+10:46:49,276 |-WARN in ch.qos.logback.core.ConsoleAppender[console] - This appender no longer admits a layout as a sub-component, set an encoder instead.
+10:46:49,276 |-WARN in ch.qos.logback.core.ConsoleAppender[console] - To ensure compatibility, wrapping your layout in LayoutWrappingEncoder.
+10:46:49,276 |-WARN in ch.qos.logback.core.ConsoleAppender[console] - See also http://logback.qos.ch/codes.html#layoutInsteadOfEncoder for details
+10:46:49,277 |-INFO in ch.qos.logback.classic.joran.action.RootLoggerAction - Setting level of ROOT logger to DEBUG
+10:46:49,278 |-INFO in ch.qos.logback.core.joran.action.AppenderRefAction - Attaching appender named [console] to Logger[ROOT]
+10:46:49,279 |-INFO in ch.qos.logback.classic.joran.action.ConfigurationAction - End of configuration.
+10:46:49,280 |-INFO in ch.qos.logback.classic.joran.JoranConfigurator@5f619a05 - Registering current configuration as safe fallback point
+
+10:46:50.714 [Test worker] DEBUG o.a.ibatis.logging.LogFactory - Logging initialized using 'class org.apache.ibatis.logging.slf4j.Slf4jImpl' adapter.
+10:46:50.723 [Test worker] DEBUG o.m.spring.SqlSessionFactoryBean - Property 'configuration' or 'configLocation' not specified, using default MyBatis Configuration
+10:46:50.788 [Test worker] DEBUG o.m.spring.SqlSessionFactoryBean - Property 'mapperLocations' was not specified or no matching resources found
+10:46:54.970 [Test worker] DEBUG c.jolbox.bonecp.BoneCPDataSource - JDBC URL = jdbc:mysql://localhost/gw?useUnicode=true&amp;characterEncoding=utf-8, Username = gw, partitions = 2, max (per partition) = 10, min (per partition) = 1, idle max age = 240 min, idle test period = 60 min, strategy = DEFAULT
+</pre>
+</span>
+</div>
+<div id="tab2" class="tab">
+<h2>Standard error</h2>
+<span class="code">
+<pre>11월 24, 2017 10:46:49 오전 org.springframework.test.context.support.DefaultTestContextBootstrapper getDefaultTestExecutionListenerClassNames
+정보: Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]
+11월 24, 2017 10:46:49 오전 org.springframework.test.context.support.DefaultTestContextBootstrapper getTestExecutionListeners
+정보: Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@43438d4c, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@71d7b3d8, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@4082635c, org.springframework.test.context.support.DirtiesContextTestExecutionListener@1fd48360, org.springframework.test.context.transaction.TransactionalTestExecutionListener@4022443b, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@ca76694]
+11월 24, 2017 10:46:49 오전 org.springframework.context.support.GenericApplicationContext prepareRefresh
+정보: Refreshing org.springframework.context.support.GenericApplicationContext@17321609: startup date [Fri Nov 24 10:46:49 KST 2017]; root of context hierarchy
+11월 24, 2017 10:46:50 오전 org.springframework.beans.factory.support.DefaultListableBeanFactory registerBeanDefinition
+정보: Overriding bean definition for bean 'dataSource' with a different definition: replacing [Root bean: class [null]; scope=; abstract=false; lazyInit=false; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=appConfig; factoryMethodName=dataSource; initMethodName=null; destroyMethodName=(inferred); defined in org.uniworks.groupware.common.config.AppConfig] with [Root bean: class [null]; scope=; abstract=false; lazyInit=false; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=boneCPConfig; factoryMethodName=dataSource; initMethodName=null; destroyMethodName=close; defined in org.uniworks.groupware.common.config.BoneCPConfig]
+11월 24, 2017 10:46:50 오전 org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor &lt;init&gt;
+정보: JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+11월 24, 2017 10:46:50 오전 org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor lambda$buildAutowiringMetadata$2
+경고: Autowired annotation is not supported on static methods: public static org.springframework.context.support.PropertySourcesPlaceholderConfigurer org.uniworks.groupware.common.config.AppConfig.propertySourcesPlaceholderConfigurer()
+11월 24, 2017 10:46:54 오전 org.springframework.security.web.DefaultSecurityFilterChain &lt;init&gt;
+정보: Creating filter chain: org.springframework.security.web.util.matcher.AnyRequestMatcher@1, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@6b6f8cb0, org.springframework.security.web.context.SecurityContextPersistenceFilter@5eba54e7, org.springframework.security.web.header.HeaderWriterFilter@42b93345, org.springframework.web.filter.CharacterEncodingFilter@72c9cd83, org.springframework.security.web.csrf.CsrfFilter@34c5ce91, org.springframework.security.web.authentication.logout.LogoutFilter@5b6c5bd0, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@206b0d75, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@68ec154a, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@274be265, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@df0bb96, org.springframework.security.web.session.SessionManagementFilter@4190c500, org.springframework.security.web.access.ExceptionTranslationFilter@52170343, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@17765a81]
+Fri Nov 24 10:46:55 KST 2017 WARN: Establishing SSL connection without server's identity verification is not recommended. According to MySQL 5.5.45+, 5.6.26+ and 5.7.6+ requirements SSL connection must be established by default if explicit option isn't set. For compliance with existing applications not using SSL the verifyServerCertificate property is set to 'false'. You need either to explicitly disable SSL by setting useSSL=false, or set useSSL=true and provide truststore for server certificate verification.
+Fri Nov 24 10:46:55 KST 2017 WARN: Establishing SSL connection without server's identity verification is not recommended. According to MySQL 5.5.45+, 5.6.26+ and 5.7.6+ requirements SSL connection must be established by default if explicit option isn't set. For compliance with existing applications not using SSL the verifyServerCertificate property is set to 'false'. You need either to explicitly disable SSL by setting useSSL=false, or set useSSL=true and provide truststore for server certificate verification.
+Fri Nov 24 10:46:55 KST 2017 WARN: Establishing SSL connection without server's identity verification is not recommended. According to MySQL 5.5.45+, 5.6.26+ and 5.7.6+ requirements SSL connection must be established by default if explicit option isn't set. For compliance with existing applications not using SSL the verifyServerCertificate property is set to 'false'. You need either to explicitly disable SSL by setting useSSL=false, or set useSSL=true and provide truststore for server certificate verification.
+Fri Nov 24 10:46:55 KST 2017 WARN: Establishing SSL connection without server's identity verification is not recommended. According to MySQL 5.5.45+, 5.6.26+ and 5.7.6+ requirements SSL connection must be established by default if explicit option isn't set. For compliance with existing applications not using SSL the verifyServerCertificate property is set to 'false'. You need either to explicitly disable SSL by setting useSSL=false, or set useSSL=true and provide truststore for server certificate verification.
+Fri Nov 24 10:46:55 KST 2017 WARN: Establishing SSL connection without server's identity verification is not recommended. According to MySQL 5.5.45+, 5.6.26+ and 5.7.6+ requirements SSL connection must be established by default if explicit option isn't set. For compliance with existing applications not using SSL the verifyServerCertificate property is set to 'false'. You need either to explicitly disable SSL by setting useSSL=false, or set useSSL=true and provide truststore for server certificate verification.
+11월 24, 2017 10:46:55 오전 org.springframework.test.context.transaction.TransactionContext startTransaction
+정보: Began transaction (1) for test context [DefaultTestContext@51b94441 testClass = ApprovalCommonUtilTest, testInstance = org.uniworks.groupware.common.util.approval.ApprovalCommonUtilTest@2d4b4171, testMethod = setRfncDestListTest@ApprovalCommonUtilTest, testException = [null], mergedContextConfiguration = [MergedContextConfiguration@482180cb testClass = ApprovalCommonUtilTest, locations = '{}', classes = '{class org.uniworks.groupware.common.config.AppConfig, class org.uniworks.groupware.common.config.BoneCPConfig}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{}', contextCustomizers = set[[empty]], contextLoader = 'org.springframework.test.context.support.DelegatingSmartContextLoader', parent = [null]], attributes = map[[empty]]]; transaction manager [org.springframework.jdbc.datasource.DataSourceTransactionManager@47cbf9ef]; rollback [true]
+Fri Nov 24 10:46:55 KST 2017 WARN: Establishing SSL connection without server's identity verification is not recommended. According to MySQL 5.5.45+, 5.6.26+ and 5.7.6+ requirements SSL connection must be established by default if explicit option isn't set. For compliance with existing applications not using SSL the verifyServerCertificate property is set to 'false'. You need either to explicitly disable SSL by setting useSSL=false, or set useSSL=true and provide truststore for server certificate verification.
+Fri Nov 24 10:46:55 KST 2017 WARN: Establishing SSL connection without server's identity verification is not recommended. According to MySQL 5.5.45+, 5.6.26+ and 5.7.6+ requirements SSL connection must be established by default if explicit option isn't set. For compliance with existing applications not using SSL the verifyServerCertificate property is set to 'false'. You need either to explicitly disable SSL by setting useSSL=false, or set useSSL=true and provide truststore for server certificate verification.
+11월 24, 2017 10:46:55 오전 org.springframework.test.context.transaction.TransactionContext endTransaction
+정보: Rolled back transaction for test context [DefaultTestContext@51b94441 testClass = ApprovalCommonUtilTest, testInstance = org.uniworks.groupware.common.util.approval.ApprovalCommonUtilTest@2d4b4171, testMethod = setRfncDestListTest@ApprovalCommonUtilTest, testException = [null], mergedContextConfiguration = [MergedContextConfiguration@482180cb testClass = ApprovalCommonUtilTest, locations = '{}', classes = '{class org.uniworks.groupware.common.config.AppConfig, class org.uniworks.groupware.common.config.BoneCPConfig}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{}', contextCustomizers = set[[empty]], contextLoader = 'org.springframework.test.context.support.DelegatingSmartContextLoader', parent = [null]], attributes = map[[empty]]].
+11월 24, 2017 10:46:55 오전 org.springframework.test.context.transaction.TransactionContext startTransaction
+정보: Began transaction (1) for test context [DefaultTestContext@51b94441 testClass = ApprovalCommonUtilTest, testInstance = org.uniworks.groupware.common.util.approval.ApprovalCommonUtilTest@7ab741f0, testMethod = setRcptDestListTest@ApprovalCommonUtilTest, testException = [null], mergedContextConfiguration = [MergedContextConfiguration@482180cb testClass = ApprovalCommonUtilTest, locations = '{}', classes = '{class org.uniworks.groupware.common.config.AppConfig, class org.uniworks.groupware.common.config.BoneCPConfig}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{}', contextCustomizers = set[[empty]], contextLoader = 'org.springframework.test.context.support.DelegatingSmartContextLoader', parent = [null]], attributes = map[[empty]]]; transaction manager [org.springframework.jdbc.datasource.DataSourceTransactionManager@47cbf9ef]; rollback [true]
+11월 24, 2017 10:46:55 오전 org.springframework.test.context.transaction.TransactionContext endTransaction
+정보: Rolled back transaction for test context [DefaultTestContext@51b94441 testClass = ApprovalCommonUtilTest, testInstance = org.uniworks.groupware.common.util.approval.ApprovalCommonUtilTest@7ab741f0, testMethod = setRcptDestListTest@ApprovalCommonUtilTest, testException = [null], mergedContextConfiguration = [MergedContextConfiguration@482180cb testClass = ApprovalCommonUtilTest, locations = '{}', classes = '{class org.uniworks.groupware.common.config.AppConfig, class org.uniworks.groupware.common.config.BoneCPConfig}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{}', contextCustomizers = set[[empty]], contextLoader = 'org.springframework.test.context.support.DelegatingSmartContextLoader', parent = [null]], attributes = map[[empty]]].
+</pre>
+</span>
+</div>
+</div>
+<div id="footer">
+<p>
+<div>
+<label class="hidden" id="label-for-line-wrapping-toggle" for="line-wrapping-toggle">Wrap lines
+<input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
+</label>
+</div>Generated by 
+<a href="http://www.gradle.org">Gradle 3.5</a> at 2017. 11. 24 오전 10:46:58</p>
+</div>
+</div>
+</body>
+</html>

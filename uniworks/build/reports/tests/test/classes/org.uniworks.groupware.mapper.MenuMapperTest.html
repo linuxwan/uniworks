@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=edge"/>
+<title>Test results - Class org.uniworks.groupware.mapper.MenuMapperTest</title>
+<link href="../css/base-style.css" rel="stylesheet" type="text/css"/>
+<link href="../css/style.css" rel="stylesheet" type="text/css"/>
+<script src="../js/report.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="content">
+<h1>Class org.uniworks.groupware.mapper.MenuMapperTest</h1>
+<div class="breadcrumbs">
+<a href="../index.html">all</a> &gt; 
+<a href="../packages/org.uniworks.groupware.mapper.html">org.uniworks.groupware.mapper</a> &gt; MenuMapperTest</div>
+<div id="summary">
+<table>
+<tr>
+<td>
+<div class="summaryGroup">
+<table>
+<tr>
+<td>
+<div class="infoBox" id="tests">
+<div class="counter">2</div>
+<p>tests</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="failures">
+<div class="counter">0</div>
+<p>failures</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="ignored">
+<div class="counter">0</div>
+<p>ignored</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="duration">
+<div class="counter">0.116s</div>
+<p>duration</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</td>
+<td>
+<div class="infoBox success" id="successRate">
+<div class="percent">100%</div>
+<p>successful</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div id="tabs">
+<ul class="tabLinks">
+<li>
+<a href="#tab0">Tests</a>
+</li>
+<li>
+<a href="#tab1">Standard output</a>
+</li>
+<li>
+<a href="#tab2">Standard error</a>
+</li>
+</ul>
+<div id="tab0" class="tab">
+<h2>Tests</h2>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Duration</th>
+<th>Result</th>
+</tr>
+</thead>
+<tr>
+<td class="success">testSelectBySubMenu</td>
+<td>0.094s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">testSelectByTopMenu</td>
+<td>0.022s</td>
+<td class="success">passed</td>
+</tr>
+</table>
+</div>
+<div id="tab1" class="tab">
+<h2>Standard output</h2>
+<span class="code">
+<pre>10:46:56.164 [Test worker] DEBUG o.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+10:46:56.165 [Test worker] DEBUG o.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@188fe262] was not registered for synchronization because synchronization is not active
+10:46:56.165 [Test worker] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [ConnectionHandle{url=jdbc:mysql://localhost/gw?useUnicode=true&amp;characterEncoding=utf-8, user=gw, debugHandle=null, lastResetAgoInSec=0, lastUsedAgoInSec=0, creationTimeAgoInSec=0}] will not be managed by Spring
+10:46:56.166 [Test worker] DEBUG o.u.g.m.M.selectBySubMenu - ==&gt;  Preparing: select A.CO_ID as CO_ID, A.MENU_ID as MENU_ID, A.HIGH_MENU_ID as HIGH_MENU_ID, C.MENU_DSPL_NAME as MENU_DSPL_NAME, A.MENU_LEVEL as MENU_LEVEL, A.MENU_ORD as MENU_ORD, A.TOP_URL as TOP_URL, A.LEFT_URL as LEFT_URL, A.BODY_URL as BODY_URL, A.CNTN_ID as CNTN_ID, B.CNTN_NAME as CNTN_NAME, A.MENU_DSPL_INDC as MENU_DSPL_INDC, A.CNTN_LINK_INDC as CNTN_LINK_INDC, A.LINK_TYPE as LINK_TYPE, A.MENU_DESC as MENU_DESC, A.DFLT_MENU_INDC as DFLT_MENU_INDC, A.DLGT_MENU_INDC as DLGT_MENU_INDC, A.MY_MENU_SET_INDC as MY_MENU_SET_INDC, A.ICON_FILE_URL as ICON_FILE_URL, A.CRT_DATE as CRT_DATE, A.CRT_ID as CRT_ID, A.CHNG_DATE as CHNG_DATE, A.CHNG_ID as CHNG_ID from nw020m as A LEFT OUTER JOIN nw031m as B ON B.CNTN_ID = A.CNTN_ID and B.LOCALE = ? , nw021m as C where A.co_id = ? and A.high_menu_id like ? and A.menu_dspl_indc = 'Y' and A.MENU_ID = C.MENU_ID and A.CO_ID = C.CO_ID and C.LOCALE = ? order by A.MENU_LEVEL, A.menu_ord 
+10:46:56.167 [Test worker] DEBUG o.u.g.m.M.selectBySubMenu - ==&gt; Parameters: ko(String), A001(String), MENU01%(String), ko(String)
+10:46:56.256 [Test worker] DEBUG o.u.g.m.M.selectBySubMenu - &lt;==      Total: 14
+10:46:56.256 [Test worker] DEBUG o.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@188fe262]
+10:46:56.257 [Test worker] DEBUG o.u.g.mapper.MenuMapperTest - MENU010100:MENU010000:메일
+10:46:56.257 [Test worker] DEBUG o.u.g.mapper.MenuMapperTest - MENU010300:MENU010000:전자 결재
+10:46:56.257 [Test worker] DEBUG o.u.g.mapper.MenuMapperTest - MENU010400:MENU010000:일정 관리
+10:46:56.257 [Test worker] DEBUG o.u.g.mapper.MenuMapperTest - MENU010500:MENU010000:쪽지
+10:46:56.257 [Test worker] DEBUG o.u.g.mapper.MenuMapperTest - MENU010301:MENU010300:결재양식함
+10:46:56.257 [Test worker] DEBUG o.u.g.mapper.MenuMapperTest - MENU010401:MENU010400:개인 일정
+10:46:56.257 [Test worker] DEBUG o.u.g.mapper.MenuMapperTest - MENU010305:MENU010300:작성중 문서함
+10:46:56.257 [Test worker] DEBUG o.u.g.mapper.MenuMapperTest - MENU010402:MENU010400:전사 일정
+10:46:56.257 [Test worker] DEBUG o.u.g.mapper.MenuMapperTest - MENU010302:MENU010300:결재함
+10:46:56.257 [Test worker] DEBUG o.u.g.mapper.MenuMapperTest - MENU010403:MENU010400:팀 일정
+10:46:56.258 [Test worker] DEBUG o.u.g.mapper.MenuMapperTest - MENU010303:MENU010300:결재진행함
+10:46:56.258 [Test worker] DEBUG o.u.g.mapper.MenuMapperTest - MENU010304:MENU010300:결재완료함
+10:46:56.258 [Test worker] DEBUG o.u.g.mapper.MenuMapperTest - MENU010306:MENU010300:수신함
+10:46:56.258 [Test worker] DEBUG o.u.g.mapper.MenuMapperTest - MENU010307:MENU010300:반려함
+10:46:56.259 [Test worker] DEBUG o.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+10:46:56.259 [Test worker] DEBUG o.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5fe85d75] was not registered for synchronization because synchronization is not active
+10:46:56.259 [Test worker] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [ConnectionHandle{url=jdbc:mysql://localhost/gw?useUnicode=true&amp;characterEncoding=utf-8, user=gw, debugHandle=null, lastResetAgoInSec=0, lastUsedAgoInSec=0, creationTimeAgoInSec=0}] will not be managed by Spring
+10:46:56.259 [Test worker] DEBUG o.u.g.m.M.selectByTopMenu - ==&gt;  Preparing: select A.CO_ID as CO_ID, A.MENU_ID as MENU_ID, A.HIGH_MENU_ID as HIGH_MENU_ID, C.MENU_DSPL_NAME as MENU_DSPL_NAME, A.MENU_LEVEL as MENU_LEVEL, A.MENU_ORD as MENU_ORD, A.TOP_URL as TOP_URL, A.LEFT_URL as LEFT_URL, A.BODY_URL as BODY_URL, A.CNTN_ID as CNTN_ID, B.CNTN_NAME as CNTN_NAME, A.MENU_DSPL_INDC as MENU_DSPL_INDC, A.CNTN_LINK_INDC as CNTN_LINK_INDC, A.LINK_TYPE as LINK_TYPE, A.MENU_DESC as MENU_DESC, A.DFLT_MENU_INDC as DFLT_MENU_INDC, A.DLGT_MENU_INDC as DLGT_MENU_INDC, A.MY_MENU_SET_INDC as MY_MENU_SET_INDC, A.ICON_FILE_URL as ICON_FILE_URL, A.CRT_DATE as CRT_DATE, A.CRT_ID as CRT_ID, A.CHNG_DATE as CHNG_DATE, A.CHNG_ID as CHNG_ID from nw020m as A LEFT OUTER JOIN nw031m as B ON B.CNTN_ID = A.CNTN_ID and B.LOCALE = ? , nw021m as C where A.CO_ID = ? and A.MENU_LEVEL = '1' and A.MENU_DSPL_INDC = 'Y' and A.MENU_ID = C.MENU_ID and A.CO_ID = C.CO_ID and C.LOCALE = ? order by A.menu_ord 
+10:46:56.261 [Test worker] DEBUG o.u.g.m.M.selectByTopMenu - ==&gt; Parameters: ko(String), A001(String), ko(String)
+10:46:56.278 [Test worker] DEBUG o.u.g.m.M.selectByTopMenu - &lt;==      Total: 6
+10:46:56.278 [Test worker] DEBUG o.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5fe85d75]
+10:46:56.279 [Test worker] DEBUG o.u.g.mapper.MenuMapperTest - MENU010000:MENU000000:전자 비서
+10:46:56.279 [Test worker] DEBUG o.u.g.mapper.MenuMapperTest - MENU020000:MENU000000:어울림 마당
+10:46:56.280 [Test worker] DEBUG o.u.g.mapper.MenuMapperTest - MENU030000:MENU000000:신청 관리
+10:46:56.280 [Test worker] DEBUG o.u.g.mapper.MenuMapperTest - MENU050000:MENU000000:문서 관리
+10:46:56.280 [Test worker] DEBUG o.u.g.mapper.MenuMapperTest - MENU040000:MENU000000:도우미
+10:46:56.280 [Test worker] DEBUG o.u.g.mapper.MenuMapperTest - MENU090000:MENU000000:개인 설정 관리
+</pre>
+</span>
+</div>
+<div id="tab2" class="tab">
+<h2>Standard error</h2>
+<span class="code">
+<pre>11월 24, 2017 10:46:56 오전 org.springframework.test.context.support.DefaultTestContextBootstrapper getDefaultTestExecutionListenerClassNames
+정보: Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]
+11월 24, 2017 10:46:56 오전 org.springframework.test.context.support.DefaultTestContextBootstrapper getTestExecutionListeners
+정보: Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@34d6d4d4, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@5cfe53f9, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@45adab6e, org.springframework.test.context.support.DirtiesContextTestExecutionListener@77f380f8, org.springframework.test.context.transaction.TransactionalTestExecutionListener@75819aa6, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@5bce7e74]
+</pre>
+</span>
+</div>
+</div>
+<div id="footer">
+<p>
+<div>
+<label class="hidden" id="label-for-line-wrapping-toggle" for="line-wrapping-toggle">Wrap lines
+<input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
+</label>
+</div>Generated by 
+<a href="http://www.gradle.org">Gradle 3.5</a> at 2017. 11. 24 오전 10:46:58</p>
+</div>
+</div>
+</body>
+</html>

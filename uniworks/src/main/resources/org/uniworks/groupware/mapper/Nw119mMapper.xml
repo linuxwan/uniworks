@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="org.uniworks.groupware.mapper.Nw119mMapper"> 
+	<resultMap id="BaseResultMap" type="org.uniworks.groupware.domain.Nw119m"> 
+		<result column="CO_ID" jdbcType="VARCHAR" property="coId" /> 
+		<result column="CNTN_ID" jdbcType="VARCHAR" property="cntnId" /> 
+		<result column="DEPT_CODE" jdbcType="VARCHAR" property="deptCode" /> 
+		<result column="YEAR" jdbcType="VARCHAR" property="year" /> 
+		<result column="DOC_NO" jdbcType="INTEGER" property="docNo" /> 
+	</resultMap> 
+
+	<!-- 목록 조회 --> 
+	<select id="select" parameterType="java.util.Map" resultMap="BaseResultMap"> 
+		select  CO_ID, CNTN_ID, DEPT_CODE, YEAR, DOC_NO
+		from   nw119m
+	</select> 
+ 
+	<!-- 상세 조회 --> 
+	<select id="selectByPrimaryKey" parameterType="java.util.Map" resultMap="BaseResultMap"> 
+		select  CO_ID, CNTN_ID, DEPT_CODE, YEAR, DOC_NO
+		from   nw119m
+		where  CO_ID	=	#{coId,jdbcType=VARCHAR} 
+		  and  CNTN_ID	=	#{cntnId,jdbcType=VARCHAR} 
+		  and  DEPT_CODE	=	#{deptCode,jdbcType=VARCHAR} 
+		  and  YEAR	=	#{year,jdbcType=VARCHAR} 
+	</select> 
+ 
+	<!-- 등록 --> 
+	<insert id="insert" parameterType="org.uniworks.groupware.domain.Nw119m"> 
+		insert	into nw119m(CO_ID, CNTN_ID, DEPT_CODE, YEAR, DOC_NO) 
+		values (#{coId,jdbcType=VARCHAR},#{cntnId,jdbcType=VARCHAR},#{deptCode,jdbcType=VARCHAR},#{year,jdbcType=VARCHAR},#{docNo,jdbcType=INTEGER}) 
+	</insert> 
+ 
+	<!-- 수정 --> 
+	<update id="updateByPrimaryKey" parameterType="org.uniworks.groupware.domain.Nw119m"> 
+		update	nw119m 
+		<trim prefix="SET" suffixOverrides=","> 
+			<if test="docNo != null">DOC_NO= #{docNo,jdbcType=INTEGER},</if> 
+		</trim> 
+		where	CO_ID	=	#{coId,jdbcType=VARCHAR} 
+		  and	CNTN_ID	=	#{cntnId,jdbcType=VARCHAR} 
+		  and	DEPT_CODE	=	#{deptCode,jdbcType=VARCHAR} 
+		  and	YEAR	=	#{year,jdbcType=VARCHAR} 
+	</update> 
+ 
+	<!-- 삭제 --> 
+	<delete id="deleteByPrimaryKey" parameterType="java.util.Map"> 
+		delete	from nw119m 
+		where	CO_ID	=	#{coId,jdbcType=VARCHAR} 
+		  and	CNTN_ID	=	#{cntnId,jdbcType=VARCHAR} 
+		  and	DEPT_CODE	=	#{deptCode,jdbcType=VARCHAR} 
+		  and	YEAR	=	#{year,jdbcType=VARCHAR} 
+	</delete> 
+</mapper>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="org.uniworks.groupware.mapper.Nw117mMapper"> 
+	<resultMap id="BaseResultMap" type="org.uniworks.groupware.domain.Nw117m"> 
+		<result column="CO_ID" jdbcType="VARCHAR" property="coId" /> 
+		<result column="CNTN_ID" jdbcType="VARCHAR" property="cntnId" /> 
+		<result column="DCMT_RGSR_NO" jdbcType="VARCHAR" property="dcmtRgsrNo" /> 
+		<result column="SEQ_NO" jdbcType="INTEGER" property="seqNo" /> 
+		<result column="CRCLR_TYPE" jdbcType="VARCHAR" property="crclrType" /> 
+		<result column="CRCLR_EMP_NO" jdbcType="VARCHAR" property="crclrEmpNo" /> 
+		<result column="CRCLR_EMP_NAME" jdbcType="VARCHAR" property="crclrEmpName" /> 
+		<result column="CRCLR_MAIL_ADDR" jdbcType="VARCHAR" property="crclrMailAddr" /> 
+	</resultMap> 
+
+	<!-- 목록 조회 --> 
+	<select id="select" parameterType="java.util.Map" resultMap="BaseResultMap"> 
+		select  CO_ID, CNTN_ID, DCMT_RGSR_NO, SEQ_NO, CRCLR_TYPE, CRCLR_EMP_NO, CRCLR_EMP_NAME, CRCLR_MAIL_ADDR
+		from   nw117m
+		where  CO_ID	=	#{coId,jdbcType=VARCHAR}
+		  and  CNTN_ID	=	#{cntnId,jdbcType=VARCHAR}
+		  and  DCMT_RGSR_NO	=	#{dcmtRgsrNo,jdbcType=VARCHAR} 
+	</select> 
+ 
+	<!-- 상세 조회 --> 
+	<select id="selectByPrimaryKey" parameterType="java.util.Map" resultMap="BaseResultMap"> 
+		select  CO_ID, CNTN_ID, DCMT_RGSR_NO, SEQ_NO, CRCLR_TYPE, CRCLR_EMP_NO, CRCLR_EMP_NAME, CRCLR_MAIL_ADDR
+		from   nw117m
+		where  CNTN_ID	=	#{cntnId,jdbcType=VARCHAR} 
+		  and  CO_ID	=	#{coId,jdbcType=VARCHAR} 
+		  and  DCMT_RGSR_NO	=	#{dcmtRgsrNo,jdbcType=VARCHAR} 
+		  and  SEQ_NO	=	#{seqNo,jdbcType=INTEGER} 
+	</select> 
+ 
+	<!-- 등록 --> 
+	<insert id="insert" parameterType="org.uniworks.groupware.domain.Nw117m"> 
+		insert	into nw117m(CO_ID, CNTN_ID, DCMT_RGSR_NO, SEQ_NO, CRCLR_TYPE, CRCLR_EMP_NO, CRCLR_EMP_NAME, CRCLR_MAIL_ADDR) 
+		values (#{coId,jdbcType=VARCHAR},#{cntnId,jdbcType=VARCHAR},#{dcmtRgsrNo,jdbcType=VARCHAR},#{seqNo,jdbcType=INTEGER},#{crclrType,jdbcType=VARCHAR},#{crclrEmpNo,jdbcType=VARCHAR},#{crclrEmpName,jdbcType=VARCHAR} 
+,#{crclrMailAddr,jdbcType=VARCHAR}) 
+	</insert> 
+ 
+	<!-- 수정 --> 
+	<update id="updateByPrimaryKey" parameterType="org.uniworks.groupware.domain.Nw117m"> 
+		update	nw117m 
+		<trim prefix="SET" suffixOverrides=","> 
+			<if test="crclrType != null">CRCLR_TYPE= #{crclrType,jdbcType=VARCHAR},</if> 
+			<if test="crclrEmpNo != null">CRCLR_EMP_NO= #{crclrEmpNo,jdbcType=VARCHAR},</if> 
+			<if test="crclrEmpName != null">CRCLR_EMP_NAME= #{crclrEmpName,jdbcType=VARCHAR},</if> 
+			<if test="crclrMailAddr != null">CRCLR_MAIL_ADDR= #{crclrMailAddr,jdbcType=VARCHAR},</if> 
+		</trim> 
+		where	CO_ID	=	#{coId,jdbcType=VARCHAR} 
+		  and	CNTN_ID	=	#{cntnId,jdbcType=VARCHAR} 
+		  and	DCMT_RGSR_NO	=	#{dcmtRgsrNo,jdbcType=VARCHAR} 
+		  and	SEQ_NO	=	#{seqNo,jdbcType=INTEGER} 
+	</update> 
+ 
+	<!-- 삭제 --> 
+	<delete id="deleteByPrimaryKey" parameterType="java.util.Map"> 
+		delete	from nw117m 
+		where	CNTN_ID	=	#{cntnId,jdbcType=VARCHAR} 
+		  and	CO_ID	=	#{coId,jdbcType=VARCHAR} 
+		  and	DCMT_RGSR_NO	=	#{dcmtRgsrNo,jdbcType=VARCHAR} 
+		  and	SEQ_NO	=	#{seqNo,jdbcType=INTEGER} 
+	</delete> 
+</mapper>

@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=edge"/>
+<title>Test results - Class org.uniworks.groupware.service.Nw100mServiceTest</title>
+<link href="../css/base-style.css" rel="stylesheet" type="text/css"/>
+<link href="../css/style.css" rel="stylesheet" type="text/css"/>
+<script src="../js/report.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="content">
+<h1>Class org.uniworks.groupware.service.Nw100mServiceTest</h1>
+<div class="breadcrumbs">
+<a href="../index.html">all</a> &gt; 
+<a href="../packages/org.uniworks.groupware.service.html">org.uniworks.groupware.service</a> &gt; Nw100mServiceTest</div>
+<div id="summary">
+<table>
+<tr>
+<td>
+<div class="summaryGroup">
+<table>
+<tr>
+<td>
+<div class="infoBox" id="tests">
+<div class="counter">3</div>
+<p>tests</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="failures">
+<div class="counter">1</div>
+<p>failures</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="ignored">
+<div class="counter">0</div>
+<p>ignored</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="duration">
+<div class="counter">0.311s</div>
+<p>duration</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</td>
+<td>
+<div class="infoBox failures" id="successRate">
+<div class="percent">66%</div>
+<p>successful</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div id="tabs">
+<ul class="tabLinks">
+<li>
+<a href="#tab0">Failed tests</a>
+</li>
+<li>
+<a href="#tab1">Tests</a>
+</li>
+<li>
+<a href="#tab2">Standard output</a>
+</li>
+<li>
+<a href="#tab3">Standard error</a>
+</li>
+</ul>
+<div id="tab0" class="tab">
+<h2>Failed tests</h2>
+<div class="test">
+<a name="addNw100mTest"></a>
+<h3 class="failures">addNw100mTest</h3>
+<span class="code">
+<pre>org.springframework.dao.DataIntegrityViolationException: 
+### Error updating database.  Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Column 'USE_INDC' cannot be null
+### The error may involve org.uniworks.groupware.mapper.Nw100mMapper.insert-Inline
+### The error occurred while setting parameters
+### SQL: insert into nw100m(CO_ID, USER_ID, PSWD, PSWD_CHNG_DATE, PSWD_INIT_INDC, INTERNAL_MAIL_ADDR, OUTSIDE_MAIL_ADDR, CNFM_PSWD, CNFM_PSWD_CHNG_DATE,      USER_RGSR_DATE, USE_INDC)    values (?,?,?,?,?,?,?     ,?,?,?,?)
+### Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Column 'USE_INDC' cannot be null
+; ]; Column 'USE_INDC' cannot be null; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Column 'USE_INDC' cannot be null
+	at org.springframework.jdbc.support.SQLExceptionSubclassTranslator.doTranslate(SQLExceptionSubclassTranslator.java:87)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:72)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:81)
+	at org.mybatis.spring.MyBatisExceptionTranslator.translateExceptionIfPossible(MyBatisExceptionTranslator.java:73)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:446)
+	at com.sun.proxy.$Proxy40.insert(Unknown Source)
+	at org.mybatis.spring.SqlSessionTemplate.insert(SqlSessionTemplate.java:278)
+	at org.apache.ibatis.binding.MapperMethod.execute(MapperMethod.java:57)
+	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:59)
+	at com.sun.proxy.$Proxy114.insert(Unknown Source)
+	at org.uniworks.groupware.service.internal.Nw100mServiceImpl.addNw100m(Nw100mServiceImpl.java:51)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:338)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:197)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:294)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:98)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:185)
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:212)
+	at com.sun.proxy.$Proxy115.addNw100m(Unknown Source)
+	at org.uniworks.groupware.service.Nw100mServiceTest.addNw100mTest(Nw100mServiceTest.java:70)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestExecutionCallbacks.evaluate(RunBeforeTestExecutionCallbacks.java:73)
+	at org.springframework.test.context.junit4.statements.RunAfterTestExecutionCallbacks.evaluate(RunAfterTestExecutionCallbacks.java:83)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestMethodCallbacks.evaluate(RunBeforeTestMethodCallbacks.java:75)
+	at org.springframework.test.context.junit4.statements.RunAfterTestMethodCallbacks.evaluate(RunAfterTestMethodCallbacks.java:86)
+	at org.springframework.test.context.junit4.statements.SpringRepeat.evaluate(SpringRepeat.java:84)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:251)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:97)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61)
+	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:70)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:190)
+	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassExecuter.runTestClass(JUnitTestClassExecuter.java:114)
+	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassExecuter.execute(JUnitTestClassExecuter.java:57)
+	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassProcessor.processTestClass(JUnitTestClassProcessor.java:66)
+	at org.gradle.api.internal.tasks.testing.SuiteTestClassProcessor.processTestClass(SuiteTestClassProcessor.java:51)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:35)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
+	at org.gradle.internal.dispatch.ContextClassLoaderDispatch.dispatch(ContextClassLoaderDispatch.java:32)
+	at org.gradle.internal.dispatch.ProxyDispatchAdapter$DispatchingInvocationHandler.invoke(ProxyDispatchAdapter.java:93)
+	at com.sun.proxy.$Proxy2.processTestClass(Unknown Source)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.processTestClass(TestWorker.java:109)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:35)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
+	at org.gradle.internal.remote.internal.hub.MessageHubBackedObjectConnection$DispatchWrapper.dispatch(MessageHubBackedObjectConnection.java:147)
+	at org.gradle.internal.remote.internal.hub.MessageHubBackedObjectConnection$DispatchWrapper.dispatch(MessageHubBackedObjectConnection.java:129)
+	at org.gradle.internal.remote.internal.hub.MessageHub$Handler.run(MessageHub.java:404)
+	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:63)
+	at org.gradle.internal.concurrent.StoppableExecutorImpl$1.run(StoppableExecutorImpl.java:46)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Column 'USE_INDC' cannot be null
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:425)
+	at com.mysql.jdbc.Util.getInstance(Util.java:408)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:935)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3973)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3909)
+	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:2527)
+	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:2680)
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2487)
+	at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:1858)
+	at com.mysql.jdbc.PreparedStatement.execute(PreparedStatement.java:1197)
+	at com.jolbox.bonecp.PreparedStatementHandle.execute(PreparedStatementHandle.java:140)
+	at sun.reflect.GeneratedMethodAccessor80.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.ibatis.logging.jdbc.PreparedStatementLogger.invoke(PreparedStatementLogger.java:59)
+	at com.sun.proxy.$Proxy146.execute(Unknown Source)
+	at org.apache.ibatis.executor.statement.PreparedStatementHandler.update(PreparedStatementHandler.java:46)
+	at org.apache.ibatis.executor.statement.RoutingStatementHandler.update(RoutingStatementHandler.java:74)
+	at org.apache.ibatis.executor.SimpleExecutor.doUpdate(SimpleExecutor.java:50)
+	at org.apache.ibatis.executor.BaseExecutor.update(BaseExecutor.java:117)
+	at org.apache.ibatis.executor.CachingExecutor.update(CachingExecutor.java:76)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.update(DefaultSqlSession.java:198)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.insert(DefaultSqlSession.java:185)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:433)
+	... 73 more
+</pre>
+</span>
+</div>
+</div>
+<div id="tab1" class="tab">
+<h2>Tests</h2>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Duration</th>
+<th>Result</th>
+</tr>
+</thead>
+<tr>
+<td class="failures">addNw100mTest</td>
+<td>0.256s</td>
+<td class="failures">failed</td>
+</tr>
+<tr>
+<td class="success">getNw100mListTest</td>
+<td>0.037s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">getNw100mTest</td>
+<td>0.018s</td>
+<td class="success">passed</td>
+</tr>
+</table>
+</div>
+<div id="tab2" class="tab">
+<h2>Standard output</h2>
+<span class="code">
+<pre>10:46:57.655 [Test worker] DEBUG o.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+10:46:57.655 [Test worker] DEBUG o.mybatis.spring.SqlSessionUtils - Registering transaction synchronization for SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@3c1f5520]
+10:46:57.656 [Test worker] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [ConnectionHandle{url=jdbc:mysql://localhost/gw?useUnicode=true&amp;characterEncoding=utf-8, user=gw, debugHandle=null, lastResetAgoInSec=2, lastUsedAgoInSec=0, creationTimeAgoInSec=2}] will be managed by Spring
+10:46:57.656 [Test worker] DEBUG o.u.g.mapper.Nw100mMapper.select - ==&gt;  Preparing: select CO_ID, USER_ID, PSWD, PSWD_CHNG_DATE, PSWD_INIT_INDC, INTERNAL_MAIL_ADDR, OUTSIDE_MAIL_ADDR, CNFM_PSWD, CNFM_PSWD_CHNG_DATE, USER_RGSR_DATE, USE_INDC from nw100m 
+10:46:57.656 [Test worker] DEBUG o.u.g.mapper.Nw100mMapper.select - ==&gt; Parameters: 
+10:46:57.661 [Test worker] DEBUG o.u.g.mapper.Nw100mMapper.select - &lt;==      Total: 11
+10:46:57.662 [Test worker] DEBUG o.mybatis.spring.SqlSessionUtils - Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@3c1f5520]
+10:46:57.663 [Test worker] DEBUG o.mybatis.spring.SqlSessionUtils - Transaction synchronization deregistering SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@3c1f5520]
+10:46:57.663 [Test worker] DEBUG o.mybatis.spring.SqlSessionUtils - Transaction synchronization closing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@3c1f5520]
+10:46:57.702 [Test worker] DEBUG o.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+10:46:57.702 [Test worker] DEBUG o.mybatis.spring.SqlSessionUtils - Registering transaction synchronization for SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@626029e1]
+10:46:57.702 [Test worker] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [ConnectionHandle{url=jdbc:mysql://localhost/gw?useUnicode=true&amp;characterEncoding=utf-8, user=gw, debugHandle=null, lastResetAgoInSec=2, lastUsedAgoInSec=0, creationTimeAgoInSec=2}] will be managed by Spring
+10:46:57.702 [Test worker] DEBUG o.u.g.m.N.selectByPrimaryKey - ==&gt;  Preparing: select CO_ID, USER_ID, PSWD, PSWD_CHNG_DATE, PSWD_INIT_INDC, INTERNAL_MAIL_ADDR, OUTSIDE_MAIL_ADDR, CNFM_PSWD, CNFM_PSWD_CHNG_DATE, USER_RGSR_DATE, USE_INDC from nw100m where CO_ID = ? and USER_ID = ? 
+10:46:57.703 [Test worker] DEBUG o.u.g.m.N.selectByPrimaryKey - ==&gt; Parameters: A001(String), 00000001(String)
+10:46:57.704 [Test worker] DEBUG o.u.g.m.N.selectByPrimaryKey - &lt;==      Total: 1
+10:46:57.705 [Test worker] DEBUG o.mybatis.spring.SqlSessionUtils - Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@626029e1]
+10:46:57.705 [Test worker] DEBUG o.mybatis.spring.SqlSessionUtils - Transaction synchronization deregistering SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@626029e1]
+10:46:57.705 [Test worker] DEBUG o.mybatis.spring.SqlSessionUtils - Transaction synchronization closing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@626029e1]
+10:46:57.711 [Test worker] DEBUG o.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+10:46:57.711 [Test worker] DEBUG o.mybatis.spring.SqlSessionUtils - Registering transaction synchronization for SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6f47e55d]
+10:46:57.711 [Test worker] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [ConnectionHandle{url=jdbc:mysql://localhost/gw?useUnicode=true&amp;characterEncoding=utf-8, user=gw, debugHandle=null, lastResetAgoInSec=2, lastUsedAgoInSec=0, creationTimeAgoInSec=2}] will be managed by Spring
+10:46:57.711 [Test worker] DEBUG o.u.g.mapper.Nw100mMapper.insert - ==&gt;  Preparing: insert into nw100m(CO_ID, USER_ID, PSWD, PSWD_CHNG_DATE, PSWD_INIT_INDC, INTERNAL_MAIL_ADDR, OUTSIDE_MAIL_ADDR, CNFM_PSWD, CNFM_PSWD_CHNG_DATE, USER_RGSR_DATE, USE_INDC) values (?,?,?,?,?,?,? ,?,?,?,?) 
+10:46:57.713 [Test worker] DEBUG o.u.g.mapper.Nw100mMapper.insert - ==&gt; Parameters: A001(String), 00000002(String), sksahffk(String), 2017-11-24 10:46:57.711(Timestamp), N(String), linuxwan@naver.com(String), linuxwan@naver.com(String), sksahffk(String), 2017-11-24 10:46:57.711(Timestamp), 2017-11-24 10:46:57.711(Timestamp), null
+10:46:57.745 [Test worker] DEBUG o.mybatis.spring.SqlSessionUtils - Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6f47e55d]
+10:46:57.961 [Test worker] DEBUG o.mybatis.spring.SqlSessionUtils - Transaction synchronization deregistering SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6f47e55d]
+10:46:57.961 [Test worker] DEBUG o.mybatis.spring.SqlSessionUtils - Transaction synchronization closing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6f47e55d]
+</pre>
+</span>
+</div>
+<div id="tab3" class="tab">
+<h2>Standard error</h2>
+<span class="code">
+<pre>11월 24, 2017 10:46:57 오전 org.springframework.test.context.support.DefaultTestContextBootstrapper getDefaultTestExecutionListenerClassNames
+정보: Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]
+11월 24, 2017 10:46:57 오전 org.springframework.test.context.support.DefaultTestContextBootstrapper getTestExecutionListeners
+정보: Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@500eb51e, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@4944efd, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@17c4ef30, org.springframework.test.context.support.DirtiesContextTestExecutionListener@7e8ac1fd, org.springframework.test.context.transaction.TransactionalTestExecutionListener@5b092d77, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@7d4c634d]
+11월 24, 2017 10:46:57 오전 org.springframework.test.context.transaction.TransactionContext startTransaction
+정보: Began transaction (1) for test context [DefaultTestContext@6954a32d testClass = Nw100mServiceTest, testInstance = org.uniworks.groupware.service.Nw100mServiceTest@2920fcca, testMethod = getNw100mListTest@Nw100mServiceTest, testException = [null], mergedContextConfiguration = [MergedContextConfiguration@2c97681a testClass = Nw100mServiceTest, locations = '{}', classes = '{class org.uniworks.groupware.common.config.AppConfig, class org.uniworks.groupware.common.config.BoneCPConfig}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{}', contextCustomizers = set[[empty]], contextLoader = 'org.springframework.test.context.support.DelegatingSmartContextLoader', parent = [null]], attributes = map[[empty]]]; transaction manager [org.springframework.jdbc.datasource.DataSourceTransactionManager@47cbf9ef]; rollback [true]
+11월 24, 2017 10:46:57 오전 org.springframework.test.context.transaction.TransactionContext endTransaction
+정보: Rolled back transaction for test context [DefaultTestContext@6954a32d testClass = Nw100mServiceTest, testInstance = org.uniworks.groupware.service.Nw100mServiceTest@2920fcca, testMethod = getNw100mListTest@Nw100mServiceTest, testException = [null], mergedContextConfiguration = [MergedContextConfiguration@2c97681a testClass = Nw100mServiceTest, locations = '{}', classes = '{class org.uniworks.groupware.common.config.AppConfig, class org.uniworks.groupware.common.config.BoneCPConfig}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{}', contextCustomizers = set[[empty]], contextLoader = 'org.springframework.test.context.support.DelegatingSmartContextLoader', parent = [null]], attributes = map[[empty]]].
+11월 24, 2017 10:46:57 오전 org.springframework.test.context.transaction.TransactionContext startTransaction
+정보: Began transaction (1) for test context [DefaultTestContext@6954a32d testClass = Nw100mServiceTest, testInstance = org.uniworks.groupware.service.Nw100mServiceTest@9fc7f4e, testMethod = getNw100mTest@Nw100mServiceTest, testException = [null], mergedContextConfiguration = [MergedContextConfiguration@2c97681a testClass = Nw100mServiceTest, locations = '{}', classes = '{class org.uniworks.groupware.common.config.AppConfig, class org.uniworks.groupware.common.config.BoneCPConfig}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{}', contextCustomizers = set[[empty]], contextLoader = 'org.springframework.test.context.support.DelegatingSmartContextLoader', parent = [null]], attributes = map[[empty]]]; transaction manager [org.springframework.jdbc.datasource.DataSourceTransactionManager@47cbf9ef]; rollback [true]
+11월 24, 2017 10:46:57 오전 org.springframework.test.context.transaction.TransactionContext endTransaction
+정보: Rolled back transaction for test context [DefaultTestContext@6954a32d testClass = Nw100mServiceTest, testInstance = org.uniworks.groupware.service.Nw100mServiceTest@9fc7f4e, testMethod = getNw100mTest@Nw100mServiceTest, testException = [null], mergedContextConfiguration = [MergedContextConfiguration@2c97681a testClass = Nw100mServiceTest, locations = '{}', classes = '{class org.uniworks.groupware.common.config.AppConfig, class org.uniworks.groupware.common.config.BoneCPConfig}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{}', contextCustomizers = set[[empty]], contextLoader = 'org.springframework.test.context.support.DelegatingSmartContextLoader', parent = [null]], attributes = map[[empty]]].
+11월 24, 2017 10:46:57 오전 org.springframework.test.context.transaction.TransactionContext startTransaction
+정보: Began transaction (1) for test context [DefaultTestContext@6954a32d testClass = Nw100mServiceTest, testInstance = org.uniworks.groupware.service.Nw100mServiceTest@2a236c71, testMethod = addNw100mTest@Nw100mServiceTest, testException = [null], mergedContextConfiguration = [MergedContextConfiguration@2c97681a testClass = Nw100mServiceTest, locations = '{}', classes = '{class org.uniworks.groupware.common.config.AppConfig, class org.uniworks.groupware.common.config.BoneCPConfig}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{}', contextCustomizers = set[[empty]], contextLoader = 'org.springframework.test.context.support.DelegatingSmartContextLoader', parent = [null]], attributes = map[[empty]]]; transaction manager [org.springframework.jdbc.datasource.DataSourceTransactionManager@47cbf9ef]; rollback [true]
+11월 24, 2017 10:46:57 오전 org.springframework.beans.factory.xml.XmlBeanDefinitionReader loadBeanDefinitions
+정보: Loading XML bean definitions from class path resource [org/springframework/jdbc/support/sql-error-codes.xml]
+11월 24, 2017 10:46:57 오전 org.springframework.jdbc.support.SQLErrorCodesFactory &lt;init&gt;
+정보: SQLErrorCodes loaded: [DB2, Derby, H2, HSQL, Informix, MS-SQL, MySQL, Oracle, PostgreSQL, Sybase, Hana]
+11월 24, 2017 10:46:57 오전 org.springframework.test.context.transaction.TransactionContext endTransaction
+정보: Rolled back transaction for test context [DefaultTestContext@6954a32d testClass = Nw100mServiceTest, testInstance = org.uniworks.groupware.service.Nw100mServiceTest@2a236c71, testMethod = addNw100mTest@Nw100mServiceTest, testException = org.springframework.dao.DataIntegrityViolationException: 
+### Error updating database.  Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Column 'USE_INDC' cannot be null
+### The error may involve org.uniworks.groupware.mapper.Nw100mMapper.insert-Inline
+### The error occurred while setting parameters
+### SQL: insert into nw100m(CO_ID, USER_ID, PSWD, PSWD_CHNG_DATE, PSWD_INIT_INDC, INTERNAL_MAIL_ADDR, OUTSIDE_MAIL_ADDR, CNFM_PSWD, CNFM_PSWD_CHNG_DATE,      USER_RGSR_DATE, USE_INDC)    values (?,?,?,?,?,?,?     ,?,?,?,?)
+### Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Column 'USE_INDC' cannot be null
+; ]; Column 'USE_INDC' cannot be null; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Column 'USE_INDC' cannot be null, mergedContextConfiguration = [MergedContextConfiguration@2c97681a testClass = Nw100mServiceTest, locations = '{}', classes = '{class org.uniworks.groupware.common.config.AppConfig, class org.uniworks.groupware.common.config.BoneCPConfig}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{}', contextCustomizers = set[[empty]], contextLoader = 'org.springframework.test.context.support.DelegatingSmartContextLoader', parent = [null]], attributes = map[[empty]]].
+</pre>
+</span>
+</div>
+</div>
+<div id="footer">
+<p>
+<div>
+<label class="hidden" id="label-for-line-wrapping-toggle" for="line-wrapping-toggle">Wrap lines
+<input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
+</label>
+</div>Generated by 
+<a href="http://www.gradle.org">Gradle 3.5</a> at 2017. 11. 24 오전 10:46:58</p>
+</div>
+</div>
+</body>
+</html>

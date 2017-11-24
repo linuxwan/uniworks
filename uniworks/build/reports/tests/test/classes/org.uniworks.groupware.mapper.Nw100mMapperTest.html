@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=edge"/>
+<title>Test results - Class org.uniworks.groupware.mapper.Nw100mMapperTest</title>
+<link href="../css/base-style.css" rel="stylesheet" type="text/css"/>
+<link href="../css/style.css" rel="stylesheet" type="text/css"/>
+<script src="../js/report.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="content">
+<h1>Class org.uniworks.groupware.mapper.Nw100mMapperTest</h1>
+<div class="breadcrumbs">
+<a href="../index.html">all</a> &gt; 
+<a href="../packages/org.uniworks.groupware.mapper.html">org.uniworks.groupware.mapper</a> &gt; Nw100mMapperTest</div>
+<div id="summary">
+<table>
+<tr>
+<td>
+<div class="summaryGroup">
+<table>
+<tr>
+<td>
+<div class="infoBox" id="tests">
+<div class="counter">1</div>
+<p>tests</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="failures">
+<div class="counter">0</div>
+<p>failures</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="ignored">
+<div class="counter">0</div>
+<p>ignored</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="duration">
+<div class="counter">0.085s</div>
+<p>duration</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</td>
+<td>
+<div class="infoBox success" id="successRate">
+<div class="percent">100%</div>
+<p>successful</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div id="tabs">
+<ul class="tabLinks">
+<li>
+<a href="#tab0">Tests</a>
+</li>
+<li>
+<a href="#tab1">Standard output</a>
+</li>
+<li>
+<a href="#tab2">Standard error</a>
+</li>
+</ul>
+<div id="tab0" class="tab">
+<h2>Tests</h2>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Duration</th>
+<th>Result</th>
+</tr>
+</thead>
+<tr>
+<td class="success">testUserMapper</td>
+<td>0.085s</td>
+<td class="success">passed</td>
+</tr>
+</table>
+</div>
+<div id="tab1" class="tab">
+<h2>Standard output</h2>
+<span class="code">
+<pre>10:46:56.288 [Test worker] DEBUG o.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+10:46:56.288 [Test worker] DEBUG o.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1c22888e] was not registered for synchronization because synchronization is not active
+10:46:56.288 [Test worker] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [ConnectionHandle{url=jdbc:mysql://localhost/gw?useUnicode=true&amp;characterEncoding=utf-8, user=gw, debugHandle=null, lastResetAgoInSec=0, lastUsedAgoInSec=0, creationTimeAgoInSec=0}] will not be managed by Spring
+10:46:56.288 [Test worker] DEBUG o.u.g.mapper.Nw100mMapper.select - ==&gt;  Preparing: select CO_ID, USER_ID, PSWD, PSWD_CHNG_DATE, PSWD_INIT_INDC, INTERNAL_MAIL_ADDR, OUTSIDE_MAIL_ADDR, CNFM_PSWD, CNFM_PSWD_CHNG_DATE, USER_RGSR_DATE, USE_INDC from nw100m 
+10:46:56.288 [Test worker] DEBUG o.u.g.mapper.Nw100mMapper.select - ==&gt; Parameters: 
+10:46:56.313 [Test worker] DEBUG o.u.g.mapper.Nw100mMapper.select - &lt;==      Total: 11
+10:46:56.314 [Test worker] DEBUG o.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1c22888e]
+10:46:56.317 [Test worker] DEBUG o.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+10:46:56.318 [Test worker] DEBUG o.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@18e3e371] was not registered for synchronization because synchronization is not active
+10:46:56.318 [Test worker] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [ConnectionHandle{url=jdbc:mysql://localhost/gw?useUnicode=true&amp;characterEncoding=utf-8, user=gw, debugHandle=null, lastResetAgoInSec=0, lastUsedAgoInSec=0, creationTimeAgoInSec=0}] will not be managed by Spring
+10:46:56.318 [Test worker] DEBUG o.u.g.mapper.Nw100mMapper.insert - ==&gt;  Preparing: insert into nw100m(CO_ID, USER_ID, PSWD, PSWD_CHNG_DATE, PSWD_INIT_INDC, INTERNAL_MAIL_ADDR, OUTSIDE_MAIL_ADDR, CNFM_PSWD, CNFM_PSWD_CHNG_DATE, USER_RGSR_DATE, USE_INDC) values (?,?,?,?,?,?,? ,?,?,?,?) 
+10:46:56.322 [Test worker] DEBUG o.u.g.mapper.Nw100mMapper.insert - ==&gt; Parameters: A001(String), 00000099(String), sksahffk(String), 2017-11-24 10:46:56.287(Timestamp), N(String), linuxwan@naver.com(String), linuxwan@naver.com(String), sksahffk(String), 2017-11-24 10:46:56.287(Timestamp), 2017-11-24 10:46:56.287(Timestamp), Y(String)
+10:46:56.331 [Test worker] DEBUG o.u.g.mapper.Nw100mMapper.insert - &lt;==    Updates: 1
+10:46:56.331 [Test worker] DEBUG o.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@18e3e371]
+10:46:56.332 [Test worker] DEBUG o.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+10:46:56.332 [Test worker] DEBUG o.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7b4ff1b3] was not registered for synchronization because synchronization is not active
+10:46:56.332 [Test worker] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [ConnectionHandle{url=jdbc:mysql://localhost/gw?useUnicode=true&amp;characterEncoding=utf-8, user=gw, debugHandle=null, lastResetAgoInSec=0, lastUsedAgoInSec=0, creationTimeAgoInSec=0}] will not be managed by Spring
+10:46:56.332 [Test worker] DEBUG o.u.g.mapper.Nw100mMapper.select - ==&gt;  Preparing: select CO_ID, USER_ID, PSWD, PSWD_CHNG_DATE, PSWD_INIT_INDC, INTERNAL_MAIL_ADDR, OUTSIDE_MAIL_ADDR, CNFM_PSWD, CNFM_PSWD_CHNG_DATE, USER_RGSR_DATE, USE_INDC from nw100m 
+10:46:56.332 [Test worker] DEBUG o.u.g.mapper.Nw100mMapper.select - ==&gt; Parameters: 
+10:46:56.342 [Test worker] DEBUG o.u.g.mapper.Nw100mMapper.select - &lt;==      Total: 12
+10:46:56.342 [Test worker] DEBUG o.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7b4ff1b3]
+10:46:56.343 [Test worker] DEBUG o.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+10:46:56.343 [Test worker] DEBUG o.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@118410f4] was not registered for synchronization because synchronization is not active
+10:46:56.343 [Test worker] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [ConnectionHandle{url=jdbc:mysql://localhost/gw?useUnicode=true&amp;characterEncoding=utf-8, user=gw, debugHandle=null, lastResetAgoInSec=0, lastUsedAgoInSec=0, creationTimeAgoInSec=0}] will not be managed by Spring
+10:46:56.343 [Test worker] DEBUG o.u.g.m.N.selectByPrimaryKey - ==&gt;  Preparing: select CO_ID, USER_ID, PSWD, PSWD_CHNG_DATE, PSWD_INIT_INDC, INTERNAL_MAIL_ADDR, OUTSIDE_MAIL_ADDR, CNFM_PSWD, CNFM_PSWD_CHNG_DATE, USER_RGSR_DATE, USE_INDC from nw100m where CO_ID = ? and USER_ID = ? 
+10:46:56.344 [Test worker] DEBUG o.u.g.m.N.selectByPrimaryKey - ==&gt; Parameters: A001(String), 00000001(String)
+10:46:56.348 [Test worker] DEBUG o.u.g.m.N.selectByPrimaryKey - &lt;==      Total: 1
+10:46:56.348 [Test worker] DEBUG o.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@118410f4]
+10:46:56.349 [Test worker] DEBUG o.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+10:46:56.349 [Test worker] DEBUG o.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@74248dd0] was not registered for synchronization because synchronization is not active
+10:46:56.351 [Test worker] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [ConnectionHandle{url=jdbc:mysql://localhost/gw?useUnicode=true&amp;characterEncoding=utf-8, user=gw, debugHandle=null, lastResetAgoInSec=0, lastUsedAgoInSec=0, creationTimeAgoInSec=0}] will not be managed by Spring
+10:46:56.352 [Test worker] DEBUG o.u.g.m.N.updateByPrimaryKey - ==&gt;  Preparing: update nw100m SET PSWD= ?, PSWD_CHNG_DATE= ?, PSWD_INIT_INDC= ?, INTERNAL_MAIL_ADDR= ?, OUTSIDE_MAIL_ADDR= ?, CNFM_PSWD= ?, CNFM_PSWD_CHNG_DATE= ?, USER_RGSR_DATE= ?, USE_INDC= ? where CO_ID = ? and USER_ID = ? 
+10:46:56.352 [Test worker] DEBUG o.u.g.m.N.updateByPrimaryKey - ==&gt; Parameters: $2a$10$69wEjdBYaz.dHKT3SVQiLOIzhuAQul.TdRmJF.mnnUIUviFBSFtpm(String), 2014-06-10 22:56:54.0(Timestamp), 2(String), chungwan.park@gmail.com(String), chungwan.park@gmail.com(String), $2a$10$69wEjdBYaz.dHKT3SVQiLOIzhuAQul.TdRmJF.mnnUIUviFBSFtpm(String), 2014-06-10 22:56:54.0(Timestamp), 2014-06-10 22:56:54.0(Timestamp), Y(String), A001(String), 00000001(String)
+10:46:56.358 [Test worker] DEBUG o.u.g.m.N.updateByPrimaryKey - &lt;==    Updates: 1
+10:46:56.358 [Test worker] DEBUG o.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@74248dd0]
+10:46:56.359 [Test worker] DEBUG o.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+10:46:56.360 [Test worker] DEBUG o.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1c8e51ec] was not registered for synchronization because synchronization is not active
+10:46:56.360 [Test worker] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [ConnectionHandle{url=jdbc:mysql://localhost/gw?useUnicode=true&amp;characterEncoding=utf-8, user=gw, debugHandle=null, lastResetAgoInSec=0, lastUsedAgoInSec=0, creationTimeAgoInSec=0}] will not be managed by Spring
+10:46:56.360 [Test worker] DEBUG o.u.g.m.N.deleteByPrimaryKey - ==&gt;  Preparing: delete from nw100m where CO_ID = ? and USER_ID = ? 
+10:46:56.361 [Test worker] DEBUG o.u.g.m.N.deleteByPrimaryKey - ==&gt; Parameters: A001(String), 00000099(String)
+10:46:56.366 [Test worker] DEBUG o.u.g.m.N.deleteByPrimaryKey - &lt;==    Updates: 1
+10:46:56.366 [Test worker] DEBUG o.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1c8e51ec]
+10:46:56.367 [Test worker] DEBUG o.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+10:46:56.367 [Test worker] DEBUG o.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6035d87e] was not registered for synchronization because synchronization is not active
+10:46:56.367 [Test worker] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [ConnectionHandle{url=jdbc:mysql://localhost/gw?useUnicode=true&amp;characterEncoding=utf-8, user=gw, debugHandle=null, lastResetAgoInSec=0, lastUsedAgoInSec=0, creationTimeAgoInSec=0}] will not be managed by Spring
+10:46:56.367 [Test worker] DEBUG o.u.g.m.N.selectByPrimaryKey - ==&gt;  Preparing: select CO_ID, USER_ID, PSWD, PSWD_CHNG_DATE, PSWD_INIT_INDC, INTERNAL_MAIL_ADDR, OUTSIDE_MAIL_ADDR, CNFM_PSWD, CNFM_PSWD_CHNG_DATE, USER_RGSR_DATE, USE_INDC from nw100m where CO_ID = ? and USER_ID = ? 
+10:46:56.368 [Test worker] DEBUG o.u.g.m.N.selectByPrimaryKey - ==&gt; Parameters: A001(String), 00000099(String)
+10:46:56.370 [Test worker] DEBUG o.u.g.m.N.selectByPrimaryKey - &lt;==      Total: 0
+10:46:56.371 [Test worker] DEBUG o.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6035d87e]
+</pre>
+</span>
+</div>
+<div id="tab2" class="tab">
+<h2>Standard error</h2>
+<span class="code">
+<pre>11월 24, 2017 10:46:56 오전 org.springframework.test.context.support.DefaultTestContextBootstrapper getDefaultTestExecutionListenerClassNames
+정보: Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]
+11월 24, 2017 10:46:56 오전 org.springframework.test.context.support.DefaultTestContextBootstrapper getTestExecutionListeners
+정보: Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@720f1e1a, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@5b35beb, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@21699094, org.springframework.test.context.support.DirtiesContextTestExecutionListener@43ec906f, org.springframework.test.context.transaction.TransactionalTestExecutionListener@4999b9c6, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@566adf1d]
+</pre>
+</span>
+</div>
+</div>
+<div id="footer">
+<p>
+<div>
+<label class="hidden" id="label-for-line-wrapping-toggle" for="line-wrapping-toggle">Wrap lines
+<input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
+</label>
+</div>Generated by 
+<a href="http://www.gradle.org">Gradle 3.5</a> at 2017. 11. 24 오전 10:46:58</p>
+</div>
+</div>
+</body>
+</html>
