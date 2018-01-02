@@ -18,10 +18,11 @@ import org.pojomatic.annotations.AutoProperty;
  *
  */
 @XmlRootElement(name = "menu")
-@XmlType(propOrder = {"majCode","subCode","rescKey","useIndc","rescKeyValue","rescKeyDesc"})
+@XmlType(propOrder = {"coId", "majCode","subCode","rescKey","useIndc","rescKeyValue","rescKeyDesc"})
 @AutoProperty 
 @SuppressWarnings("serial")
 public class CommonCode implements Serializable {
+	private String coId;
 	private String majCode;	//주코드
 	private String subCode;	//부코드
 	private String rescKey;	//리소스키
@@ -29,6 +30,12 @@ public class CommonCode implements Serializable {
 	private String rescKeyValue;	//리소스키값
 	private String rescKeyDesc;		//리소스키상세
 	
+	public String getCoId() {
+		return coId;
+	}
+	public void setCoId(String coId) {
+		this.coId = coId;
+	}
 	public String getMajCode() {
 		return majCode;
 	}

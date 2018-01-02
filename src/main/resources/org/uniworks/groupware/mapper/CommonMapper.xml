@@ -2,6 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
 <mapper namespace="org.uniworks.groupware.mapper.CommonMapper"> 
 	<resultMap id="BaseResultMap" type="org.uniworks.groupware.domain.CommonCode">
+		<result column="CO_ID" jdbcType="VARCHAR" property="coId" />
 		<result column="MAJ_CODE" jdbcType="VARCHAR" property="majCode" />
 		<result column="SUB_CODE" jdbcType="VARCHAR" property="subCode" />
 		<result column="RESC_KEY" jdbcType="VARCHAR" property="rescKey" />
@@ -19,12 +20,13 @@
 		<result column="MENU_DSPL_NAME3" jdbcType="VARCHAR" property="menuDsplName3" />			
 	</resultMap>
 	
-	<!-- 사용자 정보를 가져온다. 로그인 시 사용자를 확인하기 위해서는 pswd 필드에 로그인 비밀번호를 입력. -->
+	<!-- 공통코드 정보를 가져온다. -->
 	<select id="selectByCommonSubCodeList" parameterType="java.util.Map" resultMap="BaseResultMap">
-		select A.MAJ_CODE as MAJ_CODE, A.SUB_CODE as SUB_CODE, A.RESC_KEY as RESC_KEY, A.USE_INDC as USE_INDC,  
+		select A.CO_ID as CO_ID, A.MAJ_CODE as MAJ_CODE, A.SUB_CODE as SUB_CODE, A.RESC_KEY as RESC_KEY, A.USE_INDC as USE_INDC,  
 			   B.RESC_KEY_VALUE as RESC_KEY_VALUE, B.RESC_KEY_DESC as RESC_KEY_DESC
 		from   cm002c A, cm003m B
-		where  A.MAJ_CODE = #{majCode,jdbcType=VARCHAR}
+		where  A.CO_ID = #{coId,jdbcType=VARCHAR} 
+		  and  A.MAJ_CODE = #{majCode,jdbcType=VARCHAR}
 		  and  A.RESC_KEY = B.RESC_KEY
 		  and  B.LOCALE = #{lang,jdbcType=VARCHAR}
 		<if test="orderBy == 'rescKey'">  
