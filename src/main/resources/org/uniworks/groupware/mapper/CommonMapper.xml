@@ -27,6 +27,7 @@
 		from   cm002c A, cm003m B
 		where  A.CO_ID = #{coId,jdbcType=VARCHAR} 
 		  and  A.MAJ_CODE = #{majCode,jdbcType=VARCHAR}
+		  and  A.CO_ID = B.CO_ID
 		  and  A.RESC_KEY = B.RESC_KEY
 		  and  B.LOCALE = #{lang,jdbcType=VARCHAR}
 		<if test="orderBy == 'rescKey'">  
