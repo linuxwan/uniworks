@@ -102,15 +102,17 @@
 		  A.ORGN_OGAN_CODE_11 as ORGN_OGAN_CODE_11, A.ORGN_OGAN_DESC_11 as ORGN_OGAN_DESC_11, A.ORGN_OGAN_CODE_12 as ORGN_OGAN_CODE_12,
 		  A.ORGN_OGAN_DESC_12 as ORGN_OGAN_DESC_12, A.BASE_ASGN_OGAN_LEV as BASE_ASGN_OGAN_LEV, A.BASE_ORGN_OGAN_LEV as BASE_ORGN_OGAN_LEV,
 		  '' as DEPT_CODE, '' as DEPT_DESC 
-		from hr010m as A LEFT OUTER JOIN cm002c as D on D.SUB_CODE = A.PSTN_CODE and D.MAJ_CODE = 'CD006'
-						 LEFT OUTER JOIN cm003m as E on E.RESC_KEY = D.RESC_KEY and E.LOCALE = #{lang,jdbcType=VARCHAR},
+		from hr010m as A LEFT OUTER JOIN cm002c as D on D.CO_ID = A.CO_ID and D.SUB_CODE = A.PSTN_CODE and D.MAJ_CODE = 'CD006'
+						 LEFT OUTER JOIN cm003m as E on E.CO_ID = A.CO_ID and E.RESC_KEY = D.RESC_KEY and E.LOCALE = #{lang,jdbcType=VARCHAR},
 			 cm002c B, cm003m C, hr011m F
 		where	A.CO_ID = #{coId,jdbcType=VARCHAR}	  	
 		  and	A.EMP_NO like #{empNo,jdbcType=VARCHAR}
 		  <if test="workIndc != null">and	A.WORK_INDC = #{workIndc,jdbcType=VARCHAR}</if>
+		  and   A.CO_ID = B.CO_ID
 		  and	B.MAJ_CODE ='CD004'
 		  and	A.DUTY_CODE = B.SUB_CODE
 		  and	B.RESC_KEY = C.RESC_KEY
+		  and	B.CO_ID = C.CO_ID
 		  and	C.LOCALE = #{lang,jdbcType=VARCHAR}
 		  and	A.CO_ID = F.CO_ID
 		  and	A.EMP_NO = F.EMP_NO
@@ -166,14 +168,16 @@
 	                                WHEN '10' THEN ASGN_OGAN_DESC_10
 	                                WHEN '11' THEN ASGN_OGAN_DESC_11
 	                                WHEN '12' THEN ASGN_OGAN_DESC_12 END DEPT_DESC 
-			from hr010m as A LEFT OUTER JOIN cm002c as D on D.SUB_CODE = A.PSTN_CODE and D.MAJ_CODE = 'CD006'
-							 LEFT OUTER JOIN cm003m as E on E.RESC_KEY = D.RESC_KEY and E.LOCALE = #{lang,jdbcType=VARCHAR} ,
+			from hr010m as A LEFT OUTER JOIN cm002c as D on D.CO_ID = A.CO_ID and D.SUB_CODE = A.PSTN_CODE and D.MAJ_CODE = 'CD006'
+							 LEFT OUTER JOIN cm003m as E on E.CO_ID = A.CO_ID and E.RESC_KEY = D.RESC_KEY and E.LOCALE = #{lang,jdbcType=VARCHAR} ,
 				 cm002c B, cm003m C, hr011m F
 			where 	A.CO_ID = #{coId,jdbcType=VARCHAR}	  	
 			  and	A.EMP_NO = #{empNo,jdbcType=VARCHAR}
 			  <if test="empNo != null">and	A.WORK_INDC = #{workIndc,jdbcType=VARCHAR}</if>
+			  and	A.CO_ID = B.CO_ID
 			  and	B.MAJ_CODE ='CD004'
 			  and	A.DUTY_CODE = B.SUB_CODE
+			  and	B.CO_ID = C.CO_ID
 			  and	B.RESC_KEY = C.RESC_KEY
 			  and	C.LOCALE = #{lang,jdbcType=VARCHAR}
 			  and	A.CO_ID = F.CO_ID
@@ -231,8 +235,8 @@
 	                                WHEN '10' THEN ASGN_OGAN_DESC_10
 	                                WHEN '11' THEN ASGN_OGAN_DESC_11
 	                                WHEN '12' THEN ASGN_OGAN_DESC_12 END DEPT_DESC  
-			from hr010m as A LEFT OUTER JOIN cm002c as D on D.SUB_CODE = A.PSTN_CODE and D.MAJ_CODE = 'CD006'
-							 LEFT OUTER JOIN cm003m as E on E.RESC_KEY = D.RESC_KEY and E.LOCALE = #{lang,jdbcType=VARCHAR} ,
+			from hr010m as A LEFT OUTER JOIN cm002c as D on D.CO_ID = A.CO_ID and D.SUB_CODE = A.PSTN_CODE and D.MAJ_CODE = 'CD006'
+							 LEFT OUTER JOIN cm003m as E on E.CO_ID = A.CO_ID and E.RESC_KEY = D.RESC_KEY and E.LOCALE = #{lang,jdbcType=VARCHAR} ,
 				 cm002c B, cm003m C, hr011m F
 			where	A.CO_ID = #{coId,jdbcType=VARCHAR}	  	
 				<if test="baseOganLev == 1">
@@ -257,8 +261,10 @@
 				and A.PSTN_CODE LIKE concat(#{baseOganLev,jdbcType=VARCHAR}, '%')
 				</if>
 				and A.WORK_INDC = #{workIndc,jdbcType=VARCHAR}
+				and	A.CO_ID = B.CO_ID
 				and B.MAJ_CODE ='CD004'
 				and A.DUTY_CODE = B.SUB_CODE
+				and B.CO_ID = C.CO_ID
 				and B.RESC_KEY = C.RESC_KEY
 				and C.LOCALE = #{lang,jdbcType=VARCHAR}
 				and A.CO_ID = F.CO_ID
@@ -315,13 +321,15 @@
 	                                WHEN '10' THEN ASGN_OGAN_DESC_10
 	                                WHEN '11' THEN ASGN_OGAN_DESC_11
 	                                WHEN '12' THEN ASGN_OGAN_DESC_12 END DEPT_DESC 
-			from hr010m as A LEFT OUTER JOIN cm002c as D on D.SUB_CODE = A.PSTN_CODE and D.MAJ_CODE = 'CD006'
-							 LEFT OUTER JOIN cm003m as E on E.RESC_KEY = D.RESC_KEY and E.LOCALE = #{lang,jdbcType=VARCHAR} ,
+			from hr010m as A LEFT OUTER JOIN cm002c as D on D.CO_ID = A.CO_ID and D.SUB_CODE = A.PSTN_CODE and D.MAJ_CODE = 'CD006'
+							 LEFT OUTER JOIN cm003m as E on E.CO_ID = A.CO_ID and E.RESC_KEY = D.RESC_KEY and E.LOCALE = #{lang,jdbcType=VARCHAR} ,
 				 cm002c B, cm003m C, hr011m F
 			where	A.CO_ID = #{coId,jdbcType=VARCHAR}	  	
 			  and	A.WORK_INDC = #{workIndc,jdbcType=VARCHAR}
+			  and	A.CO_ID = B.CO_ID
 			  and	B.MAJ_CODE ='CD004'
 			  and	A.DUTY_CODE = B.SUB_CODE
+			  and	B.CO_ID = C.CO_ID
 			  and	B.RESC_KEY = C.RESC_KEY
 			  and	C.LOCALE = #{lang,jdbcType=VARCHAR}
 			  and	A.CO_ID = F.CO_ID
