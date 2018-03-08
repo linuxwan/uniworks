@@ -5,13 +5,13 @@
  */ 
 package org.uniworks.groupware.domain; 
 
-import java.io.Serializable; 
-import java.sql.Timestamp; 
+import java.io.Serializable;
+import java.util.Date;
 
-import javax.xml.bind.annotation.XmlRootElement; 
-import javax.xml.bind.annotation.XmlType; 
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
 
-import org.pojomatic.Pojomatic; 
+import org.pojomatic.Pojomatic;
 import org.pojomatic.annotations.AutoProperty; 
 /** 
  * @author Park Chungwan 
@@ -25,10 +25,10 @@ public class Om001m implements Serializable {
 	private String coId; 
 	private String oganCode; 
 	private String oganLev; 
-	private Timestamp oganEstbDate; 
+	private Date oganEstbDate; 
 	private String oganName; 
 	private String rescKey; 
-	private Timestamp oganClsDate; 
+	private Date oganClsDate; 
 	private String highOganCode; 
 	private String highOganLev; 
 	private String oganType; 
@@ -52,10 +52,10 @@ public class Om001m implements Serializable {
 	public String getOganLev() { 
 		return this.oganLev; 
 	} 
-	public void setOganEstbDate(Timestamp oganEstbDate) { 
+	public void setOganEstbDate(Date oganEstbDate) { 
 		this.oganEstbDate = oganEstbDate; 
 	} 
-	public Timestamp getOganEstbDate() { 
+	public Date getOganEstbDate() { 
 		return this.oganEstbDate; 
 	} 
 	public void setOganName(String oganName) { 
@@ -70,10 +70,10 @@ public class Om001m implements Serializable {
 	public String getRescKey() { 
 		return this.rescKey; 
 	} 
-	public void setOganClsDate(Timestamp oganClsDate) { 
+	public void setOganClsDate(Date oganClsDate) { 
 		this.oganClsDate = oganClsDate; 
 	} 
-	public Timestamp getOganClsDate() { 
+	public Date getOganClsDate() { 
 		return this.oganClsDate; 
 	} 
 	public void setHighOganCode(String highOganCode) { 

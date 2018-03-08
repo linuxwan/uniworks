@@ -27,7 +27,7 @@
 	<select id="selectByOganInfo" parameterType="java.util.Map" resultMap="ogan_ResultMap">
 		select  A.CO_ID as CO_ID, A.OGAN_CODE as OGAN_CODE, A.OGAN_LEV as OGAN_LEV, A.OGAN_ESTB_DATE as OGAN_ESTB_DATE,
        			B.RESC_KEY_VALUE as OGAN_NAME, B.RESC_KEY as RESC_KEY, A.OGAN_CLS_DATE as OGAN_CLS_DATE,
-       			A.HIGH_OGAN_CODE as HIGH_OGAN_CODE, A.HIGH_OGAN_LEV as HIGH_OGAN_LEV, A.OGAN_TYPE as OGAN_TYPE, A.OGAN_DESC as OGAN_DESC
+       			A.HIGH_OGAN_CODE as HIGH_OGAN_CODE, A.HIGH_OGAN_LEV as HIGH_OGAN_LEV, A.OGAN_TYPE as OGAN_TYPE, B.RESC_KEY_VALUE_DESC as OGAN_DESC
 		from   GW.OM001M A, GW.OM002M B
 		where  A.CO_ID = #{coId,jdbcType=VARCHAR}
   		  and  A.OGAN_LEV = #{oganLev,jdbcType=VARCHAR}
@@ -42,7 +42,7 @@
 	<select id="selectByLevelOganList" parameterType="java.util.Map" resultMap="ogan_ResultMap">
 		select  A.CO_ID as CO_ID, A.OGAN_CODE as OGAN_CODE, A.OGAN_LEV as OGAN_LEV, A.OGAN_ESTB_DATE as OGAN_ESTB_DATE,
        			B.RESC_KEY_VALUE as OGAN_NAME, B.RESC_KEY as RESC_KEY, A.OGAN_CLS_DATE as OGAN_CLS_DATE,
-       			A.HIGH_OGAN_CODE as HIGH_OGAN_CODE, A.HIGH_OGAN_LEV as HIGH_OGAN_LEV, A.OGAN_TYPE as OGAN_TYPE, A.OGAN_DESC as OGAN_DESC
+       			A.HIGH_OGAN_CODE as HIGH_OGAN_CODE, A.HIGH_OGAN_LEV as HIGH_OGAN_LEV, A.OGAN_TYPE as OGAN_TYPE, B.RESC_KEY_VALUE_DESC as OGAN_DESC
 		from   GW.OM001M A, GW.OM002M B
 		where  A.CO_ID = #{coId,jdbcType=VARCHAR}
   		  and  A.OGAN_LEV = #{oganLev,jdbcType=VARCHAR}
@@ -56,7 +56,7 @@
 	<select id="selectBySubOganList" parameterType="java.util.Map" resultMap="ogan_ResultMap">
 		select  A.CO_ID as CO_ID, A.OGAN_CODE as OGAN_CODE, A.OGAN_LEV as OGAN_LEV, A.OGAN_ESTB_DATE as OGAN_ESTB_DATE,
        			B.RESC_KEY_VALUE as OGAN_NAME, B.RESC_KEY as RESC_KEY, A.OGAN_CLS_DATE as OGAN_CLS_DATE,
-       			A.HIGH_OGAN_CODE as HIGH_OGAN_CODE, A.HIGH_OGAN_LEV as HIGH_OGAN_LEV, A.OGAN_TYPE as OGAN_TYPE, A.OGAN_DESC as OGAN_DESC
+       			A.HIGH_OGAN_CODE as HIGH_OGAN_CODE, A.HIGH_OGAN_LEV as HIGH_OGAN_LEV, A.OGAN_TYPE as OGAN_TYPE, B.RESC_KEY_VALUE_DESC as OGAN_DESC
        	from   GW.OM001M A, GW.OM002M B
        	where  A.CO_ID = #{coId,jdbcType=VARCHAR}
   		  and  A.HIGH_OGAN_CODE = #{oganCode,jdbcType=VARCHAR}
@@ -83,7 +83,7 @@
 	<select id="selectOganListByOganName" parameterType="java.util.Map" resultMap="ogan_ResultMap">
 		select  A.CO_ID as CO_ID, A.OGAN_CODE as OGAN_CODE, A.OGAN_LEV as OGAN_LEV, A.OGAN_ESTB_DATE as OGAN_ESTB_DATE,
        			B.RESC_KEY_VALUE as OGAN_NAME, B.RESC_KEY as RESC_KEY, A.OGAN_CLS_DATE as OGAN_CLS_DATE,
-       			A.HIGH_OGAN_CODE as HIGH_OGAN_CODE, A.HIGH_OGAN_LEV as HIGH_OGAN_LEV, A.OGAN_TYPE as OGAN_TYPE, A.OGAN_DESC as OGAN_DESC
+       			A.HIGH_OGAN_CODE as HIGH_OGAN_CODE, A.HIGH_OGAN_LEV as HIGH_OGAN_LEV, A.OGAN_TYPE as OGAN_TYPE, B.RESC_KEY_VALUE_DESC as OGAN_DESC
 		from   GW.OM001M A, GW.OM002M B
 		where  A.CO_ID = #{coId,jdbcType=VARCHAR}
   		  and  DATE(#{oganEstbDate,jdbcType=TIMESTAMP}) between DATE(A.OGAN_ESTB_DATE) and DATE(A.OGAN_CLS_DATE)
@@ -97,7 +97,7 @@
 	<select id="selectOganListByChief" parameterType="java.util.Map" resultMap="ogan_ResultMap">
 		select  A.CO_ID as CO_ID, A.OGAN_CODE as OGAN_CODE, A.OGAN_LEV as OGAN_LEV, A.OGAN_ESTB_DATE as OGAN_ESTB_DATE,
        			B.RESC_KEY_VALUE as OGAN_NAME, B.RESC_KEY as RESC_KEY, A.OGAN_CLS_DATE as OGAN_CLS_DATE,
-       			A.HIGH_OGAN_CODE as HIGH_OGAN_CODE, A.HIGH_OGAN_LEV as HIGH_OGAN_LEV, A.OGAN_TYPE as OGAN_TYPE, A.OGAN_DESC as OGAN_DESC
+       			A.HIGH_OGAN_CODE as HIGH_OGAN_CODE, A.HIGH_OGAN_LEV as HIGH_OGAN_LEV, A.OGAN_TYPE as OGAN_TYPE, B.RESC_KEY_VALUE_DESC as OGAN_DESC
 		from   GW.OM001M A, GW.OM002M B,
 			  (SELECT CASE 
                         WHEN substr(PSTN_CODE,1,1) = '1'
