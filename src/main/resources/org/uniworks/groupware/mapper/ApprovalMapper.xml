@@ -448,8 +448,10 @@
 		  and	A.CO_ID = C.CO_ID
 		  and	A.APPR_MST_ID = C.APPR_MST_ID
 		  and	C.LOCALE = #{lang,jdbcType=VARCHAR}
+		  and   A.CO_ID = D.CO_ID
 		  and	D.MAJ_CODE = 'CD008'
 		  and	D.SUB_CODE = A.PRSV_TERM_TYPE
+		  and   A.CO_ID = E.CO_ID
 		  and	E.RESC_KEY = D.RESC_KEY
 		  and	E.LOCALE = #{lang,jdbcType=VARCHAR}
 	</select>

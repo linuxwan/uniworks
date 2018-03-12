@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 	<table id="apprAuthInfo" style="width:100%;height:auto;">
 		<tbody>
-			<tr>
+			<tr style="height:31px">
 				<td class="td_head01" colspan="4" style="width:100%;"><spring:message code="resc.label.author"/></td>
 			</tr>			
 		<c:choose>
 			<c:when test="${doc.authEmpNo != null}">
-			<tr>
+			<tr style="height:31px">
 				<td class="td_title01"><spring:message code="resc.label.empName"/></td>
 				<td class="td_class01">${doc.empName}
 					<input type="hidden" id="authEmpNo" name="authEmpNo" value="${doc.authEmpNo}"/>
@@ -16,7 +16,7 @@
 					<input type="hidden" id="authDutyDesc" name="authDutyDesc" value="${doc.authDutyDesc}"/>
 				</td>
 			</tr>	
-			<tr>
+			<tr style="height:31px">
 				<td class="td_title01"><spring:message code="resc.label.dept"/></td>
 				<td class="td_class01">${doc.authDeptDesc}
 					<input type="hidden" id="authDeptCode" name="authDeptCode" value="${doc.authDeptCode}"/>
@@ -27,7 +27,7 @@
 					<input type="hidden" id="authTelNo" name="authTelNo" value="${doc.authTelNo}"/>
 				</td>
 			</tr>	
-			<tr>
+			<tr style="height:31px">
 				<td class="td_title01"><spring:message code="resc.label.prsvTerm"/></td>
 				<td class="td_class01">				
 					<select class="easyui-combobox" id="serviceLife" name="prsvTermType" style="width:70px;" data-options="panelHeight:'auto'">
@@ -43,7 +43,7 @@
 			</tr>	
 			</c:when>
 			<c:otherwise>
-			<tr>
+			<tr style="height:31px">
 				<td class="td_title01"><spring:message code="resc.label.empName"/></td>
 				<td class="td_class01">${userSession.empName}
 					<input type="hidden" id="authEmpNo" name="authEmpNo" value="${userSession.userId}"/>
@@ -53,7 +53,7 @@
 					<input type="hidden" id="authDutyDesc" name="authDutyDesc" value="${userSession.dutyDesc}"/>
 				</td>
 			</tr>	
-			<tr>
+			<tr style="height:31px">
 				<td class="td_title01"><spring:message code="resc.label.dept"/></td>
 				<td class="td_class01">${userSession.deptDesc}
 					<input type="hidden" id="authDeptCode" name="authDeptCode" value="${userSession.deptCode}"/>
@@ -64,7 +64,7 @@
 					<input type="hidden" id="authTelNo" name="authTelNo" value="${userSession.offcTelNo}"/>
 				</td>
 			</tr>
-			<tr>
+			<tr style="height:31px">
 				<td class="td_title01"><spring:message code="resc.label.prsvTerm"/></td>
 				<td class="td_class01">
 					<select class="easyui-combobox" id="serviceLife" name="prsvTermType" style="width:70px;" data-options="panelHeight:'auto'">

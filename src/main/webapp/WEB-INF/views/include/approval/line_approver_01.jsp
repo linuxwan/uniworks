@@ -14,7 +14,7 @@
 				<td class="td_head01">${st.count}<spring:message code="resc.label.orderApprover"/></td>
 			</c:forEach>
 		</tr>
-		<tr>
+		<tr style="height:62px">
 			<c:forEach items="${lineAppr}" var="lineAppr" varStatus="st">
 			<td class="td_class01">
 				<c:choose>

@@ -53,16 +53,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     	String charSet = ApplicationConfigReader.get("charset");
     	filter.setEncoding(charSet);
     	filter.setForceEncoding(true);
-    	http.addFilterBefore(filter, CsrfFilter.class);
+    	http.addFilterBefore(filter, CsrfFilter.class);    
     	
     	//iframe 사용을 허용하도록 변경.
-    	http
-    		.headers()
-    			.frameOptions().disable();
-    			//.frameOptions().sameOrigin()
-    			//.httpStrictTransportSecurity().disable();
-   	
-    	http    		
+    	http    
+			.csrf()
+			.and()
+			.headers().frameOptions().sameOrigin() 
+			//.headers().frameOptions().disable() //iframe 사용을 허용하도록 변경.
+			.and()    		
     		.authorizeRequests()    	
     			.antMatchers("/loginForm").access("permitAll")
     			.antMatchers("/**").access("hasAnyRole('ROLE_ADMIN','ROLE_USER','ROLE_CHRG')")
@@ -75,7 +74,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     		.and()
     			.exceptionHandling().accessDeniedPage("/403")
     		.and()
-    			.csrf();  		
+    			.httpBasic()
+    		.and()
+    			.csrf();
+    	
+    	super.configure(http);
     }
 	
     @Bean(name="passwordEncoder")

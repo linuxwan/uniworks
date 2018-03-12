@@ -127,8 +127,8 @@
     		$("#listTabsLayer").tabs("close", dcmtRgsrNo);
     	}
     	var src = "<c:out value="${contextPath}"/>/approval/approval_view_form_01?cntnId=" + cntnId + "&dcmtRgsrNo=" + dcmtRgsrNo;
-    	var content = "<iframe name=\"" + frameId + "\" src=\"" + src + "\" id=\"" + frameId + "\" frameborder=\"0\" style=\"border:0;width:100%;height:100%;padding:10px 20px 0 0; sandbox=\"allow-same-origin allow-scripts allow-popups allow-forms allow-top-navigation allow-pointer-lock\" seamless=\"seamless\" \"></iframe>";
-    	
+    	//var content = "<iframe name=\"" + frameId + "\" src=\"" + src + "\" id=\"" + frameId + "\" frameborder=\"0\" style=\"border:0;width:100%;height:100%;padding:10px 20px 0 0; sandbox=\"allow-same-origin allow-scripts allow-popups allow-forms allow-top-navigation allow-pointer-lock\" seamless=\"seamless\" \"></iframe>";
+    	var content = "<iframe name='" + frameId + "' src='" + src + "' id='" + frameId + "' frameborder='0' style='border:0;width:100%;height:100%;padding:10px 20px 0 0;' sandbox='allow-same-origin allow-scripts allow-popups allow-forms allow-top-navigation allow-pointer-lock' seamless='seamless'></iframe>";
     	$("#listTabsLayer").tabs("add", {
     		title: dcmtRgsrNo,
     		content: content,

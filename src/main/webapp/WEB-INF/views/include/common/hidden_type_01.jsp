@@ -11,4 +11,4 @@
 	<input type="hidden" id="apprStus" name="apprStus" value="${param.apprStus}" />
 	<input type="hidden" id="apprMstId" name="apprMstId" value="${apprMstId}" />
 	<input type="hidden" id="apprLevel" name="apprLevel" value="${apprLevel}" />
-	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+	<input type="hidden" id="${_csrf.parameterName}" name="${_csrf.parameterName}" value="${_csrf.token}"/>

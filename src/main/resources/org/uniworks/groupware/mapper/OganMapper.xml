@@ -29,10 +29,11 @@
        			B.RESC_KEY_VALUE as OGAN_NAME, B.RESC_KEY as RESC_KEY, A.OGAN_CLS_DATE as OGAN_CLS_DATE,
        			A.HIGH_OGAN_CODE as HIGH_OGAN_CODE, A.HIGH_OGAN_LEV as HIGH_OGAN_LEV, A.OGAN_TYPE as OGAN_TYPE, B.RESC_KEY_VALUE_DESC as OGAN_DESC
 		from   GW.OM001M A, GW.OM002M B
-		where  A.CO_ID = #{coId,jdbcType=VARCHAR}
+		where  A.CO_ID = #{coId,jdbcType=VARCHAR}		  
   		  and  A.OGAN_LEV = #{oganLev,jdbcType=VARCHAR}
   		  and  A.OGAN_CODE = #{oganCode,jdbcType=VARCHAR}
   		  and  DATE(#{oganEstbDate,jdbcType=TIMESTAMP}) between DATE(A.OGAN_ESTB_DATE) and DATE(A.OGAN_CLS_DATE)
+  		  and  A.CO_ID = B.CO_ID
   		  and  A.RESC_KEY = B.RESC_KEY
   		  and  B.LOCALE = #{lang,jdbcType=VARCHAR}
 		order by OGAN_NAME
@@ -47,6 +48,7 @@
 		where  A.CO_ID = #{coId,jdbcType=VARCHAR}
   		  and  A.OGAN_LEV = #{oganLev,jdbcType=VARCHAR}
   		  and  DATE(#{oganEstbDate,jdbcType=TIMESTAMP}) between DATE(A.OGAN_ESTB_DATE) and DATE(A.OGAN_CLS_DATE)
+  		  and  A.CO_ID = B.CO_ID
   		  and  A.RESC_KEY = B.RESC_KEY
   		  and  B.LOCALE = #{lang,jdbcType=VARCHAR}
 		order by OGAN_NAME
@@ -62,6 +64,7 @@
   		  and  A.HIGH_OGAN_CODE = #{oganCode,jdbcType=VARCHAR}
   		  and  A.HIGH_OGAN_LEV = #{oganLev,jdbcType=VARCHAR}
   		  and  DATE(#{oganEstbDate,jdbcType=TIMESTAMP}) between DATE(A.OGAN_ESTB_DATE) and DATE(A.OGAN_CLS_DATE)
+  		  and  A.CO_ID = B.CO_ID
   		  and  A.RESC_KEY = B.RESC_KEY
   		  and  B.LOCALE = #{lang,jdbcType=VARCHAR}
   		order by OGAN_NAME
@@ -74,6 +77,7 @@
        	from   GW.OM001M A, GW.OM002M B
        	where  A.CO_ID = #{coId,jdbcType=VARCHAR}
   		  and  DATE(#{oganEstbDate,jdbcType=TIMESTAMP}) between DATE(A.OGAN_ESTB_DATE) and DATE(A.OGAN_CLS_DATE)
+  		  and  A.CO_ID = B.CO_ID
   		  and  A.RESC_KEY = B.RESC_KEY
   		  and  B.LOCALE = #{lang,jdbcType=VARCHAR}
   		order by OGAN_NAME
@@ -87,6 +91,7 @@
 		from   GW.OM001M A, GW.OM002M B
 		where  A.CO_ID = #{coId,jdbcType=VARCHAR}
   		  and  DATE(#{oganEstbDate,jdbcType=TIMESTAMP}) between DATE(A.OGAN_ESTB_DATE) and DATE(A.OGAN_CLS_DATE)
+  		  and  A.CO_ID = B.CO_ID
   		  and  A.RESC_KEY = B.RESC_KEY
   		  and  B.LOCALE = #{lang,jdbcType=VARCHAR}
   		  and  B.RESC_KEY_VALUE like #{oganName,jdbcType=VARCHAR}
@@ -116,6 +121,7 @@
                  AND WORK_INDC = '1') C
 		where  A.CO_ID = #{coId,jdbcType=VARCHAR}
   		  and  DATE(#{oganEstbDate,jdbcType=TIMESTAMP}) between DATE(A.OGAN_ESTB_DATE) and DATE(A.OGAN_CLS_DATE)
+  		  and  A.CO_ID = B.CO_ID
   		  and  A.RESC_KEY = B.RESC_KEY
   		  and  B.LOCALE = #{lang,jdbcType=VARCHAR}
   		  and  B.RESC_KEY_VALUE like #{oganName,jdbcType=VARCHAR}  		  
