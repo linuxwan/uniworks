@@ -173,7 +173,7 @@
 				 cm002c B, cm003m C, hr011m F
 			where 	A.CO_ID = #{coId,jdbcType=VARCHAR}	  	
 			  and	A.EMP_NO = #{empNo,jdbcType=VARCHAR}
-			  <if test="empNo != null">and	A.WORK_INDC = #{workIndc,jdbcType=VARCHAR}</if>
+			  <if test="workIndc != null">and	A.WORK_INDC = #{workIndc,jdbcType=VARCHAR}</if>
 			  and	A.CO_ID = B.CO_ID
 			  and	B.MAJ_CODE ='CD004'
 			  and	A.DUTY_CODE = B.SUB_CODE
