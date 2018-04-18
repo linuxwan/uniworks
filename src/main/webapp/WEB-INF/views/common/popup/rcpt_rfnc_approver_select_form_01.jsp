@@ -77,8 +77,7 @@
 			var searchType = $('#selSearchType').combobox('getValue');
 			var searchWord = $('#searchWord').textbox('getValue');
 
-			if (searchType == 'O') {	//조직으로 검색 시
-				console.log(searchType + ":" + searchWord);
+			if (searchType == 'O') {	//조직으로 검색 시				
 				if (seachWordCheck()) {
 					$('#tabs').tabs('select', 1);
 					
@@ -210,11 +209,12 @@
     			alertMsg(title, msg);
     		} else if (searchType == 'O') {	//조직 검색 결과인 경우
     			var row = $('#' + selectRow).datalist('getSelected');
+    		
     			if (row) {
     				var dlist = $('#' + selRcpt);
-    				var oganInfo = $('#' + selectRow).datalist('getSelected');
-    				var value = "O:" + oganInfo['oganCode'];
-    				var text = oganInfo['oganDesc'] + "<spring:message code="resc.label.chief"/>";
+    				var oganInfo = $('#' + selectRow).datalist('getSelected');    				
+    				var value = "O:" + oganInfo['oganCode'];    				
+    				var text = oganInfo['oganName'] + "<spring:message code="resc.label.chief"/>";    		
     				var rcpt = {value: value, text: text}; 	
     				if (checkRcptRfnc(value)) dlist.datalist('appendRow', rcpt);
     				return;
@@ -314,7 +314,7 @@
     				var dlist = $('#' + selRfnc);
     				var oganInfo = $('#' + selectRow).datalist('getSelected');
     				var value = "O:" + oganInfo['oganCode'];
-    				var text = oganInfo['oganDesc'] + "<spring:message code="resc.label.chief"/>";
+    				var text = oganInfo['oganName'] + "<spring:message code="resc.label.chief"/>";
     				var rcpt = {value: value, text: text}; 	
     				if (checkRcptRfnc(value)) dlist.datalist('appendRow', rcpt);
     				return;

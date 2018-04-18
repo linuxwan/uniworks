@@ -3,7 +3,7 @@
 	function selectLineApproverPopup() {
 		var apprLevel = $("#apprLevel").val();
 		var url = "<c:out value="${contextPath}"/>/approval/popup/selectLineApprovers?apprLevel=" + apprLevel;
-		$.popupWindow(url, { height: 650, width: 700 });
+		$.popupWindow(url, { name: 'selectLineAppr', height: 650, width: 700 });
 	}	
 	</script>
 

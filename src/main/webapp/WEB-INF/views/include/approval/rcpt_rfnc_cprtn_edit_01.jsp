@@ -9,7 +9,7 @@
 	function selectRcptRfncPopup() {
 		var apprLevel = $("#apprLevel").val();
 		var url = "<c:out value="${contextPath}"/>/approval/popup/selectRcptRfnc?apprLevel=" + apprLevel;
-		$.popupWindow(url, { height: 650, width: 700 });
+		$.popupWindow(url, { name: 'selectRcptRfnc', height: 650, width: 700 });
 	}
 	
 	function selectCprtnPopup() {
@@ -28,7 +28,7 @@
     		alertMsg(title, msg);  
 		} else {	//라인 결재자가 선
 			var url = "<c:out value="${contextPath}"/>/approval/popup/selectCprtApprovers?apprLevel=" + apprLevel;
-			$.popupWindow(url, { height: 650, width: 700 });
+			$.popupWindow(url, { name: 'selectCprtn', height: 650, width: 700 });
 		}
 	}
 	</script>
