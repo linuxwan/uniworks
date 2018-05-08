@@ -5,10 +5,13 @@
  */
 package org.uniworks.groupware.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Service;
+import org.uniworks.groupware.domain.Hr010m;
+import org.uniworks.groupware.domain.Hr011m;
 import org.uniworks.groupware.domain.HumanResource;
 
 /**
@@ -44,4 +47,11 @@ public interface HumanResourceService {
 	 * @return
 	 */
 	List<HumanResource> getBySearchEmpName(Map<String, Object> map);
+	
+	/**
+	 * 회사별 소속 직원 정보 등록.
+	 * @param record
+	 * @param arr
+	 */
+	void addEmpInfo(Hr010m record, ArrayList<Hr011m> arr);
 }
