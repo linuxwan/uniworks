@@ -270,6 +270,7 @@
 				and A.CO_ID = F.CO_ID
 				and A.EMP_NO = F.EMP_NO
 				and F.LOCALE = #{lang,jdbcType=VARCHAR}
+				and A.BASE_ASGN_OGAN_LEV = #{baseOganLev,jdbcType=VARCHAR}
 			order by A.PSTN_CODE DESC, F.EMP_NAME
 	</select>
 	

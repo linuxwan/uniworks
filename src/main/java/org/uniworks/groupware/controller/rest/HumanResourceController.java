@@ -63,6 +63,7 @@ public class HumanResourceController {
 		} else {	//그렇지 않을 경우 모든 구성원들을 Display
 			map.put("pstnIndc", "N");
 		}
+		map.put("pstnIndc", "N"); //보직자가 아니더라도 가져오도록 함.
 		map.put("baseOganLev", baseOganLev);
 		
 		List<HumanResource> hr = hrService.getByOganLevelEmpList(map);
