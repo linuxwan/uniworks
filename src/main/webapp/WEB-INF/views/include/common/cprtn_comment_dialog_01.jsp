@@ -5,7 +5,7 @@
             	closed: true,
                 buttons: '#dlg-cprtnappr-buttons'">
 	<div style="margin-bottom:20px">
-	    <input class="easyui-textbox" id="apprComment" label="Comments:" labelPosition="top" multiline="true" value="" style="width:100%;height:100px">	    
+	    <input class="easyui-textbox" id="cprtnApprComment" label="Comments:" labelPosition="top" multiline="true" value="" style="width:100%;height:100px">	    
 	</div>
 </div>
 
@@ -21,7 +21,7 @@
             	closed: true,
                 buttons: '#dlg-cprtnreject-buttons'">
 	<div style="margin-bottom:20px">
-	    <input class="easyui-textbox" id="rejectComment" label="Comments:" labelPosition="top" multiline="true" value="" style="width:100%;height:100px">
+	    <input class="easyui-textbox" id="rejectCprtnApprComment" label="Comments:" labelPosition="top" multiline="true" value="" style="width:100%;height:100px">
 	</div>
 </div>
 

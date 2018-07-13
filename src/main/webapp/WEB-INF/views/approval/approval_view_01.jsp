@@ -99,6 +99,24 @@
 		$("#detailForm").submit();
  	}
  	
+ 	//협조결재 승인
+ 	function cprtnApproved() {
+ 		$('#comment').val($('#cprtnApprComment').val());
+ 		$("#apprStus").val("7");
+ 		$("#detailForm").attr('method', 'post');
+ 		$("#detailForm").attr('action', '<c:out value="${contextPath}"/>/approval/cprtn_approved_request_01');
+		$("#detailForm").submit();
+ 	}
+ 	
+ 	//협조결재 반려
+ 	function cprtnReject() {
+ 		$('#comment').val($('#rejectCprtnApprComment').val());
+ 		$("#apprStus").val("5");
+ 		$("#detailForm").attr('method', 'post');
+ 		$("#detailForm").attr('action', '<c:out value="${contextPath}"/>/approval/cprtn_approved_request_01');
+		$("#detailForm").submit();
+ 	}
+ 	
     //문서 삭제  Ajax 호출
     function deleteApprDoc() {
     	var cntnId = $("#cntnId").val();
@@ -201,7 +219,7 @@
 			</c:when>
 			<c:when test="${doc.apprStus == 3}">
 			<h3>[<spring:message code="resc.label.apprStus"/> : <spring:message code="resc.label.apprProgress"/>]</h3>
-			</c:when>
+			</c:when>			
 			<c:when test="${doc.apprStus == 5}">
 			<h3>[<spring:message code="resc.label.apprStus"/> : <spring:message code="resc.label.apprReject"/>]</h3>
 			</c:when>

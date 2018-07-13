@@ -218,17 +218,20 @@ public interface ApprovalService {
 	 */
 	public void changeLineApproverStatus(String coId, String cntnId, String dcmtRgsrNo, String lang, String userId, String steadApprIndc, String apprStus, String comment);
 	/**
-	 * 결재문서의 협조결재 승인/반려 시의 문서 결재상태 및 협조결재 정보를 변경한다.
+	 * userId로 현재 협조결재를 해야 할 경우에만 true를 리턴. 그렇지 않은 경우에는 모두 false를 리턴.(등록된 협조결재자가 승인할 경우)
 	 * @param coId
 	 * @param cntnId
 	 * @param dcmtRgsrNo
 	 * @param lang
-	 * @param cprtEmpNo
+	 * @param userSession
+	 * @param apprDoc
 	 * @param steadApprIndc
 	 * @param apprStus
 	 * @param comment
+	 * @return
 	 */
-	public void changeCprtnApproverStatus(String coId, String cntnId, String dcmtRgsrNo, String lang, String cprtEmpNo, String steadApprIndc, String apprStus, String comment);
+	public void changeCprtnApproverStatus(String coId, String cntnId, String dcmtRgsrNo, String lang, UserSession userSession, ApprovalDoc apprDoc, String steadApprIndc, String apprStus, String comment);
+	
 	/**
 	 * 결재문서에 대해서 현재 결재를 할 수 있는지 여부를 체크.
 	 * 결재차수에 해당하는 결재자가 본인이 맞는지 확인해서 맞으면 true, 틀리면 false를 리턴한다.

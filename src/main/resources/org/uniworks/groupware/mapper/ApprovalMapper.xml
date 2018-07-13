@@ -580,6 +580,16 @@
 	  	order by a.CO_ID, a.CNTN_ID, a.DCMT_RGSR_NO, a.APPR_DGR
 	</select>
 	
+	<!-- 현재 협조 결재자의 결재차수를 가져온다 -->
+	<select id="selectCrntApproverDgrNw112m" parameterType="java.util.Map" resultMap="count_Result">
+		select	ifnull(MIN(APPR_DGR), 0) as CNT
+		  from	nw112m 
+		 where	CO_ID = #{coId,jdbcType=VARCHAR}
+		   and	CNTN_ID = #{cntnId,jdbcType=VARCHAR}
+		   and	DCMT_RGSR_NO = #{dcmtRgsrNo,jdbcType=VARCHAR} 
+		   and	APPR_STUS = '1'
+	</select>
+	
 	<!-- 차기 협조 결재자 의 결재차수를 가져온다. -->
 	<select id="selectNextApproverDgrNw112m" parameterType="java.util.Map" resultMap="count_Result">
 		select	ifnull(MIN(APPR_DGR), 0) as CNT

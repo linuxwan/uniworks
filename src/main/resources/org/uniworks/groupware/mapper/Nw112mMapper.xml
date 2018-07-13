@@ -34,11 +34,14 @@
 	<select id="selectByPrimaryKey" parameterType="java.util.Map" resultMap="BaseResultMap"> 
 		select  CO_ID, CNTN_ID, DCMT_RGSR_NO, APPR_DGR, SEQ_NO, CPRT_EMP_NO, APPR_DATE_TIME, APPR_STUS, DEPT_CODE, 
 				DEPT_DESC, DUTY_DESC, PSTN_DESC, STEAD_APPR_EMP_NO, STEAD_APPR_INDC, COMMENT
-		from   nw112m
-		where  APPR_DGR	=	#{apprDgr,jdbcType=INTEGER} 
-		  and  CNTN_ID	=	#{cntnId,jdbcType=VARCHAR} 
-		  and  CO_ID	=	#{coId,jdbcType=VARCHAR} 
-		  and  DCMT_RGSR_NO	=	#{dcmtRgsrNo,jdbcType=VARCHAR} 
+		from    nw112m
+		where   APPR_DGR	=	#{apprDgr,jdbcType=INTEGER} 
+		  and   CNTN_ID	=	#{cntnId,jdbcType=VARCHAR} 
+		  and   CO_ID	=	#{coId,jdbcType=VARCHAR} 
+		  and   DCMT_RGSR_NO	=	#{dcmtRgsrNo,jdbcType=VARCHAR}
+		  <if test="deptCode != null"> 
+		  and	DEPT_CODE= #{deptCode,jdbcType=VARCHAR}
+		  </if>
 	</select> 
  
 	<!-- 등록 --> 
@@ -54,11 +57,10 @@
 	<update id="updateByPrimaryKey" parameterType="org.uniworks.groupware.domain.Nw112m"> 
 		update	nw112m 
 		<trim prefix="SET" suffixOverrides=","> 
-			<if test="seqNo != null">SEQ_NO= #{seqNo,jdbcType=INTEGER},</if> 
+			<if test="seqNo != null and seqNo != 0">SEQ_NO= #{seqNo,jdbcType=INTEGER},</if> 
 			<if test="cprtEmpNo != null">CPRT_EMP_NO= #{cprtEmpNo,jdbcType=VARCHAR},</if> 
 			<if test="apprDateTime != null">APPR_DATE_TIME= #{apprDateTime,jdbcType=TIMESTAMP},</if> 
-			<if test="apprStus != null">APPR_STUS= #{apprStus,jdbcType=VARCHAR},</if> 
-			<if test="deptCode != null">DEPT_CODE= #{deptCode,jdbcType=VARCHAR},</if> 
+			<if test="apprStus != null">APPR_STUS= #{apprStus,jdbcType=VARCHAR},</if> 			 
 			<if test="deptDesc != null">DEPT_DESC= #{deptDesc,jdbcType=VARCHAR},</if> 
 			<if test="dutyDesc != null">DUTY_DESC= #{dutyDesc,jdbcType=VARCHAR},</if> 
 			<if test="pstnDesc != null">PSTN_DESC= #{pstnDesc,jdbcType=VARCHAR},</if> 
@@ -69,7 +71,10 @@
 		where	CO_ID	=	#{coId,jdbcType=VARCHAR} 
 		  and	CNTN_ID	=	#{cntnId,jdbcType=VARCHAR} 
 		  and	DCMT_RGSR_NO	=	#{dcmtRgsrNo,jdbcType=VARCHAR} 
-		  and	APPR_DGR	=	#{apprDgr,jdbcType=INTEGER} 
+		  and	APPR_DGR	=	#{apprDgr,jdbcType=INTEGER}
+		  <if test="deptCode != null">  
+		  and	DEPT_CODE= #{deptCode,jdbcType=VARCHAR}
+		  </if>
 	</update> 
  
 	<!-- 삭제 --> 
@@ -81,5 +86,8 @@
 		  <if test="apprDgr != null and apprDgr > 0"> 
 		  and	APPR_DGR	=	#{apprDgr,jdbcType=INTEGER}
 		  </if> 
+		  <if test="deptCode != null"> 
+		  and	DEPT_CODE= #{deptCode,jdbcType=VARCHAR}
+		  </if>
 	</delete> 
 </mapper>

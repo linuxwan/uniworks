@@ -563,7 +563,7 @@ public class ApprovalCaseAController {
 	}				
 	
 	/**
-	 * 결재문서 조회화면에서  승인 요청 시 승인/반려 처리를 한다.
+	 * 결재문서 조회화면에서  승인/반려 처리를 한다.
 	 * @param param
 	 * @param request
 	 * @param response
@@ -587,6 +587,43 @@ public class ApprovalCaseAController {
 		
 		apprService.changeLineApproverStatus(coId, cntnId, dcmtRgsrNo, lang, userId, steadApprIndc, apprStus, comment);
 		
+		mav = approvalViewForm(param, request, response);
+		return mav;
+	}
+	
+	/**
+	 * 결재문서 조회화면에서 협조결재 승인/반려 처리를 한다.
+	 * @param param
+	 * @param request
+	 * @param response
+	 * @return
+	 */
+	@RequestMapping(value = "approval/cprtn_approved_request_01", method = RequestMethod.POST)
+	public ModelAndView cprtnApprovedConfirm01(@ModelAttribute("param") HiddenField param, HttpServletRequest request, HttpServletResponse response) {
+		ModelAndView mav = new ModelAndView("approval/approval_view_01");
+		//Session 정보를 가져온다.
+		UserSession userSession = (UserSession) WebUtils.getSessionAttribute(request, "userSession");
+		
+		String coId = userSession.getCoId();
+		String cntnId = param.getCntnId();
+		String dcmtRgsrNo = param.getDcmtRgsrNo();
+		String lang = userSession.getLanguage();
+		String apprStus = request.getParameter("apprStus");
+		String comment = request.getParameter("comment");
+		
+		//대리(위임) 결재자가 여부 
+		String steadApprIndc = "N"; //현재는 Default로 설정. 대리(위임) 결재자 관리가 완성되면 변경해야 함.
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("dcmtRgsrNo", param.getDcmtRgsrNo());
+		map.put("cntnId", param.getCntnId());
+		map.put("lang", userSession.getLanguage());
+		map.put("coId", userSession.getCoId());		
+				
+		//결재문서 정보 가져오기
+		ApprovalDoc apprDoc = getApprovalDocumentInfo(map);		
+
+		apprService.changeCprtnApproverStatus(coId, cntnId, dcmtRgsrNo, lang, userSession, apprDoc, steadApprIndc, apprStus, comment);
 		mav = approvalViewForm(param, request, response);
 		return mav;
 	}

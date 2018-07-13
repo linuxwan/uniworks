@@ -378,15 +378,18 @@ public class ApprovalServiceImpl implements ApprovalService {
 	 * @param comment
 	 */
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRED)
-	public void changeCprtnApproverStatus(String coId, String cntnId, String dcmtRgsrNo, String lang, String cprtEmpNo, String steadApprIndc, String apprStus, String comment) {
+	public void changeCprtnApproverStatus(String coId, String cntnId, String dcmtRgsrNo, String lang, UserSession userSession, ApprovalDoc apprDoc, String steadApprIndc, String apprStus, String comment) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("coId", coId);
 		map.put("cntnId", cntnId);
 		map.put("dcmtRgsrNo", dcmtRgsrNo);
 		map.put("lang", lang);
-		
-		ApprovalDoc apprDoc = apprMapper.selectByApprovalDocNw110m(map);
-	}
+						
+		//협조 결재는 결재 진행 상태일 경우에만 처리
+		if (apprDoc != null && apprDoc.getApprStus().equalsIgnoreCase("3")) {
+			checkAndChangeApprovalDocOfCprtnApprover(coId, cntnId, dcmtRgsrNo, lang, userSession, apprDoc, steadApprIndc, apprStus, comment);
+		}
+	}		
 	
 	/**
 	 * userId로 현재 결재를 해야 할 경우에만 true를 리턴. 그렇지 않은 경우에는 모두 false를 리턴.(등록된 라인결재자가 승인할 경우)
@@ -493,14 +496,15 @@ public class ApprovalServiceImpl implements ApprovalService {
 	 * @param cntnId
 	 * @param dcmtRgsrNo
 	 * @param lang
-	 * @param userId
+	 * @param userSession
 	 * @param apprDoc
+	 * @param steadApprIndc
 	 * @param apprStus
 	 * @param comment
 	 * @return
 	 */
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRED)
-	private boolean checkAndChangeApprovalDocOfCprtnApprover(String coId, String cntnId, String dcmtRgsrNo, String lang, UserSession userSession, ApprovalDoc apprDoc, String apprStus, String comment) {
+	private boolean checkAndChangeApprovalDocOfCprtnApprover(String coId, String cntnId, String dcmtRgsrNo, String lang, UserSession userSession, ApprovalDoc apprDoc, String steadApprIndc, String apprStus, String comment) {
 		boolean check = false;
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("coId", coId);
@@ -510,26 +514,52 @@ public class ApprovalServiceImpl implements ApprovalService {
 		map.put("apprStus", "1");
 		
 		//협조결재자의 차기 결재차수를 가져와서 설정. nextApprDgr이 0일 경우에는 최종결재자임.
-		int nextApprDgr = apprMapper.selectNextApproverDgrNw112m(map);		
-
-		ApprovalDoc tempApprDoc = new ApprovalDoc();
-		tempApprDoc.setCoId(coId);
-		tempApprDoc.setCntnId(cntnId);
-		tempApprDoc.setDcmtRgsrNo(dcmtRgsrNo);		
-		tempApprDoc.setApprStus("3");
-		tempApprDoc.setCrntApprDgr(apprDoc.getCrntApprDgr());
+		int crntApprDgr = apprMapper.selectCrntApproverDgrNw112m(map);
+		int nextApprDgr = apprMapper.selectNextApproverDgrNw112m(map);			
+		
+		//결재상태가 진행상태가 아닐 경우에는 협조결재를 할 수 없다.
+		if (!apprDoc.getApprStus().equalsIgnoreCase("3")) return false;
 		
 		//협조결재자의 상태 정보와 승인 정보를 변경하기 위해서 선언.
 		Nw112m nw112m = new Nw112m();
 		nw112m.setCoId(coId);
 		nw112m.setCntnId(cntnId);
 		nw112m.setDcmtRgsrNo(dcmtRgsrNo);
-		nw112m.setApprDgr(apprDoc.getCrntApprDgr());
+		nw112m.setApprDgr(crntApprDgr);
 		nw112m.setComment(comment);
+		nw112m.setCprtEmpNo(userSession.getUserId());
+		nw112m.setDutyDesc(userSession.getDutyDesc());
+		nw112m.setPstnDesc(userSession.getPstnDesc());		
+		nw112m.setApprStus(apprStus);
+		nw112m.setApprDateTime(new Timestamp(DateUtil.getCurrentDate().getTime()));
 		
-		map.put("apprStus", "1");
-		map.put("apprDgr", apprDoc.getCrntApprDgr());
+		int cnt = nw112mMapper.updateByPrimaryKey(nw112m);
 		
+		//협조 반려를 했을 경우, 결재 마스터의 결재 진행상태 값을 5로 변경
+		if (apprStus.equalsIgnoreCase("5")) {
+			ApprovalDoc tempApprDoc = new ApprovalDoc();
+			tempApprDoc.setCoId(coId);
+			tempApprDoc.setCntnId(cntnId);
+			tempApprDoc.setDcmtRgsrNo(dcmtRgsrNo);		
+			tempApprDoc.setApprStus("5");
+			
+			approvalRequest(tempApprDoc);	//결재문서의 결재상태 정보를 변경.
+		}
+		
+		
+		//nextApprDgr이 협조결재 최종 승인자가 아니면 0이 아님. 따라서 자신의 결재정보 업데이트 이후 차기 결재자 상태를 1로 변경
+		if (cnt > 0 && nextApprDgr > 0 && apprStus.equalsIgnoreCase("7")) {
+			//차기 협조 결재자 결재상태 정보를 대기 상태로 변경 (0 -> 1)
+			Nw112m nextCprnt = new Nw112m();
+			nextCprnt.setCoId(coId);
+			nextCprnt.setCntnId(cntnId);
+			nextCprnt.setDcmtRgsrNo(dcmtRgsrNo);
+			nextCprnt.setApprDgr(nextApprDgr);
+			nextCprnt.setApprStus("1");
+			cnt = nw112mMapper.updateByPrimaryKey(nextCprnt);
+		}
+		
+		if (cnt > 0) check = true;
 		
 		return check;
 	}
@@ -1033,7 +1063,7 @@ public class ApprovalServiceImpl implements ApprovalService {
 				if (userSession.getDeptCode().equalsIgnoreCase(nw112m.getDeptCode()) && 
 						!userSession.getPstnCode().isEmpty()) {
 					//line 결재자가 결재하지 않았을 경우, 협재결조가 가능. 협조결재자도 대기 상태인 경우.
-					if (apprDoc.getCrntApprDgr() >= nw112m.getApprDgr() && nw112m.getApprStus().equals("1")) {
+					if (apprDoc.getCrntApprDgr() >= nw112m.getApprDgr() && nw112m.getApprStus().equals("1") && nw112m.getApprDateTime() == null) {
 						check = true;
 					}
 				}

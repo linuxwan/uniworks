@@ -124,6 +124,12 @@ public interface ApprovalMapper {
 	 */
 	int selectNextApproverDgrNw111m(Map<String, Object> map);
 	/**
+	 * 현재 협조결재자의 결재대기 차수를 가져온다.
+	 * @param map
+	 * @return
+	 */
+	int selectCrntApproverDgrNw112m(Map<String, Object> map);
+	/**
 	 * 차기 협조결재자의 결재차수를 가져온다.
 	 * @param map
 	 * @return
