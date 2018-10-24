@@ -41,7 +41,7 @@
 							            <th data-options="field:'apprDgr',width:'10%'"><spring:message code="resc.label.apprDgr"/></th>
 							            <th data-options="field:'deptDesc',width:'20%'"><spring:message code="resc.label.deptDesc"/></th>
 							            <th data-options="field:'deptCode',width:'10%',hidden:true"><spring:message code="resc.label.deptCode"/></th>
-							            <th data-options="field:'apprStus',width:'25%',formatter:formatDate"><spring:message code="resc.label.apprDateTime"/></th>
+							            <th data-options="field:'apprDateTime',width:'25%'"><spring:message code="resc.label.apprDateTime"/></th>
 							            <th data-options="field:'comment',width:'35%'"><spring:message code="resc.label.comment"/></th>
 							        </tr>
 							    </thead>
@@ -51,7 +51,7 @@
 							            <td>${cprtnAppr.apprDgr}</td>
 							            <td>${cprtnAppr.deptDesc}</td>
 							            <td>${cprtnAppr.deptCode}</td>
-							            <td>${cprtnAppr.apprDateTime}</td>
+							            <td><fmt:formatDate type="both" value="${cprtnAppr.apprDateTime}" pattern="yyyy.MM.dd HH:mm:ss"/></td>
 							            <td>${cprtnAppr.comment}</td>
 							        </tr>
 							    </c:forEach>

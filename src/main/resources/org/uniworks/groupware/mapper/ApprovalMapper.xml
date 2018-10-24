@@ -291,11 +291,17 @@
    		 		and	A.CNTN_ID = D.CNTN_ID
    		 		and	A.DCMT_RGSR_NO = D.DCMT_RGSR_NO   		 		
    		  		and	D.APPR_STUS = '7'
+   		  		and D.APPR_EMP_NO = #{apprEmpNo,jdbcType=VARCHAR} 
+   		    LEFT JOIN gw.nw112m E
+   				ON A.CO_ID = E.CO_ID
+  				and A.CNTN_ID = E.CNTN_ID
+  				and A.DCMT_RGSR_NO = E.DCMT_RGSR_NO
+  				and E.APPR_STUS = '7'
    		where	A.CO_ID = #{coId,jdbcType=VARCHAR}
    		  and	A.APPR_STUS = '3'   		     		    
 		  and	C.LOCALE = #{lang,jdbcType=VARCHAR}
-		  and	(A.AUTH_EMP_NO = #{apprEmpNo,jdbcType=VARCHAR}
-		   or	D.APPR_EMP_NO = #{apprEmpNo,jdbcType=VARCHAR})
+		  and	(A.AUTH_EMP_NO = #{apprEmpNo,jdbcType=VARCHAR}		   
+		   or   E.CPRT_EMP_NO = #{apprEmpNo,jdbcType=VARCHAR})
 		  <if test="startDate != null and endDate != null">
 		  and	A.DCMT_RGSR_DATETIME between ${startDate,jdbcType=TIMESTAMP} 
 		  and   ${endDate,jdbcType=TIMESTAMP}

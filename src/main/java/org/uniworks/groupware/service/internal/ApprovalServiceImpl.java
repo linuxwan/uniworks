@@ -601,10 +601,15 @@ public class ApprovalServiceImpl implements ApprovalService {
 				check = false;
 			}	
 			
-			//협조결재자 결재 유무 체크
-			boolean cprtnChk = checkLineApproveUseIndc(coId, cntnId, dcmtRgsrNo, userSession);
-			//협조결재자 결재 유무 체크와 라인결재 체크 모두가 true 일 경우 true를 반환
-			if (check && cprtnChk) check = true;
+			//협조결재자 결재 유무 확인
+			if (check) {
+				//협조결재자 결재 유무 체크
+				boolean cprtnChk = checkLineApproveUseIndc(coId, cntnId, dcmtRgsrNo, userSession);
+				//협조결재자 결재 유무 체크가 true를 반환하면 라인결재를 할 수 없도록 false를 설정
+				if (!cprtnChk) {
+					check = false;
+				} 
+			}
 		}
 				
 		return check;
