@@ -531,6 +531,7 @@ public class ApprovalServiceImpl implements ApprovalService {
 		nw112m.setDutyDesc(userSession.getDutyDesc());
 		nw112m.setPstnDesc(userSession.getPstnDesc());		
 		nw112m.setApprStus(apprStus);
+		nw112m.setDeptCode(userSession.getDeptCode());
 		nw112m.setApprDateTime(new Timestamp(DateUtil.getCurrentDate().getTime()));
 		
 		int cnt = nw112mMapper.updateByPrimaryKey(nw112m);

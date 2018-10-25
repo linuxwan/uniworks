@@ -216,24 +216,29 @@
     	
     	for (var i = 1; i <= apprLevel; i++) {
     		var name = $('#apprLineDesc_' + i, opener.document).val().replace("<br/>", "");
-    		var title = '';    		
-    		if (name == null || name == '' || name == ' ') {
-    			title = i + '<spring:message code="resc.label.orderApprover"/>';
-    			if (i > 1) {
-					$("#addCprtLine_" + (i-1)).hide();
-    				$("#delCprtLine_" + (i-1)).hide();    				
-    			}
+    		var title = '';
+    		    		
+    		if (name == null || name.trim() == '') {
+    			title = i + '<spring:message code="resc.label.orderApprover"/>';    			
+				$("#addCprtLine_" + i).hide();
+	    		$("#delCprtLine_" + i).hide();	    			    			
     		} else {
     			title = i + '<spring:message code="resc.label.orderApprover"/>' + "-" + $('#apprLineDesc_' + i, opener.document).val().replace("<br/>", "");
     			lineApprCheck = true;
     			if (i == apprLevel) {
     				$("#addCprtLine_" + i).hide();
-        			$("#delCprtLine_" + i).hide();   
+        			$("#delCprtLine_" + i).hide();
+        			var preName = $('#apprLineDesc_' + (i - 1), opener.document).val().replace("<br/>", "");
         			if (i > 1) {
-    					$("#addCprtLine_" + (i-1)).show();
-        				$("#delCprtLine_" + (i-1)).show();    				
+        				if (preName.trim() != '') {
+    						$("#addCprtLine_" + (i-1)).show();
+        					$("#delCprtLine_" + (i-1)).show();
+        				} else {
+        					$("#addCprtLine_" + (i-1)).hide();
+        					$("#delCprtLine_" + (i-1)).hide();
+        				}
         			}
-    			} 
+    			}
     		}
     		
 	    	$('#lineAppr'+i).panel({'title': title});
