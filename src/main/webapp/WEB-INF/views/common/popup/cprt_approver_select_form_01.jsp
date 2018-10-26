@@ -216,30 +216,46 @@
     	
     	for (var i = 1; i <= apprLevel; i++) {
     		var name = $('#apprLineDesc_' + i, opener.document).val().replace("<br/>", "");
+    		var prevName = "";
+    		if (i > 1) prevName = $('#apprLineDesc_' + (i - 1), opener.document).val().replace("<br/>", "");
     		var title = '';
     		    		
     		if (name == null || name.trim() == '') {
-    			title = i + '<spring:message code="resc.label.orderApprover"/>';    			
-				$("#addCprtLine_" + i).hide();
-	    		$("#delCprtLine_" + i).hide();	    			    			
+    			title = i + '<spring:message code="resc.label.orderApprover"/>';
+    			if (i > 1) {    			
+    				if (prevName == null || prevName.trim() == '') {    					
+						$("#addCprtLine_" + (i-1)).hide();
+    					$("#delCprtLine_" + (i-1)).hide();    		
+    				} else {
+    					$("#addCprtLine_" + (i-1)).show();
+    					$("#delCprtLine_" + (i-1)).show();    					
+    				}    	
+    				
+    				$("#addCprtLine_" + i).hide();
+        			$("#delCprtLine_" + i).hide(); 
+    			} 
     		} else {
     			title = i + '<spring:message code="resc.label.orderApprover"/>' + "-" + $('#apprLineDesc_' + i, opener.document).val().replace("<br/>", "");
     			lineApprCheck = true;
     			if (i == apprLevel) {
     				$("#addCprtLine_" + i).hide();
-        			$("#delCprtLine_" + i).hide();
-        			var preName = $('#apprLineDesc_' + (i - 1), opener.document).val().replace("<br/>", "");
+        			$("#delCprtLine_" + i).hide();   
         			if (i > 1) {
-        				if (preName.trim() != '') {
-    						$("#addCprtLine_" + (i-1)).show();
-        					$("#delCprtLine_" + (i-1)).show();
+        				if (prevName == null || prevName.trim() == '') {    					
+    						$("#addCprtLine_" + (i-1)).hide();
+        					$("#delCprtLine_" + (i-1)).hide();    		
         				} else {
-        					$("#addCprtLine_" + (i-1)).hide();
-        					$("#delCprtLine_" + (i-1)).hide();
-        				}
+        					$("#addCprtLine_" + (i-1)).show();
+        					$("#delCprtLine_" + (i-1)).show();    					
+        				}    				
         			}
-    			}
+    			} 
     		}
+    		
+    		if (i == 1) {
+				$("#addCprtLine_" + i).hide();
+				$("#delCprtLine_" + i).hide(); 
+			}
     		
 	    	$('#lineAppr'+i).panel({'title': title});
     	}    	  	    
