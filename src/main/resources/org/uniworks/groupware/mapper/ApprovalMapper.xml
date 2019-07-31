@@ -3,7 +3,7 @@
 <mapper namespace="org.uniworks.groupware.mapper.ApprovalMapper">
 	<!-- Count -->
 	<resultMap type="java.lang.Integer" id="count_Result">
-		<result column="CNT" jdbcType="DECIMAL" property="cnt" />
+		<result column="CNT" jdbcType="DECIMAL"/>
 	</resultMap>
 	
 	<!-- 결재 양식함 -->
