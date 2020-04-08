@@ -282,11 +282,11 @@
 			A.CONTENT as CONTENT, A.PRSV_TERM_TYPE as PRSV_TERM_TYPE, A.PRSV_TERM as PRSV_TERM, A.ATCH_INDC as ATCH_INDC, A.OPEN_INDC as OPEN_INDC, 
 			A.CONF_DATE as CONF_DATE, A.CONF_PLACE as CONF_PLACE, A.CONF_START_TIME as CONF_START_TIME, A.CONF_END_TIME as CONF_END_TIME,
 			A.APPR_MST_ID as APPR_MST_ID, A.DCMT_MOD_DATETIME as DCMT_MOD_DATETIME
-		from	nw110m A 
-			LEFT JOIN nw011m C
+		from	gw.nw110m A 
+			LEFT JOIN gw.nw011m C
 		  		ON	A.CO_ID = C.CO_ID
    		 		and	A.APPR_MST_ID = C.APPR_MST_ID   		 		
-   		 	LEFT JOIN nw111m D
+   		 	LEFT JOIN gw.nw111m D
    		 		ON	A.CO_ID = D.CO_ID
    		 		and	A.CNTN_ID = D.CNTN_ID
    		 		and	A.DCMT_RGSR_NO = D.DCMT_RGSR_NO   		 		
@@ -297,11 +297,11 @@
   				and A.CNTN_ID = E.CNTN_ID
   				and A.DCMT_RGSR_NO = E.DCMT_RGSR_NO
   				and E.APPR_STUS = '7'
+  				and E.CPRT_EMP_NO = #{apprEmpNo,jdbcType=VARCHAR}
    		where	A.CO_ID = #{coId,jdbcType=VARCHAR}
    		  and	A.APPR_STUS = '3'   		     		    
 		  and	C.LOCALE = #{lang,jdbcType=VARCHAR}
-		  and	(A.AUTH_EMP_NO = #{apprEmpNo,jdbcType=VARCHAR}		   
-		   or   E.CPRT_EMP_NO = #{apprEmpNo,jdbcType=VARCHAR})
+		   or	A.AUTH_EMP_NO = #{apprEmpNo,jdbcType=VARCHAR}		   
 		  <if test="startDate != null and endDate != null">
 		  and	A.DCMT_RGSR_DATETIME between ${startDate,jdbcType=TIMESTAMP} 
 		  and   ${endDate,jdbcType=TIMESTAMP}

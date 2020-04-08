@@ -134,7 +134,8 @@
 	
 	//수신처 선택 여부를 체크
 	function validationRcptCheck() {
-		if($("#hd_selRcpt").length) {
+		var rcptIndc = '${apprMst.rcptIndc}';
+		if(rcptIndc == "Y" && $("#hd_selRcpt").length) {
 			//선택된 수신처가 있는지 확인.
 			var selRcptChk = $("#hd_selRcpt").val();
 			if ($.trim(selRcptChk) == null || $.trim(selRcptChk).length < 1) {
@@ -145,6 +146,8 @@
 			} else {
 				return true;
 			}
+		} else if (rcptIndc == "N") {
+			return true;
 		}
 	} 
 	

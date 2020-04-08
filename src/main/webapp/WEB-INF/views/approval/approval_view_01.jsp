@@ -158,8 +158,9 @@
 	//수신처 선택 여부를 체크
 	function validationRcptCheck() {
 		//선택된 수신처가 있는지 확인.
+		var rcptIndc = '${apprMst.rcptIndc}';
 		var selRcptChk = $("#hd_selRcpt").val();
-		if ($.trim(selRcptChk) == null || $.trim(selRcptChk).length < 1) {
+		if (rcptIndc == "Y" && ($.trim(selRcptChk) == null || $.trim(selRcptChk).length < 1)) {
 			var title = "<spring:message code="resc.label.warning"/>";
 			var msg = "<spring:message code="resc.msg.selRcpt"/>";
 			alertMsg(title, msg);

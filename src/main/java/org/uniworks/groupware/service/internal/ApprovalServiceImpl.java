@@ -1106,14 +1106,12 @@ public class ApprovalServiceImpl implements ApprovalService {
 		ApprovalMaster apprMst = getApprovalMasterInfo(map);				
 		
 		//협조결재가 아닐 경우.
-		if (apprMst.getCprtnIndc().equalsIgnoreCase("N")) {
-			check = false;
+		if (apprMst.getCprtnIndc().equalsIgnoreCase("N")) {			
 			return check;
 		}
 				
 		if (apprMst.getCprtnType().equalsIgnoreCase("O")) { //협조결재가 끝나야 라인결재가 시작인 경우
-			List<Nw112m> nw112mList = apprMapper.selectCprtnApprovalPersonInfo(map);
-			
+			List<Nw112m> nw112mList = apprMapper.selectCprtnApprovalPersonInfo(map);			
 			for (Nw112m nw112m : nw112mList) {
 				if (nw112m.getApprStus().equals("1")) {
 					check = false;
