@@ -96,5 +96,4 @@ public class AppConfig implements TransactionManagementConfigurer {
 		
 		return mailSenderImpl;		
 	}
-	
 }

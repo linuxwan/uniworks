@@ -25,7 +25,6 @@ import org.uniworks.groupware.domain.approval.LineApprover;
  * @author Park Chungwan
  *
  */
-@Service
 public interface ApprovalService {
 	/**
 	 * 결제 카테고리 목록을 가져온다.

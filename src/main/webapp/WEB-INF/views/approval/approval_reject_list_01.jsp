@@ -138,14 +138,23 @@
     	
     	$('#apprList').datagrid({loadFilter:pagerFilter}).datagrid('loadData', getData());
     });
+    
+    function callResize()  
+    {  
+        var height = document.body.scrollHeight;
+        document.getElementById("listTabsLayer").style.height = parseInt(height) * 0.8 + 'px';
+        parent.resizeTopIframe(height);  
+	} 
+    
+    window.onload = callResize;
     </script>
 </head>
 <body>	
 	<form id="apprListTabForm" method="post" action="">
 	<jsp:include page="/WEB-INF/views/include/common/hidden_type_01.jsp"></jsp:include>	
-	<div id="listTabsLayer" class="easyui-tabs" style="width:100%;height:690px;">
+	<div id="listTabsLayer" class="easyui-tabs" style="width:100%;height:100vh;">
 		<div class="noscroll" title="<spring:message code="resc.label.list"/>" style="padding:20px;display:none;"> 
-			<table id="apprList" style="width:100%;height:450px" 		        
+			<table id="apprList" style="width:100%;height:100vh" 		        
 		        title="<spring:message code="resc.label.rejectDocList"/>" 
 		        data-options="rownumbers:true, singleSelect:true, pagination:true, autoRowHeight:false, pageSize:10">
 		    <thead>

@@ -16,5 +16,6 @@
  		  AND  A.USER_ID	=	B.USER_ID
  		WHERE  A.USER_ID	=	#{userId,jdbcType=VARCHAR}
  		  AND  A.USE_INDC	=	'Y'
+ 		ORDER BY A.CO_ID, A.USER_ID, B.ROLE
  	</select>
 </mapper>

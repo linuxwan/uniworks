@@ -5,6 +5,8 @@
  */
 package org.uniworks.groupware.mapper;
 
+import java.util.List;
+
 import org.uniworks.groupware.domain.UserInfo;
 
 /**
@@ -17,5 +19,5 @@ public interface UserInfoMapper {
 	 * @param username
 	 * @return
 	 */
-	public UserInfo getUserInfo(String username);
+	public List<UserInfo> getUserInfo(String username);
 }

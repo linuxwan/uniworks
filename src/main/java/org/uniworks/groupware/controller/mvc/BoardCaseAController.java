@@ -5,9 +5,24 @@
  */
 package org.uniworks.groupware.controller.mvc;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.util.WebUtils;
+import org.uniworks.groupware.common.HiddenField;
+import org.uniworks.groupware.common.UserSession;
+import org.uniworks.groupware.domain.Nw020m;
+import org.uniworks.groupware.service.Nw020mService;
 
 /**
  * @author gomoosin
@@ -15,5 +30,14 @@ import org.springframework.stereotype.Controller;
  */
 @Controller
 public class BoardCaseAController {
-	private static final Logger logger = LoggerFactory.getLogger(BoardCaseAController.class);
+	private static final Logger logger = LoggerFactory.getLogger(BoardCaseAController.class);	
+	
+	@RequestMapping(value = "board/board_list_01", method = {RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView boardListA(@ModelAttribute("param") HiddenField param, HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView("board/board_list_01");
+		//Session 정보를 가져온다.
+		UserSession userSession = (UserSession) WebUtils.getSessionAttribute(request, "userSession");
+						
+		return mav;
+	}
 }

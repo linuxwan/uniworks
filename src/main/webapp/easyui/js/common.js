@@ -2,6 +2,7 @@ var webRootPath = "/uniworks";
 var topMenuId;
 var $element=$(window),lastWidth=$element.width(),lastHeight=$element.height();	
 
+
 //브라우저 사이즈를 기준으로 resize
 function setHeight() {
 	var c = $('.easyui-layout');   		   				
@@ -121,7 +122,7 @@ function getSubMenuLevel3(hightMenuId, data) {
 		if (entry["menuLevel"] == "3") {						
 			if (hightMenuId == entry["highMenuId"]) {
 				no++;
-				subMenu += '<div id="p' + no + '" class="easyui-panel" style="width:100%;border:false;padding:1px"><a href="javascript:showContentPage(\'' + entry["menuId"] + '\', \'' + entry["menuDsplName"] + '\', \'' + entry["bodyUrl"] + '\', \'' + entry["highMenuId"] + '\',\'' + entry["menuLevel"] + '\');"' + 'class="easyui-linkbutton" plain="true" style="width:100%;">' + entry["menuDsplName"] + '</a></div> \r\n';
+				subMenu += '<div id="p' + no + '" class="easyui-panel" style="width:100%;border:false;padding:1px"><a href="javascript:showContentPage(\'' + entry["menuId"] + '\', \'' + entry["menuDsplName"] + '\', \'' + entry["bodyUrl"] + '\', \'' + entry["highMenuId"] + '\',\'' + entry["menuLevel"] + '\',\'' +  entry["cntnId"] + '\');"' + 'class="easyui-linkbutton" plain="true" style="width:100%;">' + entry["menuDsplName"] + '</a></div> \r\n';
 			}
 		} 
 	});	
@@ -145,8 +146,8 @@ function removeMenuAccordion() {
  * @param menuDsplName
  * @param bodyUrl
  */
-function showContentPage(menuId, menuDsplName, bodyUrl, highMenuId, menuLevel) {
-	var param = "headMenuId=" + topMenuId + "&menuId=" + menuId + "&menuLevel=" + menuLevel;
+function showContentPage(menuId, menuDsplName, bodyUrl, highMenuId, menuLevel, cntnId) {
+	var param = "headMenuId=" + topMenuId + "&menuId=" + menuId + "&menuLevel=" + menuLevel + "&cntnId=" + cntnId;
 	var mh = $(window).height() - 100;
 	
 	getMenuHierarchyInfo(topMenuId, menuId, menuLevel);
@@ -208,9 +209,22 @@ function resizeIframe() {
     //parent.document.getElementById('frmMain').style.height = height +"px";
 	var fullHeight = parent.document.documentElement.clientHeight;
 	var minusHeight = fullHeight * 0.20;
-	parent.document.getElementById('frmMain').style.height = (fullHeight - minusHeight) +"px";   
-};
+	//console.log("fullHeight :" + fullHeight);
+	//console.log("minusHeight :" + minusHeight);	
+	parent.document.getElementById('frmMain').style.height = (fullHeight - minusHeight) +"px";		
+}
 
+function calcHeight(){
+ 	//find the height of the internal page
+
+ 	var the_height= parent.document.getElementById('frmMain').contentWindow.document.body.scrollHeight;
+
+ 	//change the height of the iframe
+ 	parent.document.getElementById('frmMain').height = the_height;
+
+ 	//document.getElementById('the_iframe').scrolling = "no";
+ 	parent.document.getElementById('frmMain').style.overflow = "hidden";
+}
 /**
  * DataGrid에서 날짜 포맷에 맞게 변환하는 함수
  * @param val
@@ -279,7 +293,7 @@ function formatDate(val, row) {
 function approvalFormToWrite (apprMstId, apprDesc, cntnId) {
 	var url = webRootPath + '/approval/approval_write?apprMstId=' + apprMstId + '&cntnId=' + cntnId + '&apprDesc=' + apprDesc;
 	parent.$('#frmMain').attr('src', url);
-};
+}
 
 /* 
  * 선택한 보존연한 정보를 입력받아서 현재일자를 기준으로 보존연한 정보를 셋팅한다.

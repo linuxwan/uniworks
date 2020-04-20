@@ -5,17 +5,15 @@
  */
 package org.uniworks.groupware.service;
 
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.uniworks.groupware.domain.UserInfo;
+import org.uniworks.groupware.domain.security.Role;
 import org.uniworks.groupware.mapper.UserInfoMapper;
 
 /**
@@ -30,14 +28,27 @@ public class AuthenticationService implements UserDetailsService {
 	 * @see org.springframework.security.core.userdetails.UserDetailsService#loadUserByUsername(java.lang.String)
 	 */
 	@Override
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+	public UserInfo loadUserByUsername(String username) throws UsernameNotFoundException {
 		// TODO Auto-generated method stub
-		UserInfo userInfo = userInfoMapper.getUserInfo(username);
-		userInfo.setUsername(userInfo.getCoId() + ":" + userInfo.getUsername());
-		GrantedAuthority authority = new SimpleGrantedAuthority(userInfo.getRole());
-		UserDetails userDetails = (UserDetails)new User(userInfo.getUsername(), 
-				userInfo.getPassword(), Arrays.asList(authority));
-		return userDetails;
+		List<UserInfo> userInfoList = userInfoMapper.getUserInfo(username);
+		List<Role> roles = new ArrayList<Role>();
+		UserInfo userInfo = null;
+		int chk = 0;
+		for(UserInfo tempUserInfo : userInfoList) {
+			if (chk == 0) {
+				userInfo = tempUserInfo;
+				userInfo.setUsername(tempUserInfo.getCoId() + ":" + tempUserInfo.getUsername());
+			}
+			chk++;
+			
+			Role role = new Role();
+			role.setName(tempUserInfo.getRole());
+			roles.add(role);
+		}
+										
+		userInfo.setAuthorities(roles);
+				
+		return userInfo;
 	}
 
 }

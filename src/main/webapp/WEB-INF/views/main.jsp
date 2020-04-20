@@ -44,11 +44,15 @@
         <c:if test="${menuState.index == 0}">
         getSidebarMenu('<c:out value="${userSession.coId}"/>','MENU010000','<c:out value="${userSession.language}"/>','<c:out value="${menu.menuDsplName}"/>');
         </c:if>
-        </c:forEach>
+        </c:forEach>        
+        
+        function resizeTopIframe(dynheight) {  
+        	document.getElementById("frmMain").style.height = parseInt(dynheight) + 'px';  
+        } 
     </script>
 </head>
 <body>	
-	<div class="easyui-layout" style="width:100%;height:650px;">
+	<div class="easyui-layout" style="width:100%;height:auto;">
 		<div data-options="region:'north'" style="height:60px">
 			<div style="padding:15px;">
         		<a href="" class="easyui-linkbutton" data-options="plain:true">Home</a>
@@ -70,13 +74,13 @@
 				</select>				
 			</div>
 		</div>
-		<div id="selTopMenu" data-options="region:'west',split:true" title="Sub Memu" style="width:200px;">
+		<div id="selTopMenu" data-options="region:'west',split:true" title="Sub Memu" style="width:200px;height:auto;">
 			<div id="leftSubMenu">								
 			</div>
 		</div>
 		<div id="content" data-options="region:'center',title:'Main Title',iconCls:'icon-ok'">
-			<div data-options="fit:true,border:false,plain:true">
-				<iframe id="frmMain" name="frmMain" width="100%" src="" sandbox="allow-same-origin allow-scripts allow-popups allow-forms allow-top-navigation allow-pointer-lock" seamless="seamless"></iframe>
+			<div id="divMain" style="height:auto" data-options="fit:true,border:false,plain:true">
+				<iframe id="frmMain" name="frmMain" src="" sandbox="allow-same-origin allow-scripts allow-popups allow-forms allow-top-navigation allow-pointer-lock" seamless="seamless" style="overflow-x:hidden; overflow:auto; width:100%;"></iframe>
 			</div>
 		</div>
 	</div>   
