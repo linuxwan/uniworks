@@ -18,7 +18,7 @@ import org.pojomatic.annotations.AutoProperty;
  * 관련 테이블 : Nw130m
  */ 
 @XmlRootElement(name = "nw130m") 
-@XmlType(propOrder = {"coId", "cntnId", "dcmtRgsrNo", "prntDcmtRgsrNo", "dcmtRgsrDatetime", "authEmpNo", "authDutyDesc", "authDeptCode", "authDeptDesc", "authTelNo", "prsvTermType", "prsvTerm", "title", "content", "salePrice", "rgsrCnfmUser", "rgsrCnfmDutyDesc", "rgsrCnfmDeptCode", "rgsrCnfmDeptDesc", "viewCnt", "atchIndc", "boardId", "typeCode1", "typeCode2", "typeCode3", "typeCode4", "chngId", "mdfyDateTime"}) 
+@XmlType(propOrder = {"coId", "cntnId", "dcmtRgsrNo", "prntDcmtRgsrNo", "dcmtRgsrDatetime", "authEmpNo", "authDutyDesc", "authDeptCode", "authDeptDesc", "authTelNo", "prsvTermType", "prsvTerm", "title", "content", "salePrice", "rgsrCnfmUser", "rgsrCnfmDutyDesc", "rgsrCnfmDeptCode", "rgsrCnfmDeptDesc", "rgsrCnfmDatetime", "viewCnt", "atchIndc", "boardId", "typeCode1", "typeCode2", "typeCode3", "typeCode4", "chngId", "mdfyDateTime"}) 
 @AutoProperty 
 @SuppressWarnings("serial") 
 public class Nw130m implements Serializable {  
@@ -41,6 +41,7 @@ public class Nw130m implements Serializable {
 	private String rgsrCnfmDutyDesc; 
 	private String rgsrCnfmDeptCode; 
 	private String rgsrCnfmDeptDesc; 
+	private Date rgsrCnfmDatetime; 
 	private long viewCnt; 
 	private String atchIndc; 
 	private String boardId; 
@@ -164,6 +165,12 @@ public class Nw130m implements Serializable {
 	} 
 	public String getRgsrCnfmDeptDesc() { 
 		return this.rgsrCnfmDeptDesc; 
+	} 
+	public void setRgsrCnfmDatetime(Date rgsrCnfmDatetime) { 
+		this.rgsrCnfmDatetime = rgsrCnfmDatetime; 
+	} 
+	public Date getRgsrCnfmDatetime() { 
+		return this.rgsrCnfmDatetime; 
 	} 
 	public void setViewCnt(long viewCnt) { 
 		this.viewCnt = viewCnt; 

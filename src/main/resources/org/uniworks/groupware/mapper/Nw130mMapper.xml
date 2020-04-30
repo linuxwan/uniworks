@@ -21,6 +21,7 @@
 		<result column="RGSR_CNFM_DUTY_DESC" jdbcType="VARCHAR" property="rgsrCnfmDutyDesc" /> 
 		<result column="RGSR_CNFM_DEPT_CODE" jdbcType="VARCHAR" property="rgsrCnfmDeptCode" /> 
 		<result column="RGSR_CNFM_DEPT_DESC" jdbcType="VARCHAR" property="rgsrCnfmDeptDesc" /> 
+		<result column="RGSR_CNFM_DATETIME" jdbcType="TIMESTAMP" property="rgsrCnfmDatetime" /> 
 		<result column="VIEW_CNT" jdbcType="INTEGER" property="viewCnt" /> 
 		<result column="ATCH_INDC" jdbcType="VARCHAR" property="atchIndc" /> 
 		<result column="BOARD_ID" jdbcType="VARCHAR" property="boardId" /> 
@@ -36,8 +37,8 @@
 	<select id="select" parameterType="java.util.Map" resultMap="BaseResultMap"> 
 		select  CO_ID, CNTN_ID, DCMT_RGSR_NO, PRNT_DCMT_RGSR_NO, DCMT_RGSR_DATETIME, AUTH_EMP_NO, AUTH_DUTY_DESC, AUTH_DEPT_CODE, AUTH_DEPT_DESC, 
 				AUTH_TEL_NO, PRSV_TERM_TYPE, PRSV_TERM, TITLE, CONTENT, SALE_PRICE, RGSR_CNFM_USER, RGSR_CNFM_DUTY_DESC, 
-				RGSR_CNFM_DEPT_CODE, RGSR_CNFM_DEPT_DESC, VIEW_CNT, ATCH_INDC, BOARD_ID, TYPE_CODE1, TYPE_CODE2, TYPE_CODE3, 
-				TYPE_CODE4, CHNG_ID, MDFY_DATE_TIME
+				RGSR_CNFM_DEPT_CODE, RGSR_CNFM_DEPT_DESC, RGSR_CNFM_DATETIME, VIEW_CNT, ATCH_INDC, BOARD_ID, TYPE_CODE1, TYPE_CODE2, 
+				TYPE_CODE3, TYPE_CODE4, CHNG_ID, MDFY_DATE_TIME
 		from   nw130m
 	</select> 
  
@@ -45,8 +46,8 @@
 	<select id="selectByPrimaryKey" parameterType="java.util.Map" resultMap="BaseResultMap"> 
 		select  CO_ID, CNTN_ID, DCMT_RGSR_NO, PRNT_DCMT_RGSR_NO, DCMT_RGSR_DATETIME, AUTH_EMP_NO, AUTH_DUTY_DESC, AUTH_DEPT_CODE, AUTH_DEPT_DESC, 
 				AUTH_TEL_NO, PRSV_TERM_TYPE, PRSV_TERM, TITLE, CONTENT, SALE_PRICE, RGSR_CNFM_USER, RGSR_CNFM_DUTY_DESC, 
-				RGSR_CNFM_DEPT_CODE, RGSR_CNFM_DEPT_DESC, VIEW_CNT, ATCH_INDC, BOARD_ID, TYPE_CODE1, TYPE_CODE2, TYPE_CODE3, 
-				TYPE_CODE4, CHNG_ID, MDFY_DATE_TIME
+				RGSR_CNFM_DEPT_CODE, RGSR_CNFM_DEPT_DESC, RGSR_CNFM_DATETIME, VIEW_CNT, ATCH_INDC, BOARD_ID, TYPE_CODE1, TYPE_CODE2, 
+				TYPE_CODE3, TYPE_CODE4, CHNG_ID, MDFY_DATE_TIME
 		from   nw130m
 		where  CNTN_ID	=	#{cntnId,jdbcType=VARCHAR} 
 		  and  CO_ID	=	#{coId,jdbcType=VARCHAR} 
@@ -57,13 +58,13 @@
 	<insert id="insert" parameterType="org.uniworks.groupware.domain.Nw130m"> 
 		insert	into nw130m(CO_ID, CNTN_ID, DCMT_RGSR_NO, PRNT_DCMT_RGSR_NO, DCMT_RGSR_DATETIME, AUTH_EMP_NO, AUTH_DUTY_DESC, AUTH_DEPT_CODE, AUTH_DEPT_DESC, 
 				AUTH_TEL_NO, PRSV_TERM_TYPE, PRSV_TERM, TITLE, CONTENT, SALE_PRICE, RGSR_CNFM_USER, RGSR_CNFM_DUTY_DESC, 
-				RGSR_CNFM_DEPT_CODE, RGSR_CNFM_DEPT_DESC, VIEW_CNT, ATCH_INDC, BOARD_ID, TYPE_CODE1, TYPE_CODE2, TYPE_CODE3, 
-				TYPE_CODE4, CHNG_ID, MDFY_DATE_TIME) 
+				RGSR_CNFM_DEPT_CODE, RGSR_CNFM_DEPT_DESC, RGSR_CNFM_DATETIME, VIEW_CNT, ATCH_INDC, BOARD_ID, TYPE_CODE1, TYPE_CODE2, 
+				TYPE_CODE3, TYPE_CODE4, CHNG_ID, MDFY_DATE_TIME) 
 		values (#{coId,jdbcType=VARCHAR},#{cntnId,jdbcType=VARCHAR},#{dcmtRgsrNo,jdbcType=VARCHAR},#{prntDcmtRgsrNo,jdbcType=VARCHAR},#{dcmtRgsrDatetime,jdbcType=TIMESTAMP},#{authEmpNo,jdbcType=VARCHAR},#{authDutyDesc,jdbcType=VARCHAR} 
 			,#{authDeptCode,jdbcType=VARCHAR},#{authDeptDesc,jdbcType=VARCHAR},#{authTelNo,jdbcType=VARCHAR},#{prsvTermType,jdbcType=VARCHAR},#{prsvTerm,jdbcType=TIMESTAMP},#{title,jdbcType=VARCHAR} 
 			,#{content,jdbcType=VARCHAR},#{salePrice,jdbcType=INTEGER},#{rgsrCnfmUser,jdbcType=VARCHAR},#{rgsrCnfmDutyDesc,jdbcType=VARCHAR},#{rgsrCnfmDeptCode,jdbcType=VARCHAR},#{rgsrCnfmDeptDesc,jdbcType=VARCHAR} 
-			,#{viewCnt,jdbcType=INTEGER},#{atchIndc,jdbcType=VARCHAR},#{boardId,jdbcType=VARCHAR},#{typeCode1,jdbcType=VARCHAR},#{typeCode2,jdbcType=VARCHAR},#{typeCode3,jdbcType=VARCHAR} 
-			,#{typeCode4,jdbcType=VARCHAR},#{chngId,jdbcType=VARCHAR},#{mdfyDateTime,jdbcType=TIMESTAMP}) 
+			,#{rgsrCnfmDatetime,jdbcType=TIMESTAMP},#{viewCnt,jdbcType=INTEGER},#{atchIndc,jdbcType=VARCHAR},#{boardId,jdbcType=VARCHAR},#{typeCode1,jdbcType=VARCHAR},#{typeCode2,jdbcType=VARCHAR} 
+			,#{typeCode3,jdbcType=VARCHAR},#{typeCode4,jdbcType=VARCHAR},#{chngId,jdbcType=VARCHAR},#{mdfyDateTime,jdbcType=TIMESTAMP}) 
 	</insert> 
  
 	<!-- 수정 --> 
@@ -86,6 +87,7 @@
 			<if test="rgsrCnfmDutyDesc != null">RGSR_CNFM_DUTY_DESC= #{rgsrCnfmDutyDesc,jdbcType=VARCHAR},</if> 
 			<if test="rgsrCnfmDeptCode != null">RGSR_CNFM_DEPT_CODE= #{rgsrCnfmDeptCode,jdbcType=VARCHAR},</if> 
 			<if test="rgsrCnfmDeptDesc != null">RGSR_CNFM_DEPT_DESC= #{rgsrCnfmDeptDesc,jdbcType=VARCHAR},</if> 
+			<if test="rgsrCnfmDatetime != null">RGSR_CNFM_DATETIME= #{rgsrCnfmDatetime,jdbcType=TIMESTAMP},</if> 
 			<if test="viewCnt != null">VIEW_CNT= #{viewCnt,jdbcType=INTEGER},</if> 
 			<if test="atchIndc != null">ATCH_INDC= #{atchIndc,jdbcType=VARCHAR},</if> 
 			<if test="boardId != null">BOARD_ID= #{boardId,jdbcType=VARCHAR},</if> 

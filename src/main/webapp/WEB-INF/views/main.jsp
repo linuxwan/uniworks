@@ -53,7 +53,7 @@
 </head>
 <body>	
 	<div class="easyui-layout" style="width:100%;height:auto;">
-		<div data-options="region:'north'" style="height:60px">
+		<div data-options="region:'north'" style="height:60px;overflow:hidden;">
 			<div style="padding:15px;">
         		<a href="" class="easyui-linkbutton" data-options="plain:true">Home</a>
         		<c:forEach items="${topMenuList}" var="menu" varStatus="menuState">
@@ -61,7 +61,7 @@
         		</c:forEach>
         	</div>
 		</div>
-		<div data-options="region:'south',split:true" style="height:40px;"><div style="padding:8px;" align="center">Copyright(c) 2015 Park Chung Wan. All Right Reserved.</div></div>
+		<div data-options="region:'south',split:true" style="height:40px;"><div style="padding:8px;" align="center">Copyright(c) 2020 Park Chung Wan. All Right Reserved.</div></div>
 		<div data-options="region:'east',split:true" title="<spring:message code="resc.msg.welcome" />" style="width:180px;">
 			<div id="user" class="easyui-panel" title="${userSession.empName}" style="width:100%;height:auto;border:false;padding:1px">
 				<a href="<c:out value="${contextPath}"/>/logout" class="easyui-linkbutton" style="width:100%"><spring:message code="resc.btn.logout"/></a>

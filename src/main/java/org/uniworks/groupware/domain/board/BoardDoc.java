@@ -18,7 +18,7 @@ import org.pojomatic.annotations.AutoProperty;
  * 관련 테이블 : Nw130m
  */ 
 @XmlRootElement(name = "boardDoc") 
-@XmlType(propOrder = {"coId", "cntnId", "dcmtRgsrNo", "prntDcmtRgsrNo", "dcmtRgsrDatetime", "authEmpNo", "authEmpName", "authDutyDesc", "authDeptCode", "authDeptDesc", "authTelNo", "prsvTermType", "prsvTerm", "title", "content", "salePrice", "rgsrCnfmUser", "rgsrCnfmUserName", "rgsrCnfmDutyDesc", "rgsrCnfmDeptCode", "rgsrCnfmDeptDesc", "viewCnt", "atchIndc", "boardId", "typeCode1", "typeCode2", "typeCode3", "typeCode4", "chngId", "mdfyDateTime"}) 
+@XmlType(propOrder = {"coId", "cntnId", "dcmtRgsrNo", "prntDcmtRgsrNo", "dcmtRgsrDatetime", "authEmpNo", "authEmpName", "authDutyDesc", "authDeptCode", "authDeptDesc", "authTelNo", "prsvTermType", "prsvTerm", "title", "content", "salePrice", "rgsrCnfmUser", "rgsrCnfmUserName", "rgsrCnfmDutyDesc", "rgsrCnfmDeptCode", "rgsrCnfmDeptDesc", "rgsrCnfmDatetime", "viewCnt", "atchIndc", "boardId", "typeCode1", "typeCode2", "typeCode3", "typeCode4", "chngId", "mdfyDateTime"}) 
 @AutoProperty 
 @SuppressWarnings("serial") 
 public class BoardDoc implements Serializable {  
@@ -43,6 +43,7 @@ public class BoardDoc implements Serializable {
 	private String rgsrCnfmDutyDesc; 
 	private String rgsrCnfmDeptCode; 
 	private String rgsrCnfmDeptDesc; 
+	private Date rgsrCnfmDatetime;
 	private long viewCnt; 
 	private String atchIndc; 
 	private String boardId; 
@@ -178,7 +179,13 @@ public class BoardDoc implements Serializable {
 	} 
 	public String getRgsrCnfmDeptDesc() { 
 		return this.rgsrCnfmDeptDesc; 
-	} 
+	} 	
+	public Date getRgsrCnfmDatetime() {
+		return rgsrCnfmDatetime;
+	}
+	public void setRgsrCnfmDatetime(Date rgsrCnfmDatetime) {
+		this.rgsrCnfmDatetime = rgsrCnfmDatetime;
+	}
 	public void setViewCnt(long viewCnt) { 
 		this.viewCnt = viewCnt; 
 	} 
