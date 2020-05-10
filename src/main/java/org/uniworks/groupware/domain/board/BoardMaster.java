@@ -3,7 +3,7 @@
  * Uniworks라는 개인적 프로젝트를 완성하기 위해서 작성 중 입니다. 
  * 이 소스의 코드를 사용하실 경우에는 꼭 출처를 명시해 주시기 바랍니다.	
  */ 
-package org.uniworks.groupware.domain; 
+package org.uniworks.groupware.domain.board; 
 
 import java.io.Serializable; 
 import java.util.Date; 
@@ -17,13 +17,14 @@ import org.pojomatic.annotations.AutoProperty;
  * @author Park Chungwan 
  * 관련 테이블 : Nw001m
  */ 
-@XmlRootElement(name = "nw001m") 
-@XmlType(propOrder = {"coId", "boardId", "boardType", "rplyIndc", "cmntIndc", "atchIndc", "evalIndc", "validTermIndc", "validTermCode", "anonyIndc", "anceIndc", "apprIndc", "typeCode1", "typeCode2", "typeCode3", "typeCode4", "useIndc", "entrOpenIndc", "crtDate", "crtId", "chngDate", "chngId"}) 
+@XmlRootElement(name = "boardMaster") 
+@XmlType(propOrder = {"coId", "boardId", "boardName", "boardType", "rplyIndc", "cmntIndc", "atchIndc", "evalIndc", "validTermIndc", "validTermCode", "anonyIndc", "anceIndc", "apprIndc", "typeCode1", "typeCode2", "typeCode3", "typeCode4", "useIndc", "entrOpenIndc", "crtDate", "crtId", "chngDate", "chngId"}) 
 @AutoProperty 
 @SuppressWarnings("serial") 
-public class Nw001m implements Serializable {  
+public class BoardMaster implements Serializable {  
 	private String coId; 
 	private String boardId; 
+	private String boardName;
 	private String boardType; 
 	private String rplyIndc; 
 	private String cmntIndc; 
@@ -57,6 +58,12 @@ public class Nw001m implements Serializable {
 	public String getBoardId() { 
 		return this.boardId; 
 	} 
+	public String getBoardName() {
+		return boardName;
+	}
+	public void setBoardName(String boardName) {
+		this.boardName = boardName;
+	}
 	public void setBoardType(String boardType) { 
 		this.boardType = boardType; 
 	} 

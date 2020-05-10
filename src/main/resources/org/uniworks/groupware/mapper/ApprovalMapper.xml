@@ -285,7 +285,8 @@
 		from	gw.nw110m A 
 			LEFT JOIN gw.nw011m C
 		  		ON	A.CO_ID = C.CO_ID
-   		 		and	A.APPR_MST_ID = C.APPR_MST_ID   		 		
+   		 		and	A.APPR_MST_ID = C.APPR_MST_ID   
+   		 		and	C.LOCALE = #{lang,jdbcType=VARCHAR}		 		
    		 	LEFT JOIN gw.nw111m D
    		 		ON	A.CO_ID = D.CO_ID
    		 		and	A.CNTN_ID = D.CNTN_ID
@@ -299,8 +300,7 @@
   				and E.APPR_STUS = '7'
   				and E.CPRT_EMP_NO = #{apprEmpNo,jdbcType=VARCHAR}
    		where	A.CO_ID = #{coId,jdbcType=VARCHAR}
-   		  and	A.APPR_STUS = '3'   		     		    
-		  and	C.LOCALE = #{lang,jdbcType=VARCHAR}
+   		  and	A.APPR_STUS = '3'   		     		    		  
 		   or	A.AUTH_EMP_NO = #{apprEmpNo,jdbcType=VARCHAR}		   
 		  <if test="startDate != null and endDate != null">
 		  and	A.DCMT_RGSR_DATETIME between ${startDate,jdbcType=TIMESTAMP} 

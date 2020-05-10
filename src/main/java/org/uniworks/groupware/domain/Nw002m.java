@@ -17,14 +17,21 @@ import org.pojomatic.annotations.AutoProperty;
  * 관련 테이블 : Nw002m
  */ 
 @XmlRootElement(name = "nw002m") 
-@XmlType(propOrder = {"boardId", "locale", "boardName"}) 
+@XmlType(propOrder = {"coId", "boardId", "locale", "boardName"}) 
 @AutoProperty 
 @SuppressWarnings("serial") 
 public class Nw002m implements Serializable {  
+	private String coId; 
 	private String boardId; 
 	private String locale; 
 	private String boardName; 
 
+	public void setCoId(String coId) { 
+		this.coId = coId; 
+	} 
+	public String getCoId() { 
+		return this.coId; 
+	} 
 	public void setBoardId(String boardId) { 
 		this.boardId = boardId; 
 	} 

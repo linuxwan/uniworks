@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.uniworks.groupware.domain.board.BoardDoc;
+import org.uniworks.groupware.domain.board.BoardMaster;
 import org.uniworks.groupware.mapper.BoardMapper;
 import org.uniworks.groupware.service.BoardService;
 
@@ -26,6 +27,17 @@ import org.uniworks.groupware.service.BoardService;
 public class BoardServiceImpl implements BoardService {
 	private static final Logger logger = LoggerFactory.getLogger(BoardServiceImpl.class);
 	@Autowired BoardMapper boardMapper;
+	
+	/**
+	 * 게시판 마스터 정보 가져오기
+	 * @param map
+	 * @return
+	 */
+	@Override
+	public BoardMaster selectBoardMasterInfo(Map<String, Object> map) {
+		return boardMapper.selectBoardMasterInfo(map);	
+	}
+	
 	/**
 	 * 게시판 목록 가져오기
 	 * @param map

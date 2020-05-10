@@ -6,7 +6,7 @@
 package org.uniworks.groupware.domain; 
 
 import java.io.Serializable; 
-import java.sql.Timestamp; 
+import java.util.Date; 
 
 import javax.xml.bind.annotation.XmlRootElement; 
 import javax.xml.bind.annotation.XmlType; 
@@ -24,8 +24,8 @@ import org.pojomatic.annotations.AutoProperty;
 public class Nw003m implements Serializable {  
 	private String boardId; 
 	private String coId; 
-	private Timestamp crtDate; 
-	private Timestamp clsDate; 
+	private Date crtDate; 
+	private Date clsDate; 
 
 	public void setBoardId(String boardId) { 
 		this.boardId = boardId; 
@@ -39,16 +39,16 @@ public class Nw003m implements Serializable {
 	public String getCoId() { 
 		return this.coId; 
 	} 
-	public void setCrtDate(Timestamp crtDate) { 
+	public void setCrtDate(Date crtDate) { 
 		this.crtDate = crtDate; 
 	} 
-	public Timestamp getCrtDate() { 
+	public Date getCrtDate() { 
 		return this.crtDate; 
 	} 
-	public void setClsDate(Timestamp clsDate) { 
+	public void setClsDate(Date clsDate) { 
 		this.clsDate = clsDate; 
 	} 
-	public Timestamp getClsDate() { 
+	public Date getClsDate() { 
 		return this.clsDate; 
 	} 
 	@Override 

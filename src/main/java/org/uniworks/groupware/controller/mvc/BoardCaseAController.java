@@ -22,7 +22,10 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.util.WebUtils;
 import org.uniworks.groupware.common.HiddenField;
 import org.uniworks.groupware.common.UserSession;
+import org.uniworks.groupware.common.util.DateUtil;
 import org.uniworks.groupware.domain.CommonCode;
+import org.uniworks.groupware.domain.board.BoardMaster;
+import org.uniworks.groupware.service.BoardService;
 import org.uniworks.groupware.service.CommonService;
 
 /**
@@ -33,7 +36,14 @@ import org.uniworks.groupware.service.CommonService;
 public class BoardCaseAController {
 	private static final Logger logger = LoggerFactory.getLogger(BoardCaseAController.class);
 	@Autowired CommonService commonService;
+	@Autowired BoardService boardService;
 	
+	/**
+	 * 게시판 목록
+	 * @param param
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping(value = "board/board_list_01", method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView boardListA(@ModelAttribute("param") HiddenField param, HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView("board/board_list_01");
@@ -49,6 +59,31 @@ public class BoardCaseAController {
 		List<CommonCode> searchItemList = commonService.getCommonSubCodeList(map);	
 		
 		mav.addObject("searchItemList", searchItemList);
+		return mav;
+	}
+	
+	/**
+	 * 게시판 작성 화면
+	 * @param param
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value = "board/board_write_form_01", method = {RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView boardWriteForm01(@ModelAttribute("param") HiddenField param, HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView("board/board_write_01");
+		//Session 정보를 가져온다.
+		UserSession userSession = (UserSession) WebUtils.getSessionAttribute(request, "userSession");
+		
+		DateUtil crntDate = new DateUtil();
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("coId", userSession.getCoId());
+		map.put("lang", userSession.getLanguage());
+		map.put("crntDate", crntDate.getString());
+		
+		BoardMaster boardMaster = boardService.selectBoardMasterInfo(map);
+		
+		mav.addObject("boardMst", boardMaster);
+		mav.addObject("userSession", userSession);
 		return mav;
 	}
 }

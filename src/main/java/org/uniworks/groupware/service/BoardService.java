@@ -9,12 +9,19 @@ import java.util.List;
 import java.util.Map;
 
 import org.uniworks.groupware.domain.board.BoardDoc;
+import org.uniworks.groupware.domain.board.BoardMaster;
 
 /**
  * @author Park Chung Wan
  *
  */
 public interface BoardService {
+	/**
+	 * 게시판 마스터 정보 가져오기
+	 * @param map
+	 * @return
+	 */
+	BoardMaster selectBoardMasterInfo(Map<String, Object> map);
 	/**
 	 * 게시판 목록 가져오기
 	 * @param map

@@ -13,6 +13,7 @@
     <script type="text/javascript" src="<c:out value="${contextPath}"/>/easyui/js/common.js"></script>
     
     <script type="text/javascript">
+    var cntnId = '${param.cntnId}';
     $(function(){
     	$("#boardList").datagrid({
     		onClickRow: function(rowIndex, rowData) {
@@ -49,7 +50,7 @@
     	var year = today.getFullYear();
     	var crntDate = year + '-' + (today.getMonth() + 1) + '-' + today.getDate(); 
     	$('#startDate').datebox('setValue', year + '-01-01');
-    	$('#finishDate').datebox('setValue', crntDate);
+    	$('#finishDate').datebox('setValue', crntDate);    	
     });
         
     /*
@@ -147,6 +148,27 @@
     		bodyCls: 'noscroll'
     	});	
     }    
+    /**
+     *	작성화면
+    */
+    function goWrite() {
+    	var frameId = "listTabsFrame-writeForm";
+    	var menuId = '${param.menuId}';
+    	if ($("#listTabsLayer").tabs("exists", frameId)) {
+    		$("#listTabsLayer").tabs("close", frameId);
+    	}
+    	var securityParam = "&_csrf=" + $('#_csrf').val();
+    	var src = "<c:out value="${contextPath}"/>/board/board_write_form_01?cntnId=" + cntnId + "&menuId=" + menuId + securityParam;
+    	var title = '<spring:message code="resc.label.write"/>';
+    	var content = "<iframe name='" + frameId + "' src='" + src + "' id='" + frameId + "' frameborder='0' style='border:0;width:100%;height:100%;padding:10px 20px 0 0;' sandbox='allow-same-origin allow-scripts allow-popups allow-forms allow-top-navigation allow-pointer-lock' seamless='seamless'></iframe>";
+    	
+    	$("#listTabsLayer").tabs("add", {
+    		title: title,
+    		content: content,    		
+    		closable: true,
+    		bodyCls: 'noscroll'
+    	});	
+    }
     
     function callResize()  
     {  
@@ -168,9 +190,9 @@
 		        data-options="rownumbers:true, singleSelect:true, pagination:true, autoRowHeight:false, pageSize:10, toolbar:'#tb'">
 		    <thead>
 		        <tr>
-		        	<th data-options="field:'division',width:'10%',halign:'center',align:'center'"><spring:message code="resc.label.division"/></th>
+		        	<th data-options="field:'division',width:'25%',halign:'center',align:'center'"><spring:message code="resc.label.division"/></th>
 		        	<th data-options="field:'authEmpName',width:'10%',halign:'center',align:'center'"><spring:message code="resc.label.author"/></th>
-	        		<th data-options="field:'title',width:'40%',halign:'center',align:'center'"><spring:message code="resc.label.title"/></th>
+	        		<th data-options="field:'title',width:'30%',halign:'center',align:'center'"><spring:message code="resc.label.title"/></th>
 	        		<th data-options="field:'atchIndc',width:'10%',halign:'center',align:'left'"><spring:message code="resc.label.attchFile"/></th>
 	        		<th data-options="field:'viewCnt',width:'10%',halign:'center',align:'left'"><spring:message code="resc.label.viewCount"/></th>	        		
 	        		<th data-options="field:'dcmtRgsrDatetime',width:'15%',halign:'center',align:'left',formatter:formatDate"><spring:message code="resc.label.createDateTime"/></th>        		
@@ -189,7 +211,7 @@
 				</select>
 				<input id="searchWord" class="easyui-textbox" style="width:140px">
 				<a href="#" id="btnSearch" class="easyui-linkbutton" iconCls="icon-search"><spring:message code="resc.label.search"/></a>
-				<a href="#" id="btnWrite" class="easyui-linkbutton" iconCls="icon-add" style="float: right;"><spring:message code="resc.label.write"/></a>				
+				<a href="javascript:void(0)" id="btnWrite" class="easyui-linkbutton" iconCls="icon-add" style="float: right;" onclick="goWrite()"><spring:message code="resc.label.write"/></a>				
 			</div>
 		</div>
 	</div>
