@@ -78,6 +78,7 @@
 			AND C.BOARD_ID = A.BOARD_ID
 	        AND #{crntDate,jdbcType=VARCHAR} between C.CRT_DATE and C.CLS_DATE	 
 	 where A.CO_ID = #{coId,jdbcType=VARCHAR}
+	   and A.BOARD_ID = (select MASTER_ID from gw.nw030m where CNTN_ID = #{cntnId,jdbcType=VARCHAR})
 	</select>
 	
 	<!-- 목록 조회 --> 

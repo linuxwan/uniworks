@@ -81,13 +81,14 @@ public class BoardCaseAController {
 		map.put("coId", userSession.getCoId());
 		map.put("lang", userSession.getLanguage());
 		map.put("crntDate", crntDate.getString());
+		map.put("cntnId", param.getCntnId());
 				
 		BoardMaster boardMaster = boardService.selectBoardMasterInfo(map);
 
 		map.put("majCode", "CD008");
 		map.put("orderBy", "rescKey");
 		List<CommonCode> commonCodeList = commonService.getCommonSubCodeList(map);
-		
+				
 		mav.addObject("docWriteNo", docWriteNo);
 		mav.addObject("boardMst", boardMaster);	
 		mav.addObject("userSession", userSession);

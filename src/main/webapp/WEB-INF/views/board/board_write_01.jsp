@@ -132,7 +132,7 @@
 </head>	
 <body>	
 	<div>
-		<h2><c:out value="${apprDesc}"/></h2>
+		<h2><c:out value="${boardMst.boardName}"/></h2>
 	</div>
 	
 	<div>
@@ -178,7 +178,7 @@
 			
 	<!-- 문서 Body -->
 	<div style="width:100%;height:100%;">
-		<jsp:include page="/WEB-INF/views/include/approval/appr_doc_body_edit_01.jsp"></jsp:include>
+		<jsp:include page="/WEB-INF/views/include/board/board_doc_body_edit_01.jsp"></jsp:include>
 	</div>
 	<br/>
 	
