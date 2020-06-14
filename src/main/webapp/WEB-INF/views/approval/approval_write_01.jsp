@@ -85,7 +85,7 @@
         	parent.$('#frmMain').attr('src', url);        	
         }
         
-        var baseServiceLife = $("#serviceLife").combobox('getValue');
+        var baseServiceLife = '${prsvTermType}';//$("#serviceLife").combobox('getValue');
         getServiceLifeDate(baseServiceLife, 'divClsDate', 'prsvTerm');
         
         $("#serviceLife").combobox({

@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.util.WebUtils;
 import org.uniworks.groupware.common.UserSession;
+import org.uniworks.groupware.common.util.DateUtil;
 import org.uniworks.groupware.domain.board.BoardDoc;
 import org.uniworks.groupware.service.BoardService;
 
@@ -35,15 +36,25 @@ public class BoardController {
 	private static final Logger logger = LoggerFactory.getLogger(BoardController.class);
 	@Autowired BoardService boardService;	
 		
-	@GetMapping(value = "/board/board_list_01/cntnId/{cntnId}")
-	public ResponseEntity<List<BoardDoc>> approvalWritingList(@PathVariable("cntnId") String cntnId, HttpServletRequest request) {
+	@GetMapping(value = "/board/board_list_01/cntnId/{cntnId}/startDate/{startDate}/finishDate/{finishDate}/searchType/{searchType}/searchWord/{searchWord}")
+	public ResponseEntity<List<BoardDoc>> approvalWritingList(@PathVariable("cntnId") String cntnId, @PathVariable("startDate") String startDate,
+				@PathVariable("finishDate") String finishDate, @PathVariable("searchType") String searchType, @PathVariable("searchWord") String searchWord,
+				HttpServletRequest request) {
 		//Session 정보를 가져온다.
 		UserSession userSession = (UserSession) WebUtils.getSessionAttribute(request, "userSession");
-				
+		DateUtil tempStartDate = new DateUtil(startDate.replace("-", ""));
+		DateUtil tempFinishDate = new DateUtil(finishDate.replace("-", ""));
+		
+		if (searchWord.equalsIgnoreCase("null")) searchWord = "%";
+		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("coId", userSession.getCoId());
 		map.put("lang", userSession.getLanguage());
 		map.put("cntnId", cntnId);
+		map.put("startDate", tempStartDate.getDate());
+		map.put("finishDate", tempFinishDate.getDate());
+		map.put("searchType", searchType);
+		map.put("searchWord", searchWord);
 		
 		List<BoardDoc> boardList = boardService.selectBoardList(map);
 		

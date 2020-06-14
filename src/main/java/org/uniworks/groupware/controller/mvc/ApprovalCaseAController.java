@@ -295,7 +295,7 @@ public class ApprovalCaseAController {
 		mav.addObject("serviceLife", commonCodeList);	//보존연한
 		mav.addObject("shortYear", date.getYearShort());	//현재 년도를 YY형태로 설정
 		mav.addObject("year", date.getYear());	//현재 년도를 YYYY형태로 설정
-		
+		mav.addObject("prsvTermType", apprMst.getBasePrsvTerm());
 		mav.addObject("apprDesc", apprDesc);
 		return mav;
 	}

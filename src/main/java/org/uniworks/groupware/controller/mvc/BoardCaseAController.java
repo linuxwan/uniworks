@@ -5,6 +5,7 @@
  */
 package org.uniworks.groupware.controller.mvc;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,7 +24,9 @@ import org.springframework.web.util.WebUtils;
 import org.uniworks.groupware.common.HiddenField;
 import org.uniworks.groupware.common.UserSession;
 import org.uniworks.groupware.common.util.DateUtil;
+import org.uniworks.groupware.common.util.StringUtil;
 import org.uniworks.groupware.domain.CommonCode;
+import org.uniworks.groupware.domain.approval.LineApprover;
 import org.uniworks.groupware.domain.board.BoardMaster;
 import org.uniworks.groupware.service.BoardService;
 import org.uniworks.groupware.service.CommonService;
@@ -73,17 +76,23 @@ public class BoardCaseAController {
 		ModelAndView mav = new ModelAndView("board/board_write_01");
 		//Session 정보를 가져온다.
 		UserSession userSession = (UserSession) WebUtils.getSessionAttribute(request, "userSession");
-		
+		int docWriteNo = StringUtil.null2zeroint(request.getParameter("docWriteNo"));
 		DateUtil crntDate = new DateUtil();
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("coId", userSession.getCoId());
 		map.put("lang", userSession.getLanguage());
 		map.put("crntDate", crntDate.getString());
-		
+				
 		BoardMaster boardMaster = boardService.selectBoardMasterInfo(map);
+
+		map.put("majCode", "CD008");
+		map.put("orderBy", "rescKey");
+		List<CommonCode> commonCodeList = commonService.getCommonSubCodeList(map);
 		
-		mav.addObject("boardMst", boardMaster);
+		mav.addObject("docWriteNo", docWriteNo);
+		mav.addObject("boardMst", boardMaster);	
 		mav.addObject("userSession", userSession);
+		mav.addObject("serviceLife", commonCodeList);	//보존연한
 		return mav;
 	}
 }

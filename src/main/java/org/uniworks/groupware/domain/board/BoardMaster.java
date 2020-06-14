@@ -18,7 +18,7 @@ import org.pojomatic.annotations.AutoProperty;
  * 관련 테이블 : Nw001m
  */ 
 @XmlRootElement(name = "boardMaster") 
-@XmlType(propOrder = {"coId", "boardId", "boardName", "boardType", "rplyIndc", "cmntIndc", "atchIndc", "evalIndc", "validTermIndc", "validTermCode", "anonyIndc", "anceIndc", "apprIndc", "typeCode1", "typeCode2", "typeCode3", "typeCode4", "useIndc", "entrOpenIndc", "crtDate", "crtId", "chngDate", "chngId"}) 
+@XmlType(propOrder = {"coId", "boardId", "boardName", "boardType", "rplyIndc", "cmntIndc", "atchIndc", "evalIndc", "validTermIndc", "validTermCode", "validTermDesc", "anonyIndc", "anceIndc", "apprIndc", "typeCode1", "typeCode2", "typeCode3", "typeCode4", "useIndc", "entrOpenIndc", "crtDate", "crtId", "chngDate", "chngId"}) 
 @AutoProperty 
 @SuppressWarnings("serial") 
 public class BoardMaster implements Serializable {  
@@ -32,6 +32,7 @@ public class BoardMaster implements Serializable {
 	private String evalIndc; 
 	private String validTermIndc; 
 	private String validTermCode; 
+	private String validTermDesc;
 	private String anonyIndc; 
 	private String anceIndc; 
 	private String apprIndc; 
@@ -106,6 +107,12 @@ public class BoardMaster implements Serializable {
 	public String getValidTermCode() { 
 		return this.validTermCode; 
 	} 
+	public String getValidTermDesc() {
+		return validTermDesc;
+	}
+	public void setValidTermDesc(String validTermDesc) {
+		this.validTermDesc = validTermDesc;
+	}
 	public void setAnonyIndc(String anonyIndc) { 
 		this.anonyIndc = anonyIndc; 
 	} 

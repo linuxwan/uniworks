@@ -12,6 +12,7 @@
 		<result column="EVAL_INDC" jdbcType="VARCHAR" property="evalIndc" /> 
 		<result column="VALID_TERM_INDC" jdbcType="VARCHAR" property="validTermIndc" /> 
 		<result column="VALID_TERM_CODE" jdbcType="VARCHAR" property="validTermCode" /> 
+		<result column="VALID_TERM_DESC" jdbcType="VARCHAR" property="validTermDesc" />
 		<result column="ANONY_INDC" jdbcType="VARCHAR" property="anonyIndc" /> 
 		<result column="ANCE_INDC" jdbcType="VARCHAR" property="anceIndc" /> 
 		<result column="APPR_INDC" jdbcType="VARCHAR" property="apprIndc" /> 
@@ -63,7 +64,8 @@
 	
 	<!-- 게시판 마스터 정보 -->
 	<select id="selectBoardMasterInfo" parameterType="java.util.Map" resultMap="boardMasterMap">
-	select A.CO_ID, A.BOARD_ID, B.BOARD_NAME, A.BOARD_TYPE, A.RPLY_INDC, A.CMNT_INDC, A.ATCH_INDC, A.EVAL_INDC, A.VALID_TERM_INDC, 
+	select A.CO_ID, A.BOARD_ID, B.BOARD_NAME, A.BOARD_TYPE, A.RPLY_INDC, A.CMNT_INDC, A.ATCH_INDC, A.EVAL_INDC, A.VALID_TERM_INDC,
+		   gw.FN_GetCodeName(#{coId,jdbcType=VARCHAR}, 'CD008', A.VALID_TERM_CODE, #{lang,jdbcType=VARCHAR}) AS VALID_TERM_DESC, 
 	       A.VALID_TERM_CODE, A.ANONY_INDC, A.ANCE_INDC, A.APPR_INDC, A.TYPE_CODE1, A.TYPE_CODE2, A.TYPE_CODE3, A.TYPE_CODE4,
 	       A.USE_INDC, A.ENTR_OPEN_INDC, A.CRT_DATE, A.CRT_ID, A.CHNG_DATE, A.CHNG_ID
 	  from gw.nw001m A
@@ -74,7 +76,7 @@
 	  LEFT JOIN gw.nw003m C 
 	         ON C.CO_ID = A.CO_ID
 			AND C.BOARD_ID = A.BOARD_ID
-	        AND #{crntDate,jdbcType=VARCHAR} between C.CRT_DATE and C.CLS_DATE
+	        AND #{crntDate,jdbcType=VARCHAR} between C.CRT_DATE and C.CLS_DATE	 
 	 where A.CO_ID = #{coId,jdbcType=VARCHAR}
 	</select>
 	
@@ -89,5 +91,15 @@
 	  from gw.nw130m A
 	 where A.CNTN_ID	=	#{cntnId,jdbcType=VARCHAR}
 	   and A.CO_ID	=	#{coId,jdbcType=VARCHAR}	
+	   and A.DCMT_RGSR_DATETIME BETWEEN #{startDate,jdbcType=DATE} and #{finishDate,jdbcType=DATE}
+	   <if test="searchType == '01' and searchWord != null">
+	   and A.AUTH_EMP_NO IN (select EMP_NO FROM gw.hr011m where CO_ID = #{coId,jdbcType=VARCHAR} and locale = #{lang,jdbcType=VARCHAR} and EMP_NAME LIKE CONCAT('%', #{searchWord,jdbcType=VARCHAR},'%'))
+	   </if>
+	   <if test="searchType == '02' and searchWord != null">
+	   and A.TITLE LIKE CONCAT('%', #{searchWord,jdbcType=VARCHAR}, '%') 
+	   </if>
+	   <if test="searchType == '03' and searchWord != null">
+	   and A.CONTENT LIKE CONCAT('%', #{searchWord,jdbcType=VARCHAR}, '%')
+	   </if>
 	</select>
 </mapper>

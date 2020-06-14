@@ -14,12 +14,17 @@
     
     <script type="text/javascript">
     var cntnId = '${param.cntnId}';
+    var docWriteNo = 0; //
     $(function(){
     	$("#boardList").datagrid({
     		onClickRow: function(rowIndex, rowData) {
     			goView(rowData.cntnId, rowData.dcmtRgsrNo);
     		}
     	});    	    	
+    	
+    	$('#btnSearch').bind('click', function(){
+    		$('#boardList').datagrid({loadFilter:pagerFilter}).datagrid('loadData', getData());
+    	});
     	
     	$(window).resize(function(){
     		$("div.easyui-tabs").each(function(){
@@ -54,11 +59,26 @@
     });
         
     /*
-     * 작성 중인 결재 문서 목록을 Ajax로 호출
+     * 게시판 문서 목록을 Ajax로 호출
     */
     function getAjaxData() {
+    	var startDate = $('#startDate').datebox('getValue');
+    	var finishDate = $('#finishDate').datebox('getValue');
+    	var searchType = $('#searchType').combobox('getValue');
+    	var searchWord = $('#searchWord').textbox('getValue');
+    	
+    	var today = new Date();
+    	var month = today.getMonth() + 1;
+    	var day = today.getDate();
+    	
+    	if (month < 10) month = '0' + month;
+    	if (day < 10) day = '0' + day;
+    	if (startDate == "") startDate = today.getFullYear() + "-01-01";
+    	if (finishDate == "") finishDate = today.getFullYear() + "-" + month + "-" + day;  
+    	if (searchWord == "") searchWord = "null";
+    	
     	rows = [];    	
-    	var url="<c:out value="${contextPath}"/>/rest/board/board_list_01/cntnId/" + $("#cntnId").val();
+    	var url="<c:out value="${contextPath}"/>/rest/board/board_list_01/cntnId/" + $("#cntnId").val() + "/startDate/" + startDate + "/finishDate/" + finishDate + "/searchType/" + searchType + "/searchWord/" + searchWord;
     	
     	$.ajaxSetup({async: false});
     	$.getJSON(url, function (data, status){
@@ -75,7 +95,7 @@
     					viewCnt: entry["viewCnt"],
     					boardId: entry["boardId"]
     				});
-    			});
+    			});    		
     			return rows;
     		} else {
     			return;
@@ -130,6 +150,9 @@
 		return data;
 	}
     
+    /**
+     * 게시판 작성 문서 조회
+    */
     function goView(cntnId, dcmtRgsrNo) {
     	var frameId = "listTabsFrame-" + dcmtRgsrNo;
     	
@@ -152,22 +175,23 @@
      *	작성화면
     */
     function goWrite() {
-    	var frameId = "listTabsFrame-writeForm";
+    	var frameId = "listTabsFrame-" + docWriteNo;
     	var menuId = '${param.menuId}';
     	if ($("#listTabsLayer").tabs("exists", frameId)) {
     		$("#listTabsLayer").tabs("close", frameId);
     	}
     	var securityParam = "&_csrf=" + $('#_csrf').val();
-    	var src = "<c:out value="${contextPath}"/>/board/board_write_form_01?cntnId=" + cntnId + "&menuId=" + menuId + securityParam;
-    	var title = '<spring:message code="resc.label.write"/>';
+    	var src = "<c:out value="${contextPath}"/>/board/board_write_form_01?cntnId=" + cntnId + "&menuId=" + menuId + "&docWriteNo=" + docWriteNo + securityParam;
+    	var title = '<spring:message code="resc.btn.enrollment"/>';
     	var content = "<iframe name='" + frameId + "' src='" + src + "' id='" + frameId + "' frameborder='0' style='border:0;width:100%;height:100%;padding:10px 20px 0 0;' sandbox='allow-same-origin allow-scripts allow-popups allow-forms allow-top-navigation allow-pointer-lock' seamless='seamless'></iframe>";
     	
     	$("#listTabsLayer").tabs("add", {
-    		title: title,
+    		title: title + "-" + docWriteNo,
     		content: content,    		
     		closable: true,
     		bodyCls: 'noscroll'
     	});	
+    	docWriteNo++;
     }
     
     function callResize()  
@@ -177,7 +201,7 @@
         parent.resizeTopIframe(height);  
 	} 
     
-    window.onload = callResize;
+    window.onload = callResize;    
     </script>
 </head>
 <body>	
@@ -200,18 +224,18 @@
 		    </thead>
 			</table>
 			<div id="tb" style="padding:2px 5px;">
-				<spring:message code="resc.label.inquiryPeriod"/> : <input id="startDate" class="easyui-datebox" style="width:110px" data-options="formatter:dashformatter,parser:dashparser">
-				~ <input id="finishDate" class="easyui-datebox" style="width:110px" data-options="formatter:dashformatter,parser:dashparser">				
+				<spring:message code="resc.label.inquiryPeriod"/> : <input id="startDate" name="startDate" class="easyui-datebox" style="width:110px" data-options="formatter:dashformatter,parser:dashparser">
+				~ <input id="finishDate" name="finishDate" class="easyui-datebox" style="width:110px" data-options="formatter:dashformatter,parser:dashparser">				
 				&nbsp;&nbsp;
 				<spring:message code="resc.label.searchItem"/> : 
-				<select id="searchType" class="easyui-combobox" panelHeight="auto" style="width:100px">
+				<select id="searchType" name="searchType" class="easyui-combobox" panelHeight="auto" style="width:100px">
 				<c:forEach items="${searchItemList}" var="opt" varStatus="st">
 			    	<option value="${opt.subCode}">${opt.rescKeyValue}</option>
 			    </c:forEach>	
 				</select>
-				<input id="searchWord" class="easyui-textbox" style="width:140px">
+				<input id="searchWord" name="searchWord" class="easyui-textbox" style="width:140px">
 				<a href="#" id="btnSearch" class="easyui-linkbutton" iconCls="icon-search"><spring:message code="resc.label.search"/></a>
-				<a href="javascript:void(0)" id="btnWrite" class="easyui-linkbutton" iconCls="icon-add" style="float: right;" onclick="goWrite()"><spring:message code="resc.label.write"/></a>				
+				<a href="javascript:void(0)" id="btnWrite" class="easyui-linkbutton" iconCls="icon-add" style="float: right;" onclick="goWrite()"><spring:message code="resc.btn.enrollment"/></a>				
 			</div>
 		</div>
 	</div>

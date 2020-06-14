@@ -20,14 +20,15 @@
     	//취소버튼 클릭 시 결재양식함으로 이동
         $(".btnCancel").click(function(evt) {
         	$.messager.confirm("<spring:message code="resc.label.confirm"/>", "<spring:message code="resc.msg.docWriteCancel"/>", function(r) {
-        		if (r) {        			
-        			goApprForm();
+        		if (r) {        		
+        			var title = '<spring:message code="resc.btn.enrollment"/>' + '-' + '${docWriteNo}'
+        			parent.$("#listTabsLayer").tabs('close', title);	
         		}
         	});        	
         });
     	
     	//저장만 버튼 클릭 시
-    	$(".btnSave").click(function(evt) {
+    	$(".btnEnrollment").click(function(evt) {
     		$("#apprStus").val("0");
     		var ids = $("#fileUploadList").datagrid('getRows');
     		checkAttachFiles();
@@ -41,7 +42,7 @@
     	});
     	
     	//저장 후 닫기 버튼 클릭 시
-    	$(".btnSaveClose").click(function(evt) {
+    	$(".btnEnrollmentClose").click(function(evt) {
     		$("#apprStus").val("0");
     		checkAttachFiles();
     		$('#saveType').val('C');
@@ -78,15 +79,10 @@
     			$('#atchIndc').val('N');
     		} 
     	}
-    	
-        //결재양식함으로 이동.
-        function goApprForm() {
-        	var url = '<c:out value="${contextPath}"/>/approval/approval_form';
-        	parent.$('#frmMain').attr('src', url);        	
-        }
-        
-        var baseServiceLife = $("#serviceLife").combobox('getValue');
+    	        
+        var baseServiceLife = '${boardMst.validTermCode}';
         getServiceLifeDate(baseServiceLife, 'divClsDate', 'prsvTerm');
+        $('#serviceLife').combobox('readonly', true);
         
         $("#serviceLife").combobox({
     		onChange:function(newValue,oldValue) {
@@ -95,6 +91,12 @@
     	});        
     });      
     
+  	//해당게시판 목록으로 이동.
+    function goBoardListForm() {
+    	var url = '<c:out value="${contextPath}"/>/board/board_list_01';
+    	parent.$('#frmMain').attr('src', url);        	
+    }
+  
   	//승인 요청 전  필수 입력 사항에 대한 validation 체크를 한다.
 	//라인결재자 - 최종 승인자 선택여부 확인
 	function validationLineApprCheck() {
@@ -134,9 +136,11 @@
 	</div>
 	
 	<div>
-		<a href="#" class="easyui-linkbutton btnSave" style="width:100px"><spring:message code="resc.btn.save"/></a>
-		<a href="#" class="easyui-linkbutton btnSaveClose" style="width:100px"><spring:message code="resc.btn.saveClose"/></a>
+		<a href="#" class="easyui-linkbutton btnEnrollment" style="width:100px"><spring:message code="resc.btn.enrollment"/></a>
+		<a href="#" class="easyui-linkbutton btnEnrollmentClose" style="width:100px"><spring:message code="resc.btn.enrollmentClose"/></a>
+		<c:if test="${boardMst.apprIndc == 'Y'}">
 		<a href="#" class="easyui-linkbutton btnApprReq" style="width:100px"><spring:message code="resc.btn.apprReq"/></a>
+		</c:if>
 		<a href="#" class="easyui-linkbutton btnCancel" style="width:100px"><spring:message code="resc.btn.cancel"/></a>
 	</div>
 	
@@ -153,34 +157,25 @@
 	<div style="width:100%;height:100%;">	
 		<table style="width:100%;">
 			<tr>
-				<td style="width:40%;">
+				<td style="width:75%;">
 					<!-- 작성자 정보 -->
 					<div class="floatLeft2">
-					<jsp:include page="/WEB-INF/views/include/approval/auth_info_write_01.jsp"></jsp:include>
+					<jsp:include page="/WEB-INF/views/include/board/auth_info_write_01.jsp"></jsp:include>
 					</div>
 				</td>
-			
-				<td style="width:60%;">
-					<!-- Line 결재자 정보 -->
+			<c:if test="${boardMst.apprIndc == 'Y'}">
+				<td style="width:25%;">
+					<!-- 결재자 정보 -->
 					<div class="floatLeft2">
-					<jsp:include page="/WEB-INF/views/include/approval/line_approver_edit_01.jsp"></jsp:include>
+					<jsp:include page="/WEB-INF/views/include/board/line_approver_edit_01.jsp"></jsp:include>
 					</div>
-				</td>			
+				</td>		
+			</c:if>	
 			</tr>
 		</table>
 	</div>
 	<br/>
-	
-	<!-- 수신처, 참조처, 협조결재자  -->
-	<div style="width:100%;height:100%;">
-		<table style="width:100%;">
-			<tr>
-				<td><jsp:include page="/WEB-INF/views/include/approval/rcpt_rfnc_cprtn_edit_01.jsp"></jsp:include></td>
-			</tr>
-		</table>
-	</div>
-	<br/>
-		
+			
 	<!-- 문서 Body -->
 	<div style="width:100%;height:100%;">
 		<jsp:include page="/WEB-INF/views/include/approval/appr_doc_body_edit_01.jsp"></jsp:include>
@@ -188,6 +183,7 @@
 	<br/>
 	
 	<!-- 첨부파일 -->
+	<c:if test="${boardMst.atchIndc == 'Y'}">
 	<table>
 		<tbody>
 			<tr>
@@ -199,13 +195,16 @@
 			</tr>
 		</tbody>
 	</table>					
+	</c:if>
 	<hr class="thin bg-grayLighter">
 	</form:form>
 	
 	<div>
-		<a href="#" class="easyui-linkbutton btnSave" style="width:100px"><spring:message code="resc.btn.save"/></a>
-		<a href="#" class="easyui-linkbutton btnSaveClose" style="width:100px"><spring:message code="resc.btn.saveClose"/></a>
+		<a href="#" class="easyui-linkbutton btnEnrollment" style="width:100px"><spring:message code="resc.btn.enrollment"/></a>
+		<a href="#" class="easyui-linkbutton btnEnrollmentClose" style="width:100px"><spring:message code="resc.btn.enrollmentClose"/></a>
+		<c:if test="${boardMst.apprIndc == 'Y'}">
 		<a href="#" class="easyui-linkbutton btnApprReq" style="width:100px"><spring:message code="resc.btn.apprReq"/></a>
+		</c:if>
 		<a href="#" class="easyui-linkbutton btnCancel" style="width:100px"><spring:message code="resc.btn.cancel"/></a>
 	</div>
 </body>
