@@ -147,7 +147,7 @@ function removeMenuAccordion() {
  * @param bodyUrl
  */
 function showContentPage(menuId, menuDsplName, bodyUrl, highMenuId, menuLevel, cntnId) {
-	var param = "headMenuId=" + topMenuId + "&menuId=" + menuId + "&menuLevel=" + menuLevel + "&cntnId=" + cntnId;
+	var param = "headMenuId=" + topMenuId + "&menuId=" + menuId + "&menuLevel=" + menuLevel + "&cntnId=" + cntnId +"&cntnName=" + menuDsplName;
 	var mh = $(window).height() - 100;
 	
 	getMenuHierarchyInfo(topMenuId, menuId, menuLevel);

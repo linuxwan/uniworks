@@ -5,7 +5,6 @@
  */
 package org.uniworks.groupware.controller.mvc;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,7 +25,6 @@ import org.uniworks.groupware.common.UserSession;
 import org.uniworks.groupware.common.util.DateUtil;
 import org.uniworks.groupware.common.util.StringUtil;
 import org.uniworks.groupware.domain.CommonCode;
-import org.uniworks.groupware.domain.approval.LineApprover;
 import org.uniworks.groupware.domain.board.BoardMaster;
 import org.uniworks.groupware.service.BoardService;
 import org.uniworks.groupware.service.CommonService;
@@ -62,6 +60,7 @@ public class BoardCaseAController {
 		List<CommonCode> searchItemList = commonService.getCommonSubCodeList(map);	
 		
 		mav.addObject("searchItemList", searchItemList);
+		mav.addObject("cntnName", param.getCntnName());
 		return mav;
 	}
 	

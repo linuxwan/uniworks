@@ -17,6 +17,7 @@ public class HiddenField implements Serializable {
 	private int menuLevel = 0;
 	private String headMenuId;
 	private String cntnId;
+	private String cntnName;
 	private String apprMstId;
 	private String dcmtRgsrNo;
 	private String bodyUrl;
@@ -47,6 +48,12 @@ public class HiddenField implements Serializable {
 	public void setCntnId(String cntnId) {
 		this.cntnId = cntnId;
 	}
+	public String getCntnName() {
+		return cntnName;
+	}
+	public void setCntnName(String cntnName) {
+		this.cntnName = cntnName;
+	}	
 	public String getApprMstId() {
 		return apprMstId;
 	}

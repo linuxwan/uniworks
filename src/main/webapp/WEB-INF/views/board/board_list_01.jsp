@@ -182,6 +182,7 @@
     	}
     	var securityParam = "&_csrf=" + $('#_csrf').val();
     	var src = "<c:out value="${contextPath}"/>/board/board_write_form_01?cntnId=" + cntnId + "&menuId=" + menuId + "&docWriteNo=" + docWriteNo + securityParam;
+    	console.log("src :" + src);
     	var title = '<spring:message code="resc.btn.enrollment"/>';
     	var content = "<iframe name='" + frameId + "' src='" + src + "' id='" + frameId + "' frameborder='0' style='border:0;width:100%;height:100%;padding:10px 20px 0 0;' sandbox='allow-same-origin allow-scripts allow-popups allow-forms allow-top-navigation allow-pointer-lock' seamless='seamless'></iframe>";
     	
@@ -210,7 +211,7 @@
 	<div id="listTabsLayer" class="easyui-tabs" style="width:100%;height:100vh;">
 		<div class="noscroll" title="<spring:message code="resc.label.list"/>" style="padding:20px;display:none;height:100vh;"> 			
 		    <table id="boardList" class="easyui-datagrid" style="width:100%;height:100vh;" 		        
-		        title="<spring:message code="resc.label.square"/>" 
+		        title="${cntnName}" 
 		        data-options="rownumbers:true, singleSelect:true, pagination:true, autoRowHeight:false, pageSize:10, toolbar:'#tb'">
 		    <thead>
 		        <tr>
