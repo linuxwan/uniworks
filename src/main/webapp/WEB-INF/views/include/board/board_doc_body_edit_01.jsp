@@ -8,7 +8,7 @@
 						<table class="apprRcptRfnc">
 							<tbody>
 						<c:choose>
-							<c:when test="${doc.dcmtRgsrNo != null}">															
+							<c:when test="${board.dcmtRgsrNo != null}">															
 								<tr>
 									<td class="td_title01"><fmt:message key="resc.label.title"/></td>
 									<td class="td_class01">

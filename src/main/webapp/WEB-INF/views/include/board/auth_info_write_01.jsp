@@ -70,7 +70,7 @@
 			<tr style="height:31px">
 				<td class="td_title01"><spring:message code="resc.label.prsvTerm"/></td>
 				<td class="td_class01">
-					<select class="easyui-combobox" id="serviceLife" name="validTermCode" style="width:70px;" data-options="panelHeight:'auto'">
+					<select class="easyui-combobox" id="serviceLife" name="prsvTermType" style="width:70px;" data-options="panelHeight:'auto'">
 						<c:forEach items="${serviceLife}" var="serviceLife" >
 						<option value='<c:out value="${serviceLife.subCode}"/>' <c:if test="${boardMst.validTermCode == serviceLife.subCode}">selected="selected"</c:if>><c:out value="${serviceLife.rescKeyValue}"/></option>						
 						</c:forEach>
