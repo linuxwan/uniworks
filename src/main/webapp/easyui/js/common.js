@@ -493,3 +493,20 @@ function dashparser(s){
         return new Date();
     }
 }
+
+/***
+ * form 내의 객체의 값들을 모두 json 형태로 변환한다.
+ * @param formId
+ * @returns
+ */
+function parseFormHelper (formId) {
+    var serialized = $("#"+formId).serializeArray();    
+    var s = '';
+    var data = {};
+	
+	for(s in serialized){
+        data[serialized[s]['name']] = serialized[s]['value']
+    }
+	
+    return JSON.stringify(data);
+}

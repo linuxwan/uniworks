@@ -29,31 +29,40 @@
     	
     	//저장만 버튼 클릭 시
     	$(".btnEnrollment").click(function(evt) {
-    		$("#apprStus").val("0");
-    		var ids = $("#fileUploadList").datagrid('getRows');
-    		checkAttachFiles();
-    		$('#saveType').val('S');
     		var title = "<spring:message code="resc.label.warning"/>";
-    		var msg = "<spring:message code="resc.msg.contents"/>";    		
-    		$('#apprWriteForm').attr("action", '<c:out value="${contextPath}"/>/approval/approval_registration_01');
-    		if (isEmptyTinyMCE('content', title, msg)) {
-    			$('#apprWriteForm').submit();
-    		}    		
+    		var msg = "<spring:message code="resc.msg.contents"/>";    		    		
+    		
+    		if($('#boardDocForm01').form('enableValidation').form('validate') && isEmptyTinyMCE('content', title, msg)) {
+    			$('#content').val(tinymce.get('content').getContent());
+	    		var formData = parseFormHelper('boardDocForm01');	    		
+	    		var strUrl = '<c:out value="${contextPath}"/>/rest/board/create';	    		    		
+	    			    			    		    		
+	    		$.ajax({
+					type: 'POST',
+					url: strUrl,
+					data: formData,					
+					dataType: 'json',						
+					beforeSend: function(xhr) {
+						xhr.setRequestHeader("Accept", "application/json");
+				        xhr.setRequestHeader("Content-Type", "application/json");
+						//데이터를 전송하기 전에 헤더에 csrf값을 설정한다.					
+						xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+					},  				
+					success : function(message) {
+						var title = '<spring:message code="resc.label.confirm"/>';		    			
+						$.messager.alert(title, message, "info",  function(){
+							var title = '<spring:message code="resc.btn.enrollment"/>' + '-' + '${docWriteNo}'
+		        			parent.$("#listTabsLayer").tabs('close', title);
+						});						
+					},
+					error : function(xhr, status, error) {
+						console.log("error: " + status);
+					}
+	    		});	    		
+	    		return false;
+	    	}
     	});
-    	
-    	//저장 후 닫기 버튼 클릭 시
-    	$(".btnEnrollmentClose").click(function(evt) {
-    		$("#apprStus").val("0");
-    		checkAttachFiles();
-    		$('#saveType').val('C');
-    		var title = "<spring:message code="resc.label.warning"/>";
-    		var msg = "<spring:message code="resc.msg.contents"/>";
-    		$('#apprWriteForm').attr("action", '<c:out value="${contextPath}"/>/approval/approval_registration_01');
-    		if (isEmptyTinyMCE('content', title, msg)) {
-    			$('#apprWriteForm').submit();
-    		}    		
-    	});
-
+    	    	
     	//승인 요청 버튼 클릭
         $(".btnApprReq").click(function(evt){
 			if (!validationLineApprCheck()) return false;	//라인결재자 선택이 되지 않으면 승인요청을 하지 못함
@@ -137,14 +146,13 @@
 	
 	<div>
 		<a href="#" class="easyui-linkbutton btnEnrollment" style="width:100px"><spring:message code="resc.btn.enrollment"/></a>
-		<a href="#" class="easyui-linkbutton btnEnrollmentClose" style="width:100px"><spring:message code="resc.btn.enrollmentClose"/></a>
 		<c:if test="${boardMst.apprIndc == 'Y'}">
 		<a href="#" class="easyui-linkbutton btnApprReq" style="width:100px"><spring:message code="resc.btn.apprReq"/></a>
 		</c:if>
 		<a href="#" class="easyui-linkbutton btnCancel" style="width:100px"><spring:message code="resc.btn.cancel"/></a>
 	</div>
 	
-	<form:form modelAttribute="approvalDocForm01" id="apprWriteForm" method="post" action="">
+	<form:form id="boardDocForm01" method="post" action="">
 	<hr class="thin bg-grayLighter">
 	<jsp:include page="/WEB-INF/views/include/common/hidden_type_01.jsp"></jsp:include>
 	<input type="hidden" id="lineApprLevel" name="lineApprLevel" value='<c:out value="${apprLevel}" />'/>
@@ -153,6 +161,8 @@
 	<input id="atchIndc" name="atchIndc" type="hidden" value="${atchIndc}"/>
 	<input id="saveType" name="saveType" type="hidden" value=""/>
 	<input id="filePathType" name="filePathType" type="hidden" value="A" />
+	<input id="coId" name="coId" type="hidden" value="${userSession.coId}" />
+	<input id="boardId" name="boardId" type="hidden" value="${boardMst.boardId}" />
 	
 	<div style="width:100%;height:100%;">	
 		<table style="width:100%;">
@@ -201,7 +211,6 @@
 	
 	<div>
 		<a href="#" class="easyui-linkbutton btnEnrollment" style="width:100px"><spring:message code="resc.btn.enrollment"/></a>
-		<a href="#" class="easyui-linkbutton btnEnrollmentClose" style="width:100px"><spring:message code="resc.btn.enrollmentClose"/></a>
 		<c:if test="${boardMst.apprIndc == 'Y'}">
 		<a href="#" class="easyui-linkbutton btnApprReq" style="width:100px"><spring:message code="resc.btn.apprReq"/></a>
 		</c:if>

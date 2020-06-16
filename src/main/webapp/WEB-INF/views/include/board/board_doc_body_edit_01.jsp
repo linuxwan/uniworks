@@ -12,8 +12,7 @@
 								<tr>
 									<td class="td_title01"><fmt:message key="resc.label.title"/></td>
 									<td class="td_class01">
-										<input class="easyui-textbox" id="docTitle" name="docTitle" value="${doc.docTitle}" style="width:97%" />
-										<br/><font color="red"><form:errors path="docTitle" /></font>									
+										<input class="easyui-textbox" id="title" name="title" value="${board.title}" style="width:97%" />								
 									</td>
 								</tr>
 								<tr>
@@ -21,8 +20,7 @@
 								</tr>
 								<tr>
 									<td class="td_class01" colspan="2">
-										<textarea class="tinymce01" id="content" name="content">${doc.content}</textarea>
-										<br/><font color="red"><form:errors path="content" /></font>										
+										<textarea class="tinymce01" id="content" name="content">${board.content}</textarea>									
 									</td>
 								</tr>
 							</c:when>
@@ -30,8 +28,7 @@
 								<tr>
 									<td class="td_title01"><fmt:message key="resc.label.title"/></td>
 									<td class="td_class01">
-										<input class="easyui-textbox" id="docTitle" name="docTitle" value="${docTitle}" style="width:97%" />
-										<br/><font color="red"><form:errors path="docTitle" /></font>									
+										<input class="easyui-textbox" id="title" name="title" value="" style="width:97%" />								
 									</td>
 								</tr>
 								<tr>
@@ -39,8 +36,7 @@
 								</tr>
 								<tr>
 									<td class="td_class01" colspan="2">
-										<textarea class="tinymce01" id="content" name="content">${content}</textarea>
-										<br/><font color="red"><form:errors path="content" /></font>										
+										<textarea class="tinymce01" id="content" name="content"></textarea>																			
 									</td>
 								</tr>							
 							</c:otherwise>

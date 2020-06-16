@@ -10,21 +10,29 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.util.WebUtils;
 import org.uniworks.groupware.common.UserSession;
+import org.uniworks.groupware.common.util.CommUtil;
 import org.uniworks.groupware.common.util.DateUtil;
+import org.uniworks.groupware.common.util.WebUtil;
+import org.uniworks.groupware.domain.Nw130m;
 import org.uniworks.groupware.domain.board.BoardDoc;
 import org.uniworks.groupware.service.BoardService;
+import org.uniworks.groupware.service.Nw130mService;
 
 /**
  * @author Park Chung Wan
@@ -35,6 +43,8 @@ import org.uniworks.groupware.service.BoardService;
 public class BoardController {
 	private static final Logger logger = LoggerFactory.getLogger(BoardController.class);
 	@Autowired BoardService boardService;	
+	@Autowired Nw130mService nw130mService;
+	@Autowired private MessageSource messageSource;
 		
 	@GetMapping(value = "/board/board_list_01/cntnId/{cntnId}/startDate/{startDate}/finishDate/{finishDate}/searchType/{searchType}/searchWord/{searchWord}")
 	public ResponseEntity<List<BoardDoc>> approvalWritingList(@PathVariable("cntnId") String cntnId, @PathVariable("startDate") String startDate,
@@ -42,8 +52,8 @@ public class BoardController {
 				HttpServletRequest request) {
 		//Session 정보를 가져온다.
 		UserSession userSession = (UserSession) WebUtils.getSessionAttribute(request, "userSession");
-		DateUtil tempStartDate = new DateUtil(startDate.replace("-", ""));
-		DateUtil tempFinishDate = new DateUtil(finishDate.replace("-", ""));
+		String tempStartDate = startDate.replace("-", "");
+		String tempFinishDate = finishDate.replace("-", "");
 		
 		if (searchWord.equalsIgnoreCase("null")) searchWord = "%";
 		
@@ -51,13 +61,42 @@ public class BoardController {
 		map.put("coId", userSession.getCoId());
 		map.put("lang", userSession.getLanguage());
 		map.put("cntnId", cntnId);
-		map.put("startDate", tempStartDate.getDate());
-		map.put("finishDate", tempFinishDate.getDate());
+		map.put("startDate", tempStartDate);
+		map.put("finishDate", tempFinishDate);
 		map.put("searchType", searchType);
 		map.put("searchWord", searchWord);
 		
 		List<BoardDoc> boardList = boardService.selectBoardList(map);
 		
 		return new ResponseEntity<List<BoardDoc>>(boardList, HttpStatus.OK);
+	}
+	
+	/**
+	 * 관리자 정보를 등록한다.
+	 * @param cm010c
+	 * @param ucBuilder
+	 * @return
+	 */
+	@PostMapping(value = "/board/create")
+	public ResponseEntity<String> createBoard(@RequestBody Map<String, Object> model, HttpServletRequest request, HttpServletResponse response) {
+		String result = "";
+		//Session 정보를 가져온다.
+		UserSession userSession = (UserSession) WebUtils.getSessionAttribute(request, "userSession");
+		
+		Nw130m nw130m = new Nw130m();
+		WebUtil.bind(model, nw130m);
+		
+		nw130m.setDcmtRgsrDatetime(DateUtil.getCurrentDate());
+		nw130m.setDcmtRgsrNo(CommUtil.createSequenceNo("B"));
+		
+		int cnt = nw130mService.addNw130m(nw130m);
+		
+		if (cnt > 0) {
+			result = messageSource.getMessage("resc.msg.addOk", null, response.getLocale());			
+		} else {
+			result = messageSource.getMessage("resc.msg.addFail", null, response.getLocale());
+		}
+		
+		return new ResponseEntity<String>(result, HttpStatus.OK);
 	}
 }

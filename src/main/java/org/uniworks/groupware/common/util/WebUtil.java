@@ -8,6 +8,7 @@ package org.uniworks.groupware.common.util;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Date;
 import java.util.Enumeration;
+import java.util.Map;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -16,6 +17,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.beanutils.BeanUtilsBean;
 import org.apache.commons.beanutils.ConvertUtilsBean;
 import org.apache.commons.beanutils.PropertyUtilsBean;
+import org.apache.commons.beanutils.converters.DateConverter;
+import org.apache.commons.beanutils.converters.DateTimeConverter;
 
 /**
  * @author Chungwan Park
@@ -87,6 +90,27 @@ public class WebUtil {
 					e.printStackTrace();
 				}
 			}
+		}
+	}
+	
+	/**
+	 * 
+	 * @param map
+	 * @param obj
+	 */
+	public static void bind(Map<String, Object> map, Object obj) {
+		DateTimeConverter dtConverter = new DateConverter();
+		dtConverter.setPattern("yyyyMMdd");
+		ConvertUtilsBean cub = new ConvertUtilsBean();
+		cub.deregister(Date.class);
+		cub.register(dtConverter, Date.class);
+		
+		BeanUtilsBean bub = new BeanUtilsBean(cub);
+		try {
+			bub.populate(obj, map);
+		} catch (IllegalAccessException | InvocationTargetException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 }

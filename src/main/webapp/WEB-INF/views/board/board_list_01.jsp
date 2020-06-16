@@ -90,6 +90,8 @@
     					dcmtRgsrNo: entry["dcmtRgsrNo"],
     					title: entry["title"],
     					authEmpName: entry["authEmpName"],
+    					authDeptDesc: entry["authDeptDesc"],
+    					authDutyDesc: entry["authDutyDesc"],
     					dcmtRgsrDatetime: entry["dcmtRgsrDatetime"],
     					atchIndc: entry["atchIndc"],
     					viewCnt: entry["viewCnt"],
@@ -214,14 +216,27 @@
 		        title="${cntnName}" 
 		        data-options="rownumbers:true, singleSelect:true, pagination:true, autoRowHeight:false, pageSize:10, toolbar:'#tb'">
 		    <thead>
+		    <c:if test="${gubun == 'Y'}">
 		        <tr>
-		        	<th data-options="field:'division',width:'25%',halign:'center',align:'center'"><spring:message code="resc.label.division"/></th>
-		        	<th data-options="field:'authEmpName',width:'10%',halign:'center',align:'center'"><spring:message code="resc.label.author"/></th>
-	        		<th data-options="field:'title',width:'30%',halign:'center',align:'center'"><spring:message code="resc.label.title"/></th>
-	        		<th data-options="field:'atchIndc',width:'10%',halign:'center',align:'left'"><spring:message code="resc.label.attchFile"/></th>
-	        		<th data-options="field:'viewCnt',width:'10%',halign:'center',align:'left'"><spring:message code="resc.label.viewCount"/></th>	        		
-	        		<th data-options="field:'dcmtRgsrDatetime',width:'15%',halign:'center',align:'left',formatter:formatDate"><spring:message code="resc.label.createDateTime"/></th>        		
+		        	<th data-options="field:'division',width:'25%',halign:'center',align:'left'"><spring:message code="resc.label.division"/></th>		        	
+	        		<th data-options="field:'title',width:'30%',halign:'center',align:'left'"><spring:message code="resc.label.title"/></th>
+	        		<th data-options="field:'authEmpName',width:'10%',halign:'center',align:'center'"><spring:message code="resc.label.author"/></th>
+	        		<th data-options="field:'atchIndc',width:'10%',halign:'center',align:'center'"><spring:message code="resc.label.attchFile"/></th>
+	        		<th data-options="field:'viewCnt',width:'10%',halign:'center',align:'right'"><spring:message code="resc.label.viewCount"/></th>	        		
+	        		<th data-options="field:'dcmtRgsrDatetime',width:'15%',halign:'center',align:'center',formatter:formatDate"><spring:message code="resc.label.createDateTime"/></th>        		
 		        </tr>
+		    </c:if>
+		    <c:if test="${gubun == 'N'}">
+		        <tr>	        	
+	        		<th data-options="field:'title',width:'30%',halign:'center',align:'left'"><spring:message code="resc.label.title"/></th>
+	        		<th data-options="field:'authEmpName',width:'10%',halign:'center',align:'center'"><spring:message code="resc.label.author"/></th>
+	        		<th data-options="field:'authDutyDesc',width:'10%',halign:'center',align:'center'"><spring:message code="resc.label.dutyDesc"/></th>
+	        		<th data-options="field:'authDeptDesc',width:'10%',halign:'center',align:'center'"><spring:message code="resc.label.deptDesc"/></th>
+	        		<th data-options="field:'atchIndc',width:'10%',halign:'center',align:'center'"><spring:message code="resc.label.attchFile"/></th>
+	        		<th data-options="field:'viewCnt',width:'10%',halign:'center',align:'right'"><spring:message code="resc.label.viewCount"/></th>	        		
+	        		<th data-options="field:'dcmtRgsrDatetime',width:'15%',halign:'center',align:'center',formatter:formatDate"><spring:message code="resc.label.createDateTime"/></th>        		
+		        </tr>
+		    </c:if>
 		    </thead>
 			</table>
 			<div id="tb" style="padding:2px 5px;">

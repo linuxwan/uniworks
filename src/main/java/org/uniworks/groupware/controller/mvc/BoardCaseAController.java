@@ -59,6 +59,18 @@ public class BoardCaseAController {
 		map.put("orderBy", "rescKey");	//코드 정렬 방법 셋팅
 		List<CommonCode> searchItemList = commonService.getCommonSubCodeList(map);	
 		
+		DateUtil crntDate = new DateUtil();
+		map.put("crntDate", crntDate.getString());
+		map.put("cntnId", param.getCntnId());
+				
+		BoardMaster boardMaster = boardService.selectBoardMasterInfo(map);
+		//구분 필드 표시 여부 체크
+		if (!boardMaster.getTypeCode1().isEmpty() || !boardMaster.getTypeCode2().isEmpty() ||
+			!boardMaster.getTypeCode3().isEmpty() || !boardMaster.getTypeCode4().isEmpty()) {
+			mav.addObject("gubun", "Y");
+		} else {
+			mav.addObject("gubun", "N");
+		}
 		mav.addObject("searchItemList", searchItemList);
 		mav.addObject("cntnName", param.getCntnName());
 		return mav;
@@ -87,7 +99,7 @@ public class BoardCaseAController {
 
 		map.put("majCode", "CD008");
 		map.put("orderBy", "rescKey");
-		List<CommonCode> commonCodeList = commonService.getCommonSubCodeList(map);
+		List<CommonCode> commonCodeList = commonService.getCommonSubCodeList(map);		
 				
 		mav.addObject("docWriteNo", docWriteNo);
 		mav.addObject("boardMst", boardMaster);	
