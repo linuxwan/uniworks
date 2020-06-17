@@ -93,9 +93,6 @@ public class BoardController {
 		nw130m.setDcmtRgsrDatetime(DateUtil.getCurrentDate());
 		nw130m.setDcmtRgsrNo(CommUtil.createSequenceNo("B"));
 								
-		request.setAttribute("cntnId", nw130m.getCntnId());
-		request.setAttribute("attachList", model.get("attachList"));
-		request.setAttribute("filePathType", model.get("filePathType"));
 		List<Nw115m> attachFileList = AttachFileUtil.setAttachFileList(model, nw130m.getDcmtRgsrNo(), fileService);
 		
 		int cnt = boardService.addBoardDocument(nw130m, attachFileList);
