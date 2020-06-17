@@ -158,9 +158,9 @@
 	<input type="hidden" id="lineApprLevel" name="lineApprLevel" value='<c:out value="${apprLevel}" />'/>
 	<input id="attachList" name="attachList" type="hidden" value="${attachList}"/>
 	<input id="apprStus" name="apprStus" type="hidden" value="${apprStus}"/>
-	<input id="atchIndc" name="atchIndc" type="hidden" value="${atchIndc}"/>
+	<input id="atchIndc" name="atchIndc" type="hidden" value="${boardMst.atchIndc}"/>
 	<input id="saveType" name="saveType" type="hidden" value=""/>
-	<input id="filePathType" name="filePathType" type="hidden" value="A" />
+	<input id="filePathType" name="filePathType" type="hidden" value="B" />
 	<input id="coId" name="coId" type="hidden" value="${userSession.coId}" />
 	<input id="boardId" name="boardId" type="hidden" value="${boardMst.boardId}" />
 	

@@ -102,5 +102,6 @@
 	   <if test="searchType == '03' and searchWord != null">
 	   and A.CONTENT LIKE CONCAT('%', #{searchWord,jdbcType=VARCHAR}, '%')
 	   </if>
+	order by A.DCMT_RGSR_NO DESC 
 	</select>
 </mapper>

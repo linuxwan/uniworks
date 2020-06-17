@@ -8,6 +8,8 @@ package org.uniworks.groupware.service;
 import java.util.List;
 import java.util.Map;
 
+import org.uniworks.groupware.domain.Nw115m;
+import org.uniworks.groupware.domain.Nw130m;
 import org.uniworks.groupware.domain.board.BoardDoc;
 import org.uniworks.groupware.domain.board.BoardMaster;
 
@@ -28,4 +30,11 @@ public interface BoardService {
 	 * @return
 	 */
 	List<BoardDoc> selectBoardList(Map<String, Object> map);
+	/**
+	 * 게시판 등록
+	 * @param nw130m
+	 * @param attachFileList
+	 * @return
+	 */
+	int addBoardDocument(Nw130m nw130m, List<Nw115m> attachFileList);
 }

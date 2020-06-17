@@ -26,12 +26,15 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.util.WebUtils;
 import org.uniworks.groupware.common.UserSession;
+import org.uniworks.groupware.common.util.AttachFileUtil;
 import org.uniworks.groupware.common.util.CommUtil;
 import org.uniworks.groupware.common.util.DateUtil;
 import org.uniworks.groupware.common.util.WebUtil;
+import org.uniworks.groupware.domain.Nw115m;
 import org.uniworks.groupware.domain.Nw130m;
 import org.uniworks.groupware.domain.board.BoardDoc;
 import org.uniworks.groupware.service.BoardService;
+import org.uniworks.groupware.service.FileService;
 import org.uniworks.groupware.service.Nw130mService;
 
 /**
@@ -44,6 +47,7 @@ public class BoardController {
 	private static final Logger logger = LoggerFactory.getLogger(BoardController.class);
 	@Autowired BoardService boardService;	
 	@Autowired Nw130mService nw130mService;
+	@Autowired private FileService fileService;
 	@Autowired private MessageSource messageSource;
 		
 	@GetMapping(value = "/board/board_list_01/cntnId/{cntnId}/startDate/{startDate}/finishDate/{finishDate}/searchType/{searchType}/searchWord/{searchWord}")
@@ -88,14 +92,19 @@ public class BoardController {
 		
 		nw130m.setDcmtRgsrDatetime(DateUtil.getCurrentDate());
 		nw130m.setDcmtRgsrNo(CommUtil.createSequenceNo("B"));
+								
+		request.setAttribute("cntnId", nw130m.getCntnId());
+		request.setAttribute("attachList", model.get("attachList"));
+		request.setAttribute("filePathType", model.get("filePathType"));
+		List<Nw115m> attachFileList = AttachFileUtil.setAttachFileList(model, nw130m.getDcmtRgsrNo(), fileService);
 		
-		int cnt = nw130mService.addNw130m(nw130m);
+		int cnt = boardService.addBoardDocument(nw130m, attachFileList);
 		
 		if (cnt > 0) {
 			result = messageSource.getMessage("resc.msg.addOk", null, response.getLocale());			
 		} else {
 			result = messageSource.getMessage("resc.msg.addFail", null, response.getLocale());
-		}
+		}				
 		
 		return new ResponseEntity<String>(result, HttpStatus.OK);
 	}

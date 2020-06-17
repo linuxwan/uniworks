@@ -85,6 +85,60 @@ public class AttachFileUtil {
 		return attach;
 	}
 	
+	public static List<Nw115m> setAttachFileList(Map<String, Object> model, String dcmtRgsrNo, FileService fileService) {
+		List<Nw115m> attach = new ArrayList<Nw115m>();
+				
+		String coId = (String) model.get("coId");
+		String cntnId = (String) model.get("cntnId");
+		String attachList = (String) model.get("attachList");
+		String filePathType = (String) model.get("filePathType");	//결재 첨부파일 경로를 가져온다.
+		String strAttachFilePath = getAttachFilePath(filePathType, cntnId);
+		
+		if (attachList != null && attachList.length() > 0) {
+			String[] attachFileList = StringUtil.split2Array(attachList, "|");
+			
+			for (int i = 0; i < attachFileList.length; i++) {
+				String[] attachFileInfo = StringUtil.split2Array(attachFileList[i], "^");
+				String fileId = attachFileInfo[0];
+				Nw115m file = new Nw115m();
+				//Temp File 유무를 체크해서 임시첨부파일 테이블(NW118M)과 첨부파일 테이블(NW115M)에서 해당 파일 정보를 가져온다.
+				if (attachFileInfo[3].equalsIgnoreCase("Y")) {
+					Nw118m tempFile = fileService.getTempAttchFileInfo(fileId);
+					
+					if (tempFile == null) {	//temp file Table(NW118M)에서 값을 가져오지 못했을 경우
+						
+					} else {	//temp file Table(NW118M)에서 값을 가져왔을 경우.
+						file.setCoId(coId);
+						file.setCntnId(cntnId);
+						file.setDcmtRgsrNo(dcmtRgsrNo);
+						file.setFileId(tempFile.getFileId());
+						file.setSeqNo(i+1);
+						file.setFilePath(strAttachFilePath);
+						file.setAttchFileName(tempFile.getAttchFileName());
+						file.setAttchFileSysName(tempFile.getAttchFileSysName());
+						file.setFileExt(tempFile.getFileExt());
+						file.setFileSize(tempFile.getFileSize());
+						
+						attach.add(file);
+					}
+				} else {	//첨부파일 테이블(NW115M)에 파일 정보가 있을 경우.
+					Map<String, Object> map = new HashMap<String, Object>();
+					map.put("coId", coId);
+					map.put("cntnId", cntnId);
+					map.put("dcmtRgsrNo", dcmtRgsrNo);
+					map.put("fileId", attachFileInfo[0]);
+					file = fileService.getAttachFile(map);
+					
+					attach.add(file);
+				}
+			}
+		} else {
+			attach = null;
+		}
+		
+		return attach;
+	}
+	
 	/**
 	 * 실제 첨부파일이 저장되어 있는 물리적인 Path를 반환.
 	 * 첨부파일 유형이 무엇인가에 따라 폴더 위치가 달라짐.
