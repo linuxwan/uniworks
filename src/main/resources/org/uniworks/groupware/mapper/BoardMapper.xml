@@ -104,4 +104,17 @@
 	   </if>
 	order by A.DCMT_RGSR_NO DESC 
 	</select>
+	
+	<!-- 문서 내용 가져오기 -->
+	<select id="selectBoardByPrimaryKey" parameterType="java.util.Map" resultMap="BaseResultMap"> 
+		select  CO_ID, CNTN_ID, DCMT_RGSR_NO, PRNT_DCMT_RGSR_NO, DCMT_RGSR_DATETIME, AUTH_EMP_NO, FN_GetUserName(CO_ID, AUTH_EMP_NO, #{lang,jdbcType=VARCHAR}) as AUTH_EMP_NAME,
+				AUTH_DUTY_DESC, AUTH_DEPT_CODE, AUTH_DEPT_DESC, AUTH_TEL_NO, PRSV_TERM_TYPE, PRSV_TERM, TITLE, CONTENT, SALE_PRICE, 
+				RGSR_CNFM_USER, FN_GetUserName(CO_ID, RGSR_CNFM_USER, #{lang,jdbcType=VARCHAR}) as RGSR_CNFM_USER_NAME, RGSR_CNFM_DUTY_DESC, 
+				RGSR_CNFM_DEPT_CODE, RGSR_CNFM_DEPT_DESC, RGSR_CNFM_DATETIME, VIEW_CNT, ATCH_INDC, BOARD_ID, TYPE_CODE1, TYPE_CODE2, 
+				TYPE_CODE3, TYPE_CODE4, CHNG_ID, MDFY_DATE_TIME
+		from   nw130m
+		where  CO_ID	=	#{coId,jdbcType=VARCHAR}  
+		  and  CNTN_ID	=	#{cntnId,jdbcType=VARCHAR}
+		  and  DCMT_RGSR_NO	=	#{dcmtRgsrNo,jdbcType=VARCHAR} 
+	</select> 
 </mapper>

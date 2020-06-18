@@ -10,7 +10,7 @@
 								<tr>
 									<td class="td_title01"><fmt:message key="resc.label.title"/></td>
 									<td class="td_class01">
-										<c:out value="${doc.docTitle}" />										
+										<c:out value="${doc.title}" />										
 									</td>
 								</tr>
 								<tr>

@@ -61,6 +61,16 @@ public class BoardServiceImpl implements BoardService {
 	}
 	
 	/**
+	 * 게시판 정보 가져오기
+	 * @param map
+	 * @return
+	 */
+	@Override
+	public BoardDoc selectBoardByPrimaryKey(Map<String, Object> map) {
+		return boardMapper.selectBoardByPrimaryKey(map);
+	}
+	
+	/**
 	 * 게시판 등록
 	 * @param nw130m
 	 * @param attachFileList

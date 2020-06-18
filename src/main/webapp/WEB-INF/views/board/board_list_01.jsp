@@ -153,7 +153,7 @@
 	}
     
     /**
-     * 게시판 작성 문서 조회
+     * 게시판 문서 조회
     */
     function goView(cntnId, dcmtRgsrNo) {
     	var frameId = "listTabsFrame-" + dcmtRgsrNo;
@@ -162,7 +162,7 @@
     		$("#listTabsLayer").tabs("close", dcmtRgsrNo);
     	}
     	var securityParam = "&_csrf=" + $('#_csrf').val();
-    	var src = "<c:out value="${contextPath}"/>/approval/approval_view_form_01?cntnId=" + cntnId + "&dcmtRgsrNo=" + dcmtRgsrNo + securityParam;
+    	var src = "<c:out value="${contextPath}"/>/board/board_view_form_01?cntnId=" + cntnId + "&dcmtRgsrNo=" + dcmtRgsrNo + securityParam;
     	
     	var content = "<iframe name='" + frameId + "' src='" + src + "' id='" + frameId + "' frameborder='0' style='border:0;width:100%;height:100%;padding:10px 20px 0 0;' sandbox='allow-same-origin allow-scripts allow-popups allow-forms allow-top-navigation allow-pointer-lock' seamless='seamless'></iframe>";
     	
@@ -173,6 +173,7 @@
     		bodyCls: 'noscroll'
     	});	
     }    
+    
     /**
      *	작성화면
     */
@@ -250,8 +251,8 @@
 			    </c:forEach>	
 				</select>
 				<input id="searchWord" name="searchWord" class="easyui-textbox" style="width:140px">
-				<a href="#" id="btnSearch" class="easyui-linkbutton" iconCls="icon-search"><spring:message code="resc.label.search"/></a>
-				<a href="javascript:void(0)" id="btnWrite" class="easyui-linkbutton" iconCls="icon-add" style="float: right;" onclick="goWrite()"><spring:message code="resc.btn.enrollment"/></a>				
+				<a href="#" id="btnSearch" class="easyui-linkbutton" iconCls="icon-search"><spring:message code="resc.label.search"/></a>	
+				<a href="javascript:void(0)" id="btnWrite" class="easyui-linkbutton" iconCls="icon-add" style="float: right;" onclick="goWrite()"><spring:message code="resc.btn.enrollment"/></a>			
 			</div>
 		</div>
 	</div>

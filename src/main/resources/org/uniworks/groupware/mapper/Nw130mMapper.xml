@@ -49,8 +49,8 @@
 				RGSR_CNFM_DEPT_CODE, RGSR_CNFM_DEPT_DESC, RGSR_CNFM_DATETIME, VIEW_CNT, ATCH_INDC, BOARD_ID, TYPE_CODE1, TYPE_CODE2, 
 				TYPE_CODE3, TYPE_CODE4, CHNG_ID, MDFY_DATE_TIME
 		from   nw130m
-		where  CNTN_ID	=	#{cntnId,jdbcType=VARCHAR} 
-		  and  CO_ID	=	#{coId,jdbcType=VARCHAR} 
+		where  CO_ID	=	#{coId,jdbcType=VARCHAR}  
+		  and  CNTN_ID	=	#{cntnId,jdbcType=VARCHAR}
 		  and  DCMT_RGSR_NO	=	#{dcmtRgsrNo,jdbcType=VARCHAR} 
 	</select> 
  

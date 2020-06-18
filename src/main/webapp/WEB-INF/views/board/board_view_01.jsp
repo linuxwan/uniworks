@@ -18,13 +18,9 @@
     <script type="text/javascript">
     $(function(){
     	//취소버튼 클릭 시 결재양식함으로 이동
-        $(".btnCancel").click(function(evt) {
-        	$.messager.confirm("<spring:message code="resc.label.confirm"/>", "<spring:message code="resc.msg.docWriteCancel"/>", function(r) {
-        		if (r) {        		
-        			var title = '<spring:message code="resc.btn.enrollment"/>' + '-' + '${docWriteNo}';
-        			parent.$("#listTabsLayer").tabs('close', title);	
-        		}
-        	});        	
+        $(".btnClose").click(function(evt) {       		
+   			var title = '${doc.dcmtRgsrNo}';
+   			parent.$("#listTabsLayer").tabs('close', title);	      	
         });
     	
     	//저장만 버튼 클릭 시
@@ -146,14 +142,14 @@
 	
 	<div>
 	<c:choose>
-		<c:when test="${boardMst.apprIndc != 'Y'}">
-		<a href="#" class="easyui-linkbutton btnEnrollment" style="width:100px"><spring:message code="resc.btn.enrollment"/></a>
-		</c:when>
-		<c:when test="${boardMst.apprIndc == 'Y'}">
+		<c:when test="${boardMst.apprIndc == 'Y' and doc.rgsrCnfmUser == userSession.userId and doc.rgsrCnfmDatetime == null }">
 		<a href="#" class="easyui-linkbutton btnApprReq" style="width:100px"><spring:message code="resc.btn.apprReq"/></a>
 		</c:when>
+		<c:when test="${boardMst.apprIndc != 'Y' and doc.authEmpNo == userSession.userId}">
+		<a href="#" class="easyui-linkbutton btnModify" style="width:100px"><spring:message code="resc.btn.modify"/></a>
+		</c:when>
 	</c:choose>
-		<a href="#" class="easyui-linkbutton btnCancel" style="width:100px"><spring:message code="resc.btn.cancel"/></a>
+		<a href="#" class="easyui-linkbutton btnClose" style="width:100px"><spring:message code="resc.btn.close"/></a>
 	</div>
 	
 	<form:form id="boardDocForm01" method="post" action="">
@@ -174,14 +170,14 @@
 				<td style="width:75%;">
 					<!-- 작성자 정보 -->
 					<div class="floatLeft2">
-					<jsp:include page="/WEB-INF/views/include/board/auth_info_write_01.jsp"></jsp:include>
+					<jsp:include page="/WEB-INF/views/include/board/auth_info_view_01.jsp"></jsp:include>
 					</div>
 				</td>
 			<c:if test="${boardMst.apprIndc == 'Y'}">
 				<td style="width:25%;">
 					<!-- 결재자 정보 -->
 					<div class="floatLeft2">
-					<jsp:include page="/WEB-INF/views/include/board/line_approver_edit_01.jsp"></jsp:include>
+					<jsp:include page="/WEB-INF/views/include/board/line_approver_01.jsp"></jsp:include>
 					</div>
 				</td>		
 			</c:if>	
@@ -192,7 +188,7 @@
 			
 	<!-- 문서 Body -->
 	<div style="width:100%;height:100%;">
-		<jsp:include page="/WEB-INF/views/include/board/board_doc_body_edit_01.jsp"></jsp:include>
+		<jsp:include page="/WEB-INF/views/include/board/board_doc_body_01.jsp"></jsp:include>
 	</div>
 	<br/>
 	
@@ -203,7 +199,7 @@
 			<tr>
 				<td>
 					<div class="floatLeft2">
-					<jsp:include page="/WEB-INF/views/common/attch_file_add_01.jsp"></jsp:include>
+					<jsp:include page="/WEB-INF/views/common/attch_file_view_01.jsp"></jsp:include>
 					</div>
 				</td>
 			</tr>
@@ -215,14 +211,14 @@
 	
 	<div>
 	<c:choose>
-		<c:when test="${boardMst.apprIndc != 'Y'}">
-		<a href="#" class="easyui-linkbutton btnEnrollment" style="width:100px"><spring:message code="resc.btn.enrollment"/></a>
-		</c:when>
-		<c:when test="${boardMst.apprIndc == 'Y'}">
+		<c:when test="${boardMst.apprIndc == 'Y' and doc.rgsrCnfmUser == userSession.userId and doc.rgsrCnfmDatetime == null}">
 		<a href="#" class="easyui-linkbutton btnApprReq" style="width:100px"><spring:message code="resc.btn.apprReq"/></a>
 		</c:when>
+		<c:when test="${boardMst.apprIndc != 'Y' and doc.authEmpNo == userSession.userId}">
+		<a href="#" class="easyui-linkbutton btnModify" style="width:100px"><spring:message code="resc.btn.modify"/></a>
+		</c:when>
 	</c:choose>
-		<a href="#" class="easyui-linkbutton btnCancel" style="width:100px"><spring:message code="resc.btn.cancel"/></a>
+		<a href="#" class="easyui-linkbutton btnClose" style="width:100px"><spring:message code="resc.btn.close"/></a>
 	</div>
 </body>
 </html>

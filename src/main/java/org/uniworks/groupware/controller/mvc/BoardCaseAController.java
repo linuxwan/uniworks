@@ -25,9 +25,11 @@ import org.uniworks.groupware.common.UserSession;
 import org.uniworks.groupware.common.util.DateUtil;
 import org.uniworks.groupware.common.util.StringUtil;
 import org.uniworks.groupware.domain.CommonCode;
+import org.uniworks.groupware.domain.board.BoardDoc;
 import org.uniworks.groupware.domain.board.BoardMaster;
 import org.uniworks.groupware.service.BoardService;
 import org.uniworks.groupware.service.CommonService;
+import org.uniworks.groupware.service.Nw130mService;
 
 /**
  * @author gomoosin
@@ -38,6 +40,7 @@ public class BoardCaseAController {
 	private static final Logger logger = LoggerFactory.getLogger(BoardCaseAController.class);
 	@Autowired CommonService commonService;
 	@Autowired BoardService boardService;
+	@Autowired Nw130mService nw130mService;
 	
 	/**
 	 * 게시판 목록
@@ -102,6 +105,45 @@ public class BoardCaseAController {
 		List<CommonCode> commonCodeList = commonService.getCommonSubCodeList(map);		
 				
 		mav.addObject("docWriteNo", docWriteNo);
+		mav.addObject("boardMst", boardMaster);	
+		mav.addObject("userSession", userSession);
+		mav.addObject("serviceLife", commonCodeList);	//보존연한
+		return mav;
+	}
+	
+	/**
+	 * 게시판 조회 화면
+	 * @param param
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value = "board/board_view_form_01", method = {RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView boardViewForm01(@ModelAttribute("param") HiddenField param, HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView("board/board_view_01");
+		//Session 정보를 가져온다.
+		UserSession userSession = (UserSession) WebUtils.getSessionAttribute(request, "userSession");
+		String cntnId = StringUtil.null2void(request.getParameter("cntnId"));
+		String dcmtRgsrNo = StringUtil.null2void(request.getParameter("dcmtRgsrNo"));
+		
+		if (!cntnId.isEmpty()) param.setCntnId(cntnId);
+		
+		DateUtil crntDate = new DateUtil();
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("coId", userSession.getCoId());
+		map.put("lang", userSession.getLanguage());
+		map.put("crntDate", crntDate.getString());
+		map.put("cntnId", cntnId);
+		map.put("dcmtRgsrNo", dcmtRgsrNo);
+				
+		BoardMaster boardMaster = boardService.selectBoardMasterInfo(map);
+
+		map.put("majCode", "CD008");
+		map.put("orderBy", "rescKey");
+		List<CommonCode> commonCodeList = commonService.getCommonSubCodeList(map);		
+		
+		BoardDoc boardDoc = boardService.selectBoardByPrimaryKey(map);
+		
+		mav.addObject("doc", boardDoc);
 		mav.addObject("boardMst", boardMaster);	
 		mav.addObject("userSession", userSession);
 		mav.addObject("serviceLife", commonCodeList);	//보존연한

@@ -31,6 +31,12 @@ public interface BoardService {
 	 */
 	List<BoardDoc> selectBoardList(Map<String, Object> map);
 	/**
+	 * 게시판 정보 가져오기
+	 * @param map
+	 * @return
+	 */
+	BoardDoc selectBoardByPrimaryKey(Map<String, Object> map);
+	/**
 	 * 게시판 등록
 	 * @param nw130m
 	 * @param attachFileList
