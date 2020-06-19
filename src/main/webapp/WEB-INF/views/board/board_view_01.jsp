@@ -21,43 +21,7 @@
         $(".btnClose").click(function(evt) {       		
    			var title = '${doc.dcmtRgsrNo}';
    			parent.$("#listTabsLayer").tabs('close', title);	      	
-        });
-    	
-    	//저장만 버튼 클릭 시
-    	$(".btnEnrollment").click(function(evt) {
-    		var title = "<spring:message code="resc.label.warning"/>";
-    		var msg = "<spring:message code="resc.msg.contents"/>";    		    		
-    		
-    		if($('#boardDocForm01').form('enableValidation').form('validate') && isEmptyTinyMCE('content', title, msg)) {
-    			$('#content').val(tinymce.get('content').getContent());
-	    		var formData = parseFormHelper('boardDocForm01');	    		
-	    		var strUrl = '<c:out value="${contextPath}"/>/rest/board/create';	    		    		
-	    			    			    		    		
-	    		$.ajax({
-					type: 'POST',
-					url: strUrl,
-					data: formData,					
-					dataType: 'json',						
-					beforeSend: function(xhr) {
-						xhr.setRequestHeader("Accept", "application/json");
-				        xhr.setRequestHeader("Content-Type", "application/json");
-						//데이터를 전송하기 전에 헤더에 csrf값을 설정한다.					
-						xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
-					},  				
-					success : function(message) {
-						var title = '<spring:message code="resc.label.confirm"/>';		    			
-						$.messager.alert(title, message, "info",  function(){
-							var title = '<spring:message code="resc.btn.enrollment"/>' + '-' + '${docWriteNo}'
-		        			parent.$("#listTabsLayer").tabs('close', title);
-						});						
-					},
-					error : function(xhr, status, error) {
-						console.log("error: " + status);
-					}
-	    		});	    		
-	    		return false;
-	    	}
-    	});
+        });    	    	
     	    	
     	//승인 요청 버튼 클릭
         $(".btnApprReq").click(function(evt){

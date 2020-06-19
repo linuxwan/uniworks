@@ -25,11 +25,12 @@ import org.uniworks.groupware.common.UserSession;
 import org.uniworks.groupware.common.util.DateUtil;
 import org.uniworks.groupware.common.util.StringUtil;
 import org.uniworks.groupware.domain.CommonCode;
+import org.uniworks.groupware.domain.Nw115m;
 import org.uniworks.groupware.domain.board.BoardDoc;
 import org.uniworks.groupware.domain.board.BoardMaster;
 import org.uniworks.groupware.service.BoardService;
 import org.uniworks.groupware.service.CommonService;
-import org.uniworks.groupware.service.Nw130mService;
+import org.uniworks.groupware.service.Nw115mService;
 
 /**
  * @author gomoosin
@@ -40,7 +41,7 @@ public class BoardCaseAController {
 	private static final Logger logger = LoggerFactory.getLogger(BoardCaseAController.class);
 	@Autowired CommonService commonService;
 	@Autowired BoardService boardService;
-	@Autowired Nw130mService nw130mService;
+	@Autowired Nw115mService nw115mService;
 	
 	/**
 	 * 게시판 목록
@@ -143,10 +144,46 @@ public class BoardCaseAController {
 		
 		BoardDoc boardDoc = boardService.selectBoardByPrimaryKey(map);
 		
+		//첨부파일 가져오기
+		List<Nw115m> attachList = getAttachFileList(map);
+		String strAttachList = getAttachFileListToString(map);
+		
 		mav.addObject("doc", boardDoc);
-		mav.addObject("boardMst", boardMaster);	
+		mav.addObject("boardMst", boardMaster);
+		mav.addObject("attachList", attachList);
+		mav.addObject("strAttachList", strAttachList);
 		mav.addObject("userSession", userSession);
 		mav.addObject("serviceLife", commonCodeList);	//보존연한
 		return mav;
+	}
+	
+	/**
+	 * 첨부파일 목록을 가져와서 attachList에 할당할 문자열을 반환
+	 * fileId^attchFileName^fileSize^tempIndc으로 |으로 구분.
+	 * @param map
+	 * @return
+	 */
+	private String getAttachFileListToString(Map<String, Object> map) {
+		String attachList = "";
+		List<Nw115m> fileList = getAttachFileList(map);
+		
+		Nw115m attachFile = null;
+		for (int i = 0; i < fileList.size(); i++) {
+			attachFile = fileList.get(i);
+			if (i > 0) attachList += "|";
+			attachList += attachFile.getFileId() + "^" + attachFile.getAttchFileName() + "^" + attachFile.getFileSize() + "^N";
+		}
+		
+		return attachList;
+	}
+	
+	/**
+	 * 첨부파일 목록 가져오기
+	 * @param map
+	 * @return
+	 */
+	private List<Nw115m> getAttachFileList(Map<String, Object> map) {
+		List<Nw115m> fileList = nw115mService.getNw115mList(map);
+		return fileList;
 	}
 }
