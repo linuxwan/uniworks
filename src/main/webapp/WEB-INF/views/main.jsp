@@ -79,8 +79,11 @@
 			</div>
 		</div>
 		<div id="content" data-options="region:'center',title:'Main Title',iconCls:'icon-ok'">
-			<div id="divMain" style="height:auto" data-options="fit:true,border:false,plain:true">
-				<iframe id="frmMain" name="frmMain" src="" sandbox="allow-same-origin allow-scripts allow-popups allow-forms allow-top-navigation allow-pointer-lock" seamless="seamless" style="overflow-x:hidden; overflow:auto; width:100%;"></iframe>
+			<div id="divMain" style="height:auto" data-options="fit:true,border:false,plain:true">			
+				<iframe id="frmMain" name="frmMain" src="" sandbox="allow-same-origin allow-scripts allow-popups allow-modals allow-forms allow-top-navigation allow-pointer-lock allow-popups-to-escape-sandbox" seamless="seamless" style="overflow-x:hidden; overflow:auto; width:100%;"></iframe>			 
+			 <!--
+			 	<embed id="frmMain" type="text/html" src="" style="width:100%;" />
+			 -->
 			</div>
 		</div>
 	</div>   

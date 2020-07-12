@@ -49,4 +49,14 @@ public class CommonController {
 		file.put("fileInfo", fileInfo);
 		return new ModelAndView("fileDownloadView", "downloadFile", file);
 	}
+	
+	@RequestMapping("/blank/url/{url}")
+	public ModelAndView blank(HttpServletRequest request, @PathVariable("url") String url, ModelMap model) throws Exception {
+		//Session 정보를 가져온다.
+		UserSession userSession = (UserSession) WebUtils.getSessionAttribute(request, "userSession");
+		ModelAndView mav = new ModelAndView("blank");
+		url = url.replaceAll("~", "/");
+		mav.addObject("url", url);
+		return mav;
+	}
 }

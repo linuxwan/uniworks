@@ -1,7 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 	<script type="text/javascript">
+	String.prototype.replaceAll = function(org, dest) {
+	    return this.split(org).join(dest);
+	}
 	
-	</script>
+	function fileDownload(targetUrl) {
+		var popup = window.open(targetUrl, '_blank');
+		//var changeURL = targetUrl.replaceAll('/', '~');
+		//window.open('<c:out value="${contextPath}"/>/blank/url/' + changeURL, '_blank');
+	}
+	</script>	
 	<table class="apprRcptRfnc" style="width:100%;height:auto;">
 		<tbody>
 			<tr>
@@ -28,7 +36,7 @@
 					    		<td>${st.count}</td>
 					    		<td>${attach.attchFileName}</td>
 					    		<td>${attach.fileSize}</td>
-					    		<td><a href="<c:out value="${contextPath}"/>/download/cntnId/${attach.cntnId}/dcmtRgsrNo/${attach.dcmtRgsrNo}/fileId/${attach.fileId}" class="easyui-linkbutton"><spring:message code="resc.btn.attchFileDown"/></a></td>
+					    		<td><a href="javascript:fileDownload('<c:out value="${contextPath}"/>/download/cntnId/${attach.cntnId}/dcmtRgsrNo/${attach.dcmtRgsrNo}/fileId/${attach.fileId}');" class="easyui-linkbutton"><spring:message code="resc.btn.attchFileDown"/></a></td>
 					    	</tr>
 					    </c:forEach>
 					    </tbody>
