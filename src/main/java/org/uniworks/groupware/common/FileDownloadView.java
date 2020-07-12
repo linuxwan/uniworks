@@ -31,7 +31,7 @@ public class FileDownloadView extends AbstractView {
 	
 	public FileDownloadView() {
 		// 객체가 생성될 때 Content Type을 다음과 같이 변경 
-        setContentType("application/octet-stream; charset=utf-8");        
+        setContentType("application/octet-stream; charset=utf-8");       
 	}
 	
 	/* (non-Javadoc)
