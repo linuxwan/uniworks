@@ -56,8 +56,19 @@ public class FileDownloadView extends AbstractView {
         
         if(userAgent.indexOf("Edge") > -1 || userAgent.indexOf("Trident") > -1) {	//IE 11 or Edge 일 경우
             fileName = URLEncoder.encode(nw115m.getAttchFileName(), "UTF-8");
-        } else {	//그 외 (Chrome, FireFox 등)
-            fileName = new String(nw115m.getAttchFileName().getBytes("UTF-8"), "iso-8859-1");
+        } else if (userAgent.indexOf("Chrome") > -1) {
+        	StringBuffer sb = new StringBuffer();
+        	for(int i=0; i<file.getName().length(); i++) {
+        		char c = file.getName().charAt(i);
+        		if(c > '~') {
+        			sb.append(URLEncoder.encode(""+c, "UTF-8"));
+        		}else {
+        			sb.append(c);
+        		}
+        	}
+        	fileName = sb.toString();
+        } else {	//그 외 (FireFox 등)
+            fileName = new String(nw115m.getAttchFileName().getBytes("UTF-8"), "iso-8859-1");        	
         }
         
         response.setHeader("Content-Disposition", "attachment; filename=\"" + fileName + "\";");
@@ -72,11 +83,14 @@ public class FileDownloadView extends AbstractView {
         try {
             fis = new FileInputStream(file);
             FileCopyUtils.copy(fis, out);
+        } catch (Exception e) {
+        	e.printStackTrace();
         } finally {
             if (fis != null) {
             	try {
                     fis.close();
                 } catch(IOException ex) {
+                	ex.printStackTrace();
                 }
             }
         }
