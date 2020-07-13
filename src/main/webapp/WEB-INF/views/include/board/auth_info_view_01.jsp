@@ -28,17 +28,23 @@
 			<c:if test="${boardMst.validTermIndc == 'Y'}">
 			<tr style="height:31px">
 				<td class="td_title01"><spring:message code="resc.label.prsvTerm"/></td>
-				<td class="td_class01">				
-					<select class="easyui-combobox" id="serviceLife" name="prsvTermType" style="width:70px;" data-options="panelHeight:'auto'">
-						<c:forEach items="${serviceLife}" var="serviceLife" >
-						<option value='<c:out value="${serviceLife.subCode}"/>' <c:if test="${boardMst.validTermCode == serviceLife.subCode}">selected="selected"</c:if> ><c:out value="${serviceLife.rescKeyValue}"/></option>
-						</c:forEach>
-					</select>
+				<td class="td_class01">		
+					<table>
+					<tr><td>		
+						<select class="easyui-combobox" id="serviceLife" name="prsvTermType" style="width:70px;" data-options="panelHeight:'auto'">
+							<c:forEach items="${serviceLife}" var="serviceLife" >
+							<option value='<c:out value="${serviceLife.subCode}"/>' <c:if test="${boardMst.validTermCode == serviceLife.subCode}">selected="selected"</c:if> ><c:out value="${serviceLife.rescKeyValue}"/></option>
+							</c:forEach>
+						</select> 
+					</td>
+					<td>
+						<div id="divClsDate" class="floatLeft2"></div>
+						<input type="hidden" id="prsvTerm" name="prsvTerm" value="${doc.prsvTerm}"/>
+					</td></tr>
+					</table>
 				</td>
-				<td colspan="2" class="td_class01">
-					<div id="divClsDate" class="floatLeft2"></div>
-					<input type="hidden" id="prsvTerm" name="prsvTerm" value="${doc.prsvTerm}"/>
-				</td>								
+				<td class="td_title01"><spring:message code="resc.label.dcmtRgsrDatetime"/></td>
+				<td class="td_class01"><fmt:formatDate pattern='yyyy-MM-dd HH:mm:ss' value='${doc.dcmtRgsrDatetime}'/></td>								
 			</tr>	
 			</c:if>
 		</tbody>

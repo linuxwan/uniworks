@@ -50,14 +50,11 @@
     	}
     	        
         var baseServiceLife = '${boardMst.validTermCode}';
-        getServiceLifeDate(baseServiceLife, 'divClsDate', 'prsvTerm');
-        $('#serviceLife').combobox('readonly', true);
         
-        $("#serviceLife").combobox({
-    		onChange:function(newValue,oldValue) {
-    			getServiceLifeDate(newValue,'divClsDate', 'prsvTerm');
-    		}	
-    	});        
+        $('#serviceLife').combobox('readonly', true);
+        var prsvTerm = "<fmt:formatDate pattern='yyyy-MM-dd' value='${doc.prsvTerm}'/>";
+        $('#divClsDate').text(prsvTerm);
+        $('#prsvTerm').val(prsvTerm);
     });      
     
   	//해당게시판 목록으로 이동.
