@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 	<script type="text/javascript">
 	function selectLineApproverPopup() {
-		var apprLevel = $("#apprLevel").val();
-		var url = "<c:out value="${contextPath}"/>/approval/popup/selectLineApprovers?apprLevel=" + apprLevel;
+		var url = "<c:out value="${contextPath}"/>/board/popup/selectLineApprover";
 		$.popupWindow(url, { name: 'selectLineAppr', height: 650, width: 700 });
 	}	
 	</script>

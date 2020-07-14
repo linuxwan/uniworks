@@ -157,6 +157,17 @@ public class BoardCaseAController {
 		return mav;
 	}
 	
+	@RequestMapping(value = "/board/popup/selectLineApprover", method = {RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView boardSelectLineApprover(@ModelAttribute("param") HiddenField param, HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView("board/select_approver_form_01");
+		//Session 정보를 가져온다.
+		UserSession userSession = (UserSession) WebUtils.getSessionAttribute(request, "userSession");
+		String cntnId = StringUtil.null2void(request.getParameter("cntnId"));
+		String dcmtRgsrNo = StringUtil.null2void(request.getParameter("dcmtRgsrNo"));
+		
+		return mav;
+	}
+	
 	/**
 	 * 첨부파일 목록을 가져와서 attachList에 할당할 문자열을 반환
 	 * fileId^attchFileName^fileSize^tempIndc으로 |으로 구분.
