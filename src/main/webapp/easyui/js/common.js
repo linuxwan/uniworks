@@ -459,11 +459,21 @@ function uncomma(str) {
     return str.replace(/[^\d]+/g, '');
 }
 
-function fileDownload(cntnId, dcmtRgsrNo, fileId) {
+function fileDownload2(cntnId, dcmtRgsrNo, fileId) {
 	var url = webRootPath + "/download/cntnId/" + cntnId + "/dcmtRgsrNo/" + dcmtRgsrNo + "/fileId/" + fileId;
 	self.location = url;	
 }
 
+function fileDownload(targetUrl) {
+	$('#frmMain').attr("sandbox", 'allow-downloads allow-same-origin allow-scripts allow-popups allow-forms allow-top-navigation allow-pointer-lock');
+	console.log(targetUrl);        	
+	window.addEventListener('focus', window_focus, false);
+	function window_focus() {
+		window.removeEventListener('focus', window_focus, false);
+		URL.revokeObjectURL(targetUrl);    		
+	}
+	location.href = targetUrl; 	
+}
 /***
  * Datebox에서 사용 : 날짜 사이에 -로 구분
  * @param date

@@ -3,12 +3,7 @@
 	String.prototype.replaceAll = function(org, dest) {
 	    return this.split(org).join(dest);
 	}
-	
-	function fileDownload(targetUrl) {
-		var popup = window.open(targetUrl, '_blank');
-		//var changeURL = targetUrl.replaceAll('/', '~');
-		//window.open('<c:out value="${contextPath}"/>/blank/url/' + changeURL, '_blank');
-	}
+		
 	</script>	
 	<table class="apprRcptRfnc" style="width:100%;height:auto;">
 		<tbody>
