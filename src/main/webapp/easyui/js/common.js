@@ -459,7 +459,7 @@ function uncomma(str) {
     return str.replace(/[^\d]+/g, '');
 }
 
-function fileDownload(cntnId, dcmtRgsrNo, fileId) {
+function fileDownload2(cntnId, dcmtRgsrNo, fileId) {
 	var url = webRootPath + "/download/cntnId/" + cntnId + "/dcmtRgsrNo/" + dcmtRgsrNo + "/fileId/" + fileId;
 	self.location = url;	
 }
