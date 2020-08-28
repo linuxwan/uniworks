@@ -49,7 +49,7 @@ public class FileDownloadView extends AbstractView {
 		
 		//response.setContentType(getContentType());
 		//logger.debug("getContentType:" + getContentType());
-		response.setContentType("application/octet-stream; charset=utf-8");		
+		response.setContentType("application/force-download");		
 		response.setCharacterEncoding("UTF-8");
 		response.setContentLength((int)file.length());
 		String userAgent = request.getHeader("User-Agent");
@@ -57,24 +57,13 @@ public class FileDownloadView extends AbstractView {
         
         if(userAgent.indexOf("Edge") > -1 || userAgent.indexOf("Trident") > -1) {	//IE 11 or Edge 일 경우
             fileName = URLEncoder.encode(nw115m.getAttchFileName(), "UTF-8");
-        } else if (userAgent.indexOf("Chrome") > -1) {
-        	/*
-        	StringBuffer sb = new StringBuffer();
-        	for(int i=0; i < fileName.length(); i++) {
-        		char c = file.getName().charAt(i);
-        		if(c > '~') {
-        			sb.append(URLEncoder.encode(""+c, "UTF-8"));
-        		}else {
-        			sb.append(c);
-        		}
-        	} 
-        	*/       	
+        } else if (userAgent.indexOf("Chrome") > -1) {        	
         	response.setHeader("fileName", fileName);
         } else {	//그 외 (FireFox 등)
             fileName = new String(nw115m.getAttchFileName().getBytes("UTF-8"), "iso-8859-1");            
         }
                 
-        response.setHeader("Content-Disposition", "attachment; filename=\"" + fileName + "\";");                
+        response.setHeader("Content-Disposition", "inline; filename=\"" + fileName + "\";");                
         response.setHeader("Content-Transfer-Encoding", "binary");
         response.setHeader("Pragma", "no-cache;");
         response.setHeader("Expires", "-1;");        

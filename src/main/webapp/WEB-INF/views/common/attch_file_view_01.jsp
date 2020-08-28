@@ -4,6 +4,10 @@
 	    return this.split(org).join(dest);
 	}
 		
+	function fileDownload(targetUrl) {			
+		var popup = window.open(targetUrl, '_blank');		
+		//$(parent.document).location.href = targetUrl;		
+	}
 	</script>	
 	<table class="apprRcptRfnc" style="width:100%;height:auto;">
 		<tbody>
@@ -30,8 +34,11 @@
 					    		<td>${attach.fileId}</td>
 					    		<td>${st.count}</td>
 					    		<td>${attach.attchFileName}</td>
-					    		<td>${attach.fileSize}</td>
-					    		<td><a href="javascript:fileDownload('<c:out value="${contextPath}"/>/download/cntnId/${attach.cntnId}/dcmtRgsrNo/${attach.dcmtRgsrNo}/fileId/${attach.fileId}');" class="easyui-linkbutton"><spring:message code="resc.btn.attchFileDown"/></a></td>
+					    		<td>${attach.fileSize}</td>					    		  
+					    		<td><a href="javascript:fileDownload('<c:out value="${contextPath}"/>/download/cntnId/${attach.cntnId}/dcmtRgsrNo/${attach.dcmtRgsrNo}/fileId/${attach.fileId}');" class="easyui-linkbutton"><spring:message code="resc.btn.attchFileDown"/></a></td>					    		
+					    		<!--
+					    		<td><a href="<c:out value="${contextPath}"/>/download/cntnId/${attach.cntnId}/dcmtRgsrNo/${attach.dcmtRgsrNo}/fileId/${attach.fileId}" class="easyui-linkbutton"><spring:message code="resc.btn.attchFileDown"/></a></td>
+					    		-->
 					    	</tr>
 					    </c:forEach>
 					    </tbody>

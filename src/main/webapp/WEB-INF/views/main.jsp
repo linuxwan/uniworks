@@ -80,7 +80,7 @@
 		</div>
 		<div id="content" data-options="region:'center',title:'Main Title',iconCls:'icon-ok'">
 			<div id="divMain" style="height:auto" data-options="fit:true,border:false,plain:true">			
-				<iframe name='frmMain' src='' id='frmMain' style='border:0;width:100%;height:85%;padding:10px 10px 0 0;' sandbox='allow-downloads allow-same-origin allow-scripts allow-popups allow-forms allow-top-navigation allow-pointer-lock' seamless='seamless'></iframe>		 
+				<iframe id="frmMain" name="frmMain" src="" sandbox="allow-downloads allow-same-origin allow-scripts allow-popups allow-forms allow-top-navigation allow-pointer-lock" seamless="seamless" style="overflow-x:hidden; overflow:auto; width:100%;"></iframe>		 
 			 <!--
 			 	<iframe id="frmMain" name="frmMain" src="" sandbox="allow-downloads allow-same-origin allow-scripts allow-popups allow-forms allow-top-navigation allow-pointer-lock" seamless="seamless" style="overflow-x:hidden; overflow:auto; width:100%;"></iframe>
 			 	<embed id="frmMain" type="text/html" src="" style="width:100%;" />
