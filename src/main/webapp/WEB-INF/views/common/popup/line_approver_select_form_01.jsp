@@ -165,6 +165,8 @@
 					</td>
 					<td>
 						<a href="#" id="btnSearchWord" class="easyui-linkbutton btnSearch" style="width:100px"><spring:message code="resc.btn.search"/></a>
+						<a href="#" id="btnApprLineSave" class="easyui-linkbutton btnSearch" style="width:100px"><spring:message code="resc.btn.apprLineSave"/></a>
+						<a href="#" id="btnApprLineCall" class="easyui-linkbutton btnSearch" style="width:120px"><spring:message code="resc.btn.apprLineCall"/></a>
 					</td>
 				</tr>
 				</table>		
