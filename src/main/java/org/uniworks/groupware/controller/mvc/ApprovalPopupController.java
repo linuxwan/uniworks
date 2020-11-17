@@ -6,17 +6,23 @@
 package org.uniworks.groupware.controller.mvc;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.util.WebUtils;
 import org.uniworks.groupware.common.UserSession;
+import org.uniworks.groupware.common.util.StringUtil;
+import org.uniworks.groupware.domain.approval.ApprovalMaster;
 import org.uniworks.groupware.domain.approval.LineApprover;
+import org.uniworks.groupware.service.ApprovalService;
 
 /**
  * @author Park Chungwan
@@ -24,6 +30,7 @@ import org.uniworks.groupware.domain.approval.LineApprover;
  */
 @Controller
 public class ApprovalPopupController {
+	@Autowired ApprovalService apprService;
 	private static final Logger logger = LoggerFactory.getLogger(ApprovalPopupController.class);
 	
 	/**
@@ -66,13 +73,32 @@ public class ApprovalPopupController {
 		UserSession userSession = (UserSession) WebUtils.getSessionAttribute(request, "userSession");
 		String apprLevel = request.getParameter("apprLevel");
 		String coId = userSession.getCoId();
+		String apprMstId = StringUtil.null2void(request.getParameter("apprMstId"));
 		if (apprLevel == null) apprLevel = "0";
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("coId", coId);
+		map.put("apprMstId", apprMstId);
+		map.put("lang", userSession.getLanguage());
+		ApprovalMaster apprMst = apprService.getApprovalMasterInfo(map);
+		
+		String outHeight = "220px";
+		String inHeight = "155px";
+		if (apprMst.getRcptIndc().equalsIgnoreCase("Y") && apprMst.getRfncIndc().equalsIgnoreCase("Y")) {
+			outHeight = "220px";
+			inHeight = "155px";
+		} else {
+			outHeight = "440px";
+			inHeight = "380px";
+		}
 		
 		ArrayList<LineApprover> arrApprLine = new ArrayList<LineApprover>();
 		for (int i = 0; i < Integer.parseInt(apprLevel); i++) {
 			arrApprLine.add(new LineApprover());
 		}
-		
+		mav.addObject("apprMst", apprMst);
+		mav.addObject("outHeight", outHeight);
+		mav.addObject("inHeight", inHeight);
 		mav.addObject("userSession", userSession);
 		mav.addObject("coId", coId);
 		mav.addObject("apprLevel", apprLevel);

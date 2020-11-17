@@ -38,37 +38,40 @@
     		var rfncText = "";
     		
     		//수신처 정보를 opener에 설정
-    		var rcpt = $('#selRcpt').datalist('getRows');
-    		for (var i = 0; i < rcpt.length; i++) {
-    			if (i == 0) {
-    				rcptValue += rcpt[i].value;
-    				rcptText += rcpt[i].text;
-    			} else {
-    				rcptValue += "," + rcpt[i].value;
-    				rcptText += "," + rcpt[i].text;
-    			}
+    		if ($('#selRcpt').length > 0) {
+	    		var rcpt = $('#selRcpt').datalist('getRows');
+	    		for (var i = 0; i < rcpt.length; i++) {
+	    			if (i == 0) {
+	    				rcptValue += rcpt[i].value;
+	    				rcptText += rcpt[i].text;
+	    			} else {
+	    				rcptValue += "," + rcpt[i].value;
+	    				rcptText += "," + rcpt[i].text;
+	    			}
+	    		}
+	    		
+	    		$('#label_selRcpt', opener.document).html(rcptText);
+	    		$('#hd_selRcpt', opener.document).val(rcptValue);
+	    		$('#hd_selRcptDesc', opener.document).val(rcptText);
     		}
-    		
-    		$('#label_selRcpt', opener.document).html(rcptText);
-    		$('#hd_selRcpt', opener.document).val(rcptValue);
-    		$('#hd_selRcptDesc', opener.document).val(rcptText);
     		
     		//참조처 정보를 opener에 설정
-    		var rfnc = $('#selRfnc').datalist('getRows');
-    		for (var i = 0; i < rfnc.length; i++) {
-    			if (i == 0) {
-    				rfncValue += rfnc[i].value;
-    				rfncText += rfnc[i].text;
-    			} else {
-    				rfncValue += "," + rfnc[i].value;
-    				rfncText += "," + rfnc[i].text;
-    			}
+    		if ($('#selRfnc').length > 0) {
+	    		var rfnc = $('#selRfnc').datalist('getRows');
+	    		for (var i = 0; i < rfnc.length; i++) {
+	    			if (i == 0) {
+	    				rfncValue += rfnc[i].value;
+	    				rfncText += rfnc[i].text;
+	    			} else {
+	    				rfncValue += "," + rfnc[i].value;
+	    				rfncText += "," + rfnc[i].text;
+	    			}
+	    		}
+	    		
+	    		$('#label_selRfnc', opener.document).html(rfncText);
+	    		$('#hd_selRfnc', opener.document).val(rfncValue);
+	    		$('#hd_selRfncDesc', opener.document).val(rfncText);
     		}
-    		
-    		$('#label_selRfnc', opener.document).html(rfncText);
-    		$('#hd_selRfnc', opener.document).val(rfncValue);
-    		$('#hd_selRfncDesc', opener.document).val(rfncText);
-    		
     		window.close();
     	});
     	
@@ -123,10 +126,14 @@
     	
     	/* 설정된 라인결재자 정보가 있을 경우, 라인결재자 선택 팝업에서 Display한다. */
     	function openInitialRcptRfnc() {
-    		var rcptValue = $('#hd_selRcpt', opener.document).val().split(',');
-    		var rcptText = $('#hd_selRcptDesc', opener.document).val().split(',');
-    		var rfncValue = $('#hd_selRfnc', opener.document).val().split(',');
-    		var rfncText = $('#hd_selRfncDesc', opener.document).val().split(',');
+    		var rcptValue = "";
+    		if ($('#hd_selRcpt', opener.document).length > 0) rcptValue = $('#hd_selRcpt', opener.document).val().split(',');
+    		var rcptText = "";
+    		if ($('#hd_selRcptDesc', opener.document).length > 0) rcptText = $('#hd_selRcptDesc', opener.document).val().split(',');
+    		var rfncValue = "";
+    		if ($('#hd_selRfnc', opener.document).length > 0) rfncValue = $('#hd_selRfnc', opener.document).val().split(',');
+    		var rfncText = "";
+    		if ($('#hd_selRfncDesc', opener.document).length > 0) rfncText = $('#hd_selRfncDesc', opener.document).val().split(',');
 
     		if ($.trim(rcptValue) != "" && $.trim(rcptText) != "") {
 				for (var i = 0; i < rcptValue.length; i++) {
@@ -346,25 +353,30 @@
      * 이미 선택한 수신처/참조처가 있는 지 체크.
      */
     function checkRcptRfnc(value) {
-    	var dlist = $('#selRcpt');
-    	var rows = dlist.datalist('getRows');
     	var chk = true;
     	
-		for (var i = 0; i < rows.length; i++) {
-			if (rows[i].value == value) {
-				chk = false;
-				break;
+    	if ($('#selRcpt').length > 0) {
+	    	var dlist = $('#selRcpt');
+	    	var rows = dlist.datalist('getRows');	    	
+	    	
+			for (var i = 0; i < rows.length; i++) {
+				if (rows[i].value == value) {
+					chk = false;
+					break;
+				}
 			}
-		}
-		
-		dlist = $('#selRfnc');
-		rows = dlist.datalist('getRows');
-		for (var i = 0; i < rows.length; i++) {
-			if (rows[i].value == value) {
-				chk = false;
-				break;
+    	}
+    	
+    	if ($('#selRfnc').length > 0) {
+			var dlist = $('#selRfnc');
+			rows = dlist.datalist('getRows');
+			for (var i = 0; i < rows.length; i++) {
+				if (rows[i].value == value) {
+					chk = false;
+					break;
+				}
 			}
-		}
+    	}
 		
 		if (!chk) {
 			var title = "<spring:message code="resc.label.warning"/>";
@@ -452,22 +464,26 @@
 			</div>
 		</div>
 		<div data-options="region:'east',split:true,title:'<spring:message code="resc.btn.rcptRfncSelect"/>',collapsible:false" style="width:300px;">
+		<c:if test="${apprMst.rcptIndc == 'Y'}">
 			<br/>							
-			<div class="easyui-panel" title="<spring:message code="resc.label.rcpt"/>" style="width:100%;height:220px">
-				<div>
+			<div class="easyui-panel" title="<spring:message code="resc.label.rcpt"/>" style="width:100%;height:${outHeight};">
+				<div style="width:100%;height:auto;">
 					<a href="javascript:addRcpt('selRcpt');" class="easyui-linkbutton" data-options="iconCls:'icon-add'"><spring:message code="resc.btn.add"/></a>
     				<a href="javascript:delRcptRfnc('selRcpt');" class="easyui-linkbutton" data-options="iconCls:'icon-remove'"><spring:message code="resc.btn.delete"/></a>        					
     			</div>          				
-    			<ul class="easyui-datalist" id='selRcpt' style="width:100%;height:165px"></ul> 				        				
+    			<ul class="easyui-datalist" id='selRcpt' style="width:100%;height:${inHeight};"></ul> 				        				
 			</div>
+		</c:if>
+		<c:if test="${apprMst.rfncIndc == 'Y'}">
 			<br/>
-			<div class="easyui-panel" title="<spring:message code="resc.label.rfnc"/>" style="width:100%;height:220px">
-				<div>
+			<div class="easyui-panel" title="<spring:message code="resc.label.rfnc"/>" style="width:100%;height:${outHeight};">
+				<div style="width:100%;height:auto;">
 					<a href="javascript:addRfnc('selRfnc');" class="easyui-linkbutton" data-options="iconCls:'icon-add'"><spring:message code="resc.btn.add"/></a>
     				<a href="javascript:delRcptRfnc('selRfnc');" class="easyui-linkbutton" data-options="iconCls:'icon-remove'"><spring:message code="resc.btn.delete"/></a>        					
     			</div>          				
-    			<ul class="easyui-datalist" id='selRfnc' style="width:100%;height:165px"></ul> 				        				
+    			<ul class="easyui-datalist" id='selRfnc' style="width:100%;height:${inHeight};"></ul> 				        				
 			</div>				
+		</c:if>
 		</div>		
 	</div>
 </body>

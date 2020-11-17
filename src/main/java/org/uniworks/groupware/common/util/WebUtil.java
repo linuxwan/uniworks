@@ -76,9 +76,16 @@ public class WebUtil {
 					//BeanUtils는 기본적으로 ConvertUtilsBean에서 설정된 default값을 가지고 변환이 이루어진다.
 					//변환 과정이 구현에 따라 바뀔 필요가 있을 경우, ConvertUtilsBean에서 구현이 바뀌어야 할 type을 deregister함수로 빼고
 					//난 뒤에 새롭게 정의한 Converter를 해당 type으로 register함수를 이용해서 등록.
+					/*
 					ConvertUtilsBean cub = new ConvertUtilsBean();
 					cub.deregister(Date.class);
 					cub.register(new DateConverter(), Date.class);
+					*/					
+					DateTimeConverter dtConverter = new DateConverter();
+					dtConverter.setPattern("yyyyMMdd");
+					ConvertUtilsBean cub = new ConvertUtilsBean();
+					cub.deregister(Date.class);
+					cub.register(dtConverter, Date.class);
 					
 					BeanUtilsBean bub = new BeanUtilsBean(cub, new PropertyUtilsBean());
 					bub.setProperty(obj, name, value);

@@ -8,7 +8,7 @@
 	
 	function selectRcptRfncPopup() {
 		var apprLevel = $("#apprLevel").val();
-		var url = "<c:out value="${contextPath}"/>/approval/popup/selectRcptRfnc?apprLevel=" + apprLevel;
+		var url = "<c:out value="${contextPath}"/>/approval/popup/selectRcptRfnc?apprLevel=" + apprLevel + "&apprMstId=" + '${apprMst.apprMstId}';
 		$.popupWindow(url, { name: 'selectRcptRfnc', height: 650, width: 700 });
 	}
 	
