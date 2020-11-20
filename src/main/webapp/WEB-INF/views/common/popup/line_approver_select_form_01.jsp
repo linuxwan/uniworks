@@ -49,6 +49,29 @@
 			}
 		});  			
     	
+		//결재선 저장
+		$('#btnApprLineSave').bind('click', function(){
+			var apprLevel = ${apprLevel};
+			var strApprList = "";
+			var checkApprList = false;
+    		for (var i = 1; i <= apprLevel; i++) {
+    			if (i == 1) {
+    				strApprList += 'apprEmpNo_' + i + ":" + $('#apprEmpNo_' + i).val();	
+    			} else {
+    				strApprList += ',apprEmpNo_' + i + ":" + $('#apprEmpNo_' + i).val();
+    			}
+    			
+    			if ($('#apprEmpNo_' + i).val().length > 0) checkApprList = true;
+    		}
+    		
+    		if (checkApprList == false) {
+    			var title = "<spring:message code="resc.label.error"/>";
+        		var msg = "<spring:message code="resc.msg.selectApprover"/>";
+        		alertMsg(title, msg);
+    			return;
+    		}
+		});
+		
     	openInitialLineApprover();
     	
     	/* 조직 선택 시 BaseOganLev에 따라서 보직자만 또는 모든 조직원을 목록으로 가져온다. */
@@ -164,9 +187,9 @@
 						<input class="easyui-textbox" id="searchWord" name="searchWord" style="width:100%;"></input>
 					</td>
 					<td>
-						<a href="#" id="btnSearchWord" class="easyui-linkbutton btnSearch" style="width:100px"><spring:message code="resc.btn.search"/></a>
-						<a href="#" id="btnApprLineSave" class="easyui-linkbutton btnSearch" style="width:100px"><spring:message code="resc.btn.apprLineSave"/></a>
-						<a href="#" id="btnApprLineCall" class="easyui-linkbutton btnSearch" style="width:120px"><spring:message code="resc.btn.apprLineCall"/></a>
+						<a href="#" id="btnSearchWord" class="easyui-linkbutton btnSearch" style="width:70px"><spring:message code="resc.btn.search"/></a>
+						<a href="#" id="btnApprLineSave" class="easyui-linkbutton btnSearch" style="width:80px"><spring:message code="resc.btn.apprLineSave"/></a>
+						<a href="#" id="btnApprLineCall" class="easyui-linkbutton btnSearch" style="width:110px"><spring:message code="resc.btn.apprLineCall"/></a>
 					</td>
 				</tr>
 				</table>		
