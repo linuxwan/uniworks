@@ -222,13 +222,15 @@ public class ApprovalController {
 	 */
 	@RequestMapping(value = "/approval/save_line_appr", method = RequestMethod.GET)
 	@ResponseBody
-	public String saveLineApprovalEmpNo(@RequestParam String lineApprovals, HttpServletRequest request, HttpServletResponse response) {
+	public String saveLineApprovalEmpNo(@RequestParam String lineApprovals, @RequestParam String lastApprLev, 
+			HttpServletRequest request, HttpServletResponse response) {
 		String msg = "";
 		//Session 정보를 가져온다.
 		UserSession userSession = (UserSession) WebUtils.getSessionAttribute(request, "userSession");
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("coId", userSession.getCoId());
 		map.put("userId", userSession.getUserId());
+		map.put("lastApprLev", lastApprLev);
 		
 		int maxSeqNo = nw120mService.getMaxSeqNo(map);
 		map.put("seqNo", maxSeqNo + 1);

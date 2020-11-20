@@ -71,7 +71,7 @@
     			return;
     		}
     		
-    		addLineApprs(strApprList);
+    		addLineApprs(strApprList, apprLevel);
 		});
 		
     	openInitialLineApprover();
@@ -108,13 +108,13 @@
     	}
     	
     	//라인 결재자 정보 저장
-        function addLineApprs(lineApprs) {
+        function addLineApprs(lineApprs, apprLevel) {
         	$.ajax({
         		url: '<c:out value="${contextPath}"/>'	+ '/rest/approval/save_line_appr',
         		type: 'get',
         		async:false,
         	    cache:false,
-        		data: {lineApprovals:lineApprs},
+        		data: {lineApprovals:lineApprs, lastApprLev:apprLevel},
         		success: function(r) {
         			$.messager.alert('<spring:message code="resc.label.info"/>', r);    			
         		},
