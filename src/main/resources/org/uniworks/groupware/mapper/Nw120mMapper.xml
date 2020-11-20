@@ -26,7 +26,7 @@
 	
 	<!-- 최대 일련번호 가져오기 -->
 	<select id="selectMaxSeqNo" parameterType="java.util.Map" resultMap="count_Result">
-		select  MAX(SEQ_NO) as MAX_SEQ_NO
+		select  ifnull(MAX(SEQ_NO), 0) as MAX_SEQ_NO
 		  from  nw120m
 		 where  CO_ID	=	#{coId,jdbcType=VARCHAR} 
 		   and  USER_ID	=	#{userId,jdbcType=VARCHAR}

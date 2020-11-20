@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.util.WebUtils;
 import org.uniworks.groupware.common.HiddenField;
 import org.uniworks.groupware.common.UserSession;
+import org.uniworks.groupware.common.util.StringUtil;
 import org.uniworks.groupware.domain.approval.ApprovalDoc;
 import org.uniworks.groupware.domain.approval.LineApprover;
 import org.uniworks.groupware.service.ApprovalService;
@@ -219,7 +220,7 @@ public class ApprovalController {
 	 * @param request
 	 * @return
 	 */
-	@RequestMapping(value = "/approval/save_line_appr", method = {RequestMethod.POST})
+	@RequestMapping(value = "/approval/save_line_appr", method = RequestMethod.GET)
 	@ResponseBody
 	public String saveLineApprovalEmpNo(@RequestParam String lineApprovals, HttpServletRequest request, HttpServletResponse response) {
 		String msg = "";
@@ -236,7 +237,8 @@ public class ApprovalController {
 		while(lineApprArray.hasMoreTokens()) {
 			StringTokenizer lineApprs = new StringTokenizer(lineApprArray.nextToken(), ":");
 			String apprLineLev = lineApprs.nextToken();
-			String apprEmpNo = lineApprs.nextToken();
+			apprLineLev = apprLineLev.replace("_", "");
+			String apprEmpNo = StringUtil.null2void(lineApprs.nextToken());
 			
 			map.put(apprLineLev, apprEmpNo);
 		}

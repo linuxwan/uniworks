@@ -54,11 +54,11 @@
 			var apprLevel = ${apprLevel};
 			var strApprList = "";
 			var checkApprList = false;
-    		for (var i = 1; i <= apprLevel; i++) {
+    		for (var i = 1; i <= apprLevel; i++) {    			
     			if (i == 1) {
-    				strApprList += 'apprEmpNo_' + i + ":" + $('#apprEmpNo_' + i).val();	
+    				strApprList += 'apprEmpNo_' + i + ": " + $('#apprEmpNo_' + i).val();	
     			} else {
-    				strApprList += ',apprEmpNo_' + i + ":" + $('#apprEmpNo_' + i).val();
+    				strApprList += ',apprEmpNo_' + i + ": " + $('#apprEmpNo_' + i).val();
     			}
     			
     			if ($('#apprEmpNo_' + i).val().length > 0) checkApprList = true;
@@ -111,10 +111,10 @@
         function addLineApprs(lineApprs) {
         	$.ajax({
         		url: '<c:out value="${contextPath}"/>'	+ '/rest/approval/save_line_appr',
-        		type: 'post',
+        		type: 'get',
         		async:false,
         	    cache:false,
-        		data: {'lineApprovals':lineApprs},
+        		data: {lineApprovals:lineApprs},
         		success: function(r) {
         			$.messager.alert('<spring:message code="resc.label.info"/>', r);    			
         		},
