@@ -70,6 +70,8 @@
         		alertMsg(title, msg);
     			return;
     		}
+    		
+    		addLineApprs(strApprList);
 		});
 		
     	openInitialLineApprover();
@@ -104,6 +106,23 @@
     			method: 'get'
     		});
     	}
+    	
+    	//라인 결재자 정보 저장
+        function addLineApprs(lineApprs) {
+        	$.ajax({
+        		url: '<c:out value="${contextPath}"/>'	+ '/rest/approval/save_line_appr',
+        		type: 'post',
+        		async:false,
+        	    cache:false,
+        		data: {'lineApprovals':lineApprs},
+        		success: function(r) {
+        			$.messager.alert('<spring:message code="resc.label.info"/>', r);    			
+        		},
+        		error: function(xhr, status, error) {
+        			$.messager.alert('<spring:message code="resc.label.error"/>', status + "\r\n" + error);    			
+        		}
+        	});
+        }  
     });
     
     /* 좌측의 조직도에서 결재자를 선택 후 추가. */

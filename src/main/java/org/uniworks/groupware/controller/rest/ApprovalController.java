@@ -8,6 +8,7 @@ package org.uniworks.groupware.controller.rest;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.StringTokenizer;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -29,6 +30,7 @@ import org.uniworks.groupware.domain.approval.ApprovalDoc;
 import org.uniworks.groupware.domain.approval.LineApprover;
 import org.uniworks.groupware.service.ApprovalService;
 import org.uniworks.groupware.service.Nw112mService;
+import org.uniworks.groupware.service.Nw120mService;
 
 /**
  * @author Park Chungwan
@@ -40,6 +42,7 @@ public class ApprovalController {
 	private static final Logger logger = LoggerFactory.getLogger(ApprovalController.class);
 	@Autowired private ApprovalService apprService;
 	@Autowired private Nw112mService nw112mService;
+	@Autowired private Nw120mService nw120mService;
 	@Autowired private MessageSource messageSource;
 	/**
 	 * 작성중인 문서 목록 가져오기
@@ -209,4 +212,39 @@ public class ApprovalController {
 		
 		return lineApprList;
 	}		
+	
+	/**
+	 * 라인결재자 정보를 저장한다.
+	 * @param lineApprovals
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value = "/approval/save_line_appr", method = {RequestMethod.POST})
+	@ResponseBody
+	public String saveLineApprovalEmpNo(@RequestParam String lineApprovals, HttpServletRequest request, HttpServletResponse response) {
+		String msg = "";
+		//Session 정보를 가져온다.
+		UserSession userSession = (UserSession) WebUtils.getSessionAttribute(request, "userSession");
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("coId", userSession.getCoId());
+		map.put("userId", userSession.getUserId());
+		
+		int maxSeqNo = nw120mService.getMaxSeqNo(map);
+		map.put("seqNo", maxSeqNo + 1);
+		
+		StringTokenizer lineApprArray = new StringTokenizer(lineApprovals, ",");
+		while(lineApprArray.hasMoreTokens()) {
+			StringTokenizer lineApprs = new StringTokenizer(lineApprArray.nextToken(), ":");
+			String apprLineLev = lineApprs.nextToken();
+			String apprEmpNo = lineApprs.nextToken();
+			
+			map.put(apprLineLev, apprEmpNo);
+		}
+		
+		int result = nw120mService.addNw120mMap(map);
+		if (result == 1) msg = messageSource.getMessage("resc.msg.addOk", null, response.getLocale());
+		else msg = messageSource.getMessage("resc.msg.addFail", null, response.getLocale());;
+		
+		return msg;
+	}
 }
