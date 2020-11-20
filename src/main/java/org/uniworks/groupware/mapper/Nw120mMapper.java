@@ -16,6 +16,12 @@ import org.uniworks.groupware.domain.Nw120m;
  * 관련 테이블 : Nw120m
  */ 
 public interface Nw120mMapper { 
+	/**
+	 * Max SeqNo 가져오기
+	 * @param map
+	 * @return
+	 */
+	int selectMaxSeqNo(Map<String, Object> map);
 	/** 
 	 * 목록 가져오기 
 	 * @param map 
@@ -34,12 +40,24 @@ public interface Nw120mMapper {
 	 * @return 
 	 */ 
 	int insert(Nw120m nw120m); 
+	/**
+	 * 등록한다.
+	 * @param map
+	 * @return
+	 */
+	int insertMap(Map<String, Object> map);
 	/** 
 	 * 수정한다 
 	 * @param nw120m 
 	 * @return 
 	 */ 
 	int updateByPrimaryKey(Nw120m nw120m); 
+	/**
+	 * 수정한다 
+	 * @param map
+	 * @return
+	 */
+	int updateByPrimaryKeyMap(Map<String, Object> map);
 	/** 
 	 * 삭제한다 
 	 * @param map 

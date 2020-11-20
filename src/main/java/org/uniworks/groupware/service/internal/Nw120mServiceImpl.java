@@ -21,7 +21,15 @@ import org.uniworks.groupware.service.Nw120mService;
 @Transactional(readOnly = true) 
 public class Nw120mServiceImpl implements Nw120mService { 
 	@Autowired Nw120mMapper nw120mMapper; 
-
+	/**
+	 * 가장 큰 일련번호를 가져온다.
+	 * @param map
+	 * @return
+	 */
+	@Override 
+	public int getMaxSeqNo(Map<String, Object> map) {
+		return nw120mMapper.selectMaxSeqNo(map);
+	}
 	/** 
 	 * 목록을 조회한다. 
 	 * 
@@ -50,6 +58,15 @@ public class Nw120mServiceImpl implements Nw120mService {
 	public int addNw120m(Nw120m nw120m) { 
 		return nw120mMapper.insert(nw120m); 
 	} 
+	/**
+	 * 등록한다.
+	 * @param map
+	 */
+	@Override 
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRED) 
+	public int addNw120mMap(Map<String, Object> map) {
+		return nw120mMapper.insertMap(map);
+	}
 	/** 
 	 * 수정한다. 
 	 * 
@@ -60,6 +77,15 @@ public class Nw120mServiceImpl implements Nw120mService {
 	public int updateNw120m(Nw120m nw120m) { 
 		return nw120mMapper.updateByPrimaryKey(nw120m); 
 	} 
+	/**
+	 * 수정한다.
+	 * @param map
+	 */
+	@Override 
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRED) 
+	public int updateNw120mMap(Map<String, Object> map) {
+		return nw120mMapper.updateByPrimaryKeyMap(map);
+	}
 	/** 
 	 * 삭제한다. 
 	 * 

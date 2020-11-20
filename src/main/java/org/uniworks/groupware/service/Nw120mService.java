@@ -5,11 +5,18 @@
  */ 
 package org.uniworks.groupware.service; 
 
-import java.util.List; 
+import java.util.List;
+import java.util.Map;
 
 import org.uniworks.groupware.domain.Nw120m; 
 
 public interface Nw120mService { 
+	/**
+	 * 가장 큰 일련번호를 가져온다.
+	 * @param map
+	 * @return
+	 */
+	int getMaxSeqNo(Map<String, Object> map);
 	/** 
 	 * 목록을 조회한다. 
 	 * 
@@ -30,14 +37,24 @@ public interface Nw120mService {
 	 * @return 
 	 */ 
 	int addNw120m(Nw120m nw120m); 
-
+	/**
+	 * 등록한다. 
+	 * @param map
+	 * @return
+	 */
+	int addNw120mMap(java.util.Map<String,Object> map);
 	/** 
 	 * 수정한다. 
 	 * 
 	 * @return 
 	 */ 
 	int updateNw120m(Nw120m nw120m); 
-
+	/**
+	 * 수정한다. 
+	 * @param map
+	 * @return
+	 */
+	int updateNw120mMap(java.util.Map<String,Object> map);
 	/** 
 	 * 삭제한다. 
 	 * 
