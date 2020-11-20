@@ -19,7 +19,19 @@
 		<result column="APPR_EMP_NO_11" jdbcType="VARCHAR" property="apprEmpNo11" /> 
 		<result column="APPR_EMP_NO_12" jdbcType="VARCHAR" property="apprEmpNo12" /> 
 	</resultMap> 
-
+	<!-- Count -->
+	<resultMap type="java.lang.Integer" id="count_Result">
+		<result column="MAX_SEQ_NO" jdbcType="DECIMAL"/>
+	</resultMap>
+	
+	<!-- 최대 일련번호 가져오기 -->
+	<select id="selectMaxSeqNo" parameterType="java.util.Map" resultMap="count_Result">
+		select  MAX(SEQ_NO) as MAX_SEQ_NO
+		  from  nw120m
+		 where  CO_ID	=	#{coId,jdbcType=VARCHAR} 
+		   and  USER_ID	=	#{userId,jdbcType=VARCHAR}
+	</select>
+	
 	<!-- 목록 조회 --> 
 	<select id="select" parameterType="java.util.Map" resultMap="BaseResultMap"> 
 		select  CO_ID, USER_ID, SEQ_NO, LAST_APPR_LEV, APPR_EMP_NO_1, APPR_EMP_NO_2, APPR_EMP_NO_3, APPR_EMP_NO_4, APPR_EMP_NO_5, 
@@ -48,6 +60,14 @@
 			,#{apprEmpNo4,jdbcType=VARCHAR},#{apprEmpNo5,jdbcType=VARCHAR},#{apprEmpNo6,jdbcType=VARCHAR},#{apprEmpNo7,jdbcType=VARCHAR},#{apprEmpNo8,jdbcType=VARCHAR},#{apprEmpNo9,jdbcType=VARCHAR} 
 			,#{apprEmpNo10,jdbcType=VARCHAR},#{apprEmpNo11,jdbcType=VARCHAR},#{apprEmpNo12,jdbcType=VARCHAR}) 
 	</insert> 
+	
+	<insert id="insertMap" parameterType="java.util.Map"> 
+		insert	into nw120m(CO_ID, USER_ID, SEQ_NO, LAST_APPR_LEV, APPR_EMP_NO_1, APPR_EMP_NO_2, APPR_EMP_NO_3, APPR_EMP_NO_4, APPR_EMP_NO_5, 
+				APPR_EMP_NO_6, APPR_EMP_NO_7, APPR_EMP_NO_8, APPR_EMP_NO_9, APPR_EMP_NO_10, APPR_EMP_NO_11, APPR_EMP_NO_12) 
+		values (#{coId,jdbcType=VARCHAR},#{userId,jdbcType=VARCHAR},#{seqNo,jdbcType=INTEGER},#{lastApprLev,jdbcType=INTEGER},#{apprEmpNo1,jdbcType=VARCHAR},#{apprEmpNo2,jdbcType=VARCHAR},#{apprEmpNo3,jdbcType=VARCHAR} 
+			,#{apprEmpNo4,jdbcType=VARCHAR},#{apprEmpNo5,jdbcType=VARCHAR},#{apprEmpNo6,jdbcType=VARCHAR},#{apprEmpNo7,jdbcType=VARCHAR},#{apprEmpNo8,jdbcType=VARCHAR},#{apprEmpNo9,jdbcType=VARCHAR} 
+			,#{apprEmpNo10,jdbcType=VARCHAR},#{apprEmpNo11,jdbcType=VARCHAR},#{apprEmpNo12,jdbcType=VARCHAR}) 
+	</insert> 
  
 	<!-- 수정 --> 
 	<update id="updateByPrimaryKey" parameterType="org.uniworks.groupware.domain.Nw120m"> 
@@ -70,7 +90,29 @@
 		where	CO_ID	=	#{coId,jdbcType=VARCHAR} 
 		  and	USER_ID	=	#{userId,jdbcType=VARCHAR} 
 		  and	SEQ_NO	=	#{seqNo,jdbcType=INTEGER} 
-	</update> 
+	</update>
+	
+	<update id="updateByPrimaryKeyMap" parameterType="java.util.Map"> 
+		update	nw120m 
+		<trim prefix="SET" suffixOverrides=","> 
+			<if test="lastApprLev != null">LAST_APPR_LEV= #{lastApprLev,jdbcType=INTEGER},</if> 
+			<if test="apprEmpNo1 != null">APPR_EMP_NO_1= #{apprEmpNo1,jdbcType=VARCHAR},</if> 
+			<if test="apprEmpNo2 != null">APPR_EMP_NO_2= #{apprEmpNo2,jdbcType=VARCHAR},</if> 
+			<if test="apprEmpNo3 != null">APPR_EMP_NO_3= #{apprEmpNo3,jdbcType=VARCHAR},</if> 
+			<if test="apprEmpNo4 != null">APPR_EMP_NO_4= #{apprEmpNo4,jdbcType=VARCHAR},</if> 
+			<if test="apprEmpNo5 != null">APPR_EMP_NO_5= #{apprEmpNo5,jdbcType=VARCHAR},</if> 
+			<if test="apprEmpNo6 != null">APPR_EMP_NO_6= #{apprEmpNo6,jdbcType=VARCHAR},</if> 
+			<if test="apprEmpNo7 != null">APPR_EMP_NO_7= #{apprEmpNo7,jdbcType=VARCHAR},</if> 
+			<if test="apprEmpNo8 != null">APPR_EMP_NO_8= #{apprEmpNo8,jdbcType=VARCHAR},</if> 
+			<if test="apprEmpNo9 != null">APPR_EMP_NO_9= #{apprEmpNo9,jdbcType=VARCHAR},</if> 
+			<if test="apprEmpNo10 != null">APPR_EMP_NO_10= #{apprEmpNo10,jdbcType=VARCHAR},</if> 
+			<if test="apprEmpNo11 != null">APPR_EMP_NO_11= #{apprEmpNo11,jdbcType=VARCHAR},</if> 
+			<if test="apprEmpNo12 != null">APPR_EMP_NO_12= #{apprEmpNo12,jdbcType=VARCHAR},</if> 
+		</trim> 
+		where	CO_ID	=	#{coId,jdbcType=VARCHAR} 
+		  and	USER_ID	=	#{userId,jdbcType=VARCHAR} 
+		  and	SEQ_NO	=	#{seqNo,jdbcType=INTEGER} 
+	</update>  
  
 	<!-- 삭제 --> 
 	<delete id="deleteByPrimaryKey" parameterType="java.util.Map"> 
