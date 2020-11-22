@@ -132,4 +132,20 @@ public class ApprovalPopupController {
 		mav.addObject("cprtLineList", arrApprLine);
 		return mav;
 	}
+	
+	/**
+	 * 등록된 결재선 목록을 가져온다.
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping("approval/popup/personal_line_appr")
+	public ModelAndView selectPersonalLineAppr(HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView("common/popup/personal_line_appr_01");
+		//Session정보를 가져온다.
+		UserSession userSession = (UserSession) WebUtils.getSessionAttribute(request, "userSession");
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("CO_ID", userSession.getCoId());
+		map.put("USER_ID", userSession.getUserId());
+		return mav;
+	}
 }

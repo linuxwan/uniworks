@@ -13,6 +13,7 @@
     <script type="text/javascript" src="<c:out value="${contextPath}"/>/easyui/js/common.js"></script>
     <script type="text/javascript" src="<c:out value="${contextPath}"/>/tinymce/tinymce.min.js"></script>    
 	<script type="text/javascript" src="<c:out value="${contextPath}"/>/tinymce/tinymce_init.js"></script>
+	<script type="text/javascript" src="<c:out value="${contextPath}"/>/plugin/jquery.popupwindow.js"></script>
     
     <script type="text/javascript">
     $(function(){
@@ -72,6 +73,12 @@
     		}
     		
     		addLineApprs(strApprList, apprLevel);
+		});
+		
+		//결재선 정보 가져오기
+		$('#btnApprLineCall').bind('click', function() {
+			var url = "<c:out value="${contextPath}"/>/approval/popup/personal_line_appr";
+    		var popupWin = $.popupWindow(url, { height: 500, width: 750, name: 'personalApprLine', scrollbars: true });
 		});
 		
     	openInitialLineApprover();
