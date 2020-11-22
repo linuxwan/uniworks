@@ -13,10 +13,10 @@
     <script type="text/javascript" src="<c:out value="${contextPath}"/>/easyui/js/common.js"></script>
 </head>
 <body>
-<div class="easyui-layout" style="width:900px;height:460px;">
-	<div class="easyui-panel" title="<spring:message code='resc.label.lineApprList'/>" style="width:100%;height:430px;">
-	
+	<div class="easyui-layout" style="width:950px;height:440px;">
+		<div class="easyui-panel" title="<spring:message code='resc.label.lineApprList'/>" style="width:100%;height:400px;">
+		
+		</div>
 	</div>
-</div>
 </body>
 </html>

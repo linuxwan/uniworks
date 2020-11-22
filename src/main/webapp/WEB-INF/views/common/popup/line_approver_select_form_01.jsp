@@ -78,7 +78,7 @@
 		//결재선 정보 가져오기
 		$('#btnApprLineCall').bind('click', function() {
 			var url = "<c:out value="${contextPath}"/>/approval/popup/personal_line_appr";
-    		var popupWin = $.popupWindow(url, { height: 500, width: 750, name: 'personalApprLine', scrollbars: true });
+    		var popupWin = $.popupWindow(url, { height: 500, width: 800, name: 'personalApprLine', scrollbars: true });
 		});
 		
     	openInitialLineApprover();
