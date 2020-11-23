@@ -5,10 +5,11 @@
  */ 
 package org.uniworks.groupware.mapper; 
 
-import java.util.List; 
-import java.util.Map; 
+import java.util.List;
+import java.util.Map;
 
-import org.uniworks.groupware.domain.Nw120m; 
+import org.uniworks.groupware.domain.Nw120m;
+import org.uniworks.groupware.domain.Nw120mExt; 
 
 
 /** 
@@ -27,7 +28,13 @@ public interface Nw120mMapper {
 	 * @param map 
 	 * @return 
 	 */ 
-	List<Nw120m> select(Map<String, Object> map); 
+	List<Nw120m> select(Map<String, Object> map);
+	/**
+	 * 목록 가져오기
+	 * @param map
+	 * @return
+	 */
+	List<Nw120mExt> selectExt(Map<String, Object> map);
 	/** 
 	 * 정보 가져오기 
 	 * @param map 

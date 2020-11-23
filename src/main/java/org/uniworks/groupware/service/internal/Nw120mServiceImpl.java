@@ -13,7 +13,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation; 
 import org.springframework.transaction.annotation.Transactional; 
 
-import org.uniworks.groupware.domain.Nw120m; 
+import org.uniworks.groupware.domain.Nw120m;
+import org.uniworks.groupware.domain.Nw120mExt;
 import org.uniworks.groupware.mapper.Nw120mMapper; 
 import org.uniworks.groupware.service.Nw120mService; 
 
@@ -39,6 +40,14 @@ public class Nw120mServiceImpl implements Nw120mService {
 	public List<Nw120m> getNw120mList(Map<String, Object> map) { 
 		return nw120mMapper.select(map); 
 	} 
+	/**
+	 * 목록을 조회한다.
+	 * @param map
+	 * @return
+	 */
+	public List<Nw120mExt> getNw120mExtList(java.util.Map<String,Object> map) {
+		return nw120mMapper.selectExt(map);
+	}
 	/** 
 	 * 조회한다. 
 	 * 

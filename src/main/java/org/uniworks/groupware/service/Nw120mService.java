@@ -8,7 +8,8 @@ package org.uniworks.groupware.service;
 import java.util.List;
 import java.util.Map;
 
-import org.uniworks.groupware.domain.Nw120m; 
+import org.uniworks.groupware.domain.Nw120m;
+import org.uniworks.groupware.domain.Nw120mExt; 
 
 public interface Nw120mService { 
 	/**
@@ -23,7 +24,12 @@ public interface Nw120mService {
 	 * @return 
 	 */ 
 	List<Nw120m> getNw120mList(java.util.Map<String,Object> map); 
-
+	/**
+	 * 목록을 조회한다.
+	 * @param map
+	 * @return
+	 */
+	List<Nw120mExt> getNw120mExtList(java.util.Map<String,Object> map); 
 	/** 
 	 * 조회한다. 
 	 * 
