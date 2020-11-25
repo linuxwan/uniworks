@@ -49,6 +49,13 @@ public interface HumanResourceService {
 	List<HumanResource> getBySearchEmpName(Map<String, Object> map);
 	
 	/**
+	 * 사번으로 직원 정보 가져오기
+	 * @param map
+	 * @return
+	 */
+	HumanResource getBySearchEmpNo(Map<String, Object> map);
+	
+	/**
 	 * 회사별 소속 직원 정보 등록.
 	 * @param record
 	 * @param arr

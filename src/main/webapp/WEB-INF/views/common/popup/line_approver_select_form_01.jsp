@@ -195,10 +195,35 @@
     	return true;
     }
     
-    function setLineApproval(apprEmpNo) {
-    	console.log("apprEmpNo : " + apprEmpNo);
-    	var node = $('#oganTree').tree('find', {id: apprEmpNo});
+    /* 결재선 가져오기에서 선택한 사번들을 결재라인에 설정 */
+    function setLineApproval(apprLine, apprEmpNo, empNo) {
+    	var apprLineDesc = getSearchEmpNo(empNo);
+    	if ($('#' + apprLine).length > 0) {
+	    	$('#' + apprLine).textbox('setValue', apprLineDesc);
+	    	$('#' + apprEmpNo).val(empNo);    	
+    	}
     }
+    
+    /* 사원에 대한 인사정보를 가져온다. */
+    function getSearchEmpNo(empNo) {
+		var url = "<c:out value="${contextPath}"/>/rest/hr/getSearchEmpNo/empNo/" + empNo + "/workIndc/1";
+		var apprLineDesc = "";
+		
+		$.ajax({
+    		url: url,
+    		type: 'get',
+    		async:false,
+    	    cache:false,
+    		success: function(r) {
+    			apprLineDesc = r.empNameKor + " " + r.dutyDesc + "(" + r.deptDesc + ")";  			
+    		},
+    		error: function(xhr, status, error) {
+    			$.messager.alert('<spring:message code="resc.label.error"/>', status + "\r\n" + error);    			
+    		}
+    	});
+		
+		return apprLineDesc;
+	} 
     </script>
 </head>
 <body>

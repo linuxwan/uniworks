@@ -78,6 +78,16 @@ public class HumanResourceServiceImpl implements HumanResourceService {
 		List<HumanResource> hrList = hrMapper.selectBySearchEmpName(map);
 		return hrList;
 	}
+		
+	/**
+	 * 사번으로 직원 정보 가져오기
+	 * @param map
+	 * @return
+	 */
+	@Override
+	public HumanResource getBySearchEmpNo(Map<String, Object> map) {
+		return hrMapper.selectBySearchEmpNo(map);
+	}
 
 	/**
 	 * 회사별 소속 직원 정보 등록.

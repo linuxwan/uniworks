@@ -43,4 +43,11 @@ public interface HumanResourceMapper {
 	 * @return
 	 */
 	List<HumanResource> selectBySearchEmpName(Map<String, Object> map); 
+	
+	/**
+	 * 사번으로 사용자를 검색한다.
+	 * @param map
+	 * @return
+	 */
+	HumanResource selectBySearchEmpNo(Map<String, Object> map);
 }

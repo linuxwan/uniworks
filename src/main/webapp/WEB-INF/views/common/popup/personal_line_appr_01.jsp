@@ -24,10 +24,9 @@
     		var apprLevel = rowData.lastApprLev;
     		
     		for (var i = 1; i <= apprLevel; i++) {
-    		    var apprEmpNo = "apprEmpNo" + i;
-    		    var apprEmpName = "apprEmpName" + i;
+    		    var apprEmpNo = "apprEmpNo" + i;    		    
     		    
-    		    opener.setLineApproval(rowData[apprEmpNo]);
+    		    opener.setLineApproval("apprLine_" + i, "apprEmpNo_" + i, rowData[apprEmpNo]);
     		}
     		
     		window.close();

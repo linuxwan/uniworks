@@ -96,4 +96,30 @@ public class HumanResourceController {
 		
 		return hr;
 	}
+	
+	/**
+	 * 사번으로 직원 찾기
+	 * @param empNo
+	 * @param workIndc
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value = "/hr/getSearchEmpNo/empNo/{empNo}/workIndc/{workIndc}", method = RequestMethod.GET)
+	@ResponseBody
+	public HumanResource getSearchEmpNo(@PathVariable("empNo") String empNo, @PathVariable("workIndc") String workIndc,
+			HttpServletRequest request) {
+		//Session정보를 가져온다.
+		UserSession userSession = (UserSession) WebUtils.getSessionAttribute(request, "userSession");
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("coId", userSession.getCoId());
+		map.put("lang", userSession.getLanguage());
+		map.put("empNo", empNo);
+		map.put("workIndc", workIndc);
+		map.put("baseOganLev", userSession.getBaseOganLev());
+		
+		HumanResource hr = hrService.getBySearchEmpNo(map);
+		
+		return hr;
+	}
 }
