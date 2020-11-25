@@ -146,6 +146,8 @@ public class ApprovalPopupController {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("CO_ID", userSession.getCoId());
 		map.put("USER_ID", userSession.getUserId());
+				
+		mav.addObject("userSession", userSession);
 		return mav;
 	}
 }

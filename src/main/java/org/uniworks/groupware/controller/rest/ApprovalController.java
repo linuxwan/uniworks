@@ -27,6 +27,7 @@ import org.springframework.web.util.WebUtils;
 import org.uniworks.groupware.common.HiddenField;
 import org.uniworks.groupware.common.UserSession;
 import org.uniworks.groupware.common.util.StringUtil;
+import org.uniworks.groupware.domain.Nw120mExt;
 import org.uniworks.groupware.domain.approval.ApprovalDoc;
 import org.uniworks.groupware.domain.approval.LineApprover;
 import org.uniworks.groupware.service.ApprovalService;
@@ -157,6 +158,53 @@ public class ApprovalController {
 		List<ApprovalDoc> docList = apprService.getRejectApprovalDocList(map);
 		
 		return docList;
+	}
+	
+	/**
+	 * 등록된 라인결재자 목록을 가져온다.(Nw120m)
+	 * @param param
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value = "/approval/personal_line_appr_01", method = RequestMethod.GET)
+	@ResponseBody
+	public List<Nw120mExt> personalLineAppr(@ModelAttribute("param") HiddenField param, HttpServletRequest request) {
+		//Session 정보를 가져온다.
+		UserSession userSession = (UserSession) WebUtils.getSessionAttribute(request, "userSession");
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("coId", userSession.getCoId());
+		map.put("lang", userSession.getLanguage());
+		map.put("userId", userSession.getUserId());
+		
+		List<Nw120mExt> nw120mExt = nw120mService.getNw120mExtList(map);
+		
+		return nw120mExt;
+	}
+	
+	/**
+	 * 등록된 라인결재자 삭제(Nw120m)
+	 * @param userId
+	 * @param seqNo
+	 * @param request
+	 * @param response
+	 * @return
+	 */
+	@RequestMapping(value = "/approval/remove_personal_line_appr_01", method = RequestMethod.GET)
+	@ResponseBody
+	public String removePersonalLineAppr(@RequestParam String userId, @RequestParam String seqNo, 
+				HttpServletRequest request, HttpServletResponse response) {
+		String strDelResult = messageSource.getMessage("resc.msg.deleteOk", null, response.getLocale());
+		//Session 정보를 가져온다.
+		UserSession userSession = (UserSession) WebUtils.getSessionAttribute(request, "userSession");
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("coId", userSession.getCoId());
+		map.put("userId", userId);
+		map.put("seqNo", seqNo);
+	
+		int result = nw120mService.deleteNw120m(map);
+		if (result < 1) strDelResult = messageSource.getMessage("resc.msg.deleteOk", null, response.getLocale());
+		return strDelResult;
 	}
 	
 	/**

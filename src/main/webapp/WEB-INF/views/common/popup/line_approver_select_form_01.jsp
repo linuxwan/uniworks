@@ -194,6 +194,11 @@
     	}
     	return true;
     }
+    
+    function setLineApproval(apprEmpNo) {
+    	console.log("apprEmpNo : " + apprEmpNo);
+    	var node = $('#oganTree').tree('find', {id: apprEmpNo});
+    }
     </script>
 </head>
 <body>
