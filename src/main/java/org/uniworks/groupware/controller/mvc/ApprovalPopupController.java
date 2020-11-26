@@ -138,7 +138,7 @@ public class ApprovalPopupController {
 	 * @param request
 	 * @return
 	 */
-	@RequestMapping("approval/popup/personal_line_appr")
+	@RequestMapping("/approval/popup/personal_line_appr")
 	public ModelAndView selectPersonalLineAppr(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView("common/popup/personal_line_appr_01");
 		//Session정보를 가져온다.
