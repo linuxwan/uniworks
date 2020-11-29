@@ -353,24 +353,17 @@
 		from	nw110m A 
 			LEFT JOIN nw011m C
 		  		ON	A.CO_ID = C.CO_ID
-   		 		and	A.APPR_MST_ID = C.APPR_MST_ID   		 		
-   		 	LEFT JOIN nw111m D
-   		 		ON	A.CO_ID = D.CO_ID
-   		 		and	A.CNTN_ID = D.CNTN_ID
-   		 		and	A.DCMT_RGSR_NO = D.DCMT_RGSR_NO   		 		
-   		  		and	D.APPR_STUS != '0'
+   		 		and	A.APPR_MST_ID = C.APPR_MST_ID   		 		   		 	
    		  	LEFT JOIN gw.hr010m B
    		  		ON  A.AUTH_EMP_NO = B.EMP_NO 
             LEFT JOIN nw113m E
                 ON  A.DCMT_RGSR_NO = E.DCMT_RGSR_NO
             LEFT JOIN nw114m F
                 ON  A.DCMT_RGSR_NO = F.DCMT_RGSR_NO
-   		where	A.CO_ID = #{lang,jdbcType=VARCHAR}
-   		  and	A.APPR_STUS > '5'   		     		    
+   		where	A.CO_ID = #{coId,jdbcType=VARCHAR}
+   		  and	A.APPR_STUS = '7'   		     		    
 		  and	C.LOCALE = #{lang,jdbcType=VARCHAR}
-		  and	(A.AUTH_EMP_NO = #{apprEmpNo,jdbcType=VARCHAR}
-		   or	D.APPR_EMP_NO = #{apprEmpNo,jdbcType=VARCHAR}
-           or   E.RCPT_OGAN_GRP_CODE = (SELECT CASE left(PSTN_CODE,1) 
+		  and  (E.RCPT_OGAN_GRP_CODE = (SELECT CASE left(PSTN_CODE,1) 
                                     WHEN '1' THEN ASGN_OGAN_CODE_1
 	                                WHEN '2' THEN ASGN_OGAN_CODE_2
 	                                WHEN '3' THEN ASGN_OGAN_CODE_3

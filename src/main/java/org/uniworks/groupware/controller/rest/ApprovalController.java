@@ -161,6 +161,28 @@ public class ApprovalController {
 	}
 	
 	/**
+	 * 결재완료된 수신문서 목록 가져오기
+	 * @param param
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value = "/approval/approval_receive_list_01", method = RequestMethod.GET)
+	@ResponseBody
+	public List<ApprovalDoc> approvalReceiveList (@ModelAttribute("param") HiddenField param, HttpServletRequest request) {
+		//Session 정보를 가져온다.
+		UserSession userSession = (UserSession) WebUtils.getSessionAttribute(request, "userSession");
+					
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("coId", userSession.getCoId());
+		map.put("lang", userSession.getLanguage());
+		map.put("apprEmpNo", userSession.getUserId());
+		
+		List<ApprovalDoc> docList = apprService.getCompleteReceiveApprovalDocList(map);
+		
+		return docList;
+	}
+	
+	/**
 	 * 등록된 라인결재자 목록을 가져온다.(Nw120m)
 	 * @param param
 	 * @param request
