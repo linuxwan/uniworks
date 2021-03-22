@@ -76,7 +76,7 @@ public class BoardController {
 	}
 	
 	/**
-	 * 관리자 정보를 등록한다.
+	 * 게시판 정보를 등록한다.
 	 * @param cm010c
 	 * @param ucBuilder
 	 * @return
@@ -94,6 +94,8 @@ public class BoardController {
 		nw130m.setDcmtRgsrNo(CommUtil.createSequenceNo("B"));
 								
 		List<Nw115m> attachFileList = AttachFileUtil.setAttachFileList(model, nw130m.getDcmtRgsrNo(), fileService);
+		if (attachFileList != null && attachFileList.size() > 0) nw130m.setAtchIndc("Y");
+		else nw130m.setAtchIndc("N");
 		
 		int cnt = boardService.addBoardDocument(nw130m, attachFileList);
 		
