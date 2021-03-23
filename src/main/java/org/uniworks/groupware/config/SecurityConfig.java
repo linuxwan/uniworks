@@ -64,6 +64,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.and()    		
     		.authorizeRequests()    	
     			.antMatchers("/loginForm").access("permitAll")
+    			.antMatchers("/download").access("permitAll")
     			.antMatchers("/**").access("hasAnyRole('ROLE_ADMIN','ROLE_USER','ROLE_CHRG')")
     		.and()
     			.formLogin().loginPage("/loginForm").loginProcessingUrl("/loginForm").defaultSuccessUrl("/main", true).failureUrl("/loginForm?error")
