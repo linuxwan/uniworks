@@ -329,7 +329,7 @@
    		 		and	A.DCMT_RGSR_NO = D.DCMT_RGSR_NO   		 		
    		  		and	D.APPR_STUS != '0'
    		where	A.CO_ID = #{coId,jdbcType=VARCHAR}
-   		  and	A.APPR_STUS > '5'   		     		    
+   		  and	A.APPR_STUS <![CDATA[<>]]> '5'   		     		    
 		  and	C.LOCALE = #{lang,jdbcType=VARCHAR}
 		  and	(A.AUTH_EMP_NO = #{apprEmpNo,jdbcType=VARCHAR}
 		   or	D.APPR_EMP_NO = #{apprEmpNo,jdbcType=VARCHAR})
