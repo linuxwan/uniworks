@@ -5,7 +5,8 @@
 	}
 		
 	function fileDownload(targetUrl) {			
-		var popup = top.window.open(targetUrl, '_blank');		
+		//var popup = top.window.open(targetUrl, '_blank');		
+		var popup = window.top.open(targetUrl, '_blank');		
 		//top.location.href = targetUrl;
 	}
 	</script>	
