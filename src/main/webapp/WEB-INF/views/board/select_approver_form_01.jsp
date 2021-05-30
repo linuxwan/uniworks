@@ -9,7 +9,7 @@
     <link rel="stylesheet" type="text/css" href="<c:out value="${contextPath}"/>/easyui/css/themes/icon.css">    
     <script type="text/javascript" src="<c:out value="${contextPath}"/>/easyui/js/jquery.min.js"></script>
     <script type="text/javascript" src="<c:out value="${contextPath}"/>/easyui/js/jquery.easyui.min.js"></script>
-    <script type="text/javascript" src="<c:out value="${contextPath}"/>/easyui/locale/easyui-lang-${userSession.lang}.js"></script>
+    <script type="text/javascript" src="<c:out value="${contextPath}"/>/easyui/locale/easyui-lang-${userSession.language}.js"></script>
     <script type="text/javascript" src="<c:out value="${contextPath}"/>/easyui/js/common.js"></script>    
     <script type="text/javascript" src="<c:out value="${contextPath}"/>/plugin/jquery.serializeObject.js"></script>
     <script type="text/javascript" src="<c:out value="${contextPath}"/>/plugin/jquery.popupwindow.js"></script>
@@ -55,21 +55,8 @@
     		alertMsg(title, msg);	
     		return;
 		} else {
-			if (targetObj == null) {
-				//Opener에서 object 명칭을 지정하지 않았을 때와 지정했을 때 처리
-				if ((userId == "" || userId.length < 1) && (userName == "" || userName.length < 1)) {
-					window.opener.$("#userId").val(rowData.userId);
-					window.opener.$("#userName").textbox('setValue', rowData.empName);
-					window.close();
-				} else {
-					window.opener.$("#" + userId).val(rowData.userId);
-					window.opener.$("#" + userName).textbox('setValue', rowData.empName);
-					window.close();
-				}			
-			} else {
-				window.opener.callBackEmpInfo(targetObj, rowData.userId, rowData.empName);
-		    	window.close();
-			}
+			window.opener.callBackEmpInfo(rowData.userId, rowData.empName, rowData.dutyCode, rowData.dutyDesc, rowData.deptCode, rowData.deptDesc);
+		    window.close();
 		}
 	}
 	

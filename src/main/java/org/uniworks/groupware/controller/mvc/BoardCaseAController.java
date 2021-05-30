@@ -156,7 +156,12 @@ public class BoardCaseAController {
 		mav.addObject("serviceLife", commonCodeList);	//보존연한
 		return mav;
 	}
-	
+	/**
+	 * 사용자 검색 팝업창 호출
+	 * @param param
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping(value = "/board/popup/selectLineApprover", method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView boardSelectLineApprover(@ModelAttribute("param") HiddenField param, HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView("board/select_approver_form_01");
@@ -165,6 +170,7 @@ public class BoardCaseAController {
 		String cntnId = StringUtil.null2void(request.getParameter("cntnId"));
 		String dcmtRgsrNo = StringUtil.null2void(request.getParameter("dcmtRgsrNo"));
 		
+		mav.addObject("userSession", userSession);
 		return mav;
 	}
 	

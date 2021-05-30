@@ -212,8 +212,8 @@
 	<form id="boardListTabForm" method="post" action="">
 	<jsp:include page="/WEB-INF/views/include/common/hidden_type_01.jsp"></jsp:include>	
 	<div id="listTabsLayer" class="easyui-tabs" style="width:100%;height:100vh;">
-		<div class="noscroll" title="<spring:message code="resc.label.list"/>" style="padding:20px;display:none;height:100vh;"> 			
-		    <table id="boardList" class="easyui-datagrid" style="width:100%;height:100vh;" 		        
+		<div class="noscroll" title="<spring:message code="resc.label.list"/>" style="padding:20px;display:none;height:110vh;"> 			
+		    <table id="boardList" class="easyui-datagrid" style="width:100%;height:110vh;" 		        
 		        title="${cntnName}" 
 		        data-options="rownumbers:true, singleSelect:true, pagination:true, autoRowHeight:false, pageSize:10, toolbar:'#tb'">
 		    <thead>

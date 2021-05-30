@@ -18,7 +18,7 @@ import org.pojomatic.annotations.AutoProperty;
  * 관련 테이블 : Nw130m
  */ 
 @XmlRootElement(name = "nw130m") 
-@XmlType(propOrder = {"coId", "cntnId", "dcmtRgsrNo", "prntDcmtRgsrNo", "dcmtRgsrDatetime", "authEmpNo", "authDutyDesc", "authDeptCode", "authDeptDesc", "authTelNo", "prsvTermType", "prsvTerm", "title", "content", "salePrice", "rgsrCnfmUser", "rgsrCnfmDutyDesc", "rgsrCnfmDeptCode", "rgsrCnfmDeptDesc", "rgsrCnfmDatetime", "viewCnt", "atchIndc", "boardId", "typeCode1", "typeCode2", "typeCode3", "typeCode4", "chngId", "mdfyDateTime"}) 
+@XmlType(propOrder = {"coId", "cntnId", "dcmtRgsrNo", "prntDcmtRgsrNo", "dcmtRgsrDatetime", "authEmpNo", "authDutyDesc", "authDeptCode", "authDeptDesc", "authTelNo", "prsvTermType", "prsvTerm", "title", "content", "salePrice", "postIndc", "rgsrCnfmUser", "rgsrCnfmDutyDesc", "rgsrCnfmDeptCode", "rgsrCnfmDeptDesc", "rgsrCnfmDatetime", "viewCnt", "atchIndc", "boardId", "typeCode1", "typeCode2", "typeCode3", "typeCode4", "chngId", "mdfyDateTime"}) 
 @AutoProperty 
 @SuppressWarnings("serial") 
 public class Nw130m implements Serializable {  
@@ -37,6 +37,7 @@ public class Nw130m implements Serializable {
 	private String title; 
 	private String content; 
 	private int salePrice; 
+	private String postIndc;
 	private String rgsrCnfmUser; 
 	private String rgsrCnfmDutyDesc; 
 	private String rgsrCnfmDeptCode; 
@@ -142,6 +143,12 @@ public class Nw130m implements Serializable {
 	public int getSalePrice() { 
 		return this.salePrice; 
 	} 
+	public void setPostIndc(String postIndc) {
+		this.postIndc = postIndc;
+	}
+	public String getPostIndc() {
+		return this.postIndc;
+	}
 	public void setRgsrCnfmUser(String rgsrCnfmUser) { 
 		this.rgsrCnfmUser = rgsrCnfmUser; 
 	} 

@@ -27,50 +27,18 @@
         	});        	
         });
     	
-    	//저장만 버튼 클릭 시
+    	//등록 버튼 클릭 시
     	$(".btnEnrollment").click(function(evt) {
-    		var title = "<spring:message code="resc.label.warning"/>";
-    		var msg = "<spring:message code="resc.msg.contents"/>";    		    		
-    		
-    		if($('#boardDocForm01').form('enableValidation').form('validate') && isEmptyTinyMCE('content', title, msg)) {
-    			$('#content').val(tinymce.get('content').getContent());
-	    		var formData = parseFormHelper('boardDocForm01');	    		
-	    		var strUrl = '<c:out value="${contextPath}"/>/rest/board/create';	    		    		
-	    			    			    		    		
-	    		$.ajax({
-					type: 'POST',
-					url: strUrl,
-					data: formData,					
-					dataType: 'json',						
-					beforeSend: function(xhr) {
-						xhr.setRequestHeader("Accept", "application/json");
-				        xhr.setRequestHeader("Content-Type", "application/json");
-						//데이터를 전송하기 전에 헤더에 csrf값을 설정한다.					
-						xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
-					},  				
-					success : function(message) {
-						var title = '<spring:message code="resc.label.confirm"/>';		    			
-						$.messager.alert(title, message, "info",  function(){
-							var title = '<spring:message code="resc.btn.enrollment"/>' + '-' + '${docWriteNo}'
-		        			parent.$("#listTabsLayer").tabs('close', title);
-						});						
-					},
-					error : function(xhr, status, error) {
-						console.log("error: " + status);
-					}
-	    		});	    		
-	    		return false;
-	    	}
+    		createBoard();
     	});
     	    	
     	//승인 요청 버튼 클릭
         $(".btnApprReq").click(function(evt){
 			if (!validationLineApprCheck()) return false;	//라인결재자 선택이 되지 않으면 승인요청을 하지 못함
-			if (!validationRcptCheck()) return false;	//수신처 선택이 되지 않으면 승인요청을 하지 못함
 			
 			$.messager.confirm("<spring:message code="resc.label.confirm"/>", "<spring:message code="resc.msg.apprReq"/>", function(r) {
         		if (r) {
-        			$("#saveType").val("A");
+        			$("#saveType").val("B");
         			$("#apprStus").val("7");
         			$("#apprWriteForm").attr('method', 'post');
 					$("#apprWriteForm").attr('action', '<c:out value="${contextPath}"/>/approval/approval_registration_01');
@@ -100,6 +68,41 @@
     	});        
     });      
     
+    function createBoard() {
+    	var title = "<spring:message code="resc.label.warning"/>";
+		var msg = "<spring:message code="resc.msg.contents"/>";    		    		
+		
+		if($('#boardDocForm01').form('enableValidation').form('validate') && isEmptyTinyMCE('content', title, msg)) {
+			$('#content').val(tinymce.get('content').getContent());
+    		var formData = parseFormHelper('boardDocForm01');	    		
+    		var strUrl = '<c:out value="${contextPath}"/>/rest/board/create';	    		    		
+    			    			    		    		
+    		$.ajax({
+				type: 'POST',
+				url: strUrl,
+				data: formData,					
+				dataType: 'json',						
+				beforeSend: function(xhr) {
+					xhr.setRequestHeader("Accept", "application/json");
+			        xhr.setRequestHeader("Content-Type", "application/json");
+					//데이터를 전송하기 전에 헤더에 csrf값을 설정한다.					
+					xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+				},  				
+				success : function(message) {
+					var title = '<spring:message code="resc.label.confirm"/>';		    			
+					$.messager.alert(title, message, "info",  function(){
+						var title = '<spring:message code="resc.btn.enrollment"/>' + '-' + '${docWriteNo}'
+	        			parent.$("#listTabsLayer").tabs('close', title);
+					});						
+				},
+				error : function(xhr, status, error) {
+					console.log("error: " + status);
+				}
+    		});	    		
+    		return false;
+    	}
+    }
+    
   	//해당게시판 목록으로 이동.
     function goBoardListForm() {
     	var url = '<c:out value="${contextPath}"/>/board/board_list_01';
@@ -110,31 +113,15 @@
 	//라인결재자 - 최종 승인자 선택여부 확인
 	function validationLineApprCheck() {
 		//최종 승인자 입력 여부 확인
-		var level = $("#apprLevel").val();
-		var maxApprLine = $("#apprLine_" + level).val();
-		if ($.trim(maxApprLine) == null || $.trim(maxApprLine).length < 1) {
+		var cnfmUser = $("#rgsrCnfmUser").val();
+		
+		if ($.trim(cnfmUser) == null || $.trim(cnfmUser).length < 1) {
 			var title = "<spring:message code="resc.label.warning"/>";
 			var msg = "<spring:message code="resc.msg.selectApprover"/>";
 			alertMsg(title, msg);
 			return false;
 		} else {
 			return true;
-		}
-	}
-	
-	//수신처 선택 여부를 체크
-	function validationRcptCheck() {
-		if($("#hd_selRcpt").length) {
-			//선택된 수신처가 있는지 확인.
-			var selRcptChk = $("#hd_selRcpt").val();
-			if ($.trim(selRcptChk) == null || $.trim(selRcptChk).length < 1) {
-				var title = "<spring:message code="resc.label.warning"/>";
-				var msg = "<spring:message code="resc.msg.selRcpt"/>";
-				alertMsg(title, msg);
-				return false;
-			} else {
-				return true;
-			}
 		}
 	}
     </script>
@@ -144,12 +131,13 @@
 		<h2><c:out value="${boardMst.boardName}"/></h2>
 	</div>
 	
-	<div>
-	<c:choose>
+	<div>		
+	<c:choose>		
 		<c:when test="${boardMst.apprIndc != 'Y'}">
 		<a href="#" class="easyui-linkbutton btnEnrollment" style="width:100px"><spring:message code="resc.btn.enrollment"/></a>
 		</c:when>
 		<c:when test="${boardMst.apprIndc == 'Y'}">
+		<a href="#" class="easyui-linkbutton btnSaveOnly" style="width:100px"><spring:message code="resc.btn.saveOnly"/></a>
 		<a href="#" class="easyui-linkbutton btnApprReq" style="width:100px"><spring:message code="resc.btn.apprReq"/></a>
 		</c:when>
 	</c:choose>
@@ -213,12 +201,13 @@
 	<hr class="thin bg-grayLighter">
 	</form:form>
 	
-	<div>
-	<c:choose>
+	<div>		
+	<c:choose>		
 		<c:when test="${boardMst.apprIndc != 'Y'}">
 		<a href="#" class="easyui-linkbutton btnEnrollment" style="width:100px"><spring:message code="resc.btn.enrollment"/></a>
 		</c:when>
 		<c:when test="${boardMst.apprIndc == 'Y'}">
+		<a href="#" class="easyui-linkbutton btnSaveOnly" style="width:100px"><spring:message code="resc.btn.saveOnly"/></a>		
 		<a href="#" class="easyui-linkbutton btnApprReq" style="width:100px"><spring:message code="resc.btn.apprReq"/></a>
 		</c:when>
 	</c:choose>

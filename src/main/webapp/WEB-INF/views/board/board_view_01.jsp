@@ -21,7 +21,14 @@
         $(".btnClose").click(function(evt) {       		
    			var title = '${doc.dcmtRgsrNo}';
    			parent.$("#listTabsLayer").tabs('close', title);	      	
-        });    	    	
+        });    
+    	
+      	//수정 버튼 클릭
+        $(".btnModify").click(function(evt){
+        	var url = "<c:out value="${contextPath}"/>/approval/modify_approval_doc_01?";
+        	var param = "dcmtRgsrNo=" + $("#dcmtRgsrNo").val() + "&cntnId=" + $("#cntnId").val() + "&popupIndc=Y";
+    		var popupWin = $.popupWindow(url + param, { createNew: false, location: false, height: 900, width: 950, name: 'modifyApprDoc', scrollbars: true });
+        });
     	    	
     	//승인 요청 버튼 클릭
         $(".btnApprReq").click(function(evt){
@@ -77,23 +84,7 @@
 		} else {
 			return true;
 		}
-	}
-	
-	//수신처 선택 여부를 체크
-	function validationRcptCheck() {
-		if($("#hd_selRcpt").length) {
-			//선택된 수신처가 있는지 확인.
-			var selRcptChk = $("#hd_selRcpt").val();
-			if ($.trim(selRcptChk) == null || $.trim(selRcptChk).length < 1) {
-				var title = "<spring:message code="resc.label.warning"/>";
-				var msg = "<spring:message code="resc.msg.selRcpt"/>";
-				alertMsg(title, msg);
-				return false;
-			} else {
-				return true;
-			}
-		}
-	}
+	}	
     </script>
 </head>	
 <body>	

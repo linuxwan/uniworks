@@ -102,6 +102,8 @@
 	   <if test="searchType == '03' and searchWord != null">
 	   and A.CONTENT LIKE CONCAT('%', #{searchWord,jdbcType=VARCHAR}, '%')
 	   </if>
+	   and A.POST_INDC LIKE #{postIndc,jdbcType=VARCHAR}
+	    or A.AUTH_EMP_NO = #{authEmpNo,jdbcType=VARCHAR}
 	order by A.DCMT_RGSR_NO DESC 
 	</select>
 	

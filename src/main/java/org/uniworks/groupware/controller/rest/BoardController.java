@@ -32,10 +32,13 @@ import org.uniworks.groupware.common.util.DateUtil;
 import org.uniworks.groupware.common.util.WebUtil;
 import org.uniworks.groupware.domain.Nw115m;
 import org.uniworks.groupware.domain.Nw130m;
+import org.uniworks.groupware.domain.UserRole;
 import org.uniworks.groupware.domain.board.BoardDoc;
+import org.uniworks.groupware.domain.board.BoardMaster;
 import org.uniworks.groupware.service.BoardService;
 import org.uniworks.groupware.service.FileService;
 import org.uniworks.groupware.service.Nw130mService;
+import org.uniworks.groupware.service.UserService;
 
 /**
  * @author Park Chung Wan
@@ -47,6 +50,7 @@ public class BoardController {
 	private static final Logger logger = LoggerFactory.getLogger(BoardController.class);
 	@Autowired BoardService boardService;	
 	@Autowired Nw130mService nw130mService;
+	@Autowired UserService userService;
 	@Autowired private FileService fileService;
 	@Autowired private MessageSource messageSource;
 		
@@ -61,6 +65,7 @@ public class BoardController {
 		
 		if (searchWord.equalsIgnoreCase("null")) searchWord = "%";
 		
+		DateUtil crntDate = new DateUtil();
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("coId", userSession.getCoId());
 		map.put("lang", userSession.getLanguage());
@@ -69,6 +74,11 @@ public class BoardController {
 		map.put("finishDate", tempFinishDate);
 		map.put("searchType", searchType);
 		map.put("searchWord", searchWord);
+		map.put("crntDate", crntDate.getString());
+		
+		BoardMaster boardMaster = boardService.selectBoardMasterInfo(map);
+		if (boardMaster.getApprIndc() == "Y") map.put("postIndc", "Y");
+		else map.put("postIndc", "N");
 		
 		List<BoardDoc> boardList = boardService.selectBoardList(map);
 		
@@ -90,6 +100,16 @@ public class BoardController {
 		Nw130m nw130m = new Nw130m();
 		WebUtil.bind(model, nw130m);
 		
+		DateUtil crntDate = new DateUtil();
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("coId", userSession.getCoId());
+		map.put("lang", userSession.getLanguage());
+		map.put("crntDate", crntDate.getString());
+		map.put("cntnId", nw130m.getCntnId());
+		BoardMaster boardMaster = boardService.selectBoardMasterInfo(map);
+		if (boardMaster.getApprIndc() == "Y") nw130m.setPostIndc("Y");
+		else nw130m.setPostIndc("N");
+		
 		nw130m.setDcmtRgsrDatetime(DateUtil.getCurrentDate());
 		nw130m.setDcmtRgsrNo(CommUtil.createSequenceNo("B"));
 								
@@ -106,5 +126,30 @@ public class BoardController {
 		}				
 		
 		return new ResponseEntity<String>(result, HttpStatus.OK);
+	}
+	
+	/**
+	 * 사용자 검색 결과를 가져온다.
+	 * @param request
+	 * @param coId
+	 * @param searchKind
+	 * @param searchWord
+	 * @return
+	 */
+	@GetMapping(value = "/user/search/coId/{coId}/searchKind/{searchKind}/searchWord/{searchWord}")
+	public ResponseEntity<List<UserRole>> getUserSearchList(HttpServletRequest request, @PathVariable("coId") String coId,
+			@PathVariable("searchKind") String searchKind, @PathVariable("searchWord") String searchWord) {
+		//Session 정보를 가져온다.		
+		UserSession userSession = (UserSession) WebUtils.getSessionAttribute(request, "userSession");		
+
+		Map<String, Object> map = new HashMap<String, Object>();	
+		map.put("coId", coId);
+		map.put("lang", userSession.getLanguage());
+		map.put("searchKind", searchKind);
+		map.put("searchWord", searchWord);
+		
+		List<UserRole> userList = userService.getUserListBySearch(map);
+		
+		return new ResponseEntity<List<UserRole>>(userList, HttpStatus.OK);
 	}
 }
