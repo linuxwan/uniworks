@@ -166,11 +166,19 @@ public class BoardCaseAController {
 	public ModelAndView boardSelectLineApprover(@ModelAttribute("param") HiddenField param, HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView("board/select_approver_form_01");
 		//Session 정보를 가져온다.
-		UserSession userSession = (UserSession) WebUtils.getSessionAttribute(request, "userSession");
-		String cntnId = StringUtil.null2void(request.getParameter("cntnId"));
-		String dcmtRgsrNo = StringUtil.null2void(request.getParameter("dcmtRgsrNo"));
+		UserSession userSession = (UserSession) WebUtils.getSessionAttribute(request, "userSession");		
 		
+		Map<String, Object> map = new HashMap<String, Object>();
+		//지원 언어 목록 체크
+		map.put("coId", userSession.getCoId());
+		map.put("lang", userSession.getLanguage());
+		map.put("majCode", "CD019"); //지원언어가 저장되어져 있는 주코드 CD001
+		map.put("orderBy", "rescKey");	//코드 정렬 방법 셋팅
+		List<CommonCode> sortTypeList = commonService.getCommonSubCodeList(map);	
+		
+		mav.addObject("searchTypeList", sortTypeList);
 		mav.addObject("userSession", userSession);
+
 		return mav;
 	}
 	
