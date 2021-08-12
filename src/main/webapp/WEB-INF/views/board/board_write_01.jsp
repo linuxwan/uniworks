@@ -31,6 +31,10 @@
     	$(".btnEnrollment").click(function(evt) {
     		createBoard();
     	});
+    	
+    	$(".btnSaveOnly").click(function(evt){
+    		createBoard();
+    	});
     	    	
     	//승인 요청 버튼 클릭
         $(".btnApprReq").click(function(evt){
@@ -138,6 +142,7 @@
 		</c:when>
 		<c:when test="${boardMst.apprIndc == 'Y'}">
 		<a href="#" class="easyui-linkbutton btnSaveOnly" style="width:100px"><spring:message code="resc.btn.saveOnly"/></a>
+		<a href="#" class="easyui-linkbutton btnSaveClose" style="width:100px"><spring:message code="resc.btn.saveClose"/></a>
 		<a href="#" class="easyui-linkbutton btnApprReq" style="width:100px"><spring:message code="resc.btn.apprReq"/></a>
 		</c:when>
 	</c:choose>
@@ -207,7 +212,8 @@
 		<a href="#" class="easyui-linkbutton btnEnrollment" style="width:100px"><spring:message code="resc.btn.enrollment"/></a>
 		</c:when>
 		<c:when test="${boardMst.apprIndc == 'Y'}">
-		<a href="#" class="easyui-linkbutton btnSaveOnly" style="width:100px"><spring:message code="resc.btn.saveOnly"/></a>		
+		<a href="#" class="easyui-linkbutton btnSaveOnly" style="width:100px"><spring:message code="resc.btn.saveOnly"/></a>	
+		<a href="#" class="easyui-linkbutton btnSaveClose" style="width:100px"><spring:message code="resc.btn.saveClose"/></a>	
 		<a href="#" class="easyui-linkbutton btnApprReq" style="width:100px"><spring:message code="resc.btn.apprReq"/></a>
 		</c:when>
 	</c:choose>

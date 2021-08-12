@@ -52,7 +52,7 @@
 				<input type="hidden" id="userId" name="userId" value="" />
 				<input type="hidden" id="userName" name="userName" value="" />
 				<input type="hidden" id="rgsrCnfmUser" name="rgsrCnfmUser" value="" />
-				<input type="hidden" id="rgsrCnfmDutyDesc" name="rgsrCnfmDutyCode" value="" />
+				<input type="hidden" id="rgsrCnfmDutyCode" name="rgsrCnfmDutyCode" value="" />
 				<input type="hidden" id="rgsrCnfmDutyDesc" name="rgsrCnfmDutyDesc" value="" />
 				<input type="hidden" id="rgsrCnfmDeptCode" name="rgsrCnfmDeptCode" value="" />
 				<input type="hidden" id="rgsrCnfmDeptDesc" name="rgsrCnfmDeptDesc" value="" />

@@ -86,6 +86,7 @@
     				rows.push({
     					userId: entry["userId"],
     					empName: entry["empName"],
+    					deptCode: entry["deptCode"],
     					deptDesc: entry["deptDesc"],
     					dutyDesc: entry["dutyDesc"],
     					pstnDesc: entry["pstnDesc"]
